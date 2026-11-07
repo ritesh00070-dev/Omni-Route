@@ -7411,7 +7411,7 @@
     "maxThinkingTokens": "最大思考令牌",
     "enableProxy": "启用代理",
     "defaultNewConnectionProxyEnabled": "默认为新连接启用代理",
-    "defaultNewConnectionProxyEnabledDesc": "设置新提供商帐户的初始代理状态，除非明确覆盖。现有连接不变。路由仍然取决于全局设置和代理配置。您可以稍后更改每个帐户。",
+    "defaultNewConnectionProxyEnabledDesc": "设置新提供者帐户的初始代理状态，除非明确覆盖。现有连接不变。路由仍然取决于全局设置和代理配置。您可以稍后更改每个帐户。",
     "perKeyProxyEnabled": "启用按密钥代理分配",
     "perKeyProxyEnabledDesc": "启用后，每个提供者连接可以使用自己的代理分配",
     "proxyUrl": "代理网址",
