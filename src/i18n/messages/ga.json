@@ -12497,7 +12497,9 @@
       "openConversation": "Oscail comhrá {id}",
       "omittedHttpAttempts": "Níor coinníodh {count} seoladh HTTP",
       "noHttpResponse": "Níor breathnaíodh aon fhreagra HTTP",
-      "transportError": "Earráid iompair"
+      "transportError": "Earráid iompair",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Logaí iarratais",
     "throughputPostFirstToken": "Tar éis an chéad token",

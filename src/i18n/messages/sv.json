@@ -12497,7 +12497,9 @@
       "openConversation": "Öppna konversation {id}",
       "omittedHttpAttempts": "{count} HTTP-sändningar sparades inte",
       "noHttpResponse": "Inget HTTP-svar observerades",
-      "transportError": "Transportfel"
+      "transportError": "Transportfel",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Förfrågningsloggar",
     "throughputPostFirstToken": "Efter första token",

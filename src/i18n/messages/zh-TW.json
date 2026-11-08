@@ -12497,7 +12497,9 @@
       "openConversation": "開啟對話 {id}",
       "omittedHttpAttempts": "未保留 {count} 次 HTTP 傳送",
       "noHttpResponse": "未觀察到 HTTP 回應",
-      "transportError": "傳輸錯誤"
+      "transportError": "傳輸錯誤",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "請求日誌",
     "throughputPostFirstToken": "首個權杖後",

@@ -12497,7 +12497,9 @@
       "openConversation": "Abrir conversación {id}",
       "omittedHttpAttempts": "{count} envíos HTTP no conservados",
       "noHttpResponse": "No se observó ninguna respuesta HTTP",
-      "transportError": "Error de transporte"
+      "transportError": "Error de transporte",
+      "payloadSize": "Tamaño de la Carga",
+      "artifactSize": "Tamaño del Artefacto"
     },
     "tableLabel": "Registros de solicitudes",
     "throughputPostFirstToken": "Después del primer token",

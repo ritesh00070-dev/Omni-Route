@@ -12497,7 +12497,9 @@
       "openConversation": "Atidaryti pokalbį {id}",
       "omittedHttpAttempts": "{count} HTTP siuntimų neišsaugota",
       "noHttpResponse": "HTTP atsakymas nepastebėtas",
-      "transportError": "Perdavimo klaida"
+      "transportError": "Perdavimo klaida",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Užklausų žurnalai",
     "throughputPostFirstToken": "Po pirmojo tokeno",

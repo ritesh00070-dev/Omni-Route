@@ -12574,7 +12574,9 @@
       "openConversation": "Abrir conversa {id}",
       "omittedHttpAttempts": "{count} envios HTTP não foram retidos",
       "noHttpResponse": "Não foi observada qualquer resposta HTTP",
-      "transportError": "Erro de transporte"
+      "transportError": "Erro de transporte",
+      "payloadSize": "Tamanho da Carga",
+      "artifactSize": "Tamanho do Artefato"
     },
     "tableLabel": "Registos de pedidos",
     "throughputPostFirstToken": "Após o primeiro token",

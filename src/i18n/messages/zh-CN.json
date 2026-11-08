@@ -12574,7 +12574,9 @@
       "openConversation": "打开对话 {id}",
       "omittedHttpAttempts": "未保留 {count} 次 HTTP 发送",
       "noHttpResponse": "未观察到 HTTP 响应",
-      "transportError": "传输错误"
+      "transportError": "传输错误",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "请求日志",
     "throughputPostFirstToken": "首个令牌后",

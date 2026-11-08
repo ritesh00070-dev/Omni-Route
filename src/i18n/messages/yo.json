@@ -12497,7 +12497,9 @@
       "openConversation": "Ṣí ìjíròrò {id}",
       "omittedHttpAttempts": "A kò fi ìfiránṣẹ́ HTTP {count} pamọ́",
       "noHttpResponse": "A kò ṣàkíyèsí ìdáhùn HTTP kankan",
-      "transportError": "Àṣìṣe ìgbéjáde"
+      "transportError": "Àṣìṣe ìgbéjáde",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Àwọn àkọọlẹ̀ ìbéèrè",
     "throughputPostFirstToken": "Lẹ́yìn àkọ́kọ́ tọ́kẹ̀nì",

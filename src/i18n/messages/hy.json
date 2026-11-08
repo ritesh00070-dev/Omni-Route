@@ -12497,7 +12497,9 @@
       "openConversation": "Բացել {id} զրույցը",
       "omittedHttpAttempts": "{count} HTTP ուղարկումներ չեն պահպանվել",
       "noHttpResponse": "HTTP պատասխան չի դիտարկվել",
-      "transportError": "Փոխանցման սխալ"
+      "transportError": "Փոխանցման սխալ",
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Հարցումների մատյաններ",
     "throughputPostFirstToken": "Առաջին թոքենից հետո",
