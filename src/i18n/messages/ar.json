@@ -3402,12 +3402,12 @@
     "piEndpoint": "OmniRoute URL",
     "piEndpointHelp": "استخدم URL الذي يمكن الوصول إليه من الجهاز الذي يقوم بتشغيل Pi. تتم إضافة نقطة النهاية /v1 المتوافقة مع OpenAI تلقائيًا.",
     "piManualMergeHint": "معاينة فقط. قم بدمج إدخال providers.omniroute هذا في models.json حتى يظل مقدمو الخدمة والإعدادات الأخرى كما هي.",
+    "removeMapping": "إزالة التعيين",
     "customUrl": "رابط مخصص",
     "customEndpointAria": "نقطة اتصال مخصصة",
     "useDefaultKey": "استخدام مفتاح OmniRoute الافتراضي",
     "mainModelAria": "النموذج الرئيسي",
-    "manualConfigTitle": "إعدادات Grok Build اليدوية",
-    "removeMapping": "إزالة التعيين"
+    "manualConfigTitle": "إعدادات Grok Build اليدوية"
   },
   "modelCatalog": {
     "title": "النماذج والمجموعات",
@@ -3654,7 +3654,6 @@
     "more": "+{count} المزيد",
     "reqs": "الطلبات",
     "success": "النجاح",
-    "fallbackSummary": "نسبة {rate}% من الطلبات استخدمت المسار البديل، مع تخطي ~{skips} أهداف لكل طلب تقريباً",
     "proxyConfigured": "تم تكوين بروكسي",
     "copyComboName": "نسخ اسم المجموعة",
     "enableCombo": "تمكين المجموعة",
@@ -4238,7 +4237,8 @@
     "duplicateAutoComboSnapshotMsg": "سيؤدي هذا إلى التقاط المزودين/النماذج المتصلة حاليًا التي تطابق هذا القالب في مجموعة قابلة للتحرير.",
     "duplicateAutoComboFailedPrefix": "فشل تكرار المجموعة التلقائية:",
     "duplicateAutoComboUnknownError": "خطأ غير معروف",
-    "duplicateAutoComboTitle": "إنشاء مجموعة ثابتة من {name}"
+    "duplicateAutoComboTitle": "إنشاء مجموعة ثابتة من {name}",
+    "fallbackSummary": "نسبة {rate}% من الطلبات استخدمت المسار البديل، مع تخطي ~{skips} أهداف لكل طلب تقريباً"
   },
   "costs": {
     "title": "التكاليف",
@@ -7057,6 +7057,15 @@
     "codexPoolUsed": "مُستخدم",
     "codexPoolUntil": "حتى {value}",
     "quotaNoData": "لا توجد بيانات استخدام بعد",
+    "quotaRefreshCurrent": "تحديث الحصة الحالية",
+    "quotaRefreshCurrentHint": "يستعلم عن الحصة الحالية لهذا الحساب دون استهلاك أرصدة إعادة التعيين.",
+    "quotaRefreshing": "جارٍ التحقق من الحصة…",
+    "quotaRefreshFresh": "تم التحقق من الحصة. يحدد الخادم مدى إتاحة الحساب.",
+    "quotaRefreshFailed": "فشل التحقق من الحصة. لم تتغير البيانات السابقة.",
+    "quotaRefreshStale": "أعاد الخادم بيانات قديمة للحصة. هذه ليست قراءة جديدة.",
+    "quotaRefreshPartial": "يتوفر جزء فقط من بيانات الحصة.",
+    "quotaWindowUnavailable": "حصة {window} غير متاحة",
+    "quotaConnectionRefreshFailed": "اكتمل التحقق من الحصة، لكن تعذر تحديث قائمة الحسابات.",
     "quotaRefresh": "تحديث الاستخدام",
     "quotaCredits": "{count} رصيد",
     "quotaUnlimited": "غير محدود",
@@ -9304,9 +9313,9 @@
         "financial": "مالي",
         "brazilian": "برازيلي",
         "usa": "الولايات المتحدة",
+        "full": "كامل",
         "gdpr": "GDPR (EU)",
-        "popia": "POPIA (جنوب أفريقيا)",
-        "full": "كامل"
+        "popia": "POPIA (جنوب أفريقيا)"
       },
       "builtinTypes": "الأنواع المضمّنة",
       "types": {
@@ -9350,7 +9359,12 @@
       "statsTitle": "الاكتشافات منذ إعادة التشغيل",
       "statsEmpty": "لا توجد اكتشافات بعد.",
       "statsRequest": "الطلبات"
-    }
+    },
+    "modalityBridgeVideoDrilldownEnabled": "الاحتفاظ بإطارات الفيديو المشتقة",
+    "modalityBridgeVideoDrilldownEnabledDesc": "السماح بالاحتفاظ المؤقت بملفات JPEG فقط عندما يضبط الطلب المُصادَق عليه أيضًا drilldown: true. لا يتم الاحتفاظ بمقاطع الفيديو الخام مطلقًا.",
+    "modalityBridgeVideoDrilldownRemoteEnabled": "السماح بالتعمق في الإطارات للمستخدمين المُصادَق عليهم",
+    "modalityBridgeVideoDrilldownRemoteEnabledDesc": "السماح لمفاتيح API بقراءة مقابضها المبهمة وحذفها فقط. لا يُسمح بالوصول المجهول أو عبر مفاتيح أخرى.",
+    "modalityBridgeVideoDrilldownUsage": "ملفات JPEG المحتفظ بها / البايتات"
   },
   "contextRtk": {
     "title": "محرك آر تي كيه",
@@ -10242,10 +10256,6 @@
     "healthExtraUsageBypass": "نفدت الحصة؛ الاستخدام الإضافي مسموح، لذا تستمر الخدمة.",
     "healthPaidCreditsBypass": "نفدت الحصة؛ تتيح الأرصدة المدفوعة المتاحة استمرار الخدمة.",
     "healthFilteringBypass": "نفدت الحصة؛ تصفية الحصة المحلية معطلة، لذا تستمر الخدمة.",
-    "codexPaidCreditsLabel": "أرصدة Codex المدفوعة",
-    "codexPaidCreditsAvailable": "متاح (الرصيد غير مُبلَّغ عنه)",
-    "codexPaidCreditsUnavailable": "غير متاح أو تم بلوغ حد الإنفاق",
-    "codexPaidCreditsUnlimited": "غير محدود",
     "title": "الاستخدام",
     "grokExtraUsageCredits": "رصيد استخدام إضافي",
     "grokAutoTopUp": "إعادة تعبئة تلقائية",
@@ -10703,6 +10713,10 @@
     "confirmRedeemClaudeResetCredit": "يؤدي الاسترداد إلى إعادة تعيين حدود استخدام Claude المؤهلة فورًا واستهلاك هذا الرصيد بشكل دائم.",
     "claudeResetCreditsModalTitle": "أرصدة إعادة تعيين Claude",
     "claudeResetCreditsModalExplainer": "أرصدة إعادة تعيين Claude المتاحة وعمليات إعادة تعيين الجلسات الأسبوعية لهذا الحساب.",
+    "codexPaidCreditsLabel": "أرصدة Codex المدفوعة",
+    "codexPaidCreditsAvailable": "متاح (الرصيد غير مُبلَّغ عنه)",
+    "codexPaidCreditsUnavailable": "غير متاح أو تم بلوغ حد الإنفاق",
+    "codexPaidCreditsUnlimited": "غير محدود",
     "healthAccountHint": "استنادًا إلى أحدث الملاحظات، وليس فحصًا مباشرًا. حدد حسابًا لعرض التفاصيل.",
     "healthRecovery": "وقت الاستعادة المتوقع",
     "healthAvailable": "متاح",
@@ -11846,7 +11860,27 @@
     "copilotPolicyAcknowledge": "أنا أفهم، الاتصال",
     "tabPasteSetupToken": "رمز الإعداد",
     "claudeSetupTokenDescription": "شغّل `claude setup-token` في الطرفية والصق الرمز الذي يطبعه. الرمز صالح لمدة عام واحد ولا يملك رمز تحديث. يرسل OmniRoute طلب اختبار واحدًا إلى Anthropic قبل حفظه.",
-    "claudeSetupTokenPlaceholder": "sk-ant-oat01-..."
+    "claudeSetupTokenPlaceholder": "sk-ant-oat01-...",
+    "m365Title": "تسجيل الدخول إلى Microsoft 365 Copilot",
+    "m365UrlExpiredHint": "ابدأ محاولة جديدة إذا انتهت صلاحيته قبل أن تنتهي.",
+    "m365UrlExpires": "تنتهي صلاحية عنوان URL هذا للتفويض في",
+    "m365AuthUrlCopyHint": "حدد عنوان URL الكامل للتفويض وانسخه باستخدام Ctrl+C (أو Command+C على Mac)، أو استخدم قائمة النسخ في متصفحك. الصقه في علامة التبويب الفارغة فقط بعد تفعيل Preserve log.",
+    "m365AuthUrlLabel": "عنوان URL للتفويض (انسخه إلى علامة التبويب المُعدّة)",
+    "m365StepNavigate": "انسخ عنوان URL للتفويض أدناه والصقه في شريط العنوان بعلامة التبويب المُعدّة، ثم اضغط Enter لتسجيل الدخول.",
+    "m365StepPrepare": "جهّز تسجيل الدخول إلى Microsoft لإنشاء محاولة جديدة.",
+    "m365StepOpen": "افتح علامة تبويب فارغة في متصفحك باستخدام الرابط أدناه. لا تنتقل إلى Microsoft بعد.",
+    "m365StepNetwork": "في علامة التبويب الفارغة تلك، افتح DevTools → Network وفعّل Preserve log قبل الانتقال. أبقِ DevTools مفتوحة.",
+    "m365StepCopy": "بعد تسجيل الدخول، ابحث في Network عن الطلب الموجّه إلى https://login.microsoftonline.com/common/oauth2/nativeclient وانسخ قيمة Request URL كاملةً. لا تنسخ عنوان URL النهائي الذي يتضمن wrongplace من شريط العنوان.",
+    "m365PrivateUrlHint": "يحتوي عنوان URL للطلب على بيانات اعتماد تُستخدم لمرة واحدة. الصقه هنا فقط؛ لا تشاركه أبدًا ولا تُدرجه في السجلات.",
+    "m365Prepare": "تجهيز تسجيل الدخول إلى Microsoft",
+    "m365Preparing": "جارٍ تجهيز تسجيل الدخول…",
+    "m365OpenSignIn": "فتح علامة تبويب فارغة",
+    "m365CallbackLabel": "قيمة Request URL الكاملة لطلب nativeclient",
+    "m365Connecting": "جارٍ الاتصال…",
+    "m365NewAttempt": "بدء محاولة جديدة",
+    "m365PrepareError": "تعذّر تجهيز تسجيل الدخول إلى Microsoft. حاول مرة أخرى.",
+    "m365ExchangeError": "تعذّر إكمال تسجيل الدخول إلى Microsoft. ابدأ محاولة جديدة.",
+    "m365InvalidCallback": "الصق قيمة Request URL الكاملة لطلب nativeclient التي تتضمن code واحدًا وstate المطابق من هذه المحاولة. لا تُقبل الرموز وحدها ولا عناوين URL التي تتضمن wrongplace."
   },
   "cursorAuthModal": {
     "title": "ربط IDE Cursor",
@@ -12358,10 +12392,6 @@
     "messageInputAria": "الرسالة"
   },
   "requestLogger": {
-    "omittedHttpAttempts": "لم يتم الاحتفاظ بـ {count} من عمليات إرسال HTTP",
-    "upstreamStatus": "الخادم الأعلى {status}",
-    "noHttpResponse": "لم تُرصد أي استجابة HTTP",
-    "transportError": "خطأ في النقل",
     "recording": "التسجيل",
     "paused": "متوقف مؤقتًا",
     "pipelineLogsOn": "سجلات مسار المعالجة مفعّلة",
@@ -12445,8 +12475,6 @@
       "increase": "زيادة الفاصل الزمني"
     },
     "status": {
-      "recoveredAttemptsTitle": "تم استرداد الطلب عبر {count} من المحاولات",
-      "latestOutcomeFailed": "فشلت نتيجة الطلب الأخيرة",
       "inProgress": "قيد التقدم",
       "recoveredByRetry": "تم الاسترداد عن طريق إعادة المحاولة",
       "goToParent": "اذهب إلى الطلب الرئيسي",
@@ -12455,13 +12483,12 @@
       "failedTitle": "فشلت جميع المحاولات {count}",
       "failed": "فشل",
       "pinnedTitle": "تم اختيار النموذج عبر تثبيت جلسة ذاكرة التخزين المؤقت للسياق",
-      "pinned": "مثبت"
+      "pinned": "مثبت",
+      "recoveredAttemptsTitle": "تم استرداد الطلب عبر {count} من المحاولات",
+      "latestOutcomeFailed": "فشلت نتيجة الطلب الأخيرة"
     },
     "attempts": "محاولات",
     "detail": {
-      "omittedHttpAttempts": "لم يتم الاحتفاظ بـ {count} من عمليات إرسال HTTP",
-      "noHttpResponse": "لم تُرصد أي استجابة HTTP",
-      "transportError": "خطأ في النقل",
       "collapse": "طي {title}",
       "expand": "قم بتوسيع {title}",
       "copyTitle": "نسخ {title}",
@@ -12560,13 +12587,20 @@
       "continuesFromParent": "يتابع من الأصل",
       "continuesFrom": "يتابع من {id}",
       "viewConversation": "عرض المحادثة",
-      "openConversation": "فتح المحادثة {id}"
+      "openConversation": "فتح المحادثة {id}",
+      "omittedHttpAttempts": "لم يتم الاحتفاظ بـ {count} من عمليات إرسال HTTP",
+      "noHttpResponse": "لم تُرصد أي استجابة HTTP",
+      "transportError": "خطأ في النقل"
     },
     "tableLabel": "سجلات الطلبات",
     "throughputPostFirstToken": "ما بعد الرمز الأول",
     "throughputEndToEnd": "من البداية إلى النهاية",
     "throughputRate": "{value} رمز/ثانية",
-    "throughputExplanation": "يستخدم كلا المعدلين العدد الأكبر بين رموز الإخراج ورموز الاستدلال. يستثني معدل ما بعد الرمز الأول قيمة TTFT صالحة؛ وإلا فإنه يستخدم المدة الكاملة. أما معدل البداية إلى النهاية فيستخدم دائمًا المدة الكاملة. قد يحقق الرد المخزّن مؤقتًا معدل تسليم لحظيًا مرتفعًا دون أن يكون توليد النموذج أسرع."
+    "throughputExplanation": "يستخدم كلا المعدلين العدد الأكبر بين رموز الإخراج ورموز الاستدلال. يستثني معدل ما بعد الرمز الأول قيمة TTFT صالحة؛ وإلا فإنه يستخدم المدة الكاملة. أما معدل البداية إلى النهاية فيستخدم دائمًا المدة الكاملة. قد يحقق الرد المخزّن مؤقتًا معدل تسليم لحظيًا مرتفعًا دون أن يكون توليد النموذج أسرع.",
+    "omittedHttpAttempts": "لم يتم الاحتفاظ بـ {count} من عمليات إرسال HTTP",
+    "upstreamStatus": "الخادم الأعلى {status}",
+    "noHttpResponse": "لم تُرصد أي استجابة HTTP",
+    "transportError": "خطأ في النقل"
   },
   "proxyLogger": {
     "filterAll": "الكل",
@@ -15288,6 +15322,63 @@
       "save": "حفظ القواعد",
       "saved": "تم حفظ قواعد فترات التهدئة",
       "saveFailed": "تعذر حفظ قواعد فترات التهدئة"
+    },
+    "errorRules": {
+      "title": "قواعد التهدئة عند الأخطاء",
+      "subtitle": "تعرّف على أخطاء المزوّد حسب حالة HTTP أو نص الخطأ أو كليهما، واختر ما يتم إيقافه مؤقتًا ولأي مدة. تُطبَّق هذه القواعد قبل القواعد المدمجة.",
+      "rulesHeading": "القواعد",
+      "rulesEmpty": "لا توجد قواعد بعد.",
+      "addRule": "إضافة قاعدة",
+      "provider": "المزوّد",
+      "providerPlaceholder": "مثال: openai",
+      "status": "حالة HTTP",
+      "statusPlaceholder": "أي حالة",
+      "match": "نص الخطأ يحتوي على",
+      "matchPlaceholder": "أي نص",
+      "matchHint": "تُطبَّق أول قاعدة مطابقة. نص الخطأ نص عادي لا يميّز حالة الأحرف، وليس تعبيرًا نمطيًا. اترك الحقل فارغًا لمطابقة أي شيء.",
+      "scope": "الإيقاف المؤقت لـ",
+      "scopes": {
+        "connection": "هذا الاتصال",
+        "model": "هذا النموذج فقط",
+        "provider": "المزوّد بالكامل"
+      },
+      "reason": "السبب",
+      "reasonAuto": "تلقائي",
+      "reasons": {
+        "quota_exhausted": "نفاد الحصة",
+        "rate_limit_exceeded": "تجاوز حد المعدل",
+        "auth_error": "خطأ في المصادقة",
+        "model_capacity": "النموذج بلغ سعته",
+        "server_error": "خطأ في الخادم",
+        "unknown": "أخرى"
+      },
+      "duration": "المدة",
+      "durations": {
+        "auto": "افتراضية",
+        "30m": "30 دقيقة",
+        "1h": "ساعة واحدة",
+        "5h": "5 ساعات",
+        "24h": "24 ساعة",
+        "custom": "مخصصة"
+      },
+      "customMinutes": "الدقائق (من 1 إلى 43200)",
+      "remove": "إزالة",
+      "defaultsHeading": "الإعداد الافتراضي للإخفاقات غير المطابقة",
+      "defaultsHint": "اختياري، لكل مزوّد. يُطبَّق فقط عندما لا تطابق أي قاعدة خطأ 402 أو 403 أو 408 أو 429 أو 5xx. لا تتأثر أخطاء الطلب مثل 400 أبدًا.",
+      "defaultsEmpty": "لم يُضبط إعداد افتراضي. تحتفظ الأخطاء غير المطابقة بالسلوك المدمج.",
+      "addDefault": "إضافة إعداد افتراضي",
+      "errors": {
+        "provider": "أدخل مزوّدًا.",
+        "condition": "اضبط حالة HTTP أو نص خطأ أو كليهما.",
+        "status": "استخدم حالة بين 100 و599.",
+        "duration": "أدخل من 1 إلى 43200 دقيقة.",
+        "duplicateDefault": "لهذا المزوّد إعداد افتراضي بالفعل.",
+        "tooMany": "50 قاعدة كحد أقصى."
+      },
+      "save": "حفظ قواعد الأخطاء",
+      "saved": "تم حفظ قواعد الأخطاء",
+      "saveFailed": "تعذّر حفظ قواعد الأخطاء",
+      "loadFailed": "تعذّر تحميل قواعد الأخطاء"
     },
     "list": {
       "title": "الاتصالات المستبعدة من التوجيه",

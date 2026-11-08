@@ -3402,12 +3402,12 @@
     "piEndpoint": "OmniRoute URL",
     "piEndpointHelp": "Koristite URL dostupnu sa mašine na kojoj radi Pi. OpenAI-kompatibilna /v1 krajnja tačka se dodaje automatski.",
     "piManualMergeHint": "Samo pregled. Spojite ovaj unos providers.omniroute u models.json tako da vaši drugi provajderi i postavke ostanu netaknuti.",
+    "removeMapping": "Ukloni mapiranje",
     "customUrl": "Prilagođena URL",
     "customEndpointAria": "Prilagođena tačka pristupa",
     "useDefaultKey": "Koristite zadanu ključ za OmniRoute",
     "mainModelAria": "Glavni model",
-    "manualConfigTitle": "Ručna konfiguracija Grok Build",
-    "removeMapping": "Ukloni mapiranje"
+    "manualConfigTitle": "Ručna konfiguracija Grok Build"
   },
   "modelCatalog": {
     "title": "Modeli i kombinacije",
@@ -3654,7 +3654,6 @@
     "more": "još +{count}",
     "reqs": "zahtjeva",
     "success": "uspjeh",
-    "fallbackSummary": "{rate}% zahtjeva je koristilo alternativni put, svaki je prosječno preskočio ~{skips} meta",
     "proxyConfigured": "Proxy konfigurisan",
     "copyComboName": "Kopiraj naziv kombinacije",
     "enableCombo": "Omogući kombinaciju",
@@ -4238,7 +4237,8 @@
     "duplicateAutoComboSnapshotMsg": "Ovo će napraviti snapshot povezanih providera/modela koji odgovaraju ovom šablonu u uredivi combo.",
     "duplicateAutoComboFailedPrefix": "Neuspjelo dupliranje auto-comba:",
     "duplicateAutoComboUnknownError": "Nepoznata greška",
-    "duplicateAutoComboTitle": "Kreiraj statični combo iz {name}"
+    "duplicateAutoComboTitle": "Kreiraj statični combo iz {name}",
+    "fallbackSummary": "{rate}% zahtjeva je koristilo alternativni put, svaki je prosječno preskočio ~{skips} meta"
   },
   "costs": {
     "title": "Troškovi",
@@ -7175,7 +7175,16 @@
     "chatgptConnectorLabel": "ChatGPT prilagođeni konektor",
     "doctorChecking": "Provjeravanje statusa…",
     "doctorCheck": "Provjeri status liječnika",
-    "fallbackRetryBackendTitle": "Pozadišni servis za ponavljanje u slučaju pada"
+    "fallbackRetryBackendTitle": "Pozadišni servis za ponavljanje u slučaju pada",
+    "quotaRefreshCurrent": "Osvježi trenutnu kvotu",
+    "quotaRefreshCurrentHint": "Provjerava trenutnu kvotu ovog računa bez trošenja kredita za resetovanje.",
+    "quotaRefreshing": "Provjera kvote…",
+    "quotaRefreshFresh": "Kvota je provjerena. Server određuje dostupnost računa.",
+    "quotaRefreshFailed": "Provjera kvote nije uspjela. Prethodni podaci nisu promijenjeni.",
+    "quotaRefreshStale": "Server je vratio stare podatke o kvoti. Ovo nije novo očitanje.",
+    "quotaRefreshPartial": "Dostupan je samo dio podataka o kvoti.",
+    "quotaWindowUnavailable": "Kvota za {window} nije dostupna",
+    "quotaConnectionRefreshFailed": "Provjera kvote je završena, ali lista računa nije mogla biti osvježena."
   },
   "settings": {
     "title": "Postavke",
@@ -9304,9 +9313,9 @@
         "financial": "Finansijski",
         "brazilian": "Brazilski",
         "usa": "SAD",
+        "full": "Potpuni",
         "gdpr": "GDPR (EU)",
-        "popia": "POPIA (južna Afrika)",
-        "full": "Potpuni"
+        "popia": "POPIA (južna Afrika)"
       },
       "builtinTypes": "Ugrađeni tipovi",
       "types": {
@@ -9350,7 +9359,12 @@
       "statsTitle": "Otkrivanja od ponovnog pokretanja",
       "statsEmpty": "Još nema otkrivanja.",
       "statsRequest": "Zahtjevi"
-    }
+    },
+    "modalityBridgeVideoDrilldownEnabled": "Zadrži izvedene kadrove videozapisa",
+    "modalityBridgeVideoDrilldownEnabledDesc": "Dozvoli privremeno zadržavanje JPEG datoteka samo kada autentificirani zahtjev također postavlja drilldown: true. Izvorni videozapisi se nikada ne zadržavaju.",
+    "modalityBridgeVideoDrilldownRemoteEnabled": "Dozvoli autentificiranu detaljnu analizu kadrova",
+    "modalityBridgeVideoDrilldownRemoteEnabledDesc": "Dozvoli API ključevima da čitaju i brišu samo vlastite neprozirne identifikatore. Anonimni pristup ili pristup između različitih ključeva nije dozvoljen.",
+    "modalityBridgeVideoDrilldownUsage": "Zadržane JPEG datoteke / bajtovi"
   },
   "contextRtk": {
     "title": "RTK pogon",
@@ -11846,7 +11860,27 @@
     "copilotPolicyAcknowledge": "Razumijem, poveži se",
     "tabPasteSetupToken": "Token za postavljanje",
     "claudeSetupTokenDescription": "Pokrenite `claude setup-token` u terminalu i zalijepite token koji ispiše. Važi godinu dana i nema token za osvježavanje. OmniRoute šalje jedan testni zahtjev Anthropicu prije nego što ga sačuva.",
-    "claudeSetupTokenPlaceholder": "sk-ant-oat01-..."
+    "claudeSetupTokenPlaceholder": "sk-ant-oat01-...",
+    "m365Title": "Prijava u Microsoft 365 Copilot",
+    "m365UrlExpiredHint": "Pokrenite novi pokušaj ako istekne prije nego što završite.",
+    "m365UrlExpires": "Ovaj autorizacijski URL ističe u",
+    "m365AuthUrlCopyHint": "Označite cijeli autorizacijski URL i kopirajte ga pomoću Ctrl+C (Command+C na Mac računaru) ili koristite meni za kopiranje u svom pretraživaču. Zalijepite ga u prazni tab tek nakon što omogućite Preserve log.",
+    "m365AuthUrlLabel": "Autorizacijski URL (kopirajte u pripremljeni tab)",
+    "m365StepNavigate": "Kopirajte autorizacijski URL ispod i zalijepite ga u adresnu traku pripremljenog taba, a zatim pritisnite Enter da se prijavite.",
+    "m365StepPrepare": "Pripremite Microsoft prijavu da biste kreirali novi pokušaj.",
+    "m365StepOpen": "Otvorite prazan tab u svom pretraživaču koristeći vezu ispod. Nemojte još otvarati Microsoft.",
+    "m365StepNetwork": "U tom praznom tabu otvorite DevTools → Network i omogućite Preserve log prije otvaranja druge stranice. Ostavite DevTools otvoren.",
+    "m365StepCopy": "Nakon prijave pronađite zahtjev za https://login.microsoftonline.com/common/oauth2/nativeclient u odjeljku Network i kopirajte njegov cijeli Request URL. Nemojte kopirati završni wrongplace URL iz adresne trake.",
+    "m365PrivateUrlHint": "URL zahtjeva sadrži jednokratnu vjerodajnicu. Zalijepite ga samo ovdje; nikada ga ne dijelite niti uključujte u zapisnike.",
+    "m365Prepare": "Pripremite Microsoft prijavu",
+    "m365Preparing": "Priprema prijave…",
+    "m365OpenSignIn": "Otvorite prazan tab",
+    "m365CallbackLabel": "Cijeli nativeclient Request URL",
+    "m365Connecting": "Povezivanje…",
+    "m365NewAttempt": "Pokrenite novi pokušaj",
+    "m365PrepareError": "Nije moguće pripremiti Microsoft prijavu. Pokušajte ponovo.",
+    "m365ExchangeError": "Nije moguće dovršiti Microsoft prijavu. Pokrenite novi pokušaj.",
+    "m365InvalidCallback": "Zalijepite cijeli nativeclient Request URL s jednim parametrom code i odgovarajućim parametrom state iz ovog pokušaja. Sami kodovi i wrongplace URL-ovi nisu prihvaćeni."
   },
   "cursorAuthModal": {
     "title": "Poveži Cursor",
@@ -12358,10 +12392,6 @@
     "messageInputAria": "Poruka"
   },
   "requestLogger": {
-    "omittedHttpAttempts": "{count} HTTP slanja nije sačuvano",
-    "upstreamStatus": "Nadređeni server {status}",
-    "noHttpResponse": "HTTP odgovor nije zabilježen",
-    "transportError": "Greška u prijenosu",
     "recording": "Snimanje",
     "paused": "Pauzirano",
     "pipelineLogsOn": "Pipeline logovi uključeni",
@@ -12445,8 +12475,6 @@
       "increase": "Povećaj interval"
     },
     "status": {
-      "recoveredAttemptsTitle": "Zahtjev je oporavljen kroz {count} pokušaja",
-      "latestOutcomeFailed": "Ishod posljednjeg zahtjeva nije uspješan",
       "inProgress": "U toku",
       "recoveredByRetry": "Oporavljeno ponovnim pokušajem",
       "goToParent": "Idi na roditeljski zahtjev",
@@ -12455,13 +12483,12 @@
       "failedTitle": "Svih {count} pokušaja nije uspjelo",
       "failed": "neuspjelo",
       "pinnedTitle": "Model odabran putem context-cache session pinning-a",
-      "pinned": "zakačeno"
+      "pinned": "zakačeno",
+      "recoveredAttemptsTitle": "Zahtjev je oporavljen kroz {count} pokušaja",
+      "latestOutcomeFailed": "Ishod posljednjeg zahtjeva nije uspješan"
     },
     "attempts": "pokušaja",
     "detail": {
-      "omittedHttpAttempts": "{count} HTTP slanja nije sačuvano",
-      "noHttpResponse": "HTTP odgovor nije zabilježen",
-      "transportError": "Greška u prijenosu",
       "collapse": "Skupi {title}",
       "expand": "Proširi {title}",
       "copyTitle": "Kopiraj {title}",
@@ -12560,13 +12587,20 @@
       "continuesFromParent": "nastavlja se od nadređenog",
       "continuesFrom": "Nastavlja se od {id}",
       "viewConversation": "prikaži razgovor",
-      "openConversation": "Otvori razgovor {id}"
+      "openConversation": "Otvori razgovor {id}",
+      "omittedHttpAttempts": "{count} HTTP slanja nije sačuvano",
+      "noHttpResponse": "HTTP odgovor nije zabilježen",
+      "transportError": "Greška u prijenosu"
     },
     "tableLabel": "Zapisnici zahtjeva",
     "throughputPostFirstToken": "Nakon prvog tokena",
     "throughputEndToEnd": "Od početka do kraja",
     "throughputRate": "{value} tokena/s",
-    "throughputExplanation": "Obje stope koriste veću vrijednost između broja izlaznih tokena i tokena zaključivanja. Stopa nakon prvog tokena isključuje važeći TTFT; u suprotnom koristi puno trajanje. Stopa od početka do kraja uvijek koristi puno trajanje. Baferisani odgovor može imati visoku stopu isporuke u rafalu bez brže generacije modela."
+    "throughputExplanation": "Obje stope koriste veću vrijednost između broja izlaznih tokena i tokena zaključivanja. Stopa nakon prvog tokena isključuje važeći TTFT; u suprotnom koristi puno trajanje. Stopa od početka do kraja uvijek koristi puno trajanje. Baferisani odgovor može imati visoku stopu isporuke u rafalu bez brže generacije modela.",
+    "omittedHttpAttempts": "{count} HTTP slanja nije sačuvano",
+    "upstreamStatus": "Nadređeni server {status}",
+    "noHttpResponse": "HTTP odgovor nije zabilježen",
+    "transportError": "Greška u prijenosu"
   },
   "proxyLogger": {
     "filterAll": "Sve",
@@ -15288,6 +15322,63 @@
       "save": "Sačuvaj pravila",
       "saved": "Pravila perioda hlađenja su sačuvana",
       "saveFailed": "Čuvanje pravila perioda hlađenja nije uspjelo"
+    },
+    "errorRules": {
+      "title": "Pravila perioda hlađenja za greške",
+      "subtitle": "Prepoznajte greške provajdera po HTTP statusu, tekstu greške ili oboje i odaberite šta i koliko dugo pauzirati. Ova pravila se primjenjuju prije ugrađenih.",
+      "rulesHeading": "Pravila",
+      "rulesEmpty": "Još nema pravila.",
+      "addRule": "Dodaj pravilo",
+      "provider": "Provajder",
+      "providerPlaceholder": "npr. openai",
+      "status": "HTTP status",
+      "statusPlaceholder": "Bilo koji",
+      "match": "Tekst greške sadrži",
+      "matchPlaceholder": "Bilo koji tekst",
+      "matchHint": "Važi prvo pravilo koje se podudara. Tekst greške je običan tekst bez razlikovanja velikih i malih slova, a ne regularni izraz. Prazno polje odgovara svemu.",
+      "scope": "Pauziraj",
+      "scopes": {
+        "connection": "Ovu vezu",
+        "model": "Samo ovaj model",
+        "provider": "Cijelog provajdera"
+      },
+      "reason": "Razlog",
+      "reasonAuto": "Automatski",
+      "reasons": {
+        "quota_exhausted": "Kvota potrošena",
+        "rate_limit_exceeded": "Prekoračeno ograničenje zahtjeva",
+        "auth_error": "Greška autentifikacije",
+        "model_capacity": "Model je preopterećen",
+        "server_error": "Greška servera",
+        "unknown": "Ostalo"
+      },
+      "duration": "Trajanje",
+      "durations": {
+        "auto": "Zadano",
+        "30m": "30 minuta",
+        "1h": "1 sat",
+        "5h": "5 sati",
+        "24h": "24 sata",
+        "custom": "Prilagođeno"
+      },
+      "customMinutes": "Minute (od 1 do 43200)",
+      "remove": "Ukloni",
+      "defaultsHeading": "Zadano za greške bez pravila",
+      "defaultsHint": "Neobavezno, po provajderu. Primjenjuje se samo kad nijedno pravilo ne odgovara grešci 402, 403, 408, 429 ili 5xx. Greške zahtjeva, poput 400, nikad nisu obuhvaćene.",
+      "defaultsEmpty": "Zadana vrijednost nije postavljena. Greške bez pravila zadržavaju ugrađeno ponašanje.",
+      "addDefault": "Dodaj zadanu vrijednost",
+      "errors": {
+        "provider": "Unesite provajdera.",
+        "condition": "Postavite HTTP status, tekst greške ili oboje.",
+        "status": "Koristite status između 100 i 599.",
+        "duration": "Unesite od 1 do 43200 minuta.",
+        "duplicateDefault": "Ovaj provajder već ima zadanu vrijednost.",
+        "tooMany": "Najviše 50 pravila."
+      },
+      "save": "Sačuvaj pravila grešaka",
+      "saved": "Pravila grešaka sačuvana",
+      "saveFailed": "Pravila grešaka nije moguće sačuvati",
+      "loadFailed": "Pravila grešaka nije moguće učitati"
     },
     "list": {
       "title": "Konekcije van usmjeravanja",

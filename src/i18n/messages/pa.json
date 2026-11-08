@@ -3402,12 +3402,12 @@
     "piEndpoint": "OmniRoute URL",
     "piEndpointHelp": "ਪਾਈ ਚੱਲ ਰਹੀ ਮਸ਼ੀਨ ਤੋਂ ਪਹੁੰਚਯੋਗ URL ਵਰਤੋਂ ਕਰੋ। OpenAI- ਅਨੁਕੂਲ /v1 ਅੰਤਮ ਬਿੰਦੂ ਆਪਣੇ ਆਪ ਜੋੜਿਆ ਜਾਂਦਾ ਹੈ।",
     "piManualMergeHint": "ਸਿਰਫ਼ ਝਲਕ। ਇਸ providers.omniroute ਐਂਟਰੀ ਨੂੰ models.json ਵਿੱਚ ਮਿਲਾਓ ਤਾਂ ਜੋ ਤੁਹਾਡੇ ਹੋਰ ਪ੍ਰਦਾਤਾ ਅਤੇ ਸੈਟਿੰਗਾਂ ਬਰਕਰਾਰ ਰਹਿਣ।",
+    "removeMapping": "ਮੈਪਿੰਗ ਹਟਾਓ",
     "customUrl": "ਕਸਟਮ URL",
     "customEndpointAria": "ਕਸਟਮ ਐਂਡਪਆਇੰਟ",
     "useDefaultKey": "OmniRoute ਡਿਫੌਲਟ ਕੀ ਦੀ ਵਰਤੋਂ ਕਰੋ",
     "mainModelAria": "ਮੁੱਖ ਮਾਡਲ",
-    "manualConfigTitle": "Grok Build ਮੈਨੁਅਲ ਕਨਫਿਗ",
-    "removeMapping": "ਮੈਪਿੰਗ ਹਟਾਓ"
+    "manualConfigTitle": "Grok Build ਮੈਨੁਅਲ ਕਨਫਿਗ"
   },
   "modelCatalog": {
     "title": "ਮਾਡਲ ਅਤੇ ਕੰਬੋਜ਼",
@@ -3654,7 +3654,6 @@
     "more": "+{count} ਹੋਰ",
     "reqs": "ਬੇਨਤੀਆਂ",
     "success": "ਸਫਲਤਾ",
-    "fallbackSummary": "{rate}% ਐਪਲੀਕੇਸ਼ਨਾਂ ਬੈਕਅੱਪ ਵਿੱਚ ਗਈਆਂ, ਔਸਤਨ ~{skips} ਟਾਰਗੇਟ ਹਰ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਛੂੜੇ ਗਏ",
     "proxyConfigured": "ਪ੍ਰਾਕਸੀ ਸੰਰਚਿਤ ਹੈ",
     "copyComboName": "ਕੌਂਬੋ ਦਾ ਨਾਮ ਕਾਪੀ ਕਰੋ",
     "enableCombo": "ਕੌਂਬੋ ਸਮਰੱਥ ਕਰੋ",
@@ -4238,7 +4237,8 @@
     "duplicateAutoComboSnapshotMsg": "ਇਹ ਇਸ ਟੈਂਪਲੇਟ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਮੌਜੂਦਾ ਕਨੈਕਟ ਕੀਤੇ ਪ੍ਰਦਾਤਾਵਾਂ/ਮਾਡਲਾਂ ਦਾ ਸਨੈਪਸ਼ਾਟ ਲੈ ਕੇ ਇੱਕ ਸੰਪਾਦਨਯੋਗ ਕੌਂਬੋ ਬਣਾਏਗਾ।",
     "duplicateAutoComboFailedPrefix": "ਆਟੋ-ਕੌਂਬੋ ਦੀ ਨਕਲ ਬਣਾਉਣ ਵਿੱਚ ਅਸਫਲ:",
     "duplicateAutoComboUnknownError": "ਅਣਜਾਣ ਗਲਤੀ",
-    "duplicateAutoComboTitle": "{name} ਤੋਂ ਇੱਕ ਸਥਿਰ ਕੌਂਬੋ ਬਣਾਓ"
+    "duplicateAutoComboTitle": "{name} ਤੋਂ ਇੱਕ ਸਥਿਰ ਕੌਂਬੋ ਬਣਾਓ",
+    "fallbackSummary": "{rate}% ਐਪਲੀਕੇਸ਼ਨਾਂ ਬੈਕਅੱਪ ਵਿੱਚ ਗਈਆਂ, ਔਸਤਨ ~{skips} ਟਾਰਗੇਟ ਹਰ ਐਪਲੀਕੇਸ਼ਨ ਵਿੱਚ ਛੂੜੇ ਗਏ"
   },
   "costs": {
     "title": "ਲਾਗਤਾਂ",
@@ -7057,6 +7057,15 @@
     "codexPoolUsed": "ਵਰਤਿਆ ਗਿਆ",
     "codexPoolUntil": "{value} ਤੱਕ",
     "quotaNoData": "ਹਾਲੇ ਤੱਕ ਵਰਤੋਂ ਦਾ ਕੋਈ ਡਾਟਾ ਨਹੀਂ",
+    "quotaRefreshCurrent": "ਮੌਜੂਦਾ ਕੋਟਾ ਤਾਜ਼ਾ ਕਰੋ",
+    "quotaRefreshCurrentHint": "ਰੀਸੈੱਟ ਕ੍ਰੈਡਿਟ ਖਰਚੇ ਬਿਨਾਂ ਇਸ ਖਾਤੇ ਦਾ ਮੌਜੂਦਾ ਕੋਟਾ ਜਾਂਚਦਾ ਹੈ।",
+    "quotaRefreshing": "ਕੋਟੇ ਦੀ ਜਾਂਚ ਹੋ ਰਹੀ ਹੈ…",
+    "quotaRefreshFresh": "ਕੋਟੇ ਦੀ ਜਾਂਚ ਹੋ ਗਈ ਹੈ। ਖਾਤੇ ਦੀ ਉਪਲਬਧਤਾ ਸਰਵਰ ਤੈਅ ਕਰਦਾ ਹੈ।",
+    "quotaRefreshFailed": "ਕੋਟੇ ਦੀ ਜਾਂਚ ਅਸਫਲ ਹੋਈ। ਪਿਛਲਾ ਡਾਟਾ ਬਦਲਿਆ ਨਹੀਂ ਹੈ।",
+    "quotaRefreshStale": "ਸਰਵਰ ਨੇ ਕੋਟੇ ਦਾ ਪੁਰਾਣਾ ਡਾਟਾ ਵਾਪਸ ਕੀਤਾ ਹੈ। ਇਹ ਨਵੀਂ ਜਾਂਚ ਦਾ ਨਤੀਜਾ ਨਹੀਂ ਹੈ।",
+    "quotaRefreshPartial": "ਕੋਟੇ ਦੇ ਡਾਟੇ ਦਾ ਸਿਰਫ਼ ਇੱਕ ਹਿੱਸਾ ਉਪਲਬਧ ਹੈ।",
+    "quotaWindowUnavailable": "{window} ਦਾ ਕੋਟਾ ਉਪਲਬਧ ਨਹੀਂ ਹੈ",
+    "quotaConnectionRefreshFailed": "ਕੋਟੇ ਦੀ ਜਾਂਚ ਮੁਕੰਮਲ ਹੋ ਗਈ, ਪਰ ਖਾਤਿਆਂ ਦੀ ਸੂਚੀ ਤਾਜ਼ਾ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।",
     "quotaRefresh": "ਵਰਤੋਂ ਰਿਫਰੈਸ਼ ਕਰੋ",
     "quotaCredits": "{count} ਕ੍ਰੈਡਿਟ",
     "quotaUnlimited": "ਬੇਅੰਤ",
@@ -9304,9 +9313,9 @@
         "financial": "ਵਿੱਤੀ",
         "brazilian": "ਬ੍ਰਾਜ਼ੀਲੀ",
         "usa": "ਅਮਰੀਕਾ",
+        "full": "ਪੂਰਾ",
         "gdpr": "GDPR (EU)",
-        "popia": "POPIA (ਦੱਖਣੀ ਅਫਰੀਕਾ)",
-        "full": "ਪੂਰਾ"
+        "popia": "POPIA (ਦੱਖਣੀ ਅਫਰੀਕਾ)"
       },
       "builtinTypes": "ਬਿਲਟ-ਇਨ ਕਿਸਮਾਂ",
       "types": {
@@ -9350,7 +9359,12 @@
       "statsTitle": "ਮੁੜ-ਚਾਲੂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਦੀਆਂ ਪਛਾਣਾਂ",
       "statsEmpty": "ਅਜੇ ਕੋਈ ਪਛਾਣ ਨਹੀਂ।",
       "statsRequest": "ਬੇਨਤੀਆਂ"
-    }
+    },
+    "modalityBridgeVideoDrilldownEnabled": "ਪ੍ਰਾਪਤ ਕੀਤੇ ਵੀਡੀਓ ਫ੍ਰੇਮਾਂ ਨੂੰ ਸੰਭਾਲ ਕੇ ਰੱਖੋ",
+    "modalityBridgeVideoDrilldownEnabledDesc": "ਅਸਥਾਈ JPEG ਸੰਭਾਲ ਦੀ ਆਗਿਆ ਸਿਰਫ਼ ਉਦੋਂ ਦਿਓ ਜਦੋਂ ਪ੍ਰਮਾਣਿਤ ਬੇਨਤੀ drilldown: true ਵੀ ਸੈੱਟ ਕਰਦੀ ਹੋਵੇ। ਕੱਚੇ ਵੀਡੀਓ ਕਦੇ ਵੀ ਸੰਭਾਲੇ ਨਹੀਂ ਜਾਂਦੇ।",
+    "modalityBridgeVideoDrilldownRemoteEnabled": "ਪ੍ਰਮਾਣਿਤ ਫ੍ਰੇਮ ਡ੍ਰਿਲ-ਡਾਊਨ ਦੀ ਆਗਿਆ ਦਿਓ",
+    "modalityBridgeVideoDrilldownRemoteEnabledDesc": "API ਕੁੰਜੀਆਂ ਨੂੰ ਸਿਰਫ਼ ਆਪਣੇ ਅਸਪਸ਼ਟ ਹੈਂਡਲ ਪੜ੍ਹਨ ਅਤੇ ਮਿਟਾਉਣ ਦੀ ਆਗਿਆ ਦਿਓ। ਅਗਿਆਤ ਜਾਂ ਵੱਖਰੀ ਕੁੰਜੀ ਰਾਹੀਂ ਪਹੁੰਚ ਦੀ ਆਗਿਆ ਨਹੀਂ ਹੈ।",
+    "modalityBridgeVideoDrilldownUsage": "ਸੰਭਾਲੇ ਗਏ JPEGs / ਬਾਈਟ"
   },
   "contextRtk": {
     "title": "RTK ਇੰਜਣ",
@@ -11846,7 +11860,27 @@
     "copilotPolicyAcknowledge": "ਮੈਂ ਸਮਝਦਾ ਹਾਂ, ਜੁੜਦਾ ਹਾਂ",
     "tabPasteSetupToken": "ਸੈੱਟਅੱਪ ਟੋਕਨ",
     "claudeSetupTokenDescription": "ਟਰਮੀਨਲ ਵਿੱਚ `claude setup-token` ਚਲਾਓ ਅਤੇ ਇਸ ਵੱਲੋਂ ਛਾਪਿਆ ਟੋਕਨ ਪੇਸਟ ਕਰੋ। ਇਹ ਇੱਕ ਸਾਲ ਲਈ ਵੈਧ ਹੈ ਅਤੇ ਇਸਦਾ ਕੋਈ ਰਿਫ੍ਰੈਸ਼ ਟੋਕਨ ਨਹੀਂ ਹੈ। ਸੇਵ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ OmniRoute Anthropic ਨੂੰ ਇੱਕ ਟੈਸਟ ਬੇਨਤੀ ਭੇਜਦਾ ਹੈ।",
-    "claudeSetupTokenPlaceholder": "sk-ant-oat01-..."
+    "claudeSetupTokenPlaceholder": "sk-ant-oat01-...",
+    "m365Title": "Microsoft 365 Copilot ਸਾਈਨ-ਇਨ",
+    "m365UrlExpiredHint": "ਜੇ ਤੁਹਾਡੇ ਪੂਰਾ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਸ ਦੀ ਮਿਆਦ ਮੁੱਕ ਜਾਵੇ ਤਾਂ ਨਵੀਂ ਕੋਸ਼ਿਸ਼ ਸ਼ੁਰੂ ਕਰੋ।",
+    "m365UrlExpires": "ਇਸ ਅਧਿਕਾਰਕਤਾ URL ਦੀ ਮਿਆਦ ਮੁੱਕਣ ਦਾ ਸਮਾਂ:",
+    "m365AuthUrlCopyHint": "ਪੂਰਾ ਅਧਿਕਾਰਕਤਾ URL ਚੁਣੋ ਅਤੇ Ctrl+C (Mac ਉੱਤੇ Command+C) ਨਾਲ ਕਾਪੀ ਕਰੋ, ਜਾਂ ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਦਾ ਕਾਪੀ ਮੀਨੂ ਵਰਤੋ। Preserve log ਚਾਲੂ ਕਰਨ ਤੋਂ ਬਾਅਦ ਹੀ ਇਸ ਨੂੰ ਖਾਲੀ ਟੈਬ ਵਿੱਚ ਪੇਸਟ ਕਰੋ।",
+    "m365AuthUrlLabel": "ਅਧਿਕਾਰਕਤਾ URL (ਤਿਆਰ ਕੀਤੀ ਟੈਬ ਵਿੱਚ ਕਾਪੀ ਕਰੋ)",
+    "m365StepNavigate": "ਹੇਠਾਂ ਦਿੱਤਾ ਅਧਿਕਾਰਕਤਾ URL ਕਾਪੀ ਕਰਕੇ ਤਿਆਰ ਕੀਤੀ ਟੈਬ ਦੀ ਐਡਰੈੱਸ ਬਾਰ ਵਿੱਚ ਪੇਸਟ ਕਰੋ, ਫਿਰ ਸਾਈਨ-ਇਨ ਕਰਨ ਲਈ Enter ਦਬਾਓ।",
+    "m365StepPrepare": "ਨਵੀਂ ਕੋਸ਼ਿਸ਼ ਸ਼ੁਰੂ ਕਰਨ ਲਈ Microsoft ਸਾਈਨ-ਇਨ ਦੀ ਤਿਆਰੀ ਕਰੋ।",
+    "m365StepOpen": "ਹੇਠਾਂ ਦਿੱਤੇ ਲਿੰਕ ਰਾਹੀਂ ਆਪਣੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਖਾਲੀ ਟੈਬ ਖੋਲ੍ਹੋ। ਹਾਲੇ Microsoft ਉੱਤੇ ਨਾ ਜਾਓ।",
+    "m365StepNetwork": "ਉਸ ਖਾਲੀ ਟੈਬ ਵਿੱਚ DevTools → Network ਖੋਲ੍ਹੋ ਅਤੇ ਹੋਰ ਪੰਨੇ ਉੱਤੇ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ Preserve log ਚਾਲੂ ਕਰੋ। DevTools ਖੁੱਲ੍ਹਾ ਰੱਖੋ।",
+    "m365StepCopy": "ਸਾਈਨ-ਇਨ ਕਰਨ ਤੋਂ ਬਾਅਦ, Network ਵਿੱਚ https://login.microsoftonline.com/common/oauth2/nativeclient ਨੂੰ ਭੇਜੀ ਗਈ ਬੇਨਤੀ ਲੱਭੋ ਅਤੇ ਉਸ ਦਾ ਪੂਰਾ Request URL ਕਾਪੀ ਕਰੋ। ਐਡਰੈੱਸ ਬਾਰ ਵਿੱਚ ਦਿਖਾਈ ਦੇਣ ਵਾਲਾ ਆਖ਼ਰੀ wrongplace URL ਕਾਪੀ ਨਾ ਕਰੋ।",
+    "m365PrivateUrlHint": "ਬੇਨਤੀ ਦੇ URL ਵਿੱਚ ਇੱਕ ਵਾਰ ਵਰਤਿਆ ਜਾਣ ਵਾਲਾ ਪ੍ਰਮਾਣ ਪੱਤਰ ਹੈ। ਇਸ ਨੂੰ ਸਿਰਫ਼ ਇੱਥੇ ਪੇਸਟ ਕਰੋ; ਕਦੇ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ ਜਾਂ ਲੌਗਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਾ ਕਰੋ।",
+    "m365Prepare": "Microsoft ਸਾਈਨ-ਇਨ ਦੀ ਤਿਆਰੀ ਕਰੋ",
+    "m365Preparing": "ਸਾਈਨ-ਇਨ ਦੀ ਤਿਆਰੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ…",
+    "m365OpenSignIn": "ਖਾਲੀ ਟੈਬ ਖੋਲ੍ਹੋ",
+    "m365CallbackLabel": "ਪੂਰਾ nativeclient Request URL",
+    "m365Connecting": "ਕਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ…",
+    "m365NewAttempt": "ਨਵੀਂ ਕੋਸ਼ਿਸ਼ ਸ਼ੁਰੂ ਕਰੋ",
+    "m365PrepareError": "Microsoft ਸਾਈਨ-ਇਨ ਦੀ ਤਿਆਰੀ ਨਹੀਂ ਹੋ ਸਕੀ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
+    "m365ExchangeError": "Microsoft ਸਾਈਨ-ਇਨ ਪੂਰਾ ਨਹੀਂ ਹੋ ਸਕਿਆ। ਨਵੀਂ ਕੋਸ਼ਿਸ਼ ਸ਼ੁਰੂ ਕਰੋ।",
+    "m365InvalidCallback": "ਇਸ ਕੋਸ਼ਿਸ਼ ਦਾ ਇੱਕ code ਅਤੇ ਉਸ ਨਾਲ ਮੇਲ ਖਾਂਦਾ state ਵਾਲਾ ਪੂਰਾ nativeclient Request URL ਪੇਸਟ ਕਰੋ। ਸਿਰਫ਼ ਕੋਡ ਅਤੇ wrongplace URL ਸਵੀਕਾਰ ਨਹੀਂ ਕੀਤੇ ਜਾਂਦੇ।"
   },
   "cursorAuthModal": {
     "title": "Cursor ਨਾਲ ਕਨੈਕਟ ਕਰੋ",
@@ -12358,10 +12392,6 @@
     "messageInputAria": "ਸੁਨੇਹਾ"
   },
   "requestLogger": {
-    "omittedHttpAttempts": "{count} HTTP ਭੇਜਣ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ",
-    "upstreamStatus": "ਅੱਪਸਟ੍ਰੀਮ ਸਰਵਰ {status}",
-    "noHttpResponse": "ਕੋਈ HTTP ਜਵਾਬ ਦੇਖਿਆ ਨਹੀਂ ਗਿਆ",
-    "transportError": "ਆਵਾਜਾਈ ਗਲਤੀ",
     "recording": "ਰਿਕਾਰਡਿੰਗ ਜਾਰੀ ਹੈ",
     "paused": "ਵਿਰਾਮ ਲਗਾਇਆ ਗਿਆ",
     "pipelineLogsOn": "ਪਾਈਪਲਾਈਨ ਲੌਗ ਚਾਲੂ ਹਨ",
@@ -12445,8 +12475,6 @@
       "increase": "ਅੰਤਰਾਲ ਵਧਾਓ"
     },
     "status": {
-      "recoveredAttemptsTitle": "{count} ਕੋਸ਼ਿਸ਼ਾਂ ਤੋਂ ਬਾਅਦ ਬੇਨਤੀ ਬਹਾਲ ਹੋਈ",
-      "latestOutcomeFailed": "ਸਭ ਤੋਂ ਨਵੀਂ ਬੇਨਤੀ ਦਾ ਨਤੀਜਾ ਅਸਫਲ ਰਿਹਾ",
       "inProgress": "ਪ੍ਰਗਤੀ ਅਧੀਨ",
       "recoveredByRetry": "ਮੁੜ ਕੋਸ਼ਿਸ਼ ਨਾਲ ਠੀਕ ਹੋਇਆ",
       "goToParent": "ਮੂਲ ਬੇਨਤੀ 'ਤੇ ਜਾਓ",
@@ -12455,13 +12483,12 @@
       "failedTitle": "ਸਾਰੀਆਂ {count} ਕੋਸ਼ਿਸ਼ਾਂ ਅਸਫਲ ਰਹੀਆਂ",
       "failed": "ਅਸਫਲ",
       "pinnedTitle": "ਕਾਂਟੈਕਸਟ-ਕੈਸ਼ ਸੈਸ਼ਨ ਪਿਨਿੰਗ ਰਾਹੀਂ ਚੁਣਿਆ ਮਾਡਲ",
-      "pinned": "ਪਿੰਨ ਕੀਤਾ ਗਿਆ"
+      "pinned": "ਪਿੰਨ ਕੀਤਾ ਗਿਆ",
+      "recoveredAttemptsTitle": "{count} ਕੋਸ਼ਿਸ਼ਾਂ ਤੋਂ ਬਾਅਦ ਬੇਨਤੀ ਬਹਾਲ ਹੋਈ",
+      "latestOutcomeFailed": "ਸਭ ਤੋਂ ਨਵੀਂ ਬੇਨਤੀ ਦਾ ਨਤੀਜਾ ਅਸਫਲ ਰਿਹਾ"
     },
     "attempts": "ਕੋਸ਼ਿਸ਼ਾਂ",
     "detail": {
-      "omittedHttpAttempts": "{count} HTTP ਭੇਜਣ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ",
-      "noHttpResponse": "ਕੋਈ HTTP ਜਵਾਬ ਦੇਖਿਆ ਨਹੀਂ ਗਿਆ",
-      "transportError": "ਆਵਾਜਾਈ ਗਲਤੀ",
       "collapse": "{title} ਨੂੰ ਸਮੇਟੋ",
       "expand": "{title} ਨੂੰ ਫੈਲਾਓ",
       "copyTitle": "{title} ਨੂੰ ਕਾਪੀ ਕਰੋ",
@@ -12560,13 +12587,20 @@
       "continuesFromParent": "ਪੈਰੈਂਟ ਤੋਂ ਜਾਰੀ ਹੈ",
       "continuesFrom": "{id} ਤੋਂ ਜਾਰੀ ਹੈ",
       "viewConversation": "ਗੱਲਬਾਤ ਵੇਖੋ",
-      "openConversation": "ਗੱਲਬਾਤ {id} ਖੋਲ੍ਹੋ"
+      "openConversation": "ਗੱਲਬਾਤ {id} ਖੋਲ੍ਹੋ",
+      "omittedHttpAttempts": "{count} HTTP ਭੇਜਣ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ",
+      "noHttpResponse": "ਕੋਈ HTTP ਜਵਾਬ ਦੇਖਿਆ ਨਹੀਂ ਗਿਆ",
+      "transportError": "ਆਵਾਜਾਈ ਗਲਤੀ"
     },
     "tableLabel": "ਬੇਨਤੀ ਲੌਗ",
     "throughputPostFirstToken": "ਪਹਿਲੇ ਟੋਕਨ ਤੋਂ ਬਾਅਦ",
     "throughputEndToEnd": "ਸ਼ੁਰੂ ਤੋਂ ਅੰਤ ਤੱਕ",
     "throughputRate": "{value} ਟੋਕਨ/ਸਕਿੰਟ",
-    "throughputExplanation": "ਦੋਵੇਂ ਦਰਾਂ ਆਉਟਪੁੱਟ ਅਤੇ ਰੀਜ਼ਨਿੰਗ ਟੋਕਨ ਗਿਣਤੀਆਂ ਵਿੱਚੋਂ ਵੱਡੀ ਵਰਤਦੀਆਂ ਹਨ। ਪਹਿਲੇ ਟੋਕਨ ਤੋਂ ਬਾਅਦ ਵਾਲੀ ਦਰ ਇੱਕ ਵੈਧ TTFT ਨੂੰ ਛੱਡ ਦਿੰਦੀ ਹੈ; ਨਹੀਂ ਤਾਂ ਇਹ ਪੂਰੀ ਮਿਆਦ ਵਰਤਦੀ ਹੈ। ਸ਼ੁਰੂ ਤੋਂ ਅੰਤ ਤੱਕ ਹਮੇਸ਼ਾ ਪੂਰੀ ਮਿਆਦ ਵਰਤਦਾ ਹੈ। ਬਫ਼ਰ ਕੀਤਾ ਗਿਆ ਜਵਾਬ ਤੇਜ਼ ਮਾਡਲ ਜਨਰੇਸ਼ਨ ਤੋਂ ਬਿਨਾਂ ਵੀ ਉੱਚ ਬਰਸਟ ਡਿਲੀਵਰੀ ਦਰ ਰੱਖ ਸਕਦਾ ਹੈ।"
+    "throughputExplanation": "ਦੋਵੇਂ ਦਰਾਂ ਆਉਟਪੁੱਟ ਅਤੇ ਰੀਜ਼ਨਿੰਗ ਟੋਕਨ ਗਿਣਤੀਆਂ ਵਿੱਚੋਂ ਵੱਡੀ ਵਰਤਦੀਆਂ ਹਨ। ਪਹਿਲੇ ਟੋਕਨ ਤੋਂ ਬਾਅਦ ਵਾਲੀ ਦਰ ਇੱਕ ਵੈਧ TTFT ਨੂੰ ਛੱਡ ਦਿੰਦੀ ਹੈ; ਨਹੀਂ ਤਾਂ ਇਹ ਪੂਰੀ ਮਿਆਦ ਵਰਤਦੀ ਹੈ। ਸ਼ੁਰੂ ਤੋਂ ਅੰਤ ਤੱਕ ਹਮੇਸ਼ਾ ਪੂਰੀ ਮਿਆਦ ਵਰਤਦਾ ਹੈ। ਬਫ਼ਰ ਕੀਤਾ ਗਿਆ ਜਵਾਬ ਤੇਜ਼ ਮਾਡਲ ਜਨਰੇਸ਼ਨ ਤੋਂ ਬਿਨਾਂ ਵੀ ਉੱਚ ਬਰਸਟ ਡਿਲੀਵਰੀ ਦਰ ਰੱਖ ਸਕਦਾ ਹੈ।",
+    "omittedHttpAttempts": "{count} HTTP ਭੇਜਣ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ",
+    "upstreamStatus": "ਅੱਪਸਟ੍ਰੀਮ ਸਰਵਰ {status}",
+    "noHttpResponse": "ਕੋਈ HTTP ਜਵਾਬ ਦੇਖਿਆ ਨਹੀਂ ਗਿਆ",
+    "transportError": "ਆਵਾਜਾਈ ਗਲਤੀ"
   },
   "proxyLogger": {
     "filterAll": "ਸਾਰੇ",
@@ -15288,6 +15322,63 @@
       "save": "ਨਿਯਮ ਸੰਭਾਲੋ",
       "saved": "ਕੂਲਡਾਊਨ ਨਿਯਮ ਸੰਭਾਲੇ ਗਏ",
       "saveFailed": "ਕੂਲਡਾਊਨ ਨਿਯਮ ਸੰਭਾਲੇ ਨਹੀਂ ਜਾ ਸਕੇ"
+    },
+    "errorRules": {
+      "title": "ਗਲਤੀ ਕੂਲਡਾਊਨ ਨਿਯਮ",
+      "subtitle": "ਪ੍ਰਦਾਤਾ ਦੀਆਂ ਗਲਤੀਆਂ ਨੂੰ HTTP ਸਥਿਤੀ, ਗਲਤੀ ਦੇ ਟੈਕਸਟ ਜਾਂ ਦੋਵਾਂ ਨਾਲ ਪਛਾਣੋ, ਅਤੇ ਚੁਣੋ ਕਿ ਕੀ ਅਤੇ ਕਿੰਨੀ ਦੇਰ ਲਈ ਰੋਕਣਾ ਹੈ। ਇਹ ਨਿਯਮ ਬਿਲਟ-ਇਨ ਨਿਯਮਾਂ ਤੋਂ ਪਹਿਲਾਂ ਚੱਲਦੇ ਹਨ।",
+      "rulesHeading": "ਨਿਯਮ",
+      "rulesEmpty": "ਹਾਲੇ ਕੋਈ ਨਿਯਮ ਨਹੀਂ।",
+      "addRule": "ਨਿਯਮ ਜੋੜੋ",
+      "provider": "ਪ੍ਰਦਾਤਾ",
+      "providerPlaceholder": "ਜਿਵੇਂ openai",
+      "status": "HTTP ਸਥਿਤੀ",
+      "statusPlaceholder": "ਕੋਈ ਵੀ",
+      "match": "ਗਲਤੀ ਦੇ ਟੈਕਸਟ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ",
+      "matchPlaceholder": "ਕੋਈ ਵੀ ਟੈਕਸਟ",
+      "matchHint": "ਪਹਿਲਾ ਮੇਲ ਖਾਂਦਾ ਨਿਯਮ ਲਾਗੂ ਹੁੰਦਾ ਹੈ। ਗਲਤੀ ਦਾ ਟੈਕਸਟ ਸਾਦਾ ਟੈਕਸਟ ਹੈ, ਛੋਟੇ-ਵੱਡੇ ਅੱਖਰਾਂ ਦਾ ਫਰਕ ਨਹੀਂ ਕਰਦਾ, ਇਹ ਰੈਗੂਲਰ ਐਕਸਪ੍ਰੈਸ਼ਨ ਨਹੀਂ ਹੈ। ਖਾਲੀ ਖੇਤਰ ਹਰ ਚੀਜ਼ ਨਾਲ ਮੇਲ ਖਾਂਦਾ ਹੈ।",
+      "scope": "ਰੋਕੋ",
+      "scopes": {
+        "connection": "ਇਹ ਕਨੈਕਸ਼ਨ",
+        "model": "ਸਿਰਫ਼ ਇਹ ਮਾਡਲ",
+        "provider": "ਪੂਰਾ ਪ੍ਰਦਾਤਾ"
+      },
+      "reason": "ਕਾਰਨ",
+      "reasonAuto": "ਆਟੋਮੈਟਿਕ",
+      "reasons": {
+        "quota_exhausted": "ਕੋਟਾ ਖਤਮ",
+        "rate_limit_exceeded": "ਦਰ ਸੀਮਾ ਪਾਰ",
+        "auth_error": "ਪ੍ਰਮਾਣੀਕਰਨ ਗਲਤੀ",
+        "model_capacity": "ਮਾਡਲ ਦੀ ਸਮਰੱਥਾ ਪੂਰੀ",
+        "server_error": "ਸਰਵਰ ਗਲਤੀ",
+        "unknown": "ਹੋਰ"
+      },
+      "duration": "ਮਿਆਦ",
+      "durations": {
+        "auto": "ਡਿਫਾਲਟ",
+        "30m": "30 ਮਿੰਟ",
+        "1h": "1 ਘੰਟਾ",
+        "5h": "5 ਘੰਟੇ",
+        "24h": "24 ਘੰਟੇ",
+        "custom": "ਕਸਟਮ"
+      },
+      "customMinutes": "ਮਿੰਟ (1 ਤੋਂ 43200)",
+      "remove": "ਹਟਾਓ",
+      "defaultsHeading": "ਮੇਲ ਨਾ ਖਾਂਦੀਆਂ ਅਸਫਲਤਾਵਾਂ ਲਈ ਡਿਫਾਲਟ",
+      "defaultsHint": "ਵਿਕਲਪਿਕ, ਹਰ ਪ੍ਰਦਾਤਾ ਲਈ। ਸਿਰਫ਼ ਉਦੋਂ ਲਾਗੂ ਹੁੰਦਾ ਹੈ ਜਦੋਂ ਕੋਈ ਨਿਯਮ 402, 403, 408, 429 ਜਾਂ 5xx ਗਲਤੀ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ। 400 ਵਰਗੀਆਂ ਬੇਨਤੀ ਗਲਤੀਆਂ ਕਦੇ ਪ੍ਰਭਾਵਿਤ ਨਹੀਂ ਹੁੰਦੀਆਂ।",
+      "defaultsEmpty": "ਕੋਈ ਡਿਫਾਲਟ ਸੈੱਟ ਨਹੀਂ। ਮੇਲ ਨਾ ਖਾਂਦੀਆਂ ਗਲਤੀਆਂ ਬਿਲਟ-ਇਨ ਵਿਵਹਾਰ ਰੱਖਦੀਆਂ ਹਨ।",
+      "addDefault": "ਡਿਫਾਲਟ ਜੋੜੋ",
+      "errors": {
+        "provider": "ਪ੍ਰਦਾਤਾ ਦਰਜ ਕਰੋ।",
+        "condition": "HTTP ਸਥਿਤੀ, ਗਲਤੀ ਦਾ ਟੈਕਸਟ ਜਾਂ ਦੋਵੇਂ ਸੈੱਟ ਕਰੋ।",
+        "status": "100 ਤੋਂ 599 ਵਿਚਕਾਰ ਸਥਿਤੀ ਵਰਤੋ।",
+        "duration": "1 ਤੋਂ 43200 ਮਿੰਟ ਦਰਜ ਕਰੋ।",
+        "duplicateDefault": "ਇਸ ਪ੍ਰਦਾਤਾ ਦਾ ਡਿਫਾਲਟ ਪਹਿਲਾਂ ਹੀ ਹੈ।",
+        "tooMany": "ਵੱਧ ਤੋਂ ਵੱਧ 50 ਨਿਯਮ।"
+      },
+      "save": "ਗਲਤੀ ਨਿਯਮ ਸੰਭਾਲੋ",
+      "saved": "ਗਲਤੀ ਨਿਯਮ ਸੰਭਾਲੇ ਗਏ",
+      "saveFailed": "ਗਲਤੀ ਨਿਯਮ ਸੰਭਾਲੇ ਨਹੀਂ ਜਾ ਸਕੇ",
+      "loadFailed": "ਗਲਤੀ ਨਿਯਮ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੇ"
     },
     "list": {
       "title": "ਰਾਊਟਿੰਗ ਤੋਂ ਬਾਹਰ ਕਨੈਕਸ਼ਨ",
