@@ -12574,7 +12574,8 @@
       "openConversation": "Iftaħ il-konverżazzjoni {id}",
       "omittedHttpAttempts": "{count} trażmissjonijiet HTTP ma nżammux",
       "noHttpResponse": "Ma ġiet osservata l-ebda tweġiba HTTP",
-      "transportError": "Żball fit-trasport"
+      "transportError": "Żball fit-trasport",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Reġistri tat-talbiet",
     "throughputPostFirstToken": "Wara l-ewwel token",

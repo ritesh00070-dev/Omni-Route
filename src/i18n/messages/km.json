@@ -12574,7 +12574,8 @@
       "openConversation": "បើកការសន្ទនា {id}",
       "omittedHttpAttempts": "ការផ្ញើ HTTP ចំនួន {count} មិនត្រូវបានរក្សាទុកទេ",
       "noHttpResponse": "មិនបានសង្កេតឃើញការឆ្លើយតប HTTP ទេ",
-      "transportError": "កំហុសការដឹកជញ្ជូន"
+      "transportError": "កំហុសការដឹកជញ្ជូន",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "កំណត់ហេតុសំណើ",
     "throughputPostFirstToken": "ក្រោយតូខេនដំបូង",

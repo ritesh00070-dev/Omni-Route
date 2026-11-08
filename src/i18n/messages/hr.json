@@ -12497,7 +12497,8 @@
       "openConversation": "Otvori razgovor {id}",
       "omittedHttpAttempts": "{count} HTTP slanja nije sačuvano",
       "noHttpResponse": "HTTP odgovor nije zabilježen",
-      "transportError": "Pogreška prijenosa"
+      "transportError": "Pogreška prijenosa",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Zapisi zahtjeva",
     "throughputPostFirstToken": "Nakon prvog tokena",

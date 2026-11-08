@@ -12497,7 +12497,8 @@
       "openConversation": "Buksan ang pag-uusap na {id}",
       "omittedHttpAttempts": "Hindi napanatili ang {count} pagpapadala ng HTTP",
       "noHttpResponse": "Walang naobserbahang tugon sa HTTP",
-      "transportError": "Error sa transportasyon"
+      "transportError": "Error sa transportasyon",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Mga log ng request",
     "throughputPostFirstToken": "Pagkatapos ng unang token",

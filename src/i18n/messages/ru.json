@@ -12497,7 +12497,8 @@
       "openConversation": "Открыть диалог {id}",
       "omittedHttpAttempts": "{count} отправок HTTP не сохранено",
       "noHttpResponse": "Ответ HTTP не наблюдался",
-      "transportError": "Ошибка транспорта"
+      "transportError": "Ошибка транспорта",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Журналы запросов",
     "throughputPostFirstToken": "После первого токена",

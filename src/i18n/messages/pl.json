@@ -12497,7 +12497,8 @@
       "openConversation": "Otwórz rozmowę {id}",
       "omittedHttpAttempts": "Nie zachowano {count} wysłań HTTP",
       "noHttpResponse": "Nie zaobserwowano odpowiedzi HTTP",
-      "transportError": "Błąd transportu"
+      "transportError": "Błąd transportu",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Dzienniki żądań",
     "throughputPostFirstToken": "Po pierwszym tokenie",

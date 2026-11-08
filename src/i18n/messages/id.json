@@ -12497,7 +12497,8 @@
       "openConversation": "Buka percakapan {id}",
       "omittedHttpAttempts": "{count} pengiriman HTTP tidak disimpan",
       "noHttpResponse": "Tidak ada respons HTTP yang teramati",
-      "transportError": "Kesalahan transportasi"
+      "transportError": "Kesalahan transportasi",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Log permintaan",
     "throughputPostFirstToken": "Setelah token pertama",

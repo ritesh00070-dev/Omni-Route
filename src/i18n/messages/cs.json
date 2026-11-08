@@ -12574,7 +12574,8 @@
       "openConversation": "Otevřít konverzaci {id}",
       "omittedHttpAttempts": "{count} odeslání HTTP nebylo uchováno",
       "noHttpResponse": "Nebyla zaznamenána žádná odpověď HTTP",
-      "transportError": "Chyba přenosu"
+      "transportError": "Chyba přenosu",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Protokoly požadavků",
     "throughputPostFirstToken": "Po prvním tokenu",

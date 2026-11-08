@@ -12574,7 +12574,8 @@
       "openConversation": "Apri conversazione {id}",
       "omittedHttpAttempts": "{count} invii HTTP non conservati",
       "noHttpResponse": "Nessuna risposta HTTP osservata",
-      "transportError": "Errore di trasporto"
+      "transportError": "Errore di trasporto",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Log delle richieste",
     "throughputPostFirstToken": "Dopo il primo token",

@@ -12497,7 +12497,8 @@
       "openConversation": "A(z) {id} beszélgetés megnyitása",
       "omittedHttpAttempts": "{count} HTTP-küldés nincs megőrizve",
       "noHttpResponse": "Nem észlelt HTTP-választ",
-      "transportError": "Átviteli hiba"
+      "transportError": "Átviteli hiba",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Kérésnaplók",
     "throughputPostFirstToken": "Első token utáni",

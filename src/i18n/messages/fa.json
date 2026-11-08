@@ -12497,7 +12497,8 @@
       "openConversation": "باز کردن مکالمه {id}",
       "omittedHttpAttempts": "{count} ارسال HTTP نگهداری نشد",
       "noHttpResponse": "هیچ پاسخ HTTP مشاهده نشد",
-      "transportError": "خطای انتقال"
+      "transportError": "خطای انتقال",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "گزارشهای درخواست",
     "throughputPostFirstToken": "پس از نخستین توکن",

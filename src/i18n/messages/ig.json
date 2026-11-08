@@ -12497,7 +12497,8 @@
       "openConversation": "Mepee mkparịta ụka {id}",
       "omittedHttpAttempts": "Edebeghị izipu HTTP {count}",
       "noHttpResponse": "Ahụghị nzaghachi HTTP ọ bụla",
-      "transportError": "Njehie mbufe"
+      "transportError": "Njehie mbufe",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Ndekọ arịrịọ",
     "throughputPostFirstToken": "Mgbe token mbụ gasịrị",

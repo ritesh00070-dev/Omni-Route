@@ -12497,7 +12497,8 @@
       "openConversation": "Ouvrir la conversation {id}",
       "omittedHttpAttempts": "{count} envois HTTP non conservés",
       "noHttpResponse": "Aucune réponse HTTP observée",
-      "transportError": "Erreur de transport"
+      "transportError": "Erreur de transport",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Journaux des requêtes",
     "throughputPostFirstToken": "Après le premier token",

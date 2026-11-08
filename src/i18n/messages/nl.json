@@ -12497,7 +12497,8 @@
       "openConversation": "Gesprek {id} openen",
       "omittedHttpAttempts": "{count} HTTP-verzendingen niet bewaard",
       "noHttpResponse": "Geen HTTP-antwoord waargenomen",
-      "transportError": "Transportfout"
+      "transportError": "Transportfout",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Aanvraaglogboeken",
     "throughputPostFirstToken": "Na eerste token",

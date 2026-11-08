@@ -12497,7 +12497,8 @@
       "openConversation": "Mở hội thoại {id}",
       "omittedHttpAttempts": "{count} lần gửi HTTP không được lưu giữ",
       "noHttpResponse": "Chưa quan sát thấy phản hồi HTTP",
-      "transportError": "Lỗi truyền tải"
+      "transportError": "Lỗi truyền tải",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Nhật ký yêu cầu",
     "throughputPostFirstToken": "Sau token đầu tiên",

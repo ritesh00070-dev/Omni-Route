@@ -12578,7 +12578,8 @@
       "continuesFromParent": "continues from parent",
       "continuesFrom": "Continues from {id}",
       "viewConversation": "view conversation",
-      "openConversation": "Open conversation {id}"
+      "openConversation": "Open conversation {id}",
+      "payloadSize": "Payload Size"
     },
     "tableLabel": "Request logs",
     "throughputPostFirstToken": "Post-first-token",

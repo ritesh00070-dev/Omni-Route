@@ -7,7 +7,12 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import JsonTree from "@/shared/components/JsonTree";
 import { PROVIDER_COLORS, getProtocolColor, neutralBadge } from "@/shared/constants/colors";
-import { formatDuration, formatApiKeyLabel, maskAccount } from "@/shared/utils/formatting";
+import {
+  formatDuration,
+  formatApiKeyLabel,
+  maskAccount,
+  formatBytes,
+} from "@/shared/utils/formatting";
 import { formatErrorForDisplay, formatReasoningStat } from "@/shared/utils/formatting";
 import { useTimestampTitles } from "@/shared/hooks/useTimestampTitles";
 import { JsonTreeExpandControls } from "@/shared/components/JsonTreeExpandControls";
@@ -728,6 +733,19 @@ export default function RequestLoggerDetail({
                 </div>
                 <div className="text-sm font-medium">{formatDuration(timingLog.duration)}</div>
               </div>
+              {typeof (detail?.artifactSizeBytes ?? log.artifactSizeBytes) === "number" && (
+                <div className="min-w-[100px] flex-1">
+                  <div
+                    className="text-[10px] text-text-muted uppercase tracking-wider mb-1 truncate"
+                    title={t("payloadSize")}
+                  >
+                    {t("payloadSize")}
+                  </div>
+                  <div className="text-sm font-medium font-mono text-primary truncate">
+                    {formatBytes(detail?.artifactSizeBytes ?? log.artifactSizeBytes)}
+                  </div>
+                </div>
+              )}
               <div className="min-w-[100px] flex-1">
                 <div className="text-[10px] text-text-muted uppercase tracking-wider mb-1">
                   {t("addedWait")}
@@ -785,6 +803,19 @@ export default function RequestLoggerDetail({
                 </div>
                 <div className="text-sm font-medium">{formatDuration(timingLog.duration)}</div>
               </div>
+              {typeof (detail?.artifactSizeBytes ?? log.artifactSizeBytes) === "number" && (
+                <div className="min-w-0">
+                  <div
+                    className="text-[10px] text-text-muted uppercase tracking-wider mb-1 truncate"
+                    title={t("payloadSize")}
+                  >
+                    {t("payloadSize")}
+                  </div>
+                  <div className="text-sm font-medium font-mono text-primary truncate">
+                    {formatBytes(detail?.artifactSizeBytes ?? log.artifactSizeBytes)}
+                  </div>
+                </div>
+              )}
               {typeof log.ttft === "number" && log.ttft > 0 && (
                 <div>
                   <div
