@@ -3,6 +3,11 @@
 import Icon from "@/shared/components/Icon";
 
 import { buttonVariants } from "@omniroute/ui-kit/button";
+import {
+  ChatGptManageUsageButton,
+  ChatGptUsageLimitNotice,
+} from "@/shared/components/ChatGptPlanUi";
+import { hasChatGptUsageLimit } from "@/shared/utils/chatgptPlanUi";
 import ConnectionTestButton from "@/shared/components/ConnectionTestButton";
 
 // Phase 1d extraction — Issue #3501
@@ -144,6 +149,8 @@ export default function ConnectionRow({
   onRefreshQuota,
 }: ConnectionRowProps) {
   const t = useTranslations("providers");
+  const isChatGpt = connection.provider === "chatgpt";
+  const chatGptRenewsAutomatically = isChatGpt && connection.testStatus === "active";
   const locale = useLocale();
   const emailsVisible = useEmailPrivacyStore((s) => s.emailsVisible);
   const displayName = isOAuth
@@ -387,10 +394,16 @@ export default function ConnectionRow({
                 ) : null
               ) : tokenMinsLeft < 30 ? (
                 <Badge
-                  variant="warning"
+                  variant={chatGptRenewsAutomatically ? "info" : "warning"}
                   size="sm"
-                  icon={<Icon name="warning" size={11} />}
-                  title={t("tokenExpiresSoonTitle", { minutes: tokenMinsLeft })}
+                  icon={
+                    <Icon name={chatGptRenewsAutomatically ? "autorenew" : "warning"} size={11} />
+                  }
+                  title={
+                    chatGptRenewsAutomatically
+                      ? t("chatgptTokenRenewsTitle", { minutes: tokenMinsLeft })
+                      : t("tokenExpiresSoonTitle", { minutes: tokenMinsLeft })
+                  }
                 >
                   {`~${tokenMinsLeft}m`}
                 </Badge>
@@ -734,6 +747,7 @@ export default function ConnectionRow({
       </div>
       <div className="basis-full min-w-0 xl:basis-auto">
         <div className="flex w-full flex-wrap items-center justify-between gap-0.5 sm:gap-1 xl:justify-end [&>button]:grow-0">
+          {isChatGpt && <ChatGptManageUsageButton />}
           <ConnectionTestButton
             connectionId={connection.id}
             disabled={connection.isActive === false}
@@ -761,10 +775,12 @@ export default function ConnectionRow({
               disabled={connection.isActive === false || isRefreshing}
               onClick={onRefreshToken}
               className="!size-7 !p-0 sm:!w-auto sm:!px-2 text-xs text-warning hover:text-warning"
-              aria-label={t("tokenShort")}
-              title={t("refreshOauthTokenTitle")}
+              aria-label={isChatGpt ? t("chatgptRefreshToken") : t("tokenShort")}
+              title={isChatGpt ? t("chatgptRefreshTokenTitle") : t("refreshOauthTokenTitle")}
             >
-              <span className="hidden sm:inline">{t("tokenShort")}</span>
+              <span className="hidden sm:inline">
+                {isChatGpt ? t("chatgptRefreshToken") : t("tokenShort")}
+              </span>
             </Button>
           )}
           {isCodex && isOAuth && connection.provider === "codex" && (
@@ -846,6 +862,7 @@ export default function ConnectionRow({
                 size="icon-sm"
                 icon="passkey"
                 onClick={onReauth}
+                aria-haspopup="dialog"
                 className="size-7 min-h-7 rounded hover:bg-warning/10 text-warning"
                 title={t("reauthenticateConnection")}
                 aria-label={t("reauthenticateConnection")}
@@ -898,6 +915,11 @@ export default function ConnectionRow({
           </div>
         </div>
       </div>
+      {hasChatGptUsageLimit(connection) && (
+        <div className="w-full pt-3">
+          <ChatGptUsageLimitNotice />
+        </div>
+      )}
       {isCodex && connection.codexAccountPool ? (
         <div className="basis-full min-w-0">
           <CodexAccountDetails pool={connection.codexAccountPool} />
