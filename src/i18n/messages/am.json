@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} የHTTP መላኪያዎች አልተቀመጡም",
       "noHttpResponse": "የHTTP ምላሽ አልታየም",
       "transportError": "የማጓጓዣ ስህተት",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "የጥያቄ ምዝግብ ማስታወሻዎች",
     "throughputPostFirstToken": "ከመጀመሪያው ቶከን በኋላ",

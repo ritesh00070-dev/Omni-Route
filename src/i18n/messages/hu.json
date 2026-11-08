@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP-küldés nincs megőrizve",
       "noHttpResponse": "Nem észlelt HTTP-választ",
       "transportError": "Átviteli hiba",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Kérésnaplók",
     "throughputPostFirstToken": "Első token utáni",

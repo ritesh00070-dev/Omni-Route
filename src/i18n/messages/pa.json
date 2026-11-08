@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} HTTP ਭੇਜਣ ਸੰਭਾਲੇ ਨਹੀਂ ਗਏ",
       "noHttpResponse": "ਕੋਈ HTTP ਜਵਾਬ ਦੇਖਿਆ ਨਹੀਂ ਗਿਆ",
       "transportError": "ਆਵਾਜਾਈ ਗਲਤੀ",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "ਬੇਨਤੀ ਲੌਗ",
     "throughputPostFirstToken": "ਪਹਿਲੇ ਟੋਕਨ ਤੋਂ ਬਾਅਦ",

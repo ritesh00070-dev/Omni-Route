@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} HTTP изпращания не са запазени",
       "noHttpResponse": "Не е наблюдаван HTTP отговор",
       "transportError": "Грешка при преноса",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Регистри на заявките",
     "throughputPostFirstToken": "След първия токен",

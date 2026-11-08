@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} ta HTTP jo‘natmasi saqlanmadi",
       "noHttpResponse": "HTTP javobi kuzatilmadi",
       "transportError": "Uzatish xatosi",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Soʻrov jurnallari",
     "throughputPostFirstToken": "Birinchi tokendan keyin",

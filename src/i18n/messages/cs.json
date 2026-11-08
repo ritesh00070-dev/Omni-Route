@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} odeslání HTTP nebylo uchováno",
       "noHttpResponse": "Nebyla zaznamenána žádná odpověď HTTP",
       "transportError": "Chyba přenosu",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Protokoly požadavků",
     "throughputPostFirstToken": "Po prvním tokenu",

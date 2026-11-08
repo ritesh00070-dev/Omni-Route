@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} pengiriman HTTP tidak disimpan",
       "noHttpResponse": "Tidak ada respons HTTP yang teramati",
       "transportError": "Kesalahan transportasi",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Log permintaan",
     "throughputPostFirstToken": "Setelah token pertama",

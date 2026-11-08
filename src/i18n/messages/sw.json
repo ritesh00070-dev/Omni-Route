@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "Matumaji {count} ya HTTP hayakuhifadhiwa",
       "noHttpResponse": "Hakuna jibu la HTTP lililoonekana",
       "transportError": "Hitilafu ya usafirishaji",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Kumbukumbu za maombi",
     "throughputPostFirstToken": "Baada ya tokeni ya kwanza",

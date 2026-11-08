@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "Edebeghị izipu HTTP {count}",
       "noHttpResponse": "Ahụghị nzaghachi HTTP ọ bụla",
       "transportError": "Njehie mbufe",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Ndekọ arịrịọ",
     "throughputPostFirstToken": "Mgbe token mbụ gasịrị",

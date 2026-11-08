@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP ಕಳುಹಿಸುವಿಕೆಗಳನ್ನು ಉಳಿಸಲಾಗಿಲ್ಲ",
       "noHttpResponse": "ಯಾವುದೇ HTTP ಪ್ರತಿಕ್ರಿಯೆ ಕಂಡುಬಂದಿಲ್ಲ",
       "transportError": "ಸಾಗಣೆ ದೋಷ",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "ವಿನಂತಿ ಲಾಗ್ಗಳು",
     "throughputPostFirstToken": "ಮೊದಲ ಟೋಕನ್ ನಂತರ",

@@ -733,19 +733,7 @@ export default function RequestLoggerDetail({
                 </div>
                 <div className="text-sm font-medium">{formatDuration(timingLog.duration)}</div>
               </div>
-              {typeof (detail?.artifactSizeBytes ?? log.artifactSizeBytes) === "number" && (
-                <div className="min-w-[100px] flex-1">
-                  <div
-                    className="text-[10px] text-text-muted uppercase tracking-wider mb-1 truncate"
-                    title={t("payloadSize")}
-                  >
-                    {t("payloadSize")}
-                  </div>
-                  <div className="text-sm font-medium font-mono text-primary truncate">
-                    {formatBytes(detail?.artifactSizeBytes ?? log.artifactSizeBytes)}
-                  </div>
-                </div>
-              )}
+
               <div className="min-w-[100px] flex-1">
                 <div className="text-[10px] text-text-muted uppercase tracking-wider mb-1">
                   {t("addedWait")}
@@ -807,9 +795,9 @@ export default function RequestLoggerDetail({
                 <div className="min-w-0">
                   <div
                     className="text-[10px] text-text-muted uppercase tracking-wider mb-1 truncate"
-                    title={t("payloadSize")}
+                    title={t("artifactSize")}
                   >
-                    {t("payloadSize")}
+                    {t("artifactSize")}
                   </div>
                   <div className="text-sm font-medium font-mono text-primary truncate">
                     {formatBytes(detail?.artifactSizeBytes ?? log.artifactSizeBytes)}

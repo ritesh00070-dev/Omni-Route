@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} ارسال HTTP نگهداری نشد",
       "noHttpResponse": "هیچ پاسخ HTTP مشاهده نشد",
       "transportError": "خطای انتقال",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "گزارشهای درخواست",
     "throughputPostFirstToken": "پس از نخستین توکن",

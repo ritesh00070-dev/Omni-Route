@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} trimiteri HTTP nu au fost păstrate",
       "noHttpResponse": "Nu a fost observat niciun răspuns HTTP",
       "transportError": "Eroare de transport",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Jurnale de solicitări",
     "throughputPostFirstToken": "După primul token",

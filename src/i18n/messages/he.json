@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} שליחות HTTP לא נשמרו",
       "noHttpResponse": "לא נצפתה תגובת HTTP",
       "transportError": "שגיאת תעבורה",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "יומני בקשות",
     "throughputPostFirstToken": "לאחר הטוקן הראשון",

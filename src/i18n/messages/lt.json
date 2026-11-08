@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP siuntimų neišsaugota",
       "noHttpResponse": "HTTP atsakymas nepastebėtas",
       "transportError": "Perdavimo klaida",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Užklausų žurnalai",
     "throughputPostFirstToken": "Po pirmojo tokeno",

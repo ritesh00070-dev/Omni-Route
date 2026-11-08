@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "ไม่ได้เก็บการส่ง HTTP จำนวน {count} ครั้ง",
       "noHttpResponse": "ไม่พบการตอบกลับ HTTP",
       "transportError": "ข้อผิดพลาดในการขนส่ง",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "บันทึกคำขอ",
     "throughputPostFirstToken": "หลังโทเคนแรก",

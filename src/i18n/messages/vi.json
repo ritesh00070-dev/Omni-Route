@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} lần gửi HTTP không được lưu giữ",
       "noHttpResponse": "Chưa quan sát thấy phản hồi HTTP",
       "transportError": "Lỗi truyền tải",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Nhật ký yêu cầu",
     "throughputPostFirstToken": "Sau token đầu tiên",

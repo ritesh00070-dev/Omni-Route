@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} HTTP-afsendelser blev ikke gemt",
       "noHttpResponse": "Intet HTTP-svar blev observeret",
       "transportError": "Transportfejl",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Anmodningslogfiler",
     "throughputPostFirstToken": "Efter første token",

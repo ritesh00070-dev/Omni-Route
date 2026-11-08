@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "Ba a adana aikawar HTTP guda {count} ba",
       "noHttpResponse": "Ba a lura da martanin HTTP ba",
       "transportError": "Kuskuren jigila",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Rajistocin buƙatu",
     "throughputPostFirstToken": "Bayan farkon token",

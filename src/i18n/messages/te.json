@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP పంపకాలు నిల్వ చేయబడలేదు",
       "noHttpResponse": "HTTP ప్రతిస్పందన గమనించబడలేదు",
       "transportError": "రవాణా లోపం",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "అభ్యర్థన లాగ్లు",
     "throughputPostFirstToken": "మొదటి టోకెన్ తర్వాత",

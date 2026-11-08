@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP-verzendingen niet bewaard",
       "noHttpResponse": "Geen HTTP-antwoord waargenomen",
       "transportError": "Transportfout",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Aanvraaglogboeken",
     "throughputPostFirstToken": "Na eerste token",

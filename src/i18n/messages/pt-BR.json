@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} envios HTTP não foram retidos",
       "noHttpResponse": "Nenhuma resposta HTTP foi observada",
       "transportError": "Erro de transporte",
-      "payloadSize": "Tamanho da Carga"
+      "payloadSize": "Tamanho da Carga",
+      "artifactSize": "Tamanho do Artefato"
     },
     "tableLabel": "Logs de requisições",
     "throughputPostFirstToken": "Pós-primeiro token",

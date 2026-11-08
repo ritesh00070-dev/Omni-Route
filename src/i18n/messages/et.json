@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP saatmist ei säilitatud",
       "noHttpResponse": "HTTP vastust ei täheldatud",
       "transportError": "Transpordiviga",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Päringulogid",
     "throughputPostFirstToken": "Pärast esimest tokenit",

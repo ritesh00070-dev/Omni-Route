@@ -12579,7 +12579,8 @@
       "continuesFrom": "Continues from {id}",
       "viewConversation": "view conversation",
       "openConversation": "Open conversation {id}",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Request logs",
     "throughputPostFirstToken": "Post-first-token",

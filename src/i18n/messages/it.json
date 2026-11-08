@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} invii HTTP non conservati",
       "noHttpResponse": "Nessuna risposta HTTP osservata",
       "transportError": "Errore di trasporto",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Log delle richieste",
     "throughputPostFirstToken": "Dopo il primo token",

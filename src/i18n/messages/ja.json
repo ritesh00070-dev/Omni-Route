@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} 件の HTTP 送信は保持されていません",
       "noHttpResponse": "HTTP 応答は確認されていません",
       "transportError": "トランスポートエラー",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "リクエストログ",
     "throughputPostFirstToken": "初回トークン以降",

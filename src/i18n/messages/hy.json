@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP ուղարկումներ չեն պահպանվել",
       "noHttpResponse": "HTTP պատասխան չի դիտարկվել",
       "transportError": "Փոխանցման սխալ",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Հարցումների մատյաններ",
     "throughputPostFirstToken": "Առաջին թոքենից հետո",

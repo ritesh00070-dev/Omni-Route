@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP ପ୍ରେରଣ ସଂରକ୍ଷିତ ହୋଇନାହିଁ",
       "noHttpResponse": "କୌଣସି HTTP ପ୍ରତିକ୍ରିୟା ଦେଖାଯାଇନାହିଁ",
       "transportError": "ପରିବହନ ତ୍ରୁଟି",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "ଅନୁରୋଧ ଲଗ୍ଗୁଡ଼ିକ",
     "throughputPostFirstToken": "ପ୍ରଥମ ଟୋକନ୍ ପରେ",

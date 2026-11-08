@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP-sändningar sparades inte",
       "noHttpResponse": "Inget HTTP-svar observerades",
       "transportError": "Transportfel",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Förfrågningsloggar",
     "throughputPostFirstToken": "Efter första token",

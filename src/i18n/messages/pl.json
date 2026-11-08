@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "Nie zachowano {count} wysłań HTTP",
       "noHttpResponse": "Nie zaobserwowano odpowiedzi HTTP",
       "transportError": "Błąd transportu",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Dzienniki żądań",
     "throughputPostFirstToken": "Po pierwszym tokenie",

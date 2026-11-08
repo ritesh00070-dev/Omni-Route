@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} надсилань HTTP не збережено",
       "noHttpResponse": "Відповідь HTTP не спостерігалася",
       "transportError": "Помилка транспорту",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Журнали запитів",
     "throughputPostFirstToken": "Після першого токена",

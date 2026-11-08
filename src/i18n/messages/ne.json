@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP पठाइहरू सुरक्षित राखिएनन्",
       "noHttpResponse": "कुनै HTTP प्रतिक्रिया देखिएन",
       "transportError": "परिवहन त्रुटि",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "अनुरोध लगहरू",
     "throughputPostFirstToken": "पहिलो टोकन पछिको",

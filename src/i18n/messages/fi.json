@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP-lähetystä ei säilytetty",
       "noHttpResponse": "HTTP-vastausta ei havaittu",
       "transportError": "Siirtovirhe",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Pyyntölokit",
     "throughputPostFirstToken": "Ensimmäisen tokenin jälkeen",

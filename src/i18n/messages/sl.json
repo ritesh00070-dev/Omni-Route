@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} pošiljanj HTTP ni bilo shranjenih",
       "noHttpResponse": "Odgovor HTTP ni bil zaznan",
       "transportError": "Napaka prenosa",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Dnevniki zahtev",
     "throughputPostFirstToken": "Po prvem tokenu",

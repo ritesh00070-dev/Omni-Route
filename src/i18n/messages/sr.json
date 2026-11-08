@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP слања није сачувано",
       "noHttpResponse": "HTTP одговор није забележен",
       "transportError": "Грешка у преносу",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Евиденција захтева",
     "throughputPostFirstToken": "Nakon prvog tokena",

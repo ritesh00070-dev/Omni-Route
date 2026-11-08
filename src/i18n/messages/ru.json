@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} отправок HTTP не сохранено",
       "noHttpResponse": "Ответ HTTP не наблюдался",
       "transportError": "Ошибка транспорта",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "Журналы запросов",
     "throughputPostFirstToken": "После первого токена",

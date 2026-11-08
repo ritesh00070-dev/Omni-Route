@@ -12498,7 +12498,8 @@
       "omittedHttpAttempts": "{count} HTTP ارسال محفوظ نہیں کیے گئے",
       "noHttpResponse": "کوئی HTTP جواب مشاہدے میں نہیں آیا",
       "transportError": "نقل و حمل کی خرابی",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "درخواست کے لاگز",
     "throughputPostFirstToken": "پہلے ٹوکن کے بعد",

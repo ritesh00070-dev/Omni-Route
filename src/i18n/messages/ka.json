@@ -12575,7 +12575,8 @@
       "omittedHttpAttempts": "{count} HTTP გაგზავნა არ შენახულა",
       "noHttpResponse": "HTTP პასუხი არ დაფიქსირებულა",
       "transportError": "გადაცემის შეცდომა",
-      "payloadSize": "Payload Size"
+      "payloadSize": "Payload Size",
+      "artifactSize": "Artifact Size"
     },
     "tableLabel": "მოთხოვნების ჟურნალები",
     "throughputPostFirstToken": "პირველი ტოკენის შემდგომი",
