@@ -51,6 +51,7 @@ import { storeStreamingSemanticCacheResponse } from "./streamingSemanticCacheSto
 import { recordFinalInputCalibration } from "./contextEstimation.ts";
 import { emitStreamingRoutingEvent } from "./streamingRoutingEvent.ts";
 import { recordStreamingUsageStats } from "./streamingUsageStats.ts";
+import { resolveSessionTurn } from "./agentContext.ts";
 import { maybeSyncClaudeExtraUsageState } from "./telemetryHelpers.ts";
 import {
   getExecutorTimeoutMs,
@@ -107,6 +108,7 @@ export async function runStreamingTail(deps: StreamingTailDeps) {
     customToolNames,
     echoModel,
     effectiveModel,
+    agentContext,
     endpointPath,
     executeProviderRequest,
     executor,
@@ -532,6 +534,15 @@ export async function runStreamingTail(deps: StreamingTailDeps) {
       comboStrategy,
       endpoint: endpointPath,
       cpaAuthIndex: readCpaAuthIndex(providerResponse),
+      agentContext,
+      sessionTurn: resolveSessionTurn({
+        clientRawRequest,
+        body,
+        responses: [clientPayload?.summary, streamResponseBody],
+        streamStatus: normalizedStreamStatus,
+        agentContext,
+        apiKeyInfo,
+      }),
       partialUsage: streamPartialUsage,
       emittedOutput: streamEmittedOutput(transformStream),
     });

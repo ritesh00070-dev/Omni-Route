@@ -248,6 +248,7 @@ import { runPluginOnResponseHook } from "./chatCore/pluginOnResponse.ts";
 import { applyPostTranslationCompression } from "./chatCore/postTranslationCompression.ts";
 import { isJsonRecord } from "./chatCore/nonStreamingResponseParse.ts";
 import { recordNonStreamingUsageStats } from "./chatCore/nonStreamingUsageStats.ts";
+import { resolveUsageAgentContext } from "./chatCore/agentContext.ts";
 import { getModelNormalizeToolCallId, getModelPreserveOpenAIDeveloperRole } from "@/lib/db/models";
 import { extractSessionAffinityKey } from "@/sse/services/auth";
 import { createManagedLeaseFence } from "./chatCore/managedLeaseFence.ts";
@@ -528,6 +529,7 @@ async function handleChatCoreInner({
   ): EffectiveServiceTier | null => resolveReportedServiceTierFor(provider, payload, maxDepth);
   let upstreamHttpSelection: HttpAttemptSelection | null = null;
   let providerResponse;
+  const agentContext = resolveUsageAgentContext(body, clientRawRequest?.headers, apiKeyInfo);
   // Failure usage record building extracted to chatCore/failureUsage.ts (#3501); the handler keeps
   // the fire-and-forget save + computes latencyMs, so the call sites stay byte-identical.
   const persistFailureUsage = (
@@ -549,6 +551,7 @@ async function handleChatCoreInner({
         latencyMs: Date.now() - startTime,
         endpoint: endpointPath,
         cpaAuthIndex: readCpaAuthIndex(providerResponse),
+        agentContext,
         aggregate: aggregate ?? undefined,
       })
     ).catch(() => {});
@@ -956,6 +959,7 @@ async function handleChatCoreInner({
       pendingRequestId,
       pendingRequestGeneration,
       clientRawRequest,
+      agentContext, // identifies the attempt whose session turn a failure drops (#14864)
       requestedModel,
       credentials,
       startTime,
@@ -3293,6 +3297,7 @@ async function handleChatCoreInner({
   // Non-streaming response
   if (!stream) {
     const nonStreamingOutcome = await runNonStreamingResponse({
+      agentContext,
       reportSignatureFailure,
       geminiPromptCacheMode,
       isScopedGeminiCacheTarget,
@@ -3436,6 +3441,7 @@ async function handleChatCoreInner({
   }
 
   const streamingTailOutcome = await runStreamingTail({
+    agentContext,
     upstreamHttpSelection,
     geminiPromptCacheMode,
     isScopedGeminiCacheTarget,
