@@ -1,1 +1,0 @@
-- **feat(dashboard):** display request payload size in the request logger detail modal (`RequestLoggerDetail`) formatted as B/KB/MB/GB, using the stored `artifact_size_bytes` with responsive styling and full i18n support.
