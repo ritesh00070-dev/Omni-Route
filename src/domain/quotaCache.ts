@@ -42,6 +42,8 @@ import { isClaudeExtraUsageAllowed } from "@/lib/providers/claudeExtraUsage";
 import { filterCodexQuotaWindows } from "@omniroute/open-sse/services/codexQuotaWindowPolicy.ts";
 import { isCodexQuotaFilteringDisabled } from "@/lib/providers/codexQuotaFiltering";
 import { resolveProviderId } from "@/shared/constants/providers";
+import { ZCODE_PROVIDERS } from "@/shared/constants/zcodeProviders";
+import { isZcodeQuotaScopeApplicable, resolveSnapshotQuotaProvider } from "./zcodeQuotaScope";
 import {
   claudeQuotaMatchesModel,
   isExplicitClaudeQuota429Text,
@@ -741,13 +743,33 @@ export function getClaudeQuotaPreflightResetAt(
   return decisionForLatestClaudeReset(windows, "connection", now)?.resetAt ?? null;
 }
 
+/** Whether a cached ZCode OAuth observation is attributable to this tariff. */
+export function isQuotaScopeApplicable(
+  connectionId: string,
+  provider: string,
+  authType?: string | null
+): boolean {
+  if (authType !== "oauth" || !ZCODE_PROVIDERS.has(resolveProviderId(provider))) return true;
+  const entry = getState().cache.get(connectionId) || hydrateQuotaCacheFromSnapshots(connectionId);
+  return isZcodeQuotaScopeApplicable(provider, authType, entry?.provider);
+}
+
+function canApplyRequestQuota(
+  connectionId: string,
+  provider: string,
+  authType?: string | null
+): boolean {
+  return isQuotaScopeApplicable(connectionId, provider, authType) && !isQuotaHealthy(connectionId);
+}
+
 export function isQuotaExhaustedForRequest(
   connectionId: string,
   provider: string,
   requestedModel: string | null = null,
-  providerSpecificData?: unknown
+  providerSpecificData?: unknown,
+  authType?: string | null
 ): boolean {
-  if (isQuotaHealthy(connectionId)) return false;
+  if (!canApplyRequestQuota(connectionId, provider, authType)) return false;
   if (isCodexQuotaFilteringDisabled(provider, providerSpecificData)) return false;
   if (isClaudeExtraUsageAllowed(provider, providerSpecificData)) return false;
   // Subscription snapshots cannot decide paid-credit eligibility. The mandatory
@@ -952,6 +974,7 @@ function hydrateQuotaCacheFromSnapshots(connectionId: string): QuotaCacheEntry |
 
   const quotas: Record<string, QuotaInfo> = {};
   let provider = "";
+  const snapshotScopes = new Set<string>();
   let fetchedAt = 0;
   let windowDurationMs: number | null = null;
 
@@ -968,6 +991,8 @@ function hydrateQuotaCacheFromSnapshots(connectionId: string): QuotaCacheEntry |
     const windowKey = camelSnapshot.windowKey ?? snapshot.window_key;
     if (!windowKey) continue;
     provider = provider || snapshot.provider || "";
+    const snapshotProvider = resolveProviderId(snapshot.provider || "");
+    snapshotScopes.add(snapshotProvider);
     let fractionReported: false | undefined;
     const rawData = camelSnapshot.rawData ?? snapshot.raw_data;
     try {
@@ -1003,6 +1028,7 @@ function hydrateQuotaCacheFromSnapshots(connectionId: string): QuotaCacheEntry |
   if (Object.keys(quotas).length === 0) return null;
   const exhausted = isExhausted(quotas);
 
+  provider = resolveSnapshotQuotaProvider(provider, snapshotScopes);
   const entry: QuotaCacheEntry = {
     connectionId,
     provider,
