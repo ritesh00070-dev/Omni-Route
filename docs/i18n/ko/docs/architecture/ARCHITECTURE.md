@@ -10,31 +10,31 @@ _최종 업데이트: 2026-06-28_
 
 ## 요약
 
-OmniRoute 는 Next.js 기반으로 구축된 로컬 AI 라우팅 게이트웨이이자 대시보드입니다. 단일 OpenAI 호환 엔드포인트(`/v1/*`)를 제공하고 변환, 폴백, 토큰 새로 고침 및 사용량 추적을 통해 여러 업스트림 공급자 간에 트래픽을 라우팅합니다.
+OmniRoute 는 Next.js 기반으로 구축된 로컬 AI 라우팅 게이트웨이이자 대시보드입니다. 단일 OpenAI 호환 엔드포인트(`/v1/*`)를 제공하고 변환, 대체, 토큰 새로 고침 및 사용 추적을 통해 여러 업스트림 공급자 간에 트래픽을 라우팅합니다.
 
 핵심 기능:
 
-- CLI/tools 용 OpenAI 호환 API 표면(공급자 381개, 실행기 모듈 159개)
+- CLI/tools 용 OpenAI 호환 API 표면(공급자 385개, 실행기 모듈 159개)
 - 공급자 형식에 따른 Request/response 번역
 - 모델 콤보 대체(다중 모델 시퀀스)
 - `compositeTiers` 를 기준으로 런타임 순서를 지정하는 구조화된 콤보 단계(`provider + model + connection`)
 - 계정 수준 대체(공급업체당 다중 계정)
-- 기본 채팅 경로에서 할당량 프리플라이트 및 할당량 인식 P2C 계정 선택
-- OAuth + API 키 공급자 연결 관리(27 OAuth 공급자 모듈)
-- `/v1/embeddings` 통한 임베딩 생성(18개 제공자)
-- `/v1/images/generations` 통한 이미지 생성(+ 공급자 10개,+ 모델 20개)
-- `/v1/audio/transcriptions` 통한 오디오 전사(18개 제공자)
+- 기본 채팅 경로에서 할당량 사전 및 할당량 인식 P2C 계정 선택
+- OAuth + API 키 공급자 연결 관리(27개 OAuth 공급자 모듈)
+- `/v1/embeddings` 통한 임베딩 생성(18개 제공업체)
+- `/v1/images/generations` 통한 이미지 생성(+ 제공업체 10개,+ 모델 20개)
+- `/v1/audio/transcriptions` 통한 오디오 전사(18개 제공업체)
 - `/v1/audio/speech` 통한 텍스트 음성 변환(24개 내장 제공업체)
 - `/v1/videos/generations` 통한 비디오 생성(ComfyUI + SD WebUI)
 - `/v1/music/generations` (ComfyUI)를 통한 음악 생성
-- `/v1/search` 통한 웹 검색(공급자 20개)
-- `/v1/moderations` 통한 중재
-- `/v1/rerank` 통해 순위 재지정
-- 추론 모델을 위한 태그 구문 분석(`<think>...</think>`) 생각하기
+- `/v1/search` 통한 웹 검색(20개 제공업체)
+- `/v1/moderations` 통한 조정
+- `/v1/rerank` 통한 재순위
+- 추론 모델을 위한 Think 태그 구문 분석(`<think>...</think>`)
 - 엄격한 OpenAI SDK 호환성을 위한 응답 삭제
 - 공급자 간 호환성을 위한 역할 정규화(개발자 → 시스템, 시스템 → 사용자)
 - 구조화된 출력 변환(json_schema → Gemini responseSchema)
-- 공급자, 키, 별칭, 콤보, 설정, 가격 책정에 대한 로컬 지속성(122 DB 모듈)
+- 공급자, 키, 별칭, 콤보, 설정, 가격 책정에 대한 로컬 지속성(122개의 DB 모듈)
 - Usage/cost 추적 및 요청 로깅
 - multi-device/state 동기화를 위한 선택적 클라우드 동기화
 - API 액세스 제어를 위한 IP allowlist/blocklist
@@ -48,14 +48,14 @@ OmniRoute 는 Next.js 기반으로 구축된 로컬 AI 라우팅 게이트웨이
 - 도메인 레이어: 비용 규칙, 대체 정책, 잠금 정책
 - 컨텍스트 릴레이: 계정 순환 연속성을 위한 세션 핸드오프 요약
 - 도메인 상태 지속성(폴백, 예산, 잠금, 회로 차단기를 위한 SQLite 연속 쓰기 캐시)
-- 중앙 집중식 요청 평가를 위한 정책 엔진(잠금 → 예산 → 대체)
-- p50/p95/p99 대기 시간 집계를 통한 원격 분석 요청
-- `combo_execution_key` / `combo_step_id` 를 통한 콤보 대상 원격 측정 및 기록 콤보 대상 건강
-- 엔드투엔드 추적을 위한 상관관계 ID (X-Request-Id)
+- 중앙 집중식 요청 평가를 위한 정책 엔진( → 예산 → 대체 잠금)
+- p50/p95/p99 대기 시간 집계를 통한 원격 측정 요청
+- `combo_execution_key` / `combo_step_id` 를 통한 콤보 대상 원격 측정 및 과거 콤보 대상 건강
+- 종단 간 추적을 위한 상관 관계 ID (X-Request-Id)
 - API 키당 옵트아웃 기능을 갖춘 규정 준수 감사 로깅
 - LLM 품질 보증을 위한 평가 프레임워크
 - 실시간 공급자 회로 차단기 상태가 포함된 상태 대시보드
-- 3개의 전송 기능이 있는 MCP 서버(110개 도구)(stdio/SSE/Streamable HTTP)
+- 3개의 전송 기능을 갖춘 MCP 서버(110개 도구)(stdio/SSE/Streamable HTTP)
 - 기술과 작업 수명주기를 갖춘 A2A 서버(JSON-RPC 2.0 + SSE)
 - 기억 시스템(추출, 주입, 검색, 요약)
 - 스킬 시스템(레지스트리, 실행자, 샌드박스, 내장 스킬)
@@ -63,17 +63,17 @@ OmniRoute 는 Next.js 기반으로 구축된 로컬 AI 라우팅 게이트웨이
 - 프롬프트 주입 가드 미들웨어
 - Caveman, RTK, 스택 파이프라인, 압축 콤보, 언어 팩 및 분석을 포함한 신속한 압축 파이프라인
 - ACP (에이전트 통신 프로토콜) 레지스트리
-- 모듈 OAuth 공급자( `src/lib/oauth/providers/` 아래의 개별 모듈 22개)
+- 모듈식 OAuth 제공업체( `src/lib/oauth/providers/` 아래 22개의 개별 모듈)
 - Uninstall/full-uninstall 스크립트
-- OAuth 환경 복구 작업
+- OAuth 환경 복구 조치
 - OpenAI 호환 WS 클라이언트용 WebSocket 브리지(`/v1/ws`)
 - 동기화 토큰 관리(issue/revoke, ETag 버전 구성 번들 다운로드)
 - GLM Thinking(`glmt`) 일류 공급자 사전 설정
 - 하이브리드 토큰 계산(추정 대체 기능이 있는 제공자 측 `/messages/count_tokens` )
 - 모델 별칭 자동 시드(시작 시 30개의 + 교차 프록시 방언 정규화)
 - SSRF 가드, 비공개 URL 차단 및 구성 가능한 재시도를 통한 안전한 아웃바운드 가져오기
-- 구성 가능한 `requestRetry` 및 `maxRetryIntervalSec` 사용한 쿨다운 인식 채팅 재시도
-- 시작 시 Zod 사용한 런타임 환경 검증
+- 구성 가능한 `requestRetry` 및 `maxRetryIntervalSec` 사용한 휴지 시간 인식 채팅 재시도
+- 시작 시 Zod 통한 런타임 환경 검증
 - 페이지 매김, 공급자 CRUD 이벤트 및 SSRF 차단 유효성 검사 로깅을 포함한 규정 준수 감사 v2
 
 기본 런타임 모델:
@@ -1046,9 +1046,9 @@ flowchart LR
 
 ## 6) SSRF / 아웃바운드 URL 가드
 
-- `src/shared/network/outboundUrlGuard.ts`는 제공자 실행기에 도달하기 전에 모든 비공개/루프백/링크 로컬 대상 URL을 차단함
-- 제공자 모델 검색 및 검증 라우트는 모든 아웃바운드 요청 전에 가드를 적용하는 `src/shared/network/safeOutboundFetch.ts`를 사용함
-- 가드 오류는 HTTP 422와 함께 `URL_GUARD_BLOCKED`로 노출되며 `providerAudit.ts`를 통해 규정 준수 감사 추적에 기록됨
+- `BaseExecutor.assertOutboundUrlAllowed` (`open-sse/executors/base.ts`)는 `BaseExecutor.execute()`를 통해 전송되는 채팅 요청에 `src/shared/network/outboundUrlGuard.ts`를 적용합니다. 공개 전용 모드(비공개 플래그가 꺼져 있고 `OMNIROUTE_ALLOW_LOCAL_PROVIDER_URLS=false`인 경우)에서는 사설 및 루프백 호스트와 169.254.0.0/16을 차단하며, 그 외 모든 모드에서는 클라우드 메타데이터 호스트를 차단합니다. DNS 조회 전에 작성된 그대로의 호스트 이름 또는 IP 리터럴을 검사합니다. 기본 제공 로컬 공급자는 이 검사를 건너뜁니다.
+- 공급자 모델 검색 및 검증 라우트는 모든 아웃바운드 요청 전에 가드를 적용하는 `src/shared/network/safeOutboundFetch.ts`를 사용합니다.
+- 가드 오류는 HTTP 503과 함께 `URL_GUARD_BLOCKED`로 노출되며(`getSafeOutboundFetchErrorStatus`; 모델 검색 라우트는 400을 반환), 검증 중 실제 SSRF 차단은 `provider.validation.ssrf_blocked` 이벤트로 감사 추적에 기록됩니다.
 
 ## 관측 가능성 및 운영 신호
 
@@ -1099,7 +1099,7 @@ flowchart LR
 4. 클라우드 동작은 올바른 `NEXT_PUBLIC_BASE_URL`과 클라우드 엔드포인트의 연결 가능 여부에 따라 달라집니다.
 5. `open-sse/` 디렉터리는 `@omniroute/open-sse` **npm 워크스페이스 패키지**로 게시됩니다. 소스 코드는 `@omniroute/open-sse/...`를 통해 이를 가져옵니다(Next.js `transpilePackages`로 해석됨). 이 문서의 파일 경로는 일관성을 위해 계속 `open-sse/` 디렉터리 이름을 사용합니다.
 6. 대시보드의 차트는 접근성 높은 대화형 분석 시각화(모델 사용량 막대 차트, 성공률이 포함된 공급자 분석 표)를 위해 **Recharts**(SVG 기반)를 사용합니다.
-7. E2E 테스트는 **Playwright**(`tests/e2e/`)를 사용하며 `npm run test:e2e`를 통해 실행합니다. 단위 테스트는 **Node.js 테스트 러너**(`tests/unit/`)를 사용하며 `npm run test:unit`을 통해 실행합니다. `src/` 아래의 소스 코드는 **TypeScript**(`.ts`/`.tsx`)이며, `open-sse/` 워크스페이스는 JavaScript(`.js`)로 유지됩니다.
+7. E2E 테스트는 **Playwright**(`tests/e2e/`)를 사용하며 `npm run test:e2e`를 통해 실행합니다. 단위 테스트는 **Node.js 테스트 러너**(`tests/unit/`)를 사용하며 `npm run test:unit`을 통해 실행합니다. `src/` 아래의 소스 코드는 **TypeScript**(`.ts`/`.tsx`)이며, `open-sse/` 워크스페이스는 TypeScript(`.ts`)로 유지됩니다.
 8. 설정 페이지는 일반, 모양, AI, 보안, 라우팅, 복원력, 고급의 7개 탭으로 구성됩니다. 복원력 페이지에서는 요청 큐, 연결 쿨다운, 공급자 서킷 브레이커 및 쿨다운 대기 동작만 구성하며, 실시간 서킷 브레이커 런타임 상태는 상태 페이지에 표시됩니다.
 9. **Context Relay** 전략(`context-relay`)은 두 계층으로 나뉩니다. `combo.ts`는 핸드오프 생성 여부를 결정하고, `chat.ts`는 계정 확인 후 핸드오프를 삽입합니다. 핸드오프 데이터는 `context_handoffs` SQLite 테이블에 저장됩니다. 실제 계정이 변경되었는지는 `chat.ts`만 알 수 있으므로 이러한 분리는 의도된 것입니다.
 10. **프록시 적용**은 이제 포괄적으로 이루어집니다. `tokenHealthCheck.ts`는 연결별로 프록시를 확인하고, `/api/providers/validate`는 `runWithProxyContext`를 사용하며, `proxyFetch.ts`는 Node 22에서 디스패처 호환성을 유지하기 위해 `undici.fetch()`를 사용합니다.

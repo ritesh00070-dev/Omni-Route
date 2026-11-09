@@ -4,12 +4,7 @@
 
 ---
 
-# Feature Flags
-
-> Runtime prekidači koji mijenjaju ponašanje OmniRoute-a **bez ponovnog raspoređivanja (redeploy)**.
-> Svaka zastavica navedena ovdje je definisana u
-> [`src/shared/constants/featureFlagDefinitions.ts`](../../src/shared/constants/featureFlagDefinitions.ts)
-> — jedinom izvoru istine. I kontrolna tabla i REST API čitaju iz te datoteke, tako da je tabela ispod generisana da odgovara 1:1.
+> Runtime prekidači koji mijenjaju ponašanje OmniRoute**bez preraspodjele** . Svaka ovdje navedena zastava definirana je u [`src/shared/constants/featureFlagDefinitions.ts`](../../src/shared/constants/featureFlagDefinitions.ts) — kao jedinstvenom izvoru istine. Kontrolna tabla i REST API čitaju iz te datoteke, tako da je donja tabela generisana da odgovara 1:1.
 
 ---
 
