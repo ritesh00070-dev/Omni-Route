@@ -60,6 +60,7 @@ import {
 import { persistDiscoveredAntigravityProjectId } from "./antigravityProjectPersist.ts";
 import { refreshCodexToken } from "./tokenRefresh/providers/codex.ts";
 import { refreshCursorToken } from "./tokenRefresh/providers/cursor.ts";
+import { refreshGrokBotToken } from "./tokenRefresh/providers/grok-bot.ts";
 import { refreshOpenferenceToken } from "./tokenRefresh/providers/openference.ts";
 import { refreshKiroToken } from "./tokenRefresh/providers/kiro.ts";
 import { refreshQoderToken } from "./tokenRefresh/providers/qoder.ts";
@@ -445,6 +446,14 @@ async function _getAccessTokenInternal(provider, credentials, log, proxyConfig: 
       }
       return await refreshCursorToken(credentials.refreshToken, log, proxyConfig);
 
+    case "grok-bot":
+      if (!credentials.refreshToken) {
+        return { error: "unrecoverable_refresh_error", code: "no_refresh_token" };
+      }
+      return await refreshGrokBotToken(credentials.refreshToken, log, proxyConfig, {
+        previousAccessToken: credentials.accessToken ?? null,
+      });
+
     case "openference":
       return await refreshOpenferenceToken(credentials.refreshToken, log, proxyConfig);
 
@@ -535,6 +544,7 @@ export function supportsTokenRefresh(provider) {
     "codebuddy-intl",
     "workbuddy",
     "cursor",
+    "grok-bot",
   ]);
   if (explicitlySupported.has(provider)) return true;
   const config = PROVIDERS[provider];
@@ -832,6 +842,7 @@ export function formatProviderCredentials(provider, credentials, log) {
 
     case "antigravity":
     case "agy":
+    case "grok-bot":
       return {
         accessToken: credentials.accessToken,
         refreshToken: credentials.refreshToken,
