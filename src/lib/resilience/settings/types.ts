@@ -277,12 +277,18 @@ export interface StreamThroughputWatchdogSettings {
   minUsefulBytes: number;
 }
 
+/** Per-request Antigravity account/model quarantine toggle. */
+export interface AntigravityAdaptiveHealthSettings {
+  enabled: boolean;
+}
+
 /** Controls sanitized timing of the real Antigravity physical HTTP sends. */
 export interface AntigravityTimingTelemetrySettings {
   enabled: boolean;
 }
 
 export interface ResilienceSettings {
+  antigravityAdaptiveHealth: AntigravityAdaptiveHealthSettings;
   antigravityTimingTelemetry: AntigravityTimingTelemetrySettings;
   requestQueue: RequestQueueSettings;
   connectionCooldown: Record<AuthCategory, ConnectionCooldownProfileSettings>;
@@ -301,6 +307,7 @@ export interface ResilienceSettings {
 }
 
 export interface ResilienceSettingsPatch {
+  antigravityAdaptiveHealth?: Partial<AntigravityAdaptiveHealthSettings>;
   antigravityTimingTelemetry?: Partial<AntigravityTimingTelemetrySettings>;
   requestQueue?: Partial<RequestQueueSettings>;
   connectionCooldown?: Partial<Record<AuthCategory, Partial<ConnectionCooldownProfileSettings>>>;
