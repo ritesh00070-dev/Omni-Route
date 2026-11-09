@@ -65,19 +65,19 @@ jobs run at the same time. `GET /api/pricing?includeSources=1` returns
 **LiteLLM sync** is opt-in, disabled by default. Its environment variables
 (see [`.env.example`](../../.env.example)) are:
 
-| Env var | Default | Purpose |
-| --- | --- | --- |
-| `PRICING_SYNC_ENABLED` | `false` | Enable background LiteLLM pricing sync. |
-| `PRICING_SYNC_INTERVAL` | `86400` | Sync interval in seconds (daily). |
-| `PRICING_SYNC_SOURCES` | `litellm` | Source selection for this sync only; currently only `litellm` is supported. |
+| Env var                 | Default   | Purpose                                                                     |
+| ----------------------- | --------- | --------------------------------------------------------------------------- |
+| `PRICING_SYNC_ENABLED`  | `false`   | Enable background LiteLLM pricing sync.                                     |
+| `PRICING_SYNC_INTERVAL` | `86400`   | Sync interval in seconds (daily).                                           |
+| `PRICING_SYNC_SOURCES`  | `litellm` | Source selection for this sync only; currently only `litellm` is supported. |
 
 **models.dev sync** is separate from the LiteLLM sync and is also disabled
 by default. Enable it in Settings (models.dev sync) or use these variables:
 
-| Env var | Default | Purpose |
-| --- | --- | --- |
-| `MODELS_DEV_SYNC_ENABLED` | _(unset)_ | Unset follows the Settings toggle; `1/true/on/yes` forces on and `0/false/off/no` forces off (even if Settings enables it). |
-| `MODELS_DEV_SYNC_INTERVAL` | `86400` | Default models.dev sync interval in seconds (daily). |
+| Env var                    | Default   | Purpose                                                                                                                     |
+| -------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `MODELS_DEV_SYNC_ENABLED`  | _(unset)_ | Unset follows the Settings toggle; `1/true/on/yes` forces on and `0/false/off/no` forces off (even if Settings enables it). |
+| `MODELS_DEV_SYNC_INTERVAL` | `86400`   | Default models.dev sync interval in seconds (daily).                                                                        |
 
 `PRICING_SYNC_SOURCES` does **not** enable models.dev; it controls only
 the LiteLLM sync. Deleting a user override does not clear either synced namespace; the next
@@ -123,6 +123,46 @@ analytics endpoint runs. That means correcting a wrong price (and re-syncing) up
 historical cost estimates retroactively.
 
 ---
+
+## Cortecs reranking costs
+
+For dynamic reranker nodes targeting `https://api.cortecs.ai/v1/rerank`,
+OmniRoute sends `x-cortecs-cost-unit: USD` and records the returned `usage.cost`
+directly as USD for each successful physical request. This also applies to
+the existing `/rerank` fallback. Cortecs performs the currency conversion;
+see its [USD cost-header documentation](https://docs.cortecs.ai/integration-examples/tooling/litellm.md).
+There is no extra account/management key, manually maintained exchange rate,
+token-tariff estimate or second conversion. Fractional and whole-dollar USD
+amounts are both accepted, including explicit zero. USD amounts are not stored
+as native credits or used to invent a credit quantity.
+
+`CORTECS_CREDIT_PRICE_USD` remains supported only by legacy callers of the
+credit-unit normalizer. It is ignored for requests explicitly made in USD.
+Legacy conversion has no default; only genuine reported credit quantities are
+stored in `usage_history.provider_credits`. The numerical USD cost is
+snapshotted in `provider_cost_usd` for reporting and key budgets. Later rate or
+token-catalogue edits do not reprice already-valued requests.
+
+Missing or invalid reported USD costs remain **unknown**, never guessed from a
+legacy rate. Positive legacy credits without a valid conversion also stay unknown:
+the response omits its numeric cost header, sets
+`X-OmniRoute-Cost-Status: unknown`, and existing unpriced-budget safeguards
+apply to limited keys. Explicit zero credits remain known zero cost.
+Unknown credit spending is not estimated from token tariffs.
+
+The usage vendor is canonical `cortecs`, independent of the node alias.
+The selected custom connection, model and caller key remain attributed.
+The response body retains the provider's reported USD `usage.cost` unchanged.
+No-log keys keep numerical accounting without document payloads.
+Other rerank providers retain their existing behavior. This is forward-only
+accounting, not a historical backfill or an invoice reconciliation.
+
+The name `cortecs` alone does not disable a custom chat/embedding node's
+configured token prices. Rerank accounting is distinguished by the recorded
+endpoint or explicit normalized credit provenance. Missing rerank costs remain
+unpriced in durable quotas, reports and rollups even if a token tariff exists;
+those tokens remain visible but are not billed. Archived Cortecs snapshots,
+including zero/unknown values, are not retrospectively token-repriced.
 
 ## Dashboard: the Costs page
 
@@ -196,16 +236,16 @@ noted.
 
 ### Pricing
 
-| Method   | Endpoint                | Purpose                                                                                         |
-| -------- | ----------------------- | ----------------------------------------------------------------------------------------------- |
-| `GET`    | `/api/pricing`          | Merged four-layer pricing (user, models.dev, LiteLLM, defaults). `?includeSources=1` returns `pricing` + `sourceMap`. |
-| `PATCH`  | `/api/pricing`          | Override pricing for `{ provider: { model: { input, output, cached, … } } }`.                   |
-| `DELETE` | `/api/pricing`          | Remove user price overrides (optionally scoped by `?provider=&model=`); synced rates or built-in defaults remain as fallbacks.                           |
-| `GET`    | `/api/pricing/defaults` | Show default per-1M fallback rates.                                                             |
-| `GET`    | `/api/pricing/models`   | Pricing keyed by model.                                                                         |
-| `POST`   | `/api/pricing/sync`     | Trigger a manual sync from external sources (LiteLLM).                                          |
-| `GET`    | `/api/pricing/sync`     | Current sync status.                                                                            |
-| `DELETE` | `/api/pricing/sync`     | Clear LiteLLM-synced pricing only (`pricing_synced`); models.dev data is separate.                                                                  |
+| Method   | Endpoint                | Purpose                                                                                                                        |
+| -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `GET`    | `/api/pricing`          | Merged four-layer pricing (user, models.dev, LiteLLM, defaults). `?includeSources=1` returns `pricing` + `sourceMap`.          |
+| `PATCH`  | `/api/pricing`          | Override pricing for `{ provider: { model: { input, output, cached, … } } }`.                                                  |
+| `DELETE` | `/api/pricing`          | Remove user price overrides (optionally scoped by `?provider=&model=`); synced rates or built-in defaults remain as fallbacks. |
+| `GET`    | `/api/pricing/defaults` | Show default per-1M fallback rates.                                                                                            |
+| `GET`    | `/api/pricing/models`   | Pricing keyed by model.                                                                                                        |
+| `POST`   | `/api/pricing/sync`     | Trigger a manual sync from external sources (LiteLLM).                                                                         |
+| `GET`    | `/api/pricing/sync`     | Current sync status.                                                                                                           |
+| `DELETE` | `/api/pricing/sync`     | Clear LiteLLM-synced pricing only (`pricing_synced`); models.dev data is separate.                                             |
 
 ### Other cost-relevant endpoints
 

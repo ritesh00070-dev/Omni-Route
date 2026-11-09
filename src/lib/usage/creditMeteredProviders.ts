@@ -24,9 +24,10 @@
  */
 
 /**
- * Provider ids billed by credit rather than by token. Kept explicit (not derived)
- * because these providers sit in the oauth category next to genuinely
- * token-metered ones and carry real per-token pricing rows.
+ * Provider ids whose normalized bill is credit-metered. Keep this explicit:
+ * neither the auth category nor a token-pricing row determines billing units.
+ * Cortecs is endpoint-specific and is deliberately not classified globally:
+ * custom chat/embedding nodes may use that prefix with their own token tariffs.
  */
 const CREDIT_METERED_PROVIDER_IDS: Readonly<Record<string, true>> = {
   kiro: true, // Kiro reports `credit` metering events; KIRO_CREDIT_PRICE_USD converts them
@@ -52,7 +53,8 @@ const isNonNegativeNumber = (value: unknown): value is number =>
  * priced from its tokens. The precedence mirrors `extractExactCostUsd` in
  * {@link module:lib/usage/costCalculator}: `cost_in_usd_ticks` (xAI, credit-metered
  * providers) first, then the normalized `cost_usd` (OpenRouter's `usage.cost`).
- * Credits are provenance, kept only for credit-metered providers.
+ * Credits are provenance, kept for credit-metered providers and explicitly
+ * normalized Cortecs credit usage; the latter does not classify every alias call.
  */
 export function readReportedCost(
   providerId: string | null | undefined,
@@ -71,7 +73,10 @@ export function readReportedCost(
   else if (isNonNegativeNumber(costUsd)) providerCostUsd = costUsd;
   return {
     providerCredits:
-      isCreditMeteredProvider(providerId) && isNonNegativeNumber(credits) ? credits : null,
+      (isCreditMeteredProvider(providerId) || providerId?.trim().toLowerCase() === "cortecs") &&
+      isNonNegativeNumber(credits)
+        ? credits
+        : null,
     providerCostUsd,
   };
 }
