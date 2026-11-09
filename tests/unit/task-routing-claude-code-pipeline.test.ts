@@ -5,7 +5,7 @@
  * Degradation catching session titles.
  *
  * Request bodies follow Claude Code 2.1.x `/v1/messages` traffic: top-level `system` blocks
- * whose main prompt contains "one-line summary", a dozen tools, `<system-reminder>` blocks
+ * whose main prompt contains "one-line summary", tool definitions, `<system-reminder>` blocks
  * ahead of the human prompt, tool results that carry more reminders, and tool-less Haiku
  * utility calls (WebFetch summaries, session titles).
  *
