@@ -19,14 +19,16 @@ const TASK_LABEL_KEYS: Record<TaskType, string> = {
   chat: "taskRoutingTaskChat",
 };
 
+type TaskModelMap = Partial<Record<TaskType, string>>;
+
 type ComplexityRouting = { enabled: boolean; minScore: number; model: string };
 
 type TaskRoutingSettings = {
   enabled: boolean;
   detectionAnchor: "latest-user" | "first-user";
-  taskModelMap: Partial<Record<TaskType, string>>;
+  taskModelMap: TaskModelMap;
   complexityRouting: ComplexityRouting;
-  defaultTaskModelMap: Partial<Record<TaskType, string>>;
+  defaultTaskModelMap: TaskModelMap;
   stats: { detected: number; routed: number };
 };
 
@@ -57,33 +59,8 @@ function toSettings(
   };
 }
 
-function SettingRow({
-  title,
-  hint,
-  children,
-}: {
-  title: string;
-  hint: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="flex items-start sm:items-center justify-between gap-4">
-      <div className="flex-1 min-w-0">
-        <p className="font-medium text-sm sm:text-base">{title}</p>
-        <p className="text-xs sm:text-sm text-text-muted">{hint}</p>
-      </div>
-      {children}
-    </div>
-  );
-}
-
-/**
- * Task-Aware Routing card (Settings → Global Routing). Edits the same config as
- * PUT /api/settings/task-routing: the on/off switch, the conversation anchor, the
- * model per task type and complexity escalation. Pattern overrides stay API-only.
- */
-export default function TaskAwareRoutingCard() {
-  const t = useTranslations("settings");
+/** Loads GET /api/settings/task-routing and saves partial updates with PUT. */
+function useTaskRoutingSettings() {
   const [settings, setSettings] = useState<TaskRoutingSettings | null>(null);
   const [loadFailed, setLoadFailed] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -126,6 +103,134 @@ export default function TaskAwareRoutingCard() {
     }
   };
 
+  return { settings, loadFailed, saving, status, save };
+}
+
+function SettingRow({
+  title,
+  hint,
+  children,
+}: {
+  title: string;
+  hint: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex items-start sm:items-center justify-between gap-4">
+      <div className="flex-1 min-w-0">
+        <p className="font-medium text-sm sm:text-base">{title}</p>
+        <p className="text-xs sm:text-sm text-text-muted">{hint}</p>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function TaskModelsSection({
+  taskModelMap,
+  defaults,
+  saving,
+  save,
+}: {
+  taskModelMap: TaskModelMap;
+  defaults: TaskModelMap;
+  saving: boolean;
+  save: (update: TaskRoutingUpdate) => void;
+}) {
+  const t = useTranslations("settings");
+  return (
+    <div className="pt-4 border-t border-border/50 flex flex-col gap-3">
+      <div>
+        <p className="font-medium text-sm sm:text-base">{t("taskRoutingModelsTitle")}</p>
+        <p className="text-xs sm:text-sm text-text-muted">{t("taskRoutingModelsHint")}</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {(Object.keys(TASK_LABEL_KEYS) as TaskType[]).map((type) => (
+          <ModelSelectField
+            key={type}
+            label={t(TASK_LABEL_KEYS[type])}
+            value={taskModelMap[type] ?? ""}
+            placeholder={t("taskRoutingKeepRequested")}
+            allowEmpty
+            disabled={saving}
+            testId={`task-routing-model-${type}`}
+            onChange={(model) => save({ taskModelMap: { ...taskModelMap, [type]: model } })}
+          />
+        ))}
+      </div>
+      <div>
+        <Button
+          variant="ghost"
+          size="sm"
+          disabled={saving}
+          onClick={() => save({ taskModelMap: defaults })}
+        >
+          {t("taskRoutingRestoreDefaults")}
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+// complexityRouting is replaced as a whole on update, so every save sends all three fields.
+function EscalationSection({
+  complexity,
+  saving,
+  save,
+}: {
+  complexity: ComplexityRouting;
+  saving: boolean;
+  save: (update: TaskRoutingUpdate) => void;
+}) {
+  const t = useTranslations("settings");
+  const update = (patch: Partial<ComplexityRouting>) =>
+    save({ complexityRouting: { ...complexity, ...patch } });
+  return (
+    <div className="pt-4 border-t border-border/50 flex flex-col gap-3">
+      <SettingRow title={t("taskRoutingComplexityTitle")} hint={t("taskRoutingComplexityHint")}>
+        <Toggle
+          checked={complexity.enabled}
+          ariaLabel={t("taskRoutingComplexityTitle")}
+          disabled={saving || (!complexity.enabled && !complexity.model)}
+          onChange={(enabled) => update({ enabled })}
+        />
+      </SettingRow>
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 sm:items-end">
+        <ModelSelectField
+          label={t("taskRoutingComplexityModel")}
+          value={complexity.model}
+          disabled={saving}
+          testId="task-routing-complexity-model"
+          onChange={(model) => update({ model })}
+        />
+        <div className="w-32">
+          <NumberField
+            label={t("taskRoutingComplexityThreshold")}
+            value={complexity.minScore}
+            min={0}
+            max={100}
+            onChange={(minScore) => {
+              if (minScore !== complexity.minScore) update({ minScore });
+            }}
+          />
+        </div>
+      </div>
+      {!complexity.model && (
+        <p className="text-xs text-text-muted">{t("taskRoutingComplexityModelRequired")}</p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Task-Aware Routing card (Settings → Global Routing). Edits the same config as
+ * PUT /api/settings/task-routing: the on/off switch, the conversation anchor, the
+ * model per task type and complexity escalation. Pattern overrides stay API-only.
+ */
+export default function TaskAwareRoutingCard() {
+  const t = useTranslations("settings");
+  const { settings, loadFailed, saving, status, save } = useTaskRoutingSettings();
+
   if (loadFailed) {
     return (
       <Card className="p-6">
@@ -133,12 +238,7 @@ export default function TaskAwareRoutingCard() {
       </Card>
     );
   }
-
   if (!settings) return null;
-
-  const complexity = settings.complexityRouting;
-  const saveComplexity = (patch: Partial<ComplexityRouting>) =>
-    save({ complexityRouting: { ...complexity, ...patch } });
 
   return (
     <Card>
@@ -166,13 +266,11 @@ export default function TaskAwareRoutingCard() {
             onChange={(enabled) => save({ enabled })}
           />
         </SettingRow>
-
         {status === "error" && (
           <p role="alert" className="text-xs text-error">
             {t("taskRoutingSaveFailed")}
           </p>
         )}
-
         {settings.enabled && (
           <>
             <div className="pt-4 border-t border-border/50">
@@ -181,83 +279,21 @@ export default function TaskAwareRoutingCard() {
                   checked={settings.detectionAnchor === "first-user"}
                   ariaLabel={t("taskRoutingAnchorTitle")}
                   disabled={saving}
-                  onChange={(checked) =>
-                    save({ detectionAnchor: checked ? "first-user" : "latest-user" })
-                  }
+                  onChange={(on) => save({ detectionAnchor: on ? "first-user" : "latest-user" })}
                 />
               </SettingRow>
             </div>
-
-            <div className="pt-4 border-t border-border/50 flex flex-col gap-3">
-              <div>
-                <p className="font-medium text-sm sm:text-base">{t("taskRoutingModelsTitle")}</p>
-                <p className="text-xs sm:text-sm text-text-muted">{t("taskRoutingModelsHint")}</p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {(Object.keys(TASK_LABEL_KEYS) as TaskType[]).map((type) => (
-                  <ModelSelectField
-                    key={type}
-                    label={t(TASK_LABEL_KEYS[type])}
-                    value={settings.taskModelMap[type] ?? ""}
-                    placeholder={t("taskRoutingKeepRequested")}
-                    allowEmpty
-                    disabled={saving}
-                    testId={`task-routing-model-${type}`}
-                    onChange={(model) =>
-                      save({ taskModelMap: { ...settings.taskModelMap, [type]: model } })
-                    }
-                  />
-                ))}
-              </div>
-              <div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  disabled={saving}
-                  onClick={() => save({ taskModelMap: settings.defaultTaskModelMap })}
-                >
-                  {t("taskRoutingRestoreDefaults")}
-                </Button>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-border/50 flex flex-col gap-3">
-              <SettingRow
-                title={t("taskRoutingComplexityTitle")}
-                hint={t("taskRoutingComplexityHint")}
-              >
-                <Toggle
-                  checked={complexity.enabled}
-                  ariaLabel={t("taskRoutingComplexityTitle")}
-                  disabled={saving || (!complexity.enabled && !complexity.model)}
-                  onChange={(enabled) => saveComplexity({ enabled })}
-                />
-              </SettingRow>
-              <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 sm:items-end">
-                <ModelSelectField
-                  label={t("taskRoutingComplexityModel")}
-                  value={complexity.model}
-                  disabled={saving}
-                  testId="task-routing-complexity-model"
-                  onChange={(model) => saveComplexity({ model })}
-                />
-                <div className="w-32">
-                  <NumberField
-                    label={t("taskRoutingComplexityThreshold")}
-                    value={complexity.minScore}
-                    min={0}
-                    max={100}
-                    onChange={(minScore) => {
-                      if (minScore !== complexity.minScore) saveComplexity({ minScore });
-                    }}
-                  />
-                </div>
-              </div>
-              {!complexity.model && (
-                <p className="text-xs text-text-muted">{t("taskRoutingComplexityModelRequired")}</p>
-              )}
-            </div>
-
+            <TaskModelsSection
+              taskModelMap={settings.taskModelMap}
+              defaults={settings.defaultTaskModelMap}
+              saving={saving}
+              save={save}
+            />
+            <EscalationSection
+              complexity={settings.complexityRouting}
+              saving={saving}
+              save={save}
+            />
             {settings.stats.detected > 0 && (
               <p className="text-xs text-text-muted">
                 {t("taskRoutingStats", {
