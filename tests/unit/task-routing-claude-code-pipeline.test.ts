@@ -1,7 +1,8 @@
 /**
- * Claude Code traffic through the real chat pipeline, with Task-Aware Routing set up for an
- * agent CLI: `detectionAnchor: "first-user"`, every task type on Sonnet, background on Haiku,
- * hard prompts escalated to Opus, and Background Degradation catching session titles.
+ * Claude Code traffic through the real chat pipeline, with Task-Aware Routing set up through
+ * PUT /api/settings/task-routing for an agent CLI: `detectionAnchor: "first-user"`, every task
+ * type on Sonnet, background on Haiku, hard prompts escalated to Opus, and Background
+ * Degradation catching session titles.
  *
  * Request bodies follow Claude Code 2.1.x `/v1/messages` traffic: top-level `system` blocks
  * whose main prompt contains "one-line summary", a dozen tools, `<system-reminder>` blocks
@@ -25,12 +26,14 @@ const {
   handleChat,
   resetStorage,
   seedConnection,
+  settingsDb,
   toPlainHeaders,
 } = harness;
 const { DEFAULT_COMPLEXITY_MIN_SCORE, getDefaultTaskModelMap, setTaskRoutingConfig } =
   await import("../../open-sse/services/taskAwareRouter.ts");
 const { getBackgroundDegradationConfig, setBackgroundDegradationConfig } =
   await import("../../open-sse/services/backgroundTaskDetector.ts");
+const taskRoutingRoute = await import("../../src/app/api/settings/task-routing/route.ts");
 
 const OPUS = "claude/claude-opus-5-5";
 const SONNET = "claude/claude-sonnet-5-5";
@@ -160,14 +163,24 @@ function titleRequest(firstPrompt: string) {
 let upstreamModels: string[] = [];
 const originalBackgroundConfig = getBackgroundDegradationConfig();
 
+async function taskRoutingApi(method: "PUT" | "POST", body: unknown) {
+  const response = await taskRoutingRoute[method](
+    new Request("http://localhost/api/settings/task-routing", {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })
+  );
+  assert.equal(response.status, 200, await response.clone().text());
+  return response.json();
+}
+
+/** The operator's setup, sent through PUT /api/settings/task-routing. */
 function configureRouting(detectionAnchor: "first-user" | "latest-user") {
-  setTaskRoutingConfig({
+  return taskRoutingApi("PUT", {
     enabled: true,
-    detectionEnabled: true,
     detectionAnchor,
-    patternOverrides: undefined,
     taskModelMap: {
-      ...getDefaultTaskModelMap(),
       coding: SONNET,
       creative: SONNET,
       analysis: SONNET,
@@ -231,8 +244,31 @@ test.after(async () => {
   await harness.cleanup();
 });
 
+test("the settings API persists the setup and detect reports the escalation", async () => {
+  await configureRouting("first-user");
+  const persisted = JSON.parse(String((await settingsDb.getSettings()).taskRouting));
+  assert.equal(persisted.detectionAnchor, "first-user");
+  assert.deepEqual(persisted.complexityRouting, {
+    enabled: true,
+    minScore: DEFAULT_COMPLEXITY_MIN_SCORE,
+    model: OPUS,
+  });
+
+  const hard = await taskRoutingApi("POST", {
+    action: "detect",
+    body: sessionRequest(HARD_PROMPT, 3),
+  });
+  assert.equal(hard.preferredModel, OPUS);
+  assert.equal(hard.escalated, true);
+  assert.ok(hard.complexityScore >= DEFAULT_COMPLEXITY_MIN_SCORE);
+
+  const webFetch = await taskRoutingApi("POST", { action: "detect", body: webFetchRequest() });
+  assert.equal(webFetch.escalated, false);
+  assert.equal(webFetch.preferredModel, SONNET);
+});
+
 test("an easy Claude Code session stays on Sonnet for every turn", async () => {
-  configureRouting("first-user");
+  await configureRouting("first-user");
   const tiers = [];
   for (let turns = 0; turns <= 4; turns++)
     tiers.push(tier(await send(sessionRequest(EASY_PROMPT, turns))));
@@ -240,7 +276,7 @@ test("an easy Claude Code session stays on Sonnet for every turn", async () => {
 });
 
 test("a hard Claude Code session escalates to Opus for every turn", async () => {
-  configureRouting("first-user");
+  await configureRouting("first-user");
   const tiers = [];
   for (let turns = 0; turns <= 4; turns++)
     tiers.push(tier(await send(sessionRequest(HARD_PROMPT, turns))));
@@ -248,7 +284,7 @@ test("a hard Claude Code session escalates to Opus for every turn", async () => 
 });
 
 test("latest-user (the default) flips the same hard session after its first turn", async () => {
-  configureRouting("latest-user");
+  await configureRouting("latest-user");
   const tiers = [];
   for (let turns = 0; turns <= 2; turns++)
     tiers.push(tier(await send(sessionRequest(HARD_PROMPT, turns))));
@@ -256,11 +292,11 @@ test("latest-user (the default) flips the same hard session after its first turn
 });
 
 test("a WebFetch summary inside a hard session is not escalated to Opus", async () => {
-  configureRouting("first-user");
+  await configureRouting("first-user");
   assert.equal(tier(await send(webFetchRequest())), "sonnet");
 });
 
 test("the session-title request still lands on Haiku via Background Degradation", async () => {
-  configureRouting("first-user");
+  await configureRouting("first-user");
   assert.equal(tier(await send(titleRequest(HARD_PROMPT))), "haiku");
 });
