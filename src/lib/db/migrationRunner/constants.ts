@@ -372,6 +372,46 @@ export const RENAMED_MIGRATION_COMPATIBILITY = [
     toVersion: "211",
     toName: "recreate_turn_nodes_content_hash_index",
   },
+  // The stack builds (#14771, #14833, #14860) shipped 229–231 and later 228–230 before the
+  // release claimed 228–232 (purge_orphaned_provider_catalogs, api_key_five_hour_limit,
+  // call_logs_cache_write_tiers, daily_cached_input, proxy_payload_traffic). They now live
+  // at 233–235, past every slot a published stack build used.
+  {
+    fromVersion: "231",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
+  },
+  {
+    fromVersion: "230",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
+  },
+  {
+    fromVersion: "229",
+    fromName: "api_key_self_service_settings",
+    toVersion: "233",
+    toName: "api_key_self_service_settings",
+  },
+  {
+    fromVersion: "228",
+    fromName: "api_key_self_service_settings",
+    toVersion: "233",
+    toName: "api_key_self_service_settings",
+  },
+  {
+    fromVersion: "229",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
+  },
+  {
+    fromVersion: "230",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
+  },
   {
     fromVersion: "134",
     fromName: "ccr_blocks",
@@ -466,18 +506,67 @@ export const RENAMED_MIGRATION_COMPATIBILITY = [
     toName: "api_key_self_service_settings",
   },
   {
-    // #14771 builds then used 228, now purge_orphaned_provider_catalogs.
-    fromVersion: "228",
-    fromName: "api_key_self_service_settings",
-    toVersion: "233",
-    toName: "api_key_self_service_settings",
+    // Agent-session builds (#14833) shipped agent_sessions + usage_history.agent_session_id
+    // as 190/191, then 197/198, 198/199, 208/209 and 214/215. Upstream owns all of those
+    // slots (call_logs_content_provenance … team_cost_centers); they now live at 234/235.
+    fromVersion: "190",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
   },
   {
-    // #14771 builds then used 229, now api_key_five_hour_limit.
-    fromVersion: "229",
-    fromName: "api_key_self_service_settings",
-    toVersion: "233",
-    toName: "api_key_self_service_settings",
+    fromVersion: "191",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
+  },
+  {
+    fromVersion: "197",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
+  },
+  {
+    fromVersion: "198",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
+  },
+  {
+    fromVersion: "198",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
+  },
+  {
+    fromVersion: "199",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
+  },
+  {
+    fromVersion: "208",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
+  },
+  {
+    fromVersion: "209",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
+  },
+  {
+    fromVersion: "214",
+    fromName: "agent_sessions",
+    toVersion: "234",
+    toName: "agent_sessions",
+  },
+  {
+    fromVersion: "215",
+    fromName: "usage_history_agent_session_id",
+    toVersion: "235",
+    toName: "usage_history_agent_session_id",
   },
 ] as const;
 

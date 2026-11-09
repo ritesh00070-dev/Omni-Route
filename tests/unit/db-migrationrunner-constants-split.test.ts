@@ -77,8 +77,8 @@ describe("migrationRunner/constants — exact small-table snapshots", () => {
 // ── large tables — count + shape + spot-checks (corruption guard) ─────────────
 
 describe("migrationRunner/constants — large-table integrity", () => {
-  it("RENAMED_MIGRATION_COMPATIBILITY has 73 well-formed entries", () => {
-    assert.equal(RENAMED_MIGRATION_COMPATIBILITY.length, 73);
+  it("RENAMED_MIGRATION_COMPATIBILITY has 87 well-formed entries", () => {
+    assert.equal(RENAMED_MIGRATION_COMPATIBILITY.length, 87);
     assert.deepEqual(
       RENAMED_MIGRATION_COMPATIBILITY.filter((entry) => entry.fromName === "daily_cached_input"),
       ["206", "213", "214", "215", "217", "218", "223", "224", "225", "226", "228", "229"].map(
@@ -118,6 +118,33 @@ describe("migrationRunner/constants — large-table integrity", () => {
       assert.equal(typeof e.fromName, "string");
       assert.equal(typeof e.toVersion, "string");
       assert.equal(typeof e.toName, "string");
+    }
+  });
+
+  it("moves the published 228–230 and 229–231 stack rows to 233–235", () => {
+    const keys = RENAMED_MIGRATION_COMPATIBILITY.map(
+      (e) => `${e.fromVersion}_${e.fromName}->${e.toVersion}_${e.toName}`
+    );
+    const block = [
+      "231_usage_history_agent_session_id->235_usage_history_agent_session_id",
+      "230_agent_sessions->234_agent_sessions",
+      "229_api_key_self_service_settings->233_api_key_self_service_settings",
+      "228_api_key_self_service_settings->233_api_key_self_service_settings",
+      "229_agent_sessions->234_agent_sessions",
+      "230_usage_history_agent_session_id->235_usage_history_agent_session_id",
+    ];
+    const start = keys.indexOf(block[0]);
+    assert.ok(start >= 0);
+    assert.deepEqual(keys.slice(start, start + block.length), block);
+    // No compatibility row may move anything into a slot a published stack build still holds.
+    const stackSlots = new Set(["228", "229", "230", "231"]);
+    const stackNames = new Set([
+      "api_key_self_service_settings",
+      "agent_sessions",
+      "usage_history_agent_session_id",
+    ]);
+    for (const e of RENAMED_MIGRATION_COMPATIBILITY) {
+      if (stackNames.has(e.toName)) assert.ok(!stackSlots.has(e.toVersion), JSON.stringify(e));
     }
   });
 
@@ -165,98 +192,104 @@ describe("migrationRunner/constants — large-table integrity", () => {
         toName: "inspector_custom_hosts",
       }
     );
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-15), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-23), {
       fromVersion: "134",
       fromName: "ccr_blocks",
       toVersion: "139",
       toName: "ccr_blocks",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-14), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-22), {
       fromVersion: "139",
       fromName: "job_registry",
       toVersion: "146",
       toName: "job_registry",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-13), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-21), {
       fromVersion: "143",
       fromName: "radar_local_model_state",
       toVersion: "153",
       toName: "radar_local_model_state",
     });
     // npm 3.8.50 shipped model_capabilities as 163; it now lives at 169
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-12), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-20), {
       fromVersion: "163",
       fromName: "model_capabilities",
       toVersion: "169",
       toName: "model_capabilities",
     });
     // #12036: renamed migrations 056/073/077/101 appended as compatibility renames
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-11), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-19), {
       fromVersion: "056",
       fromName: "provider_default",
       toVersion: "056",
       toName: "mcp_accessibility_compression",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-10), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-18), {
       fromVersion: "073",
       fromName: "discovery_results",
       toVersion: "073",
       toName: "per_model_token_limits",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-9), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-17), {
       fromVersion: "077",
       fromName: "plugin_metrics",
       toVersion: "077",
       toName: "api_key_stream_default_mode",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-8), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-16), {
       fromVersion: "101",
       fromName: "proxy_pool_rotation",
       toVersion: "101",
       toName: "api_key_usage_limits",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-7), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-15), {
       fromVersion: "194",
       fromName: "api_key_self_service_settings",
       toVersion: "233",
       toName: "api_key_self_service_settings",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-6), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-14), {
       fromVersion: "197",
       fromName: "api_key_self_service_settings",
       toVersion: "233",
       toName: "api_key_self_service_settings",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-5), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-13), {
       fromVersion: "207",
       fromName: "api_key_self_service_settings",
       toVersion: "233",
       toName: "api_key_self_service_settings",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-4), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-12), {
       fromVersion: "206",
       fromName: "recreate_turn_nodes_content_hash_index",
       toVersion: "211",
       toName: "recreate_turn_nodes_content_hash_index",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-3), {
+    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-11), {
       fromVersion: "213",
       fromName: "api_key_self_service_settings",
       toVersion: "233",
       toName: "api_key_self_service_settings",
     });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-2), {
-      fromVersion: "228",
-      fromName: "api_key_self_service_settings",
-      toVersion: "233",
-      toName: "api_key_self_service_settings",
-    });
-    assert.deepEqual(RENAMED_MIGRATION_COMPATIBILITY.at(-1), {
-      fromVersion: "229",
-      fromName: "api_key_self_service_settings",
-      toVersion: "233",
-      toName: "api_key_self_service_settings",
-    });
+    // #14833 agent-session builds (190/191 through 214/215) now live at 234/235
+    assert.deepEqual(
+      RENAMED_MIGRATION_COMPATIBILITY.slice(-10).map(
+        (e) => `${e.fromVersion}_${e.fromName}->${e.toVersion}_${e.toName}`
+      ),
+      [
+        "190_agent_sessions->234_agent_sessions",
+        "191_usage_history_agent_session_id->235_usage_history_agent_session_id",
+        "197_agent_sessions->234_agent_sessions",
+        "198_usage_history_agent_session_id->235_usage_history_agent_session_id",
+        "198_agent_sessions->234_agent_sessions",
+        "199_usage_history_agent_session_id->235_usage_history_agent_session_id",
+        "208_agent_sessions->234_agent_sessions",
+        "209_usage_history_agent_session_id->235_usage_history_agent_session_id",
+        "214_agent_sessions->234_agent_sessions",
+        "215_usage_history_agent_session_id->235_usage_history_agent_session_id",
+      ]
+    );
   });
 
   it("name-locks every published Team draft slot to canonical migration 215", () => {
