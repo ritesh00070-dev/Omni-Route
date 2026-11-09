@@ -240,6 +240,7 @@ export async function runStreamingResponse(deps: StreamingDeps) {
       target: {
         provider,
         requestedModel: effectiveModel,
+        connectionModelSource: deps.connectionModelSource,
         sourceFormat,
         targetFormat,
         stream,

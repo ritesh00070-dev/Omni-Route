@@ -17,12 +17,15 @@ import { COLORS } from "../../utils/stream.ts";
 import { recordTokenUsage } from "../../services/tokenLimitCounter.ts";
 import { computeBillableTokens } from "./upstreamTimeouts.ts";
 import { type EffectiveServiceTier } from "./serviceTier.ts";
+import { usageRowModels } from "../../services/connectionModelMap.ts";
 
 export type RecordNonStreamingUsageStatsContext = {
   traceEnabled: boolean;
   provider: string | null | undefined;
   connectionId: string | null | undefined;
   model: string | null | undefined;
+  requestedModel?: string | null | undefined;
+  actualModel?: string | null | undefined;
   startTime: number;
   apiKeyInfo: { id?: string | null; name?: string | null } | null | undefined;
   effectiveServiceTier: EffectiveServiceTier;
@@ -42,10 +45,19 @@ function logUsageTrace(
 }
 
 function persistUsageRow(usage: object, ctx: RecordNonStreamingUsageStatsContext): void {
-  const { provider, connectionId, model, startTime, apiKeyInfo, effectiveServiceTier } = ctx;
+  const {
+    provider,
+    connectionId,
+    model,
+    requestedModel,
+    actualModel,
+    startTime,
+    apiKeyInfo,
+    effectiveServiceTier,
+  } = ctx;
   saveRequestUsage({
     provider: provider || "unknown",
-    model: model || "unknown",
+    ...usageRowModels(model, requestedModel, actualModel),
     tokens: usage,
     status: "200",
     success: true,

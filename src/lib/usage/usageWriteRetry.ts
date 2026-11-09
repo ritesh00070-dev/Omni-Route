@@ -174,8 +174,8 @@ function insertEntry(db: ReturnType<typeof getDbInstance>, prepared: PreparedEnt
       account_label_priority, api_key_id, api_key_name, billing_team_id,
       tokens_input, tokens_output, tokens_cache_read, tokens_cache_creation, tokens_reasoning,
       service_tier, status, success, latency_ms, ttft_ms, error_code, combo_strategy, endpoint,
-      cpa_auth_index, timestamp, provider_credits, provider_cost_usd)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      cpa_auth_index, timestamp, provider_credits, provider_cost_usd, requested_model, actual_model)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `
   ).run(
     entry.provider ? resolveProviderId(entry.provider) : null,
@@ -203,8 +203,15 @@ function insertEntry(db: ReturnType<typeof getDbInstance>, prepared: PreparedEnt
     entry.cpaAuthIndex || null,
     timestamp,
     providerCredits,
-    providerCostUsd
+    providerCostUsd,
+    ...usageModelColumns(entry)
   );
+}
+
+/** requested_model / actual_model columns: the routed model fills whichever one is missing. */
+function usageModelColumns(entry: UsageEntry): [string | null, string | null] {
+  const routed = entry.model || null;
+  return [entry.requestedModel || routed, entry.actualModel || routed];
 }
 
 function toFinite(value: unknown): number {
