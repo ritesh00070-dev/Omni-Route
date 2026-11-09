@@ -152,6 +152,29 @@ test("first-user anchor skips leading user turns that carry no human text", () =
   assert.equal(detectTaskType(body), "summarization");
 });
 
+test("first-user anchor skips Codex's environment_context message (Responses API input)", () => {
+  resetConfig();
+  setTaskRoutingConfig({ detectionAnchor: "first-user" });
+  const text = (value: string) => [{ type: "input_text", text: value }];
+  const body = {
+    tools: [{ type: "function", name: "shell" }],
+    input: [
+      { type: "message", role: "developer", content: text("Follow the sandbox policy.") },
+      {
+        type: "message",
+        role: "user",
+        content: text(
+          "<environment_context>\n  <cwd>/home/dev/repo</cwd>\n  <shell>zsh</shell>\n</environment_context>"
+        ),
+      },
+      { type: "message", role: "user", content: text("summarize the open TODOs in this repo") },
+      { type: "function_call", call_id: "c1", name: "shell", arguments: '{"cmd":["rg","TODO"]}' },
+      { type: "function_call_output", call_id: "c1", output: "src/main.py: def main(): # TODO" },
+    ],
+  };
+  assert.equal(detectTaskType(body), "summarization");
+});
+
 test("first-user anchor only treats images in the anchor message as vision", () => {
   resetConfig();
   setTaskRoutingConfig({ detectionAnchor: "first-user" });
@@ -237,18 +260,25 @@ test("requests without tools never escalate, however complex their prompt", () =
 });
 
 test("a malformed persisted complexityRouting block is ignored, not thrown on", () => {
-  resetConfig();
-  assert.equal(
-    hydrateTaskRoutingConfig({
-      taskRouting: JSON.stringify({
-        enabled: true,
-        complexityRouting: { enabled: true, minScore: "lots", model: OPUS },
+  // null / "" / false must not coerce to a threshold of 0 and escalate every agent turn.
+  for (const minScore of ["lots", null, "", false]) {
+    resetConfig();
+    assert.equal(
+      hydrateTaskRoutingConfig({
+        taskRouting: JSON.stringify({
+          enabled: true,
+          complexityRouting: { enabled: true, minScore, model: OPUS },
+        }),
       }),
-    }),
-    true
-  );
-  assert.equal(resolveComplexityEscalation("coding", agentConversation(HARD_PROMPT, 0)), null);
-  assert.doesNotThrow(() => applyTaskAwareRouting(OPUS, agentConversation(HARD_PROMPT, 0)));
+      true
+    );
+    assert.equal(
+      resolveComplexityEscalation("coding", agentConversation(HARD_PROMPT, 0)),
+      null,
+      JSON.stringify(minScore)
+    );
+    assert.doesNotThrow(() => applyTaskAwareRouting(OPUS, agentConversation(HARD_PROMPT, 0)));
+  }
 });
 
 // ── persistence + validation ─────────────────────────────────────────────────

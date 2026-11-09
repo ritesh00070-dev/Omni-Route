@@ -351,11 +351,12 @@ interface RequestMessage {
 
 /**
  * Blocks that agent harnesses inject into user turns — Claude Code wraps project
- * instructions, skill/tool listings and reminders in `<system-reminder>`. They are not the
+ * instructions, skill/tool listings and reminders in `<system-reminder>`, and Codex sends its
+ * cwd/sandbox/shell as a user message holding only `<environment_context>`. They are not the
  * user's request, and their boilerplate ("implement", code fences, …) would otherwise drive
  * detection.
  */
-const HARNESS_INJECTED_TAGS = ["system-reminder"];
+const HARNESS_INJECTED_TAGS = ["system-reminder", "environment_context"];
 
 /**
  * Remove every complete `<tag>…</tag>` block for the injected tags. Plain indexOf scanning,
@@ -526,8 +527,8 @@ function getActiveComplexityRouting(): ComplexityRoutingConfig | null {
   const routing = getConfig().complexityRouting;
   if (!routing || routing.enabled !== true) return null;
   const model = typeof routing.model === "string" ? routing.model.trim() : "";
-  const minScore = Number(routing.minScore);
-  if (!model || !Number.isFinite(minScore)) return null;
+  const { minScore } = routing;
+  if (!model || typeof minScore !== "number" || !Number.isFinite(minScore)) return null;
   return { enabled: true, minScore, model };
 }
 
