@@ -293,6 +293,7 @@ import { twinmindProvider } from "./registry/twinmind/index.ts";
 import { syntxProvider } from "./registry/syntx/index.ts";
 import { daoxeProvider } from "./registry/daoxe/index.ts";
 import { gisooProvider } from "./registry/gisoo/index.ts";
+import { jembatanaiProvider } from "./registry/jembatanai/index.ts";
 import { demonrouteProvider } from "./registry/demonroute/index.ts";
 
 export const REGISTRY: Record<string, RegistryEntry> = {
@@ -591,5 +592,6 @@ export const REGISTRY: Record<string, RegistryEntry> = {
   syntx: syntxProvider,
   daoxe: daoxeProvider,
   gisoo: gisooProvider,
+  jembatanai: jembatanaiProvider,
   demonroute: demonrouteProvider,
 };
