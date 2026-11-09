@@ -227,7 +227,11 @@ test("shared set size includes live REGISTRY and retired Designer + Felo + Qwen 
   // more (436 -> 438).
   // EmpirioLabs AI (#17209) registers id "empiriolabs" with the same alias (+1: 438 -> 439).
   // ParalonCloud registers id "paraloncloud" plus alias "paralon" (+2: 439 -> 441).
-  assert.equal(RESERVED_PREFIX_COUNT, 441);
+  // opencode-server (#16995) registers id "opencode-server" plus the distinct alias "ocs" —
+  // two more (441 -> 443). Measured on the merged tree: RESERVED_PROVIDER_PREFIXES.size = 443.
+  assert.equal(RESERVED_PREFIX_COUNT, 443);
+  assert.equal(RESERVED_PROVIDER_PREFIXES.has("opencode-server"), true);
+  assert.equal(RESERVED_PROVIDER_PREFIXES.has("ocs"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("ainetcafe"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("tokenharbor"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("runcrate"), true);
