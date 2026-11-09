@@ -104,6 +104,7 @@ import { comboCheckProvider, ghComboGate } from "./chat/githubLiveCatalogFilter.
 import { markEmergencyFallback } from "./emergencyFallbackHeader.ts";
 import { resolveEmergencyFallbackDecision } from "./emergencyFallbackHeader.ts";
 import { resolveInternalUpstreamStartTimeoutMs } from "../services/internalUpstreamStartTimeout";
+import { resolvePreferredConnectionUpstreamStartTimeoutMs } from "../services/preferredConnectionFailover";
 import { evaluateComboTargetPreflight } from "./chat/comboTargetKeyPolicy.ts";
 import * as resolvedPolicy from "./chat/resolvedModelPolicy.ts";
 import { recordGateRejection, recordQuotaParkedSkip } from "./quotaParkedSkipUsage";
@@ -1795,6 +1796,9 @@ async function handleSingleModelChat(
   // STREAM_EARLY_EOF_SIBLING_FAILOVER_ENABLED: at most ONE sibling hop per request. Keeps the
   // original early-EOF 502 so an exhausted sibling pool surfaces it verbatim (combo detection).
   let earlyEofOriginal: Response | null = null;
+  // Preferred connection start timeout is a single-hop routing hint, never a cooldown.
+  let preferredTimeoutOriginal: Response | null = null;
+  let preferredFailoverUsed = false;
   const sameAccountTransportRetries = new Map<string, number>();
   let accountFallbacks = 0;
   let sameAccountRetries = 0;
@@ -1948,6 +1952,7 @@ async function handleSingleModelChat(
         "allExpired" in credentials ||
         !credentials.connectionId
       ) {
+        if (preferredTimeoutOriginal) return withRoutingTelemetry(preferredTimeoutOriginal, null);
         if (earlyEofOriginal) return withRoutingTelemetry(earlyEofOriginal, null);
         if (!credentials?.allRateLimited && agy.earliestRetryHintAtMs !== null)
           return agyLease.buildAntigravityPoolBusyResponse(agy.earliestRetryHintAtMs);
@@ -2227,6 +2232,26 @@ async function handleSingleModelChat(
         reselectPoolMember?: () => Promise<unknown>;
       } = { proxy: null };
       const proxyStartTime = Date.now();
+      // A preferred API-key account can be given one shorter time-to-headers
+      // deadline when a vetted sibling exists. Pins/leases/combo/Muse are excluded.
+      const preferredDeadline = resolvePreferredConnectionUpstreamStartTimeoutMs(
+        provider,
+        credentials,
+        requestUpstreamStartTimeoutMs,
+        effectiveModel,
+        preferredFailoverUsed ||
+          hasForcedConnection ||
+          runtimeOptions.managedLease ||
+          museOwner ||
+          isCombo
+          ? {
+              enabled: false,
+              defaultTimeoutMs: 20_000,
+              providerTimeoutsMs: {},
+              modelTimeoutsMs: {},
+            }
+          : undefined
+      );
       // 4. Execute chat via core after breaker gate checks (with optional TLS tracking)
       if (telemetry) telemetry.startPhase("connect");
       let execution: Awaited<ReturnType<typeof dispatchChatWithAffinityEviction>>;
@@ -2274,7 +2299,7 @@ async function handleSingleModelChat(
             videoBridgeLog: runtimeOptions.videoBridgeLog,
             previousResponseResumed: runtimeOptions.previousResponseResumed,
             fallbackAttempts: runtimeOptions.fallbackAttempts,
-            requestUpstreamStartTimeoutMs,
+            requestUpstreamStartTimeoutMs: preferredDeadline.timeoutMs,
             beforeUpstreamAttempt:
               museOwner && muse.museBeforeUpstreamAttempt(museOwner, credentials),
             forcedConnectionId: hasForcedConnection ? forcedConnectionId : null, // #14116
@@ -2357,10 +2382,29 @@ async function handleSingleModelChat(
         releaseOAuthSession();
         return successResponse;
       }
-      // A trusted request's shorter deadline is local to this caller. Do not
-      // penalize or rotate a healthy shared connection, even for Muse traffic.
+      // A trusted caller's deadline must not cool a shared connection.
+      // A shorter *preferred* deadline may perform one in-request sibling hop,
+      // without recording a connection failure or evicting session affinity.
       if (result.errorCode === REQUEST_SCOPED_UPSTREAM_TIMEOUT_CODE) {
-        return withSelectedConnectionHeader(result.response, credentials.connectionId);
+        if (
+          preferredDeadline.mayRotateOnRequestTimeout &&
+          !preferredFailoverUsed &&
+          requestSignal?.aborted !== true
+        ) {
+          preferredFailoverUsed = true;
+          noteAccountFallback("pre_response_timeout", credentials.connectionId);
+          preferredTimeoutOriginal = withRoutingTelemetry(
+            result.response,
+            credentials.connectionId
+          );
+          excludedConnectionIds.add(credentials.connectionId);
+          log.info(
+            "AUTH",
+            "Preferred account response-start timed out; trying one eligible sibling"
+          );
+          continue;
+        }
+        return withRoutingTelemetry(result.response, credentials.connectionId);
       }
       // Never let generic account fallback or affinity eviction move a Muse caller.
       if (museOwner) {
@@ -2524,10 +2568,7 @@ async function handleSingleModelChat(
           // Retry spent and nothing emitted yet: one hop to a sibling (routing only, no mark).
           log.warn("STREAM", `${provider}/${model} early-EOF retry exhausted — trying one sibling`);
           noteAccountFallback("stream_early_eof", credentials.connectionId);
-          earlyEofOriginal = withRoutingTelemetry(
-            result.response,
-            credentials.connectionId
-          );
+          earlyEofOriginal = withRoutingTelemetry(result.response, credentials.connectionId);
           excludedConnectionIds.add(credentials.connectionId);
           continue;
         }
