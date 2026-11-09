@@ -71,7 +71,9 @@ const {
 // OPENCODE_FREE_TIER_EGRESS_PROBE (one-hop egress probe after a FreeTierError, default off) takes it to 118.
 // PROXY_REFUSAL_MODEL_SCOPE (#18686, default off) takes it to 119.
 // FAL_NATIVE_ENABLED (#18849, schema-driven Fal gateway, default off) takes it to 120.
-const EXPECTED_FEATURE_FLAG_COUNT = 120;
+// CODEBUDDY_TELEMETRY_ENABLED (#18398, opt-in turn reports for the `codebuddy-intl`
+// executor, default off) takes it to 121.
+const EXPECTED_FEATURE_FLAG_COUNT = 121;
 // tool_call wrapper repair, default on) to 86; OPENCODE_V2_CLIENT_FINGERPRINT_ENABLED
 // (#16571, OpenCode v2 client fingerprint, default off) to 87.
 // tool_call wrapper repair, default on) to 86; CLAUDE_OAUTH_SUMMARIZED_THINKING_UNREDACTED

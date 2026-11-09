@@ -167,6 +167,7 @@ import { maybeHandleTwinmindModelDiscovery } from "./twinmindDiscovery";
 import { maybeHandleDevinDesktopModelDiscovery } from "./devinDesktopDiscovery";
 import { maybeHandleMuseCodeModelDiscovery } from "./museCodeDiscovery";
 import { maybeHandleVertexModelDiscovery } from "./vertexDiscovery";
+import { maybeHandleCodeBuddyIntlModelDiscovery } from "./codebuddyIntlDiscovery";
 import { buildNoAuthModelsResponse, filterModelsForRoute } from "./modelRouteProjection";
 
 /**
@@ -714,6 +715,20 @@ export async function GET(
         });
       }
     }
+
+    const codebuddyIntlResponse = await maybeHandleCodeBuddyIntlModelDiscovery({
+      provider,
+      connectionId,
+      apiKey,
+      accessToken,
+      proxy,
+      maybeReturnCachedDiscovery,
+      maybeReturnAutoFetchDisabled,
+      buildDiscoveryFallbackResponse,
+      buildResponse,
+      buildApiDiscoveryResponse,
+    });
+    if (codebuddyIntlResponse) return codebuddyIntlResponse;
 
     const webDiscoveryArgs = {
       provider,

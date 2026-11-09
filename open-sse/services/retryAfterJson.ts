@@ -132,7 +132,8 @@ function errorInfoQuotaResetMs(details: unknown, maxMs: number): number | null {
  */
 export function parseDetailedRetryHintFromJsonBody(
   body: string,
-  maxMs: number
+  maxMs: number,
+  options: { readDataEnvelope?: boolean } = {}
 ): DetailedJsonRetryHint | null {
   let parsed: unknown;
   try {
@@ -144,6 +145,10 @@ export function parseDetailedRetryHintFromJsonBody(
   const root = objectRecord(parsed);
   if (!Object.keys(root).length) return null;
   const errorObj = objectRecord(root.error);
+  // Some gateways (CodeBuddy International) wrap the envelope in `data` and put the unlock
+  // instant there, e.g. `{code, msg, data:{resetTime}}`. Opt-in per provider: `data` means
+  // something else elsewhere, and a date read from it changes that provider's cooldown.
+  const dataObj = options.readDataEnvelope ? objectRecord(root.data) : {};
 
   const details = errorObj.details ?? root.details;
   const retryInfoMs = retryInfoDetailsMs(details);
@@ -155,7 +160,15 @@ export function parseDetailedRetryHintFromJsonBody(
   if (errorInfoMs !== null) return { retryAfterMs: errorInfoMs, provenance: "body" };
 
   const resetAtHint = futureResetAtMs(
-    errorObj.resets_at ?? root.resets_at ?? errorObj.resetsAt ?? root.resetsAt,
+    errorObj.resets_at ??
+      root.resets_at ??
+      errorObj.resetsAt ??
+      root.resetsAt ??
+      dataObj.resetTime ??
+      dataObj.reset_time ??
+      dataObj.resetAt ??
+      dataObj.resetsAt ??
+      dataObj.unlockTime,
     maxMs
   );
   if (resetAtHint !== null) return { retryAfterMs: resetAtHint, provenance: "body" };
