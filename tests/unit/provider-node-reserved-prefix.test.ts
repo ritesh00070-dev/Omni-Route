@@ -227,7 +227,9 @@ test("shared set size includes live REGISTRY and retired Designer + Felo + Qwen 
   // more (436 -> 438).
   // EmpirioLabs AI (#17209) registers id "empiriolabs" with the same alias (+1: 438 -> 439).
   // ParalonCloud registers id "paraloncloud" plus alias "paralon" (+2: 439 -> 441).
-  assert.equal(RESERVED_PREFIX_COUNT, 441);
+  // EVREN (#18365) registers id "evren" with the same alias — one more (441 -> 442).
+  assert.equal(RESERVED_PREFIX_COUNT, 442);
+  assert.equal(RESERVED_PROVIDER_PREFIXES.has("evren"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("ainetcafe"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("tokenharbor"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("runcrate"), true);
