@@ -191,6 +191,7 @@ export const AGGREGATOR_PROVIDER_IDS = new Set([
   "demonroute",
   "daoxe",
   "gisoo",
+  "llmtr",
 ]);
 
 export const ENTERPRISE_CLOUD_PROVIDER_IDS = new Set([
