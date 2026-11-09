@@ -225,7 +225,11 @@ test("shared set size includes live REGISTRY and retired Designer + Felo + Qwen 
   // Gisoo (#18112) adds id and alias "gisoo" (+1 distinct prefix: 435 -> 436).
   // MiniMax Code (#17286) registers id "minimax-code" and alias "mmcode" — two
   // more (436 -> 438).
-  assert.equal(RESERVED_PREFIX_COUNT, 438);
+  // Replicate, Cerebrium, Hetzner and Grokified (#19206) add four distinct prefixes (438 -> 442).
+  assert.equal(RESERVED_PREFIX_COUNT, 442);
+  for (const id of ["replicate", "cerebrium", "hetzner", "grokified"]) {
+    assert.equal(RESERVED_PROVIDER_PREFIXES.has(id), true);
+  }
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("ainetcafe"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("tokenharbor"), true);
   assert.equal(RESERVED_PROVIDER_PREFIXES.has("runcrate"), true);
