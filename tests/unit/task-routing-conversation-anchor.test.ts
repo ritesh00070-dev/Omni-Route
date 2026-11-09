@@ -4,7 +4,8 @@
  *  - `detectionAnchor: "first-user"` — detection reads the conversation's first human-written
  *    user message, so every turn of an agent loop (which resends the whole history) gets the
  *    same decision and the per-model prompt cache is never thrown away mid-conversation.
- *  - `complexityRouting` — escalates prompts whose specificity score reaches `minScore`.
+ *  - `complexityRouting` — escalates agent turns (requests with tools) whose anchor prompt's
+ *    specificity score reaches `minScore`.
  *
  * Plus the harness-block fix that applies to both anchors: `<system-reminder>` blocks that
  * agent CLIs inject into user turns are not the user's request and must not drive detection.
@@ -218,6 +219,21 @@ test("background and vision requests never escalate", () => {
   assert.equal(resolveComplexityEscalation("background", body)?.model, null);
   assert.equal(resolveComplexityEscalation("vision", body)?.model, null);
   assert.equal(resolveComplexityEscalation("coding", body)?.model, OPUS);
+});
+
+test("requests without tools never escalate, however complex their prompt", () => {
+  resetConfig();
+  setTaskRoutingConfig({
+    detectionAnchor: "first-user",
+    complexityRouting: { enabled: true, minScore: DEFAULT_COMPLEXITY_MIN_SCORE, model: OPUS },
+  });
+  const agentTurn = agentConversation(HARD_PROMPT, 0);
+  for (const tools of [undefined, []]) {
+    const result = resolveComplexityEscalation("coding", { ...agentTurn, tools });
+    assert.ok(result && result.score >= DEFAULT_COMPLEXITY_MIN_SCORE, JSON.stringify(result));
+    assert.equal(result.model, null);
+  }
+  assert.equal(resolveComplexityEscalation("coding", agentTurn)?.model, OPUS);
 });
 
 test("a malformed persisted complexityRouting block is ignored, not thrown on", () => {

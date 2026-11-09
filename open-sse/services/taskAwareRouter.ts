@@ -58,8 +58,8 @@ export type DetectionAnchor = "latest-user" | "first-user";
 /**
  * Opt-in escalation by prompt complexity. The anchor prompt is scored with the existing
  * specificity detector (`specificityDetector.ts`, 0..100); when the score is at least
- * `minScore`, the request goes to `model` instead of the task-type mapping. Background
- * and vision requests never escalate.
+ * `minScore`, the request goes to `model` instead of the task-type mapping. Only requests
+ * that carry tools (agent turns) escalate; background and vision requests never do.
  */
 export interface ComplexityRoutingConfig {
   enabled: boolean;
@@ -504,6 +504,16 @@ export function detectTaskType(body: any): TaskType {
 /** Utility traffic stays cheap, and the escalation model may not accept images. */
 const NEVER_ESCALATE: ReadonlySet<TaskType> = new Set<TaskType>(["background", "vision"]);
 
+/**
+ * Requests without tools are utility calls, not agent turns: Claude Code's WebFetch
+ * summarizer and session-title requests put a fetched page or a transcript in the user
+ * turn, which scores as complex without being a hard task.
+ */
+function carriesTools(body: unknown): boolean {
+  const tools = (body as { tools?: unknown } | null)?.tools;
+  return Array.isArray(tools) && tools.length > 0;
+}
+
 export interface ComplexityEscalation {
   /** Specificity score (0..100) of the anchor prompt. */
   score: number;
@@ -537,7 +547,8 @@ export function resolveComplexityEscalation(
   const anchorMsg = selectAnchorMessage(getRequestMessages(body), getDetectionAnchor());
   const text = anchorMsg ? extractRawText(anchorMsg.content) : "";
   const { score } = analyzeSpecificity({ messages: [{ role: "user", content: text }] });
-  const escalates = !NEVER_ESCALATE.has(taskType) && score >= routing.minScore;
+  const escalates =
+    carriesTools(body) && !NEVER_ESCALATE.has(taskType) && score >= routing.minScore;
   return { score, model: escalates ? routing.model : null };
 }
 
