@@ -205,7 +205,10 @@ import { resolveAccountProxiesFromRegistry } from "./noAuthProxyResolution";
 import { getNoAuthHydrationProviderIds } from "./noAuthProviderSiblings";
 import { loadOptionalNoAuthApiKeyCredentials } from "./noAuthOptionalApiKey";
 import { getResource404Bypass } from "./requestResourceHealth";
-import { isVertexConnectionWidePermissionDenied } from "./vertexErrorClassifier";
+import {
+  isVertexConnectionWidePermissionDenied,
+  isVertexSharedCapacity429,
+} from "./vertexErrorClassifier";
 import { maybeAutoDisableBannedAccount } from "./autoDisableBannedAccount";
 import {
   buildAntigravityRoutingFields,
@@ -2482,6 +2485,8 @@ export async function markAccountUnavailable(
     avalancheCooldownMs?: number;
     suppressFallback?: boolean;
     structuredError?: { code?: string | null; type?: string | null } | null;
+    /** Parsed upstream error body; `errorText` is only the extracted message. */
+    upstreamErrorBody?: unknown;
   } = {}
 ) {
   // Preserve the transport's original 429; cooling Opus would hide the cause and
@@ -2693,6 +2698,15 @@ export async function markAccountUnavailable(
       null,
       await resolveDailyResetForProvider(provider)
     );
+
+    // Shared Vertex capacity is not this account's fault: no model lock, no connection cooldown.
+    if (isVertexSharedCapacity429(provider, status, errorText, options.upstreamErrorBody)) {
+      log.info(
+        "AUTH",
+        `${connectionId.slice(0, 8)} ${provider} shared-capacity 429 — no cooldown, trying the next account`
+      );
+      return { shouldFallback: true, cooldownMs: 0 };
+    }
 
     // T-PROBE: probe-origin failures (model test-all) must never remove the
     // connection from the pool. Record the failure for visibility but leave

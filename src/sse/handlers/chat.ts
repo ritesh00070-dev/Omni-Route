@@ -2524,10 +2524,7 @@ async function handleSingleModelChat(
           // Retry spent and nothing emitted yet: one hop to a sibling (routing only, no mark).
           log.warn("STREAM", `${provider}/${model} early-EOF retry exhausted — trying one sibling`);
           noteAccountFallback("stream_early_eof", credentials.connectionId);
-          earlyEofOriginal = withRoutingTelemetry(
-            result.response,
-            credentials.connectionId
-          );
+          earlyEofOriginal = withRoutingTelemetry(result.response, credentials.connectionId);
           excludedConnectionIds.add(credentials.connectionId);
           continue;
         }
@@ -2878,6 +2875,7 @@ async function handleSingleModelChat(
               avalancheCooldownMs: avalancheRisk?.suggestedCooldownMs,
               suppressFallback: avalancheRisk?.shouldSuppressFallback ?? false,
               structuredError: { code: result.errorCode, type: result.errorType },
+              upstreamErrorBody: result.upstreamErrorBody,
             })
           );
 
