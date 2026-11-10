@@ -14,7 +14,7 @@ OmniRoute este un gateway local de rutare AI și un tablou de bord construit pe 
 
 Capacitățile de bază:
 
-- Suprafață API compatibilă cu OpenAI pentru CLI/tools (381 de furnizori, 159 de module de executare)
+- Suprafață API compatibilă cu OpenAI pentru CLI/tools (385 de furnizori, 159 de module de executare)
 - traducerea Request/response în diferite formate de furnizor
 - Combo de rezervă de model (secvență cu mai multe modele)
 - Pași combinați structurați (`provider + model + connection`) cu ordonarea timpului de execuție după `compositeTiers`
@@ -73,7 +73,7 @@ Capacitățile de bază:
 - Însămânare automată a aliasului de model (30 de normalizări de dialecte inter-proxy + la pornire)
 - Preluare de ieșire sigură cu SSRF guard, blocare URL privată și reîncercare configurabilă
 - Reîncercări de chat care țin cont de cooldown cu `requestRetry` și `maxRetryIntervalSec` configurabile
-- Runtime environment validation with Zod at startup
+- Validarea mediului de rulare cu Zod la pornire
 - Audit de conformitate v2 cu paginare, evenimente CRUD ale furnizorului și înregistrare în jurnal de validare blocată de SSRF
 
 Model de rulare principal:

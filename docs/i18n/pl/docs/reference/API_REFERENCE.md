@@ -989,35 +989,26 @@ uzupełnienie.
 
 ---
 
-## Raportowanie limitów i problemów
+## Raportowanie przydziałów i problemów
 
-| Metoda | Ścieżka             | Opis                                                                                                    |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Wstępna walidacja limitu dla kombinacji `provider` + `accountId` przed wydaniem zarejestrowanego klucza |
-| POST   | `/v1/issues/report` | Zgłoszenie do GitHub niepowodzenia wydania limitu/klucza (wymaga `GITHUB_ISSUES_REPO` + tokenu)         |
+| Metoda | Ścieżka             | Opis                                                                                          |
+| ------ | ------------------- | --------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Wstępnie zweryfikuj limit dla `provider` + `accountId` przed wydaniem zarejestrowanego klucza |
+| POST   | `/v1/issues/report` | Zgłoś błąd wydania quota/key do GitHub (wymaga tokena `GITHUB_ISSUES_REPO` + )                |
 
-**Uwierzytelnianie:** klucz API Bearer (`isAuthenticated`).
+**Autoryzacja:** `/v1/quotas/check` pobiera klucz API okaziciela (`isAuthenticated`). `/v1/issues/report` jest przeznaczony tylko do zarządzania (`requireManagementAuth`), podobnie jak `/api/v1/registered-keys`: sesja dashboardu, lokalny token CLI lub klucz API z zakresem `manage`/`admin` ; Klucze API służące wyłącznie do wnioskowania otrzymują `403`.
 
-### Odzyskiwanie sesji limitu (opcjonalne)
+### Odzyskiwanie sesji przydziału (opcja)
 
-Nestrumieniowe żądanie `POST /v1/chat/completions` lub `POST /v1/responses`, które kończy się
-terminalnym błędem limitu (`402`/`429`/`503`), którego treść informuje o wyczerpaniu limitu lub
-kredytów, może zostać odłożone i odtworzone później zamiast zwracać błąd. Wywołujący włącza tę
-opcję dla każdego żądania za pomocą trzech nagłówków:
+Niestrumieniowe `POST /v1/chat/completions` lub `POST /v1/responses`, które kończy się niepowodzeniem z powodu błędu przydziału terminala (`402`/`429`/`503`, którego treść informuje, że przydział lub kredyty zostały wyczerpane), można zaparkować i odtworzyć później zamiast zwracać błąd. Osoba dzwoniąca wyraża zgodę na żądanie za pomocą trzech nagłówków:
 
-| Nagłówek                     | Wartość                                                      |
+| Chodnikowiec                 | Wartość                                                      |
 | ---------------------------- | ------------------------------------------------------------ |
 | `x-omniroute-quota-recovery` | `auto`                                                       |
 | `x-omniroute-session`        | identyfikator sesji, `[A-Za-z0-9._:-]{1,128}`                |
-| `x-omniroute-recovery-turn`  | identyfikator tury unikalny w obrębie sesji (ta sama reguła) |
+| `x-omniroute-recovery-turn`  | włącz identyfikator unikalny w ramach sesji (ta sama zasada) |
 
-Kwalifikują się wyłącznie tury z `stream: false`, bez narzędzi, historii narzędzi ani
-`previous_response_id`, a także bez przypięcia `x-omniroute-connection`; ponadto musi być ustawione
-`STORAGE_ENCRYPTION_KEY` (żądanie jest przechowywane w postaci zaszyfrowanej przez maksymalnie 24 godziny). Odpowiedź ma wtedy status `202` i zawiera
-`recovery.poll`; można odpytywać `GET /v1/quota-recoveries/{id}` (`202` w toku, `200` z
-odzyskaną treścią po zakończeniu) albo anulować za pomocą `DELETE`. Bilety są widoczne wyłącznie dla
-klucza API, który je utworzył. Odtworzenie, którego wynik jest niepewny, kończy się stanem
-`needs_confirmation`, zamiast być wysłane dwukrotnie. Źródło: `src/lib/quota/quotaSessionRecovery.ts`.
+Tylko zwroty `stream: false` bez narzędzi, historii narzędzi lub `previous_response_id` i bez kodu PIN `x-omniroute-connection` kwalifikują się i należy ustawić `STORAGE_ENCRYPTION_KEY` (żądanie jest przechowywane w postaci zaszyfrowanej przez maksymalnie 24 godziny). Odpowiedzią jest wówczas `202` z `recovery.poll`; odpytuj `GET /v1/quota-recoveries/{id}` (`202` w oczekiwaniu, `200` z odzyskanym ciałem po zakończeniu) lub anuluj za pomocą `DELETE`. Bilety są widoczne tylko dla klucza API, który je utworzył. Powtórka, której wynik jest niepewny, kończy się `needs_confirmation` zamiast być wysyłana dwukrotnie. źródło: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1750,17 +1741,21 @@ Subskrypcje wychodzących webhooków dla zdarzeń OmniRoute (zakończenie żąda
 
 ## Zarejestrowane klucze (automatyczne zarządzanie)
 
-Używane przez podsystem automatycznego zarządzania kluczami do wydawania i rotacji kluczy API względem dostawcy/konta bazowego, z dziennymi/godzinowymi limitami.
+Używany przez podsystem automatycznego zarządzania kluczami do wydawania i rotacji kluczy API względem zapasowego provider/account z limitami daily/hourly.
 
-| Metoda | Ścieżka                               | Opis                                                                                                                                                                                                                               |
-| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Lista zarejestrowanych kluczy (wyłącznie zamaskowany prefiks)                                                                                                                                                                      |
-| POST   | `/api/v1/registered-keys`             | Wydaje nowy zarejestrowany klucz — treść: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Zwraca klucz w postaci jawnej **tylko raz**. Zwraca `429` w przypadku odmowy z powodu limitu. |
-| GET    | `/api/v1/registered-keys/[id]`        | Pobiera metadane zarejestrowanego klucza (bez materiału klucza w postaci jawnej)                                                                                                                                                   |
-| DELETE | `/api/v1/registered-keys/[id]`        | Unieważnia zarejestrowany klucz                                                                                                                                                                                                    |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Jawny endpoint unieważniania (ten sam efekt co DELETE)                                                                                                                                                                             |
+| Metoda | Ścieżka                               | Opis                                                                                                                                                                                                         |
+| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| GET    | `/api/v1/registered-keys`             | Lista zarejestrowanych kluczy (tylko zamaskowany prefiks)                                                                                                                                                    |
+| POST   | `/api/v1/registered-keys`             | Wydaj nowy zarejestrowany klucz — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Zwraca surowy klucz** raz** . Zwraca `429` w przypadku odmowy przydziału. |
+| GET    | `/api/v1/registered-keys/[id]`        | Pobierz metadane zarejestrowanego klucza (bez surowców)                                                                                                                                                      |
+| DELETE | `/api/v1/registered-keys/[id]`        | Unieważnij zarejestrowany klucz                                                                                                                                                                              |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Jawny punkt końcowy unieważnienia (ten sam efekt co DELETE)                                                                                                                                                  |
+| GET    | `/api/v1/providers/[provider]/limits` | Przeczytaj ograniczenia emisji dostawcy                                                                                                                                                                      |
+| PUT    | `/api/v1/providers/[provider]/limits` | Ustaw limity emisji dostawcy — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                 |
+| GET    | `/api/v1/accounts/[id]/limits`        | Przeczytaj limity emisji konta                                                                                                                                                                               |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Ustaw limity emisji konta — w tej samej treści, co trasa dostawcy                                                                                                                                            |
 
-**Uwierzytelnianie:** sesja/klucz API zarządzania (`requireManagementAuth`) — ta sama kontrola co w przypadku `/api/keys`: sesja panelu, lokalny token CLI lub klucz API z zakresem `manage`/`admin`; klucze API wyłącznie do wnioskowania otrzymują `403`. Zobacz także `/v1/quotas/check` i `/v1/issues/report`.
+**Autoryzacja:** zarządzanie kluczem session/API (`requireManagementAuth`) — ten sam strażnik co `/api/keys`: sesja dashboardu, lokalny token CLI lub klucz API z zakresem `manage`/`admin` ; Klucze API służące wyłącznie do wnioskowania otrzymują `403`. Zobacz także `/v1/quotas/check` i `/v1/issues/report`.
 
 ---
 

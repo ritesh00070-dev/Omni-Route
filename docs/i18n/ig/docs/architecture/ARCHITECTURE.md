@@ -14,7 +14,7 @@ OmniRoute bụ okporo ụzọ AI mpaghara yana dashboard arụnyere na Next.js. 
 
 Ikike isi:
 
-- OpenAI-dakọtara API elu maka CLI/tools (ndị na-enye 381, modul 159 mmebe)
+- OpenAI-dakọtara API elu maka CLI/tools (ndị na-enye 385, modul 159 mmebe)
 - ntụgharị asụsụ Request/response n'ofe ụdị ndị na-eweta
 - Nlereanya combo ọdịda (usoro ihe nlere ọtụtụ)
 - Nzọụkwụ ngwakọta ahaziri ahazi (`provider + model + connection`) yana ịtụ oge ojiri aga site na `compositeTiers`
@@ -27,7 +27,7 @@ Ikike isi:
 - Ederede gaa na-okwu site na `/v1/audio/speech` (ndị na-eweta arụrụ n'ime 24)
 - Ọgbọ vidiyo site na `/v1/videos/generations` (ComfyUI + SD WebUI)
 - Ọgbọ egwu site na `/v1/music/generations` (ComfyUI)
-- Web search via `/v1/search` (20 providers)
+- Ọchụchọ webụ site na `/v1/search` (ndị na-eweta 20)
 - Mgbanwe site na `/v1/moderations`
 - Ntughari site na `/v1/rerank`
 - Chee echiche mkpado mkpado (`<think>...</think>`) maka ụdị echiche
@@ -60,7 +60,7 @@ Ikike isi:
 - Sistemụ ebe nchekwa (mwepụta, ịgba ọgwụ, iweghachi, nchịkọta)
 - Sistemụ nka (ndebanye aha, onye mmebe, igbe ájá, nka arụnyere n'ime)
 - MITM proxy nwere njikwa akwụkwọ yana njikwa DNS
-- Prompt injection guard middleware
+- Ngwa ngwa ịgba ọgwụ mgbochi etiti
 - Pipeline mkpakọ ngwa ngwa na Caveman, RTK, pipeline ekpokọtara, combos mkpakọ, ngwugwu asụsụ, na nyocha.
 - ACP (Agent Communication Protocol) ndekọ
 - Ndị na-enye OAuth modular (modul 22 n'okpuru `src/lib/oauth/providers/`)

@@ -486,13 +486,13 @@ createResponsesApiTransformStream(): TransformStream
 
 `open-sse/config/` מחזיקה את שכבת התצורה:
 
-| קוֹבֶץ                        | מַטָרָה                            |
-| ----------------------------- | ---------------------------------- |
-| `providerRegistry.ts`         | רישום מודל צ'אט על קטלוג 381 ספקים |
-| `providerModels.ts`           | כינויים של מודלים, מיפוי פורמטים   |
-| `constants.ts`                | פסק זמן, מגבלות, קודי סטטוס        |
-| `defaultThinkingSignature.ts` | חתימת חשיבה Claude ברירת מחדל      |
-| `modelStrip.ts` (בשירותים)    | הפשטת שדה לפי ספק                  |
+| קוֹבֶץ                        | מַטָרָה                             |
+| ----------------------------- | ----------------------------------- |
+| `providerRegistry.ts`         | רישום מודל צ'אט מעל קטלוג 385 ספקים |
+| `providerModels.ts`           | כינויים של מודלים, מיפוי פורמטים    |
+| `constants.ts`                | פסק זמן, מגבלות, קודי סטטוס         |
+| `defaultThinkingSignature.ts` | חתימת חשיבה Claude ברירת מחדל       |
+| `modelStrip.ts` (בשירותים)    | הפשטת שדה לפי ספק                   |
 
 ### סכימת רישום ספקים
 

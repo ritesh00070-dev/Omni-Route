@@ -180,9 +180,9 @@ Ihu dashboard dị na `/dashboard/webhooks` (lee
 - Nnyefe nnwale site n’otu ọpịpị
 - Mgbanwe aka iji mee ka ọ rụọ ọrụ/kwụsị ịrụ ọrụ
 
-## Ọmụmaatụ Payload
+## Ọmụmaatụ ịkwụ ụgwọ
 
-### request.completed
+### arịrịọ.mechara
 
 ```json
 {
@@ -201,7 +201,7 @@ Ihu dashboard dị na `/dashboard/webhooks` (lee
 }
 ```
 
-### test.ping
+### nwale.ping
 
 ```json
 {
@@ -214,9 +214,7 @@ Ihu dashboard dị na `/dashboard/webhooks` (lee
 }
 ```
 
-Ebe ndị na-akpọ ọrụ ma na-ezipụ mmemme ndị na-abụghị `test.ping` nọ ka a na-akọwa
-ọdịdị mpaghara ha; were object `data` dịka nke dakọtara na mgbanwe n’ọdịnihu (tinye mpaghara, adaberekwala na
-enweghị ha).
+A na-akọwapụta ụdị mpaghara maka mmemme ndị na-abụghị `test.ping` site na saịtị oku na-ebupụta ha; na-emeso ihe `data` dị ka ihe na-aga n'ihu (tinye ubi, adaberela na enweghị).
 
 ## Omume Kachasị Mma
 

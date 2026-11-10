@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `components/`                    | Компонента контролне табле API: адаптери преко `packages/ui-kit` — види `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: имена икона које користе екрани → Луциде компоненте (`<Icon>`)                                   |
-| `constants/providers.ts`         | **381 провајдер** са Zod валидацијом (извор истине)                                                          |
+| `constants/providers.ts`         | **385 провајдера** са Zod валидацијом (извор истине)                                                         |
 | `constants/cliTools.ts`          | Екстерни регистар CLI алата                                                                                  |
 | `constants/routingStrategies.ts` | **20 стратегија рутирања** са приоритетима                                                                   |
 | `constants/publicApiRoutes.ts`   | Руте које захтевају ауторизацију носиоца (у односу на управљање).                                            |
@@ -412,7 +412,7 @@ open-sse/
 | `CLI-TOOLS.md`              | Екстерне CLI интеграције + Унутрашње OmniRoute CLI                                         |
 | `I18N.md`                   | и18н архитектура, додавање језика, 67 локалитета                                           |
 | `UNINSTALL.md`              | Чисте кораке деинсталирања                                                                 |
-| `PROVIDER_REFERENCE.md`     | **Аутоматски генерисано** каталог 381 провајдера (реген: `npm run gen:provider-reference`) |
+| `PROVIDER_REFERENCE.md`     | **Аутоматски генерисано** каталог 385 провајдера (реген: `npm run gen:provider-reference`) |
 
 ### Дубоки зарон подсистема
 

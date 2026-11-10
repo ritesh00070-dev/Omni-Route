@@ -930,36 +930,26 @@ CLI `base_url + /responses` manzilini WebSocket’ga yangilaydi va OmniRoute uni
 
 ---
 
-## Kvotalar va muammolar haqida hisobot berish
+## Kvotalar va muammolar haqida hisobot
 
-| Usul | Yo‘l                | Tavsif                                                                                                     |
-| ---- | ------------------- | ---------------------------------------------------------------------------------------------------------- |
-| GET  | `/v1/quotas/check`  | Ro‘yxatdan o‘tkazilgan kalitni berishdan oldin `provider` + `accountId` uchun kvotani oldindan tekshirish  |
-| POST | `/v1/issues/report` | GitHub’ga kvota/kalit berishdagi xatolik haqida xabar berish (`GITHUB_ISSUES_REPO` + token talab qilinadi) |
+| Usul | Yo'l                | Tavsif                                                                                                  |
+| ---- | ------------------- | ------------------------------------------------------------------------------------------------------- |
+| GET  | `/v1/quotas/check`  | Roʻyxatdan oʻtgan kalitni chiqarishdan oldin `provider` + `accountId` uchun kvotani oldindan tasdiqlang |
+| POST | `/v1/issues/report` | GitHub quota/key chiqarilmaganligi haqida xabar bering ( `GITHUB_ISSUES_REPO` + tokeni talab qilinadi)  |
 
-**Autentifikatsiya:** Bearer API kaliti (`isAuthenticated`).
+**Muallif:** `/v1/quotas/check` Bearer API kalitini (`isAuthenticated`) oladi. `/v1/issues/report` faqat boshqaruv uchun (`requireManagementAuth`), `/api/v1/registered-keys` kabi: asboblar paneli seansi, mahalliy CLI tokeni yoki `manage`/`admin` qamroviga ega API kaliti; faqat xulosa chiqarish uchun API kalitlari `403` oladi.
 
-### Kvota sessiyasini tiklash (ixtiyoriy)
+### Kvota seansini tiklash (ro'yxatdan o'tish)
 
-Terminal kvota xatosi (`402`/`429`/`503`, uning tanasida kvota yoki kreditlar tugagani ko‘rsatilgan) bilan
-yakunlangan oqimsiz `POST /v1/chat/completions` yoki `POST /v1/responses` so‘rovini xatolikni qaytarish
-o‘rniga keyinroq qayta ijro etish uchun vaqtincha saqlash mumkin. Chaqiruvchi har bir so‘rov uchun quyidagi
-uchta sarlavha bilan ushbu imkoniyatni yoqadi:
+Terminal kvotasi xatosi bilan ishlamay qolgan `POST /v1/chat/completions` yoki `POST /v1/responses` (tanasida kvota yoki kreditlar tugagani aytilgan `402`/`429`/`503` ) xatoni qaytarish o‘rniga to‘xtatib qo‘yilishi va keyinroq takrorlanishi mumkin. Qo'ng'iroq qiluvchi har bir so'rovni uchta sarlavha bilan tanlaydi:
 
-| Sarlavha                     | Qiymat                                                         |
-| ---------------------------- | -------------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                         |
-| `x-omniroute-session`        | sessiya identifikatori, `[A-Za-z0-9._:-]{1,128}`               |
-| `x-omniroute-recovery-turn`  | sessiya ichida noyob burilish identifikatori (xuddi shu qoida) |
+| Sarlavha                     | Qiymat                                                             |
+| ---------------------------- | ------------------------------------------------------------------ |
+| `x-omniroute-quota-recovery` | `auto`                                                             |
+| `x-omniroute-session`        | sessiya identifikatori, `[A-Za-z0-9._:-]{1,128}`                   |
+| `x-omniroute-recovery-turn`  | seans ichida identifikatorni noyobga aylantirish (xuddi shu qoida) |
 
-Faqat `stream: false`, vositalarsiz, vositalar tarixi yoki `previous_response_id` mavjud bo‘lmagan va
-`x-omniroute-connection` biriktirilmagan burilishlar mos keladi; shuningdek, `STORAGE_ENCRYPTION_KEY`
-o‘rnatilgan bo‘lishi kerak (so‘rov 24 soatgacha shifrlangan holda saqlanadi). Shundan so‘ng javob
-`202` va `recovery.poll` bilan qaytariladi; `GET /v1/quota-recoveries/{id}` orqali tekshiriladi
-(kutilayotgan paytda `202`, yakunlanganda tiklangan tana bilan `200`) yoki `DELETE` orqali bekor qilinadi.
-Talonga faqat uni yaratgan API kaliti orqali ko‘rish mumkin. Natijasi noaniq bo‘lgan qayta ijro
-ikki marta yuborilmasligi uchun `needs_confirmation` holatida yakunlanadi. Manba:
-`src/lib/quota/quotaSessionRecovery.ts`.
+Asboblarsiz, asboblar tarixi yoki `previous_response_id` va `x-omniroute-connection` pinsiz faqat `stream: false` burilishlari mos keladi va `STORAGE_ENCRYPTION_KEY` o‘rnatilishi kerak (so‘rov 24 soatgacha shifrlangan holda saqlanadi). Keyin javob `recovery.poll` bilan `202` bo'ladi; `GET /v1/quota-recoveries/{id}` so'rovi (kutishda `202`, tugallanganda tiklangan tana bilan `200` ) yoki `DELETE` bilan bekor qiling. Chiptalar faqat ularni yaratgan API kalitiga ko'rinadi. Natijasi noaniq bo'lgan takrorlash ikki marta yuborilish o'rniga `needs_confirmation` bilan tugaydi. Manba: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1713,19 +1703,23 @@ OmniRoute hodisalari (so‘rov yakunlanishi, kvota tugashi, kalitni almashtirish
 
 ---
 
-## Ro‘yxatdan o‘tkazilgan kalitlar (avtomatik boshqaruv)
+## Ro'yxatdan o'tgan kalitlar (avtomatik boshqaruv)
 
-Avtomatik kalitlarni boshqarish quyi tizimi tomonidan zaxira provayder/hisobga qarshi API kalitlarini chiqarish va almashtirish, shuningdek kunlik/soatlik kvotalarni boshqarish uchun foydalaniladi.
+Avtomatik kalitlarni boshqarish quyi tizimi tomonidan API tugmachalarini daily/hourly kvotalari bilan qo'llab-quvvatlanadigan provider/account ga qarshi chiqarish va aylantirish uchun foydalaniladi.
 
-| Method | Path                                  | Description                                                                                                                                                                                                                       |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Ro‘yxatdan o‘tkazilgan kalitlar ro‘yxati (faqat niqoblangan prefiks)                                                                                                                                                              |
-| POST   | `/api/v1/registered-keys`             | Yangi ro‘yxatdan o‘tkazilgan kalit chiqarish — tana: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Xom kalit **faqat bir marta** qaytariladi. Kvota rad etilganda `429` qaytariladi. |
-| GET    | `/api/v1/registered-keys/[id]`        | Ro‘yxatdan o‘tkazilgan kalit metama’lumotlarini olish (xom kalit materiali mavjud emas)                                                                                                                                           |
-| DELETE | `/api/v1/registered-keys/[id]`        | Ro‘yxatdan o‘tkazilgan kalitni bekor qilish                                                                                                                                                                                       |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Kalitni bekor qilishning aniq endpointi (`DELETE` bilan bir xil ta’sir)                                                                                                                                                           |
+| Usul   | Yo'l                                  | Tavsif                                                                                                                                                                                                                  |
+| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Roʻyxatdan oʻtgan kalitlar roʻyxati (faqat niqoblangan prefiks)                                                                                                                                                         |
+| POST   | `/api/v1/registered-keys`             | Yangi ro'yxatdan o'tgan kalitni chiqaring — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Xom kalitni qaytaradi** bir marta** . Kvota rad etilganda `429` qaytaradi. |
+| GET    | `/api/v1/registered-keys/[id]`        | Roʻyxatdan oʻtgan kalitning metamaʼlumotlarini olish (xom ashyosiz)                                                                                                                                                     |
+| DELETE | `/api/v1/registered-keys/[id]`        | Ro'yxatdan o'tgan kalitni bekor qilish                                                                                                                                                                                  |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Yakuniy bekor qilish nuqtasi ( DELETE bilan bir xil effekt)                                                                                                                                                             |
+| GET    | `/api/v1/providers/[provider]/limits` | Provayderning emissiya chegaralarini o'qing                                                                                                                                                                             |
+| PUT    | `/api/v1/providers/[provider]/limits` | Provayderning emissiya boshlarini o'rnating — tanasi: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                           |
+| GET    | `/api/v1/accounts/[id]/limits`        | Hisobning emissiya chegaralarini o'qing                                                                                                                                                                                 |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Hisobning emissiya chegaralarini provayder marshruti bilan bir xil — o'rnating                                                                                                                                          |
 
-**Autentifikatsiya:** boshqaruv sessiyasi/API kaliti (`requireManagementAuth`) — `/api/keys` dagi kabi tekshiruv: dashboard sessiyasi, mahalliy CLI tokeni yoki `manage`/`admin` qamroviga ega API kaliti; faqat inference uchun mo‘ljallangan API kalitlari uchun `403` qaytariladi. Shuningdek, `/v1/quotas/check` va `/v1/issues/report` ga qarang.
+**Muallif:** boshqaruv session/API kaliti (`requireManagementAuth`) — `/api/keys` bilan bir xil himoya: asboblar paneli seansi, mahalliy CLI tokeni yoki `manage`/`admin` doirasiga ega API kaliti; faqat xulosa chiqarish uchun API kalitlari `403` oladi. Shuningdek qarang `/v1/quotas/check` va `/v1/issues/report`.
 
 ---
 

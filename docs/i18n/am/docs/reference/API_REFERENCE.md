@@ -838,35 +838,26 @@ CLIው `base_url + /responses`ን ወደ WebSocket ያሳድጋል፣ OmniRoute�
 
 ---
 
-## ኮታዎች እና የጉዳዮች ሪፖርት
+## ኮታዎች እና ጉዳዮችን ሪፖርት ማድረግ
 
-| ዘዴ   | መንገድ                | መግለጫ                                                                         |
-| ---- | ------------------- | ---------------------------------------------------------------------------- |
-| GET  | `/v1/quotas/check`  | የተመዘገበ ቁልፍ ከመስጠት በፊት ለ`provider` + `accountId` ኮታን ቀድሞ ማረጋገጥ                 |
-| POST | `/v1/issues/report` | የኮታ/ቁልፍ አሰጣጥ አለመሳካትን ለGitHub ሪፖርት ማድረግ (`GITHUB_ISSUES_REPO` + token ያስፈልጋል) |
+| ዘዴ   | መንገድ                | መግለጫ                                                                                |
+| ---- | ------------------- | ----------------------------------------------------------------------------------- |
+| GET  | `/v1/quotas/check`  | የተመዘገበ ቁልፍ ከመስጠትዎ በፊት ለ `provider` + `accountId` ኮታ አስቀድመው ያረጋግጡ                    |
+| POST | `/v1/issues/report` | የ quota/key መውጣት አለመሳካቱን ለ GitHub ሪፖርት አድርግ ( `GITHUB_ISSUES_REPO` + token ያስፈልገዋል) |
 
-**ማረጋገጫ:** Bearer API key (`isAuthenticated`)።
+**ማረጋገጫ፡** `/v1/quotas/check` ተሸካሚ API ቁልፍ (`isAuthenticated`) ይወስዳል። `/v1/issues/report` አስተዳደር-ብቻ (`requireManagementAuth`) ነው፣ ልክ እንደ `/api/v1/registered-keys`፡ የዳሽቦርድ ክፍለ ጊዜ፣ የአካባቢው CLI ቶከን፣ ወይም API ቁልፍ ከ `manage`/`admin` ስፋት ጋር። ግምት-ብቻ API ቁልፎች `403` ያገኛሉ።
 
-### የኮታ ክፍለ ጊዜ መልሶ ማግኘት (አማራጭ)
+### የኮታ ክፍለ ጊዜ መልሶ ማግኛ (መርጦ መግባት)
 
-የstream ያልሆነ `POST /v1/chat/completions` ወይም `POST /v1/responses` ጥያቄ በ
-የመጨረሻ ኮታ ስህተት (`402`/`429`/`503` አካሉ ኮታው ወይም ክሬዲቶቹ እንደተጠናቀቁ
-የሚገልጽ ከሆነ) ሲሳካ ስህተቱን ከመመለስ ይልቅ ቆሞ በኋላ እንደገና ሊላክ ይችላል። ጠሪው በእያንዳንዱ
-ጥያቄ ላይ በሚከተሉት ሶስት ራስጌዎች አማራጩን ያነቃል፦
+በቴርሚናል ኮታ ስህተት (`402`/`429`/`503` ) አካሉ ኮታው ወይም ክሬዲቱ ደክሟል የሚል ዥረት የማይሰራ `POST /v1/chat/completions` ወይም `POST /v1/responses` ስህተቱን ከመመለስ ይልቅ ቆሞ እንደገና መጫወት ይችላል። ደዋዩ በሶስት ራስጌዎች በጥያቄው መርጧል፡-
 
-| ራስጌ                          | ዋጋ                                      |
-| ---------------------------- | --------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                  |
-| `x-omniroute-session`        | የክፍለ ጊዜ መለያ፣ `[A-Za-z0-9._:-]{1,128}`   |
-| `x-omniroute-recovery-turn`  | በክፍለ ጊዜው ውስጥ ልዩ የሆነ የዙር መለያ (ተመሳሳይ ደንብ) |
+| ራስጌ                          | ዋጋ                                     |
+| ---------------------------- | -------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                 |
+| `x-omniroute-session`        | ክፍለ ጊዜ መታወቂያ፣ `[A-Za-z0-9._:-]{1,128}` |
+| `x-omniroute-recovery-turn`  | በክፍለ-ጊዜው ውስጥ ልዩ መታወቂያ መታጠፍ (ተመሳሳይ ደንብ) |
 
-`stream: false` የሆኑ እና tools፣ tool history ወይም `previous_response_id` የሌላቸው፣ እንዲሁም
-`x-omniroute-connection` pin የሌላቸው ዙሮች ብቻ ብቁ ናቸው፣ እና
-`STORAGE_ENCRYPTION_KEY` መዘጋጀት አለበት (ጥያቄው እስከ 24 ሰዓት ድረስ በምስጠራ ይቀመጣል)። ምላሹ
-ከዚያ `202` ከ`recovery.poll` ጋር ይሆናል፤ `GET /v1/quota-recoveries/{id}` በመጠየቅ ይከታተሉ (`202`
-በሂደት ላይ ሲሆን፣ ሲጠናቀቅ ከተመለሰው አካል ጋር `200`) ወይም `DELETE` በመጠቀም ይሰርዙ። ትኬቶች እነሱን
-በፈጠረው API key ብቻ ይታያሉ። ውጤቱ እርግጠኛ ያልሆነበት እንደገና ላክ ከሁለት ጊዜ እንዳይላክ
-ከመላኩ ይልቅ በ`needs_confirmation` ይጠናቀቃል። ምንጭ፦ `src/lib/quota/quotaSessionRecovery.ts`።
+`stream: false` ብቻ ያለ ምንም መሳሪያ፣ የመሳሪያ ታሪክ ወይም `previous_response_id`፣ እና ምንም `x-omniroute-connection` ፒን ሳይኖር፣ ብቁ ናቸው፣ እና `STORAGE_ENCRYPTION_KEY` መዘጋጀት አለበት (ጥያቄው እስከ 24 ሰአታት ድረስ ተመስጥሯል)። ምላሹ ከዚያም `202` ጋር `recovery.poll` ነው; የሕዝብ አስተያየት መስጫ `GET /v1/quota-recoveries/{id}` (በመጠባበቅ ላይ ያለ `202` ፣ ሲጠናቀቅ ከተመለሰው አካል ጋር `200` ) ወይም በ `DELETE` ይሰርዙ። ትኬቶች የታዩት ለፈጠረው API ቁልፍ ብቻ ነው። ውጤቱ ያልተረጋገጠ ድጋሚ ማጫወት ሁለት ጊዜ ከመላኩ ይልቅ በ `needs_confirmation` ያበቃል። ምንጭ `src/lib/quota/quotaSessionRecovery.ts`
 
 ---
 
@@ -1618,19 +1609,23 @@ DELETE /api/usage/token-limits?id=tl-abc
 
 ---
 
-## የተመዘገቡ ቁልፎች (በራስ-ሰር አስተዳደር)
+## የተመዘገቡ ቁልፎች (ራስ-ማስተዳደር)
 
-በመሠረት አቅራቢ/መለያ ላይ የAPI ቁልፎችን ለማውጣትና ለማሽከርከር፣ እንዲሁም ዕለታዊ/የሰዓት ኮታዎችን ለመቆጣጠር በራስ-ሰር በሚሰራው የቁልፍ አስተዳደር ንዑስ ስርዓት ይጠቀማል።
+በራስ-ቁልፍ አስተዳደር ንዑስ ስርዓት API ቁልፎችን ከzqb ድጋፍ ሰጪ provider/account ጋር ለማሽከርከር በ daily/hourly ኮታዎች ጥቅም ላይ ይውላል።
 
-| Method | Path                                  | Description                                                                                                                                                              |
+| ዘዴ     | መንገድ                                  | መግለጫ                                                                                                                                                                     |
 | ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GET    | `/api/v1/registered-keys`             | የተመዘገቡ ቁልፎችን ይዘርዝሩ (የተሸፈነው ቅድመ ቅጥያ ብቻ)                                                                                                                                   |
-| POST   | `/api/v1/registered-keys`             | አዲስ የተመዘገበ ቁልፍ ያውጡ — አካል፦ `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`። ጥሬው ቁልፍ **አንድ ጊዜ ብቻ** ይመለሳል። ኮታ ከተከለከለ `429` ይመልሳል። |
-| GET    | `/api/v1/registered-keys/[id]`        | የተመዘገበ ቁልፍ ሜታዳታን ያስመልሱ (ጥሬ ይዘት አይካተትም)                                                                                                                                   |
-| DELETE | `/api/v1/registered-keys/[id]`        | የተመዘገበ ቁልፍን ይሰርዙ                                                                                                                                                         |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | ግልጽ የስረዛ ኤንድፖይንት (ከDELETE ጋር ተመሳሳይ ውጤት)                                                                                                                                  |
+| GET    | `/api/v1/registered-keys`             | የተመዘገቡ ቁልፎችን ይዘርዝሩ (ጭምብል የተደረገ ቅድመ ቅጥያ ብቻ)                                                                                                                               |
+| POST   | `/api/v1/registered-keys`             | አዲስ የተመዘገበ ቁልፍ — አካል ያወጣል `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. ጥሬ ቁልፉን ይመልሳል** አንድ ጊዜ** . በኮታ እምቢታ ላይ `429` ይመልሳል። |
+| GET    | `/api/v1/registered-keys/[id]`        | የተመዘገበ ቁልፍ ሜታዳታ ያውጡ (ጥሬ ዕቃ የለም)                                                                                                                                          |
+| DELETE | `/api/v1/registered-keys/[id]`        | የተመዘገበ ቁልፍ ይሽሩ                                                                                                                                                           |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | ግልጽ መሻሪያ የመጨረሻ ነጥብ (ከ DELETE ጋር ተመሳሳይ ውጤት)                                                                                                                               |
+| GET    | `/api/v1/providers/[provider]/limits` | የአቅራቢውን የመልቀቂያ ካፕ ያንብቡ                                                                                                                                                   |
+| PUT    | `/api/v1/providers/[provider]/limits` | የአቅራቢውን የማውጫ ቁልፎች — አካል ያዘጋጁ `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                     |
+| GET    | `/api/v1/accounts/[id]/limits`        | የመለያውን የማውጫ ቁልፎች ያንብቡ                                                                                                                                                    |
+| PUT    | `/api/v1/accounts/[id]/limits`        | የመለያውን የመስጠት ገደብ — ከአቅራቢው መንገድ ጋር ተመሳሳይ አካል ያዘጋጁ                                                                                                                         |
 
-**ማረጋገጫ፦** የአስተዳደር ክፍለ ጊዜ/API ቁልፍ (`requireManagementAuth`) — ከ`/api/keys` ጋር ተመሳሳይ ጥበቃ፦ የዳሽቦርድ ክፍለ ጊዜ፣ የአካባቢ CLI ቶከን፣ ወይም `manage`/`admin` ስኮፕ ያለው API ቁልፍ፤ ለግምት ብቻ የሚያገለግሉ API ቁልፎች `403` ያገኛሉ። እንዲሁም `/v1/quotas/check` እና `/v1/issues/report` ይመልከቱ።
+**ማረጋገጫ፡** አስተዳደር session/API ቁልፍ (`requireManagementAuth`) — ከ `/api/keys` ጋር አንድ አይነት ጠባቂ፡ የዳሽቦርድ ክፍለ ጊዜ፣ የአካባቢው CLI token፣ ወይም API ቁልፍ `manage`/`admin` ስፋት ጋር; ግምት-ብቻ API ቁልፎች `403` ያገኛሉ። በተጨማሪም `/v1/quotas/check` እና `/v1/issues/report` ይመልከቱ.
 
 ---
 

@@ -981,33 +981,24 @@ CLI nadograđuje `base_url + /responses` na WebSocket, a OmniRoute ga tunelira d
 
 ## Izvještavanje o kvotama i problemima
 
-| Metoda | Putanja             | Opis                                                                                       |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------ |
-| GET    | `/v1/quotas/check`  | Unaprijed provjeri kvotu za `provider` + `accountId` prije izdavanja registrovanog ključa  |
-| POST   | `/v1/issues/report` | Prijavi neuspjeh izdavanja kvote/ključa na GitHub (zahtijeva `GITHUB_ISSUES_REPO` + token) |
+| Metoda | Put                 | Opis                                                                                        |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Prethodno provjerite kvotu za `provider` + `accountId` prije izdavanja registrovanog ključa |
+| POST   | `/v1/issues/report` | Prijavite neuspjeh izdavanja quota/key za GitHub (zahtijeva `GITHUB_ISSUES_REPO` + token)   |
 
-**Autentifikacija:** Bearer API ključ (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` uzima API ključ nosioca (`isAuthenticated`). `/v1/issues/report` je samo za upravljanje (`requireManagementAuth`), kao `/api/v1/registered-keys`: sesija nadzorne ploče, lokalni CLI token ili API ključ sa `manage`/`admin` opsegom; API ključevi samo za zaključivanje dobivaju `403`.
 
-### Oporavak sesije kvote (opcionalno uključivanje)
+### Oporavak sesije kvote (uključivanje)
 
-Ne-streaming `POST /v1/chat/completions` ili `POST /v1/responses` koji ne uspije s
-terminalnom greškom kvote (`402`/`429`/`503`, čije tijelo navodi da su kvota ili krediti iscrpljeni)
-može se privremeno pohraniti i ponovo reproducirati kasnije umjesto vraćanja greške. Pozivalac uključuje
-ovu opciju za svaki zahtjev pomoću tri zaglavlja:
+Ne-streaming `POST /v1/chat/completions` ili `POST /v1/responses` koji ne uspije s greškom terminalne kvote (`402`/`429`/`503` čije tijelo kaže da su kvota ili krediti iscrpljeni) može se parkirati i reproducirati kasnije umjesto vraćanja greške. Pozivalac se uključuje po zahtjevu sa tri zaglavlja:
 
-| Zaglavlje                    | Vrijednost                                        |
-| ---------------------------- | ------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                            |
-| `x-omniroute-session`        | ID sesije, `[A-Za-z0-9._:-]{1,128}`               |
-| `x-omniroute-recovery-turn`  | ID poteza jedinstven unutar sesije (isto pravilo) |
+| Header                       | Vrijednost                                             |
+| ---------------------------- | ------------------------------------------------------ |
+| `x-omniroute-quota-recovery` | `auto`                                                 |
+| `x-omniroute-session`        | id sesije, `[A-Za-z0-9._:-]{1,128}`                    |
+| `x-omniroute-recovery-turn`  | pretvoriti ID jedinstveni unutar sesije (isto pravilo) |
 
-Samo potezi sa `stream: false`, bez alata, historije alata ili `previous_response_id`, te bez
-`x-omniroute-connection` fiksiranja, ispunjavaju uslove, a `STORAGE_ENCRYPTION_KEY` mora biti postavljen
-(zahtjev se pohranjuje šifrovano do 24 sata). Odgovor je tada `202` sa
-`recovery.poll`; izvršite anketiranje pomoću `GET /v1/quota-recoveries/{id}` (`202` dok je na čekanju, `200` sa
-oporavljenim tijelom po završetku) ili otkažite pomoću `DELETE`. Ulaznice su vidljive samo API
-ključu koji ih je kreirao. Reprodukcija čiji je ishod neizvjestan završava u stanju
-`needs_confirmation` umjesto da bude poslana dvaput. Izvor: `src/lib/quota/quotaSessionRecovery.ts`.
+Samo `stream: false` okreti bez alata, istorije alata ili `previous_response_id`, i bez `x-omniroute-connection` pina, su prihvatljivi, a `STORAGE_ENCRYPTION_KEY` mora biti postavljen (zahtjev se čuva šifriran do 24 h). Odgovor je tada `202` sa `recovery.poll`; anketa `GET /v1/quota-recoveries/{id}` (`202` dok je na čekanju, `200` sa oporavljenim tijelom kada se završi) ili otkaži sa `DELETE`. Karte su vidljive samo API ključu koji ih je kreirao. Ponavljanje čiji je ishod neizvjestan završava se u `needs_confirmation` umjesto da se pošalje dvaput. Izvor: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1738,19 +1729,23 @@ Izlazne webhook pretplate za OmniRoute događaje (dovršavanje zahtjeva, iscrplj
 
 ---
 
-## Registrovani ključevi (automatsko upravljanje)
+## Registrirani ključevi (automatsko upravljanje)
 
-Koristi ih podsistem za automatsko upravljanje ključevima za izdavanje i rotaciju API ključeva prema pozadinskom pružaocu/nalogu, uz dnevne/satne kvote.
+Koristi ga podsistem za upravljanje automatskim ključevima za izdavanje i rotiranje API ključeva u odnosu na pozadinski provider/account, sa daily/hourly kvotama.
 
-| Method | Path                                  | Description                                                                                                                                                                                                      |
-| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Izlistaj registrovane ključeve (samo maskirani prefiks)                                                                                                                                                          |
-| POST   | `/api/v1/registered-keys`             | Izdaj novi registrovani ključ — tijelo: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Vraća neobrađeni ključ **samo jednom**. Vraća `429` pri odbijanju zbog kvote. |
-| GET    | `/api/v1/registered-keys/[id]`        | Preuzmi metapodatke registrovanog ključa (bez neobrađenog materijala)                                                                                                                                            |
-| DELETE | `/api/v1/registered-keys/[id]`        | Opozovi registrovani ključ                                                                                                                                                                                       |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Eksplicitna krajnja tačka za opoziv (isti učinak kao DELETE)                                                                                                                                                     |
+| Metoda | Put                                   | Opis                                                                                                                                                                                                     |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Lista registrovanih ključeva (samo maskirani prefiks)                                                                                                                                                    |
+| POST   | `/api/v1/registered-keys`             | Izdajte novi registrirani ključ — tijelo: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Vraća neobrađeni ključ** jednom** . Vraća `429` na odbijanju kvote. |
+| GET    | `/api/v1/registered-keys/[id]`        | Dohvatite metapodatke registrovanog ključa (bez sirovog materijala)                                                                                                                                      |
+| DELETE | `/api/v1/registered-keys/[id]`        | Opozovite registrovani ključ                                                                                                                                                                             |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Eksplicitna krajnja tačka opoziva (isti efekat kao DELETE)                                                                                                                                               |
+| GET    | `/api/v1/providers/[provider]/limits` | Pročitajte ograničenja izdavanja provajdera                                                                                                                                                              |
+| PUT    | `/api/v1/providers/[provider]/limits` | Postavite kapice izdavanja provajdera — tijelo: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                  |
+| GET    | `/api/v1/accounts/[id]/limits`        | Pročitajte ograničenja izdavanja računa                                                                                                                                                                  |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Postavite ograničenja izdavanja računa — isto tijelo kao i ruta provajdera                                                                                                                               |
 
-**Autentikacija:** sesija/ključ API-ja za upravljanje (`requireManagementAuth`) — ista zaštita kao za `/api/keys`: sesija kontrolne table, lokalni CLI token ili ključ API-ja sa opsegom `manage`/`admin`; API ključevi samo za izvođenje dobijaju `403`. Pogledajte i `/v1/quotas/check` i `/v1/issues/report`.
+**Auth:** upravljanje session/API ključ (`requireManagementAuth`) — isti čuvar kao `/api/keys`: sesija nadzorne ploče, lokalni CLI token ili API ključ sa `manage`/`admin` opsegom; API ključevi samo za zaključivanje dobijaju `403`. Vidi također `/v1/quotas/check` i `/v1/issues/report`.
 
 ---
 

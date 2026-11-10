@@ -242,7 +242,7 @@ src/
 | -------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `components/`                    | Dashboard komponent API: adaptere over `packages/ui-kit` — se `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: ikonnavne, der bruges af skærmene → Lucide-komponenter (`<Icon>`)                      |
-| `constants/providers.ts`         | **381 udbydere** med Zod -validering (sandhedens kilde)                                            |
+| `constants/providers.ts`         | **385 udbydere** med Zod -validering (sandhedens kilde)                                            |
 | `constants/cliTools.ts`          | Ekstern CLI -værktøjsregistrering                                                                  |
 | `constants/routingStrategies.ts` | **20 routingstrategier** med prioriteringer                                                        |
 | `constants/publicApiRoutes.ts`   | Ruter, der kræver bærer (vs. ledelse) godkendelse                                                  |
@@ -395,24 +395,24 @@ open-sse/
 
 ### Guider på øverste niveau
 
-| Dok                         | Formål                                                                                |
-| --------------------------- | ------------------------------------------------------------------------------------- |
-| `ARCHITECTURE.md`           | Arkitektur på højt niveau, undersystemkort, dashboardoverflade                        |
-| `CODEBASE_DOCUMENTATION.md` | Teknisk reference: mapper, moduler, konventioner                                      |
-| `FEATURES.md`               | Feature matrix med v3.8 højdepunkter                                                  |
-| `USER_GUIDE.md`             | Slutbrugervejledning (opsætning, modeller, kombinationer, CLIs, lyd osv.)             |
-| `API_REFERENCE.md`          | API -endepunktsreference med godkendelsesmodel                                        |
-| `openapi.yaml`              | OpenAPI 3.0 spec (121 stier)                                                          |
-| `SETUP_GUIDE.md`            | Installationsmetoder (npm, npx, Docker, Electron, Termux, source)                     |
-| `ENVIRONMENT.md`            | Alle env vars (~ 800 dokumenteret, ~ 3.050 linjer `.env.example`)                     |
-| `TROUBLESHOOTING.md`        | Almindelige fejl + v3.8.0 kendte problemer                                            |
-| `RELEASE_CHECKLIST.md`      | Fuld frigivelsesflow (færdigheder, husky, konventionelle commits, implementering)     |
-| `COVERAGE_PLAN.md`          | Dækningsmål og nuværende tilstand                                                     |
-| `FREE_TIERS.md`             | Kurerede free-tier-udbydere (48 + gratis + 11 OAuth)                                  |
-| `CLI-TOOLS.md`              | Eksterne CLI integrationer + Intern OmniRoute CLI                                     |
-| `I18N.md`                   | i18n-arkitektur, tilføjelse af et sprog, 67 lokaliteter                               |
-| `UNINSTALL.md`              | Rengør afinstallationstrinene                                                         |
-| `PROVIDER_REFERENCE.md`     | **Autogenereret** katalog over 381 udbydere (regen: `npm run gen:provider-reference`) |
+| Dok                         | Formål                                                                               |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| `ARCHITECTURE.md`           | Arkitektur på højt niveau, undersystemkort, dashboardoverflade                       |
+| `CODEBASE_DOCUMENTATION.md` | Teknisk reference: mapper, moduler, konventioner                                     |
+| `FEATURES.md`               | Feature matrix med v3.8 højdepunkter                                                 |
+| `USER_GUIDE.md`             | Slutbrugervejledning (opsætning, modeller, kombinationer, CLIs, lyd osv.)            |
+| `API_REFERENCE.md`          | API -endepunktsreference med godkendelsesmodel                                       |
+| `openapi.yaml`              | OpenAPI 3.0 spec (121 stier)                                                         |
+| `SETUP_GUIDE.md`            | Installationsmetoder (npm, npx, Docker, Electron, Termux, source)                    |
+| `ENVIRONMENT.md`            | Alle env vars (~ 800 dokumenteret, ~ 3.050 linjer `.env.example`)                    |
+| `TROUBLESHOOTING.md`        | Almindelige fejl + v3.8.0 kendte problemer                                           |
+| `RELEASE_CHECKLIST.md`      | Fuld frigivelsesflow (færdigheder, husky, konventionelle commits, implementering)    |
+| `COVERAGE_PLAN.md`          | Dækningsmål og nuværende tilstand                                                    |
+| `FREE_TIERS.md`             | Kurerede free-tier-udbydere (48 + gratis + 11 OAuth)                                 |
+| `CLI-TOOLS.md`              | Eksterne CLI integrationer + Intern OmniRoute CLI                                    |
+| `I18N.md`                   | i18n-arkitektur, tilføjelse af et sprog, 67 lokaliteter                              |
+| `UNINSTALL.md`              | Rengør afinstallationstrinene                                                        |
+| `PROVIDER_REFERENCE.md`     | **Autogenereret** katalog med 385 udbydere (regen: `npm run gen:provider-reference`) |
 
 ### Dybdyk i undersystemet
 

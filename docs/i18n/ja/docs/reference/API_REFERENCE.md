@@ -862,26 +862,26 @@ CLI は `base_url + /responses` を WebSocket にアップグレードし、Omni
 
 ---
 
-## クォータと問題の報告
+## 割り当てと問題のレポート
 
-| Method | Path                | Description                                                                               |
-| ------ | ------------------- | ----------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | 登録済みキーを発行する前に、`provider` + `accountId` のクォータを事前検証する             |
-| POST   | `/v1/issues/report` | クォータまたはキー発行の失敗を GitHub に報告する（`GITHUB_ISSUES_REPO` + トークンが必要） |
+| 方法 | パス                | 説明                                                                            |
+| ---- | ------------------- | ------------------------------------------------------------------------------- |
+| GET  | `/v1/quotas/check`  | 登録されたキーを発行する前に、 `provider` + `accountId`のクォータを事前検証する |
+| POST | `/v1/issues/report` | quota/key発行の失敗をGitHubに報告する ( `GITHUB_ISSUES_REPO` +トークンが必要)   |
 
-**認証:** Bearer API キー（`isAuthenticated`）。
+**認証:** `/v1/quotas/check`ベアラーAPIキー (`isAuthenticated`) を受け取ります。 `/v1/issues/report` 、 `/api/v1/registered-keys`と同様に管理専用 (`requireManagementAuth`) です。ダッシュボード セッション、ローカルCLIトークン、または`manage`/`admin`スコープのAPIキーです。推論専用のAPIキーは`403`を取得します。
 
-### クォータセッションの復旧（オプトイン）
+### クォータセッションの回復 (オプトイン)
 
-非ストリーミングの `POST /v1/chat/completions` または `POST /v1/responses` が、終端クォータエラー（本文がクォータまたはクレジットの枯渇を示す `402`/`429`/`503`）で失敗した場合、エラーを返す代わりに保留して後で再実行できます。呼び出し元は、以下の 3 つのヘッダーを使用してリクエストごとにオプトインします。
+ターミナル クォータ エラーで失敗した非ストリーミング`POST /v1/chat/completions`または`POST /v1/responses` (本体でクォータまたはクレジットが使い果たされたことを示す`402`/`429`/`503` ) は、エラーを返さずにパークして後でリプレイすることができます。呼び出し元は、次の 3 つのヘッダーを使用してリクエストごとにオプトインします。
 
-| Header                       | Value                                       |
-| ---------------------------- | ------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                      |
-| `x-omniroute-session`        | セッション ID、`[A-Za-z0-9._:-]{1,128}`     |
-| `x-omniroute-recovery-turn`  | セッション内で一意のターン ID（同じルール） |
+| ヘッダ                       | 価値                                          |
+| ---------------------------- | --------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                        |
+| `x-omniroute-session`        | セッションID、 `[A-Za-z0-9._:-]{1,128}`       |
+| `x-omniroute-recovery-turn`  | セッション内で ID を一意にします (同じルール) |
 
-`stream: false` で、ツール、ツール履歴、`previous_response_id` がなく、`x-omniroute-connection` による固定もないターンのみが対象となります。また、`STORAGE_ENCRYPTION_KEY` が設定されている必要があります（リクエストは最大 24 時間、暗号化して保存されます）。その後、レスポンスは `202` と `recovery.poll` になります。`GET /v1/quota-recoveries/{id}` をポーリングすると（保留中は `202`、完了時は復旧した本文とともに `200`）、または `DELETE` でキャンセルできます。チケットを参照できるのは、作成した API キーのみです。結果が不確実な再実行は、二重送信を避けるため `needs_confirmation` で終了します。ソース: `src/lib/quota/quotaSessionRecovery.ts`。
+工具、工具履歴または`previous_response_id`持たず、 `x-omniroute-connection`ピンを持たない`stream: false`ターンのみが対象となり、 `STORAGE_ENCRYPTION_KEY`設定する必要があります (リクエストは暗号化されて最大 24 時間保存されます)。応答は`202`と`recovery.poll`です。 `GET /v1/quota-recoveries/{id}`ポーリングする (保留中は`202` 、完了したら回復された本体を使用して`200` )、または`DELETE`でキャンセルします。チケットは、チケットを作成したAPIキーのみに表示されます。結果が不確実なリプレイは、2 回送信されずに`needs_confirmation`で終了します。出典: `src/lib/quota/quotaSessionRecovery.ts`。
 
 ---
 
@@ -1613,19 +1613,23 @@ OmniRoute のイベント（リクエスト完了、クォータ超過、キー�
 
 ---
 
-## 登録済みキー（自動管理）
+## 登録されたキー（自動管理）
 
-自動キー管理サブシステムが、バックエンドのプロバイダー/アカウントに対して API キーを発行・ローテーションするために使用します。日次/時間単位のクォータに対応しています。
+自動キー管理サブシステムによって、 daily/hourlyクォータを使用して、バッキングprovider/accountに対してAPIキーを発行およびローテーションするために使用されます。
 
-| メソッド | パス                                  | 説明                                                                                                                                                                                                          |
-| -------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET      | `/api/v1/registered-keys`             | 登録済みキーを一覧表示（マスクされたプレフィックスのみ）                                                                                                                                                      |
-| POST     | `/api/v1/registered-keys`             | 新しい登録済みキーを発行 — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`。生のキーを**一度だけ**返します。クォータにより拒否された場合は `429` を返します。 |
-| GET      | `/api/v1/registered-keys/[id]`        | 登録済みキーのメタデータを取得（生のキー情報は含まれません）                                                                                                                                                  |
-| DELETE   | `/api/v1/registered-keys/[id]`        | 登録済みキーを失効させる                                                                                                                                                                                      |
-| POST     | `/api/v1/registered-keys/[id]/revoke` | 明示的な失効エンドポイント（DELETE と同じ効果）                                                                                                                                                               |
+| 方法   | パス                                  | 説明                                                                                                                                                                                                 |
+| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | 登録されたキーのリスト (マスクされたプレフィックスのみ)                                                                                                                                              |
+| POST   | `/api/v1/registered-keys`             | 新しい登録されたキー— body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`を発行します。生のキーを返します**一度**。クォータ拒否の場合は`429`を返します。 |
+| GET    | `/api/v1/registered-keys/[id]`        | 登録されたキーのメタデータを取得します (原材料なし)                                                                                                                                                  |
+| DELETE | `/api/v1/registered-keys/[id]`        | 登録されたキーを取り消す                                                                                                                                                                             |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | 明示的な取り消しエンドポイント ( DELETEと同じ効果)                                                                                                                                                   |
+| GET    | `/api/v1/providers/[provider]/limits` | プロバイダーの発行上限を読む                                                                                                                                                                         |
+| PUT    | `/api/v1/providers/[provider]/limits` | プロバイダーの発行上限を設定します— body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                    |
+| GET    | `/api/v1/accounts/[id]/limits`        | アカウントの発行上限を読む                                                                                                                                                                           |
+| PUT    | `/api/v1/accounts/[id]/limits`        | アカウントの発行上限—プロバイダー ルートと同じ本文に設定します                                                                                                                                       |
 
-**認証:** 管理セッション/API キー（`requireManagementAuth`） — `/api/keys` と同じガードです。ダッシュボードセッション、ローカル CLI トークン、または `manage`/`admin` スコープを持つ API キーを使用できます。推論専用 API キーでは `403` が返されます。`/v1/quotas/check` および `/v1/issues/report` も参照してください。
+**認証:**管理session/APIキー (`requireManagementAuth`) — `/api/keys`と同じガード: ダッシュボード セッション、ローカルCLIトークン、または`manage`/`admin`スコープのAPIキー。推論専用のAPIキーは`403`を取得します。 `/v1/quotas/check`および`/v1/issues/report`も参照してください。
 
 ---
 

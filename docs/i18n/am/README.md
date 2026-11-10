@@ -6,34 +6,34 @@
 
 <div align="center">
 
-<img src="./docs/screenshots/MainOmniRoute.png" alt="የOmniRoute ዳሽቦርድ" width="820"/>
+<img src="./docs/screenshots/MainOmniRoute.png" alt="OmniRoute Dashboard" width="820"/>
 
 <br/>
 <br/>
 
-# 🚀 OmniRoute — ነጻው AI ጌትዌይ
+# 🚀 OmniRoute — ነፃው AI ጌትዌይ
 
-**በ [Diego Souza](https://github.com/diegosouzapw) የተፈጠረ**
+**[በዲያጎ ሱዛ](https://github.com/diegosouzapw) የተፈጠረ**
 
-<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — ኮድ መጻፍን በፍጹም አታቁም። እያንዳንዱ AI መሣሪያ → 385 አቅራቢዎች — ከ150+ ነጻ — በአንድ ኤንድፖይንት በኩል። Claude Code፣ Codex፣ Cursor፣ Cline፣ Copilot እና Antigravity ወደ ነጻ Claude / GPT / Gemini በራስ-ሰር fallback። RTK + Caveman የተደራረበ መጭመቂያ ከ15–95% ቶከኖችን (~89% በአማካይ) ይቆጥባል — ገደቦችን በፍጹም አትመታ። 385 AI አቅራቢዎች · 150+ ነጻ ደረጃዎች · ~1.62B ነጻ ቶከኖች/ወር · 20 የማዞሪያ ስልቶች · ለመጀመር $0።"/>
+<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — Never stop coding. Every AI tool → 385 providers — 150+ free — through one endpoint. Claude Code, Codex, Cursor, Cline, Copilot & Antigravity into FREE Claude / GPT / Gemini with auto-fallback. RTK + Caveman stacked compression saves 15–95% tokens (~89% avg) — never hit limits. 385 AI providers · 150+ free tiers · ~1.62B free tokens/mo · 20 routing strategies · $0 to start."/>
 
 </div>
 
 <div align="center">
 
-## 💰 በሶስተኛ ወገን ነፃ ደረጃዎች በወር ~1.62B ቶከኖች
+## 💰 ~ 1.62B Tokens / ወር ከሶስተኛ ወገን ነፃ ደረጃዎች
 
 </div>
 
-> **የራስዎን የአቅራቢ መለያዎች ይጠቀሙ።** ይህ በተናጠል ብቁ በሆኑ የሶስተኛ ወገን ነፃ ደረጃዎች ላይ የተመሠረተ ግምታዊ ጠቅላላ መጠን ነው፤ ከOmniRoute የሚሰጥ የቶከን ስጦታ አይደለም። ይመዝገቡ፣ በሚያስፈልግበት ጊዜ ማረጋገጫዎችን ያግኙ፣ እና ሊጠቀሙባቸው የሚችሉትን አቅራቢዎች ያገናኙ፤ እያንዳንዱ አቅራቢ የራሱን ገደቦች፣ ተገኝነት እና ውሎች ይቆጣጠራል።
+> **የራስዎን የአቅራቢ መለያዎች ይዘው ይምጡ።** ይህ ለየብቻ ብቁ በሆኑ የሶስተኛ ወገን ነፃ እርከኖች የሚገመተው ድምር ነው እንጂ OmniRoute ማስመሰያ ስጦታ አይደለም። ይመዝገቡ፣ አስፈላጊ ሆኖ ሲገኝ ምስክርነቶችን ያግኙ፣ እና ሊጠቀሙባቸው የሚችሉትን አቅራቢዎች ያገናኙ፤ እያንዳንዱ አቅራቢ ገደቦቹን፣ መገኘቱን እና ውሎችን ይቆጣጠራል።
 >
-> ነፃ ደረጃዎችን በእጅ ማከማቸት አስቸጋሪ ነው — በደርዘን የሚቆጠሩ SDKዎች፣ በደርዘን የሚቆጠሩ የጥያቄ መጠን ገደቦች፣ እና በእርግጥ ምን ያህል እንዳለዎት የሚያሳይ መረጃ አለመኖር። OmniRoute **በ34 ተደጋጋሚ የፑል ቁልፎች ውስጥ 465 ነፃ-ደረጃ ግቤቶችን** ይመዘግባል፣ እና የቶከን አጠቃላይ መጠኑን የሚያሰላው **የታተመ አዎንታዊ ወርሃዊ በጀት ካላቸው 17 ፑሎች እና አምስት በሞዴል የተለዩ የGroq ገደቦች** ላይ በመመሥረት፣ በጋራ ፑል መሠረት የተደጋገሙትን በማስወገድ ነው። ከክልላዊ የማንነት ማረጋገጫ በኋላ ብቻ የሚከፈቱ ኮታዎች (ዛሬ፦ ModelScope) ለየት ተለይተው ይታያሉ፣ ከክልላዊ የማንነት ማረጋገጫ በኋላ +~6M ይጨምራሉ፣ እና በአጠቃላይ መጠኑ ውስጥ በፍጹም አይደመሩም። ውጤቱ በዳሽቦርዱ ላይ (`/dashboard/free-tiers`) ሁልጊዜ ይታያል።
+> ነፃ እርከኖችን በእጅ መደርደር ህመም ነው — በደርዘን የሚቆጠሩ SDKs፣ በደርዘን የሚቆጠሩ የዋጋ ገደቦች እና ምን ያህል እንዳለህ ሳያውቅ ነው። OmniRoute ካታሎጎች** በ34 ተደጋጋሚ የመዋኛ ቁልፎች ላይ 465 ነፃ-ደረጃ ግቤቶች** እና የቶከን አርዕስተ ዜናውን ከ** የታተመ አዎንታዊ ወርሃዊ በጀት እና አምስት በአንድ ሞዴል Groq ካፕ ያላቸው 17 ገንዳዎች** ፣ በጋራ ገንዳ የተባዛ። ከክልላዊ የማንነት ማረጋገጫ በኋላ ብቻ የሚከፈቱ ኮታዎች (ዛሬ ModelScope) ተለያይተው፣ +~ 6M ከክልላዊ ማንነት ማረጋገጫ ጀርባ ይታያሉ፣ እና በርዕሰ አንቀጹ ውስጥ በጭራሽ አልተካተቱም። ውጤቱ በዳሽቦርዱ (`/dashboard/free-tiers`) ላይ የሚታይ ሆኖ ይቆያል።
 
-<img src="./docs/diagrams/free-tier-budget.svg" width="100%" alt="የOmniRoute ነፃ-ደረጃ በጀት ካርድ፦ በወር ~1.62B ነፃ ቶከኖች በቋሚነት፣ እና በመጀመሪያው ወር ከምዝገባ ክሬዲቶች ጋር እስከ ~2.22B፣ በአንድ ኤንድፖይንት ስር 465 የተመዘገቡ ነፃ-ደረጃ ግቤቶችን የሚሸፍኑ 34 የተመዘገቡ ተደጋጋሚ የፑል ቁልፎች። በታማኝነት ፑል-የተባዙ ስሌቶች — እያንዳንዱ የጋራ ፑል አንድ ጊዜ ብቻ ተቆጥሯል፣ ይህም የታተመ አዎንታዊ ወርሃዊ የቶከን በጀት ያላቸውን 17 ተደጋጋሚ ፑሎች እና አምስት በሞዴል የተለዩ የGroq ገደቦችን ያካትታል፤ በውሎች-አደጋ ካታሎግ ውስጥ 12 አቅራቢዎች እንዳይጠቀሙ ተመልክተዋል፣ ስለዚህ ውሳኔውን እርስዎ ይወስናሉ። የበጀት አሞሌው Mistral 1B፣ Nara 210M፣ LLM7 150M፣ xKiro 150M፣ Groq 30M (አምስት በሞዴል የተለዩ ገደቦች) እና አነስተኛ ፑሎችን፣ እንዲሁም የመጀመሪያ ወር የምዝገባ ክሬዲቶችን እና በቋሚነት ነፃ የሆኑ ያለ የቶከን ገደብ አቅራቢዎችን ለየት ያሳያል፣ በዚህም የአጠቃላይ መጠኑን በሰው ሰራሽ ከፍ እንዳያደርጉት። በ /dashboard/free-tiers ላይ በቀጥታ የተጠቀሙትን/የቀረውን ያሳያል።"/>
+<img src="./docs/diagrams/free-tier-budget.svg" width="100%" alt="OmniRoute free-tier budget card: ~1.62B free tokens per month steady, up to ~2.22B in the first month with signup credits, from 34 documented recurring pool keys covering 465 cataloged free-tier entries behind one endpoint. Honest pool-deduped math — each shared pool counted once, including 17 recurring pools with a published positive monthly token budget plus five per-model Groq caps; 12 providers are marked avoid in the terms-risk catalog so you decide. Budget bar includes Mistral 1B, Nara 210M, LLM7 150M, xKiro 150M, Groq 30M (five per-model caps) and smaller pools, plus first-month signup credits and permanently-free no-token-cap providers surfaced separately so they never inflate the headline. Live used/remaining on /dashboard/free-tiers."/>
 
-> የቀጥታ `/dashboard/free-tiers` ገጽ የታነመ ማጠቃለያ። ሙሉ ዘዴው (የፑል ድግግሞሽ ማስወገድ፣ የክሬዲት ደረጃዎች፣ የአቅራቢ ውሎች)፦ **[docs/reference/FREE_TIERS.md](docs/reference/FREE_TIERS.md)**።
+> የቀጥታ `/dashboard/free-tiers` ገጽ አኒሜሽን ማጠቃለያ። ሙሉ ዘዴ (ገንዳ ተቀናሽ፣ የብድር ደረጃዎች፣ የአቅራቢዎች ውሎች)** [docs/reference/FREE_TIERS.md](docs/reference/FREE_TIERS.md)** .
 >
-> <sub>እነዚህ አሃዞች በየሁለት ሳምንቱ ከቀጥታ ካታሎጉ ጋር እንደገና ይመረመራሉ እና **በሁለቱም አቅጣጫዎች ይለወጣሉ** — አንድ አቅራቢ ነፃ ደረጃውን ካቋረጠ ቁጥሩ ይቀንሳል፤ አዲስ አቅራቢ ከተጨመረ ይጨምራል። ካታሎጉ በእርግጥ የሚያሰላውን ነው የምናተምው፤ ሆን ብለን ወደ ላይ የተጠጋጋ ምርጥ ሁኔታን በፍጹም አንጠቀምም።</sub>
+> <sub> እነዚህ አሃዞች በየሁለት ሳምንቱ በቀጥታ ካታሎግ እና እንደገና ኦዲት ይደረጋሉ።** በሁለቱም መንገዶች መንቀሳቀስ** — አቅራቢው ነፃ ደረጃን ያበቃል እና ቁጥሩ ይቀንሳል; አዲስ መሬት እና ይወጣል. ካታሎጉ በትክክል ያሰሉትን እናተምታለን፣ በጭራሽ የተጠቀለለ ምርጥ ጉዳይ አይደለም።</sub>
 
 <br/>
 
@@ -41,62 +41,51 @@
 
 <h3>
 
-⭐ OMNIROUTE ገንዘብ ለመቆጠብ እና ሥራዎን ለማቀላጠፍ ከረዳዎት ሪፖውን ስታር ያድርጉ።
+⭐ ገንዘብ ለመቆጠብ እና ስራዎን ቀላል ለማድረግ OMNIROUTE ከረዳዎት repo ኮከብ ያድርጉ።
 
 </h3>
 
-[![Stars](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social)](https://github.com/diegosouzapw/OmniRoute)
+[![ኮከቦች](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social) ](https://github.com/diegosouzapw/OmniRoute)
 <a href="https://trendshift.io/repositories/23589" target="_blank"><img src="https://trendshift.io/api/badge/repositories/23589" alt="diegosouzapw%2FOmniRoute | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-[![የስታር ታሪክ ደረጃ](https://api.star-history.com/badge?repo=diegosouzapw/OmniRoute&theme=dark)](https://www.star-history.com/diegosouzapw/omniroute)
-[![olud.ai](https://olud.ai/badge.php?tool=diegosouzapw-omniroute)](https://olud.ai/project/diegosouzapw-omniroute.html)
+[![የኮከብ ታሪክ ደረጃ](https://api.star-history.com/badge?repo=diegosouzapw/OmniRoute&theme=dark) ](https://www.star-history.com/diegosouzapw/omniroute) [![olud.ai](https://olud.ai/badge.php?tool=diegosouzapw-omniroute) ](https://olud.ai/project/diegosouzapw-omniroute.html)
 
-### 💬 ማኅበረሰቡን ይቀላቀሉ
+### 💬 ማህበረሰቡን ይቀላቀሉ
 
-**👋 ጠባቂውን ይከተሉ — አዳዲስ አቅራቢዎችን፣ ልቀቶችን እና ምክሮችን ከሁሉም በፊት ያግኙ፦**
+**👋 ጠባቂውን ይከተሉ — በመጀመሪያ አዳዲስ አቅራቢዎችን፣ ልቀቶችን እና ምክሮችን ያግኙ፡-**
 
-[![ዲዬጎን በLinkedIn ይከተሉ](https://img.shields.io/badge/Follow_Diego_on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diegosouzapw/)
-[![@diegosouzapwን በGitHub ይከተሉ](https://img.shields.io/github/followers/diegosouzapw?style=for-the-badge&logo=github&logoColor=white&label=Follow%20on%20GitHub&color=181717)](https://github.com/diegosouzapw)
+[![ዲያጎን LinkedIn ላይ ይከተሉ](https://img.shields.io/badge/Follow_Diego_on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white) ](https://www.linkedin.com/in/diegosouzapw/) [![ @diegosouzapw በ GitHub ላይ ይከተሉ](https://img.shields.io/github/followers/diegosouzapw?style=for-the-badge&logo=github&logoColor=white&label=Follow%20on%20GitHub&color=181717) ](https://github.com/diegosouzapw)
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/U47eFqAXCn)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/omnirouteOficial)
-[![WhatsApp Global](https://img.shields.io/badge/WhatsApp_Global-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4)
-[![WhatsApp Brasil](https://img.shields.io/badge/WhatsApp_Brasil-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4)
-[![ድረ-ገጽ](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white)](https://omniroute.online)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/U47eFqAXCn) [![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/omnirouteOficial) [![WhatsApp Global](https://img.shields.io/badge/WhatsApp_Global-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) [![WhatsApp Brasil](https://img.shields.io/badge/WhatsApp_Brasil-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) [![Website](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white)](https://omniroute.online)
 
-**ጥያቄዎች፣ የአቅራቢ ምክሮች፣ የወደፊት ዕቅድ እና ድጋፍ → [Discord](https://discord.gg/U47eFqAXCn) · [Telegram](https://t.me/omnirouteOficial) · WhatsApp [🌍 ዓለም አቀፍ](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) / [🇧🇷 Brasil](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) / [መግቢያ](https://portal.sthub.com.br/communities/groups/st-hub/channels/Omniroute-World-8kRjmK)**
+**ጥያቄዎች፣ የአቅራቢ ምክሮች፣ የመንገድ ካርታ እና ድጋፍ → [Discord](https://discord.gg/U47eFqAXCn) · [Telegram](https://t.me/omnirouteOficial) · WhatsApp [🌍 Global](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) / [🇧🇷 Brasil](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) / [📢 ኦፊሴላዊ ቻናል](https://whatsapp.com/channel/0029VbDwC7A3wtb5PN6a5t2R) / [ፖርታል](https://portal.sthub.com.br/communities/groups/st-hub/channels/Omniroute-World-8kRjmK)**
 
 <br/>
 
-## 📈 ጌትዌዩ እያደገ ነው
+## 📈 መግቢያው ማደጉን ይቀጥላል
 
 <div align="center">
 
-|                       |      v3.8.50       | **v3.8.51** |      `v3.8.54+`       |
-| --------------------- | :----------------: | :---------: | :-------------------: |
-| 🌐 አቅራቢዎች             |        352         |   **358**   |          385          |
-| 🧠 ልዩ የውይይት ሞዴል መለያዎች |        1320        |  **1374**   |         1491          |
-| 🖼️ የሞዳሊቲ ድልድይ         | 🆕 ራዕይ + ድምጽ + ቪዲዮ |      ✓      |           ✓           |
-| 📡 የRadar ነፃ ካታሎግ     |   🆕 በፈቃደኝነት ምርጫ   |      ✓      |           ✓           |
-| ⚖️ ኮታን ያገናዘበ መርሐ ግብር  |   🆕 Quota-Share   |      ✓      |           ✓           |
-| 📊 የኮታ ቴሌሜትሪ          |       🆕 ቀጥታ       |      ✓      |           ✓           |
-| 🧰 ራስ-አልባ ሁነታ         |         —          |      —      | 🆕 `serve --headless` |
-| 🛤️ LTS የረድፍ መሠረተ ልማት  |         —          |      —      |     🆕 የልቀት ቻናሎች      |
-| 🔎 የሞዴል ማግኛ API       |         —          |      —      | 🆕 `/v1/models/query` |
+|                     |      v3.8.50       | **v3.8.51** |      `v3.8.54+`       |
+| ------------------- | :----------------: | :---------: | :-------------------: |
+| 🌐 አቅራቢዎች           |        352         |   **358**   |          385          |
+| 🧠 ልዩ የውይይት ሞዴል IDs |        1320        |  **1374**   |         1491          |
+| 🖼️ ሞዳሊቲ ድልድይ        | 🆕 ራዕይ + ኦዲዮ + ቪዲዮ |      ✓      |           ✓           |
+| 📡 ራዳር ነጻ ካታሎግ      |    🆕 መርጦ መግባት     |      ✓      |           ✓           |
+| ⚖️ ኮታ-አዋቂ መርሐግብር    |     🆕 ኮታ-አጋራ      |      ✓      |           ✓           |
+| 📊 ኮታ ቴሌሜትሪ         |       🆕 መኖር       |      ✓      |           ✓           |
+| 🧰 ጭንቅላት የሌለው ሁነታ   |         —          |      —      | 🆕 `serve --headless` |
+| 🛤️ LTS የባቡር infra   |         —          |      —      |    🆕 የመልቀቂያ ቻናሎች     |
+| 🔎 ሞዴል ግኝት API      |         —          |      —      | 🆕 `/v1/models/query` |
 
-**→ [የመንገድ ካርታ](ROADMAP.md) — ወደ `v3.9.0 LTS` በረድፉ ላይ እየተጓዙ**
+**→ [Roadmap](ROADMAP.md) — በባቡር ወደ `v3.9.0 LTS` መጓዝ**
 
 </div>
 
 <br/>
 
-## 🧩 ይገኛል
+## 🧩 ይገኛል።
 
-[![npm version](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm)](https://www.npmjs.com/package/omniroute)
-![NPM Monthly](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm)
-[![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/diegosouzapw/omniroute)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-![Docker Pulls](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED)
-![Electron Downloads](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
+[![npm version](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm) ](https://www.npmjs.com/package/omniroute) ![NPM Monthly](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm) [![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED) ](https://hub.docker.com/r/diegosouzapw/omniroute) [![ፍቃድ MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square) ](LICENSE) ![Docker Pulls](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED) ![Electron Downloads](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
 
 <table>
   <tr>
@@ -106,38 +95,38 @@
     <td align="center"><a href="#first-run">🆓 አቅራቢን ያገናኙ</a></td>
   </tr>
   <tr>
-    <td align="right"><b>💡 ይማሩ</b></td>
+    <td align="right"><b>💡 ተማር</b></td>
     <td align="center"><a href="#-the-promise">💥 ተስፋው</a></td>
-    <td align="center"><a href="#-why-omniroute">🤔 OmniRoute ለምን</a></td>
-    <td align="center"><a href="#-what-sets-omniroute-apart">🏆 ልዩ የሚያደርገው</a></td>
+    <td align="center"><a href="#-why-omniroute">🤔 ለምን OmniRoute</a></td>
+    <td align="center"><a href="#-what-sets-omniroute-apart">🏆 ምን ይለያል</a></td>
   </tr>
   <tr>
     <td align="right"><b>⚙️ ባህሪያት</b></td>
-    <td align="center"><a href="#-combos--the-flagship">🎯 ጥምረቶች</a></td>
+    <td align="center"><a href="#-combos--the-flagship">🎯 Combos</a></td>
     <td align="center"><a href="#-385-ai-providers--153-catalog-marked-free">🌐 አቅራቢዎች</a></td>
     <td align="center"><a href="#-full-cli--a2a--mcp">🔌 CLI &amp; MCP</a></td>
   </tr>
   <tr>
     <td align="right"></td>
     <td align="center"><a href="#%EF%B8%8F-save-1595-tokens--automatically">🗜️ መጭመቂያ</a></td>
-    <td align="center"><a href="#%EF%B8%8F-where-omniroute-runs--anywhere">🖥️ የሚሰራበት ቦታ</a></td>
+    <td align="center"><a href="#%EF%B8%8F-where-omniroute-runs--anywhere">🖥️ የት እንደሚሰራ</a></td>
     <td align="center"><a href="#-private--local-first">🔒 የግል</a></td>
   </tr>
   <tr>
-    <td align="right"><b>👀 ይመልከቱት</b></td>
+    <td align="right"><b>👀 እዩት።</b></td>
     <td align="center"><a href="#-omniroute-in-action">🎬 በተግባር</a></td>
-    <td align="center"><a href="#-whats-new">✨ አዲስ ምን አለ</a></td>
-    <td align="center"><a href="#-compatible-clis--coding-agents">🤖 ተኳዃኝ CLIs</a></td>
+    <td align="center"><a href="#-whats-new">✨ ምን አዲስ ነገር አለ</a></td>
+    <td align="center"><a href="#-compatible-clis--coding-agents">🤖 ተኳሃኝ CLIs</a></td>
   </tr>
   <tr>
     <td align="right"><b>💚 ድጋፍ</b></td>
-    <td align="center"><a href="#-support-omniroute">💚 ድጋፍ / ለግሱ</a></td>
+    <td align="center"><a href="#-support-omniroute">💚 ድጋፍ / ልገሳ</a></td>
     <td align="center"><a href="#-community--help">💬 ማህበረሰብ</a></td>
     <td align="center"><a href="#-sponsors">💖 ስፖንሰሮች</a></td>
   </tr>
   <tr>
     <td align="right"><b>📦 ፕሮጀክት</b></td>
-    <td align="center"><a href="#%EF%B8%8F-tech-stack">🛠️ የቴክኖሎጂ ቁልል</a></td>
+    <td align="center"><a href="#%EF%B8%8F-tech-stack">🛠️ ቴክ ቁልል</a></td>
     <td align="center"><a href="#-documentation">📖 ሰነዶች</a></td>
     <td align="center"><a href="#-1000-contributors">👥 አበርካቾች</a></td>
   </tr>
@@ -146,75 +135,75 @@
 </div>
 
 <div align="center">
-  <b>🌐 በ67 ቋንቋዎች</b>
+  <b>🌐 በ 67 ቋንቋዎች</b>
   <br/><br/>
-  <a href="README.md"><img src="docs/assets/flags/us.svg" width="30" alt="እንግሊዝኛ (en)" title="እንግሊዝኛ (en)"></a>
-  <a href="docs/i18n/pt-BR/README.md"><img src="docs/assets/flags/br.svg" width="30" alt="ፖርቱጋልኛ — ብራዚል (pt-BR)" title="ፖርቱጋልኛ — ብራዚል (pt-BR)"></a>
-  <a href="docs/i18n/pt/README.md"><img src="docs/assets/flags/pt.svg" width="30" alt="ፖርቱጋልኛ (pt)" title="ፖርቱጋልኛ (pt)"></a>
-  <a href="docs/i18n/es/README.md"><img src="docs/assets/flags/es.svg" width="30" alt="ስፓኒሽ (es)" title="ስፓኒሽ (es)"></a>
-  <a href="docs/i18n/fr/README.md"><img src="docs/assets/flags/fr.svg" width="30" alt="ፈረንሳይኛ (fr)" title="ፈረንሳይኛ (fr)"></a>
-  <a href="docs/i18n/it/README.md"><img src="docs/assets/flags/it.svg" width="30" alt="ጣሊያንኛ (it)" title="ጣሊያንኛ (it)"></a>
-  <a href="docs/i18n/de/README.md"><img src="docs/assets/flags/de.svg" width="30" alt="ጀርመንኛ (de)" title="ጀርመንኛ (de)"></a>
-  <a href="docs/i18n/nl/README.md"><img src="docs/assets/flags/nl.svg" width="30" alt="ደች (nl)" title="ደች (nl)"></a>
-  <a href="docs/i18n/ru/README.md"><img src="docs/assets/flags/ru.svg" width="30" alt="ሩስኛ (ru)" title="ሩስኛ (ru)"></a>
-  <a href="docs/i18n/uk-UA/README.md"><img src="docs/assets/flags/ua.svg" width="30" alt="ዩክሬንኛ (uk-UA)" title="ዩክሬንኛ (uk-UA)"></a>
-  <a href="docs/i18n/pl/README.md"><img src="docs/assets/flags/pl.svg" width="30" alt="ፖላንድኛ (pl)" title="ፖላንድኛ (pl)"></a>
-  <a href="docs/i18n/cs/README.md"><img src="docs/assets/flags/cz.svg" width="30" alt="ቼክኛ (cs)" title="ቼክኛ (cs)"></a>
-  <a href="docs/i18n/sk/README.md"><img src="docs/assets/flags/sk.svg" width="30" alt="ስሎቫክኛ (sk)" title="ስሎቫክኛ (sk)"></a>
-  <a href="docs/i18n/ro/README.md"><img src="docs/assets/flags/ro.svg" width="30" alt="ሮማኒያኛ (ro)" title="ሮማኒያኛ (ro)"></a>
-  <a href="docs/i18n/hu/README.md"><img src="docs/assets/flags/hu.svg" width="30" alt="ሀንጋሪኛ (hu)" title="ሀንጋሪኛ (hu)"></a>
-  <a href="docs/i18n/bg/README.md"><img src="docs/assets/flags/bg.svg" width="30" alt="ቡልጋሪኛ (bg)" title="ቡልጋሪኛ (bg)"></a>
-  <a href="docs/i18n/da/README.md"><img src="docs/assets/flags/dk.svg" width="30" alt="ዴንማርክኛ (da)" title="ዴንማርክኛ (da)"></a>
-  <a href="docs/i18n/fi/README.md"><img src="docs/assets/flags/fi.svg" width="30" alt="ፊንላንድኛ (fi)" title="ፊንላንድኛ (fi)"></a>
-  <a href="docs/i18n/no/README.md"><img src="docs/assets/flags/no.svg" width="30" alt="ኖርዌይኛ (no)" title="ኖርዌይኛ (no)"></a>
-  <a href="docs/i18n/sv/README.md"><img src="docs/assets/flags/se.svg" width="30" alt="ስዊድንኛ (sv)" title="ስዊድንኛ (sv)"></a>
-  <a href="docs/i18n/zh-CN/README.md"><img src="docs/assets/flags/cn.svg" width="30" alt="ቻይንኛ — ቀላል አጻጻፍ (zh-CN)" title="ቻይንኛ — ቀላል አጻጻፍ (zh-CN)"></a>
-  <a href="docs/i18n/zh-TW/README.md"><img src="docs/assets/flags/tw.svg" width="30" alt="ቻይንኛ — ባህላዊ አጻጻፍ (zh-TW)" title="ቻይንኛ — ባህላዊ አጻጻፍ (zh-TW)"></a>
-  <a href="docs/i18n/ja/README.md"><img src="docs/assets/flags/jp.svg" width="30" alt="ጃፓንኛ (ja)" title="ጃፓንኛ (ja)"></a>
-  <a href="docs/i18n/ko/README.md"><img src="docs/assets/flags/kr.svg" width="30" alt="ኮሪያኛ (ko)" title="ኮሪያኛ (ko)"></a>
-  <a href="docs/i18n/th/README.md"><img src="docs/assets/flags/th.svg" width="30" alt="ታይኛ (th)" title="ታይኛ (th)"></a>
-  <a href="docs/i18n/vi/README.md"><img src="docs/assets/flags/vn.svg" width="30" alt="ቬትናምኛ (vi)" title="ቬትናምኛ (vi)"></a>
-  <a href="docs/i18n/id/README.md"><img src="docs/assets/flags/id.svg" width="30" alt="ኢንዶኔዢያኛ (id)" title="ኢንዶኔዢያኛ (id)"></a>
-  <a href="docs/i18n/ms/README.md"><img src="docs/assets/flags/my.svg" width="30" alt="ማላይኛ (ms)" title="ማላይኛ (ms)"></a>
-  <a href="docs/i18n/phi/README.md"><img src="docs/assets/flags/ph.svg" width="30" alt="ፊሊፒኖ (phi)" title="ፊሊፒኖ (phi)"></a>
-  <a href="docs/i18n/hi/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ሂንዲ (hi)" title="ሂንዲ (hi)"></a>
-  <a href="docs/i18n/gu/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ጉጃራቲ (gu)" title="ጉጃራቲ (gu)"></a>
-  <a href="docs/i18n/mr/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ማራቲ (mr)" title="ማራቲ (mr)"></a>
-  <a href="docs/i18n/ta/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ታሚል (ta)" title="ታሚል (ta)"></a>
-  <a href="docs/i18n/te/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ተሉጉ (te)" title="ተሉጉ (te)"></a>
-  <a href="docs/i18n/bn/README.md"><img src="docs/assets/flags/bd.svg" width="30" alt="ቤንጋሊ (bn)" title="ቤንጋሊ (bn)"></a>
-  <a href="docs/i18n/ur/README.md"><img src="docs/assets/flags/pk.svg" width="30" alt="ኡርዱ (ur)" title="ኡርዱ (ur)"></a>
-  <a href="docs/i18n/fa/README.md"><img src="docs/assets/flags/ir.svg" width="30" alt="ፋርስኛ (fa)" title="ፋርስኛ (fa)"></a>
-  <a href="docs/i18n/ar/README.md"><img src="docs/assets/flags/sa.svg" width="30" alt="ዓረብኛ (ar)" title="ዓረብኛ (ar)"></a>
-  <a href="docs/i18n/he/README.md"><img src="docs/assets/flags/il.svg" width="30" alt="ዕብራይስጥ (he)" title="ዕብራይስጥ (he)"></a>
-  <a href="docs/i18n/tr/README.md"><img src="docs/assets/flags/tr.svg" width="30" alt="ቱርክኛ (tr)" title="ቱርክኛ (tr)"></a>
-  <a href="docs/i18n/az/README.md"><img src="docs/assets/flags/az.svg" width="30" alt="አዘርባጃንኛ (az)" title="አዘርባጃንኛ (az)"></a>
-  <a href="docs/i18n/sw/README.md"><img src="docs/assets/flags/tz.svg" width="30" alt="ስዋሂሊ (sw)" title="ስዋሂሊ (sw)"></a>
-  <a href="docs/i18n/el/README.md"><img src="docs/assets/flags/gr.svg" width="30" alt="ግሪክኛ (el)" title="ግሪክኛ (el)"></a>
-  <a href="docs/i18n/hr/README.md"><img src="docs/assets/flags/hr.svg" width="30" alt="ክሮኤሽያኛ (hr)" title="ክሮኤሽያኛ (hr)"></a>
-  <a href="docs/i18n/sr/README.md"><img src="docs/assets/flags/rs.svg" width="30" alt="ሰርቢያኛ (sr)" title="ሰርቢያኛ (sr)"></a>
-  <a href="docs/i18n/lt/README.md"><img src="docs/assets/flags/lt.svg" width="30" alt="ሊቱዌኒያኛ (lt)" title="ሊቱዌኒያኛ (lt)"></a>
-  <a href="docs/i18n/et/README.md"><img src="docs/assets/flags/ee.svg" width="30" alt="ኤስቶኒያኛ (et)" title="ኤስቶኒያኛ (et)"></a>
-  <a href="docs/i18n/lv/README.md"><img src="docs/assets/flags/lv.svg" width="30" alt="ላትቪያኛ (lv)" title="ላትቪያኛ (lv)"></a>
-  <a href="docs/i18n/sl/README.md"><img src="docs/assets/flags/si.svg" width="30" alt="ስሎቬኒያኛ (sl)" title="ስሎቬኒያኛ (sl)"></a>
-  <a href="docs/i18n/mt/README.md"><img src="docs/assets/flags/mt.svg" width="30" alt="ማልቲኛ (mt)" title="ማልቲኛ (mt)"></a>
-  <a href="docs/i18n/ga/README.md"><img src="docs/assets/flags/ie.svg" width="30" alt="አይሪሽ (ga)" title="አይሪሽ (ga)"></a>
-  <a href="docs/i18n/kn/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ካናዳ (kn)" title="ካናዳ (kn)"></a>
-  <a href="docs/i18n/ml/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ማላያላም (ml)" title="ማላያላም (ml)"></a>
-  <a href="docs/i18n/or/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ኦድያ (or)" title="ኦድያ (or)"></a>
-  <a href="docs/i18n/pa/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ፑንጃቢ (pa)" title="ፑንጃቢ (pa)"></a>
-  <a href="docs/i18n/ne/README.md"><img src="docs/assets/flags/np.svg" width="30" alt="ኔፓሊኛ (ne)" title="ኔፓሊኛ (ne)"></a>
-  <a href="docs/i18n/si/README.md"><img src="docs/assets/flags/lk.svg" width="30" alt="ሲንሃላ (si)" title="ሲንሃላ (si)"></a>
-  <a href="docs/i18n/my/README.md"><img src="docs/assets/flags/mm.svg" width="30" alt="በርማኛ (my)" title="በርማኛ (my)"></a>
-  <a href="docs/i18n/km/README.md"><img src="docs/assets/flags/kh.svg" width="30" alt="ክመር (km)" title="ክመር (km)"></a>
-  <a href="docs/i18n/ha/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="ሃውሳ (ha)" title="ሃውሳ (ha)"></a>
-  <a href="docs/i18n/yo/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="ዮሩባ (yo)" title="ዮሩባ (yo)"></a>
-  <a href="docs/i18n/ig/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="ኢግቦ (ig)" title="ኢግቦ (ig)"></a>
+  <a href="README.md"><img src="docs/assets/flags/us.svg" width="30" alt="English (en)" title="English (en)"></a>
+  <a href="docs/i18n/pt-BR/README.md"><img src="docs/assets/flags/br.svg" width="30" alt="Português — Brasil (pt-BR)" title="Português — Brasil (pt-BR)"></a>
+  <a href="docs/i18n/pt/README.md"><img src="docs/assets/flags/pt.svg" width="30" alt="Português (pt)" title="Português (pt)"></a>
+  <a href="docs/i18n/es/README.md"><img src="docs/assets/flags/es.svg" width="30" alt="Español (es)" title="Español (es)"></a>
+  <a href="docs/i18n/fr/README.md"><img src="docs/assets/flags/fr.svg" width="30" alt="Français (fr)" title="Français (fr)"></a>
+  <a href="docs/i18n/it/README.md"><img src="docs/assets/flags/it.svg" width="30" alt="Italiano (it)" title="Italiano (it)"></a>
+  <a href="docs/i18n/de/README.md"><img src="docs/assets/flags/de.svg" width="30" alt="Deutsch (de)" title="Deutsch (de)"></a>
+  <a href="docs/i18n/nl/README.md"><img src="docs/assets/flags/nl.svg" width="30" alt="Nederlands (nl)" title="Nederlands (nl)"></a>
+  <a href="docs/i18n/ru/README.md"><img src="docs/assets/flags/ru.svg" width="30" alt="Русский (ru)" title="Русский (ru)"></a>
+  <a href="docs/i18n/uk-UA/README.md"><img src="docs/assets/flags/ua.svg" width="30" alt="Українська (uk-UA)" title="Українська (uk-UA)"></a>
+  <a href="docs/i18n/pl/README.md"><img src="docs/assets/flags/pl.svg" width="30" alt="Polski (pl)" title="Polski (pl)"></a>
+  <a href="docs/i18n/cs/README.md"><img src="docs/assets/flags/cz.svg" width="30" alt="Čeština (cs)" title="Čeština (cs)"></a>
+  <a href="docs/i18n/sk/README.md"><img src="docs/assets/flags/sk.svg" width="30" alt="Slovenčina (sk)" title="Slovenčina (sk)"></a>
+  <a href="docs/i18n/ro/README.md"><img src="docs/assets/flags/ro.svg" width="30" alt="Română (ro)" title="Română (ro)"></a>
+  <a href="docs/i18n/hu/README.md"><img src="docs/assets/flags/hu.svg" width="30" alt="Magyar (hu)" title="Magyar (hu)"></a>
+  <a href="docs/i18n/bg/README.md"><img src="docs/assets/flags/bg.svg" width="30" alt="Български (bg)" title="Български (bg)"></a>
+  <a href="docs/i18n/da/README.md"><img src="docs/assets/flags/dk.svg" width="30" alt="Dansk (da)" title="Dansk (da)"></a>
+  <a href="docs/i18n/fi/README.md"><img src="docs/assets/flags/fi.svg" width="30" alt="Suomi (fi)" title="Suomi (fi)"></a>
+  <a href="docs/i18n/no/README.md"><img src="docs/assets/flags/no.svg" width="30" alt="Norsk (no)" title="Norsk (no)"></a>
+  <a href="docs/i18n/sv/README.md"><img src="docs/assets/flags/se.svg" width="30" alt="Svenska (sv)" title="Svenska (sv)"></a>
+  <a href="docs/i18n/zh-CN/README.md"><img src="docs/assets/flags/cn.svg" width="30" alt="中文 — 简体 (zh-CN)" title="中文 — 简体 (zh-CN)"></a>
+  <a href="docs/i18n/zh-TW/README.md"><img src="docs/assets/flags/tw.svg" width="30" alt="中文 — 繁體 (zh-TW)" title="中文 — 繁體 (zh-TW)"></a>
+  <a href="docs/i18n/ja/README.md"><img src="docs/assets/flags/jp.svg" width="30" alt="日本語 (ja)" title="日本語 (ja)"></a>
+  <a href="docs/i18n/ko/README.md"><img src="docs/assets/flags/kr.svg" width="30" alt="한국어 (ko)" title="한국어 (ko)"></a>
+  <a href="docs/i18n/th/README.md"><img src="docs/assets/flags/th.svg" width="30" alt="ไทย (th)" title="ไทย (th)"></a>
+  <a href="docs/i18n/vi/README.md"><img src="docs/assets/flags/vn.svg" width="30" alt="Tiếng Việt (vi)" title="Tiếng Việt (vi)"></a>
+  <a href="docs/i18n/id/README.md"><img src="docs/assets/flags/id.svg" width="30" alt="Bahasa Indonesia (id)" title="Bahasa Indonesia (id)"></a>
+  <a href="docs/i18n/ms/README.md"><img src="docs/assets/flags/my.svg" width="30" alt="Bahasa Melayu (ms)" title="Bahasa Melayu (ms)"></a>
+  <a href="docs/i18n/phi/README.md"><img src="docs/assets/flags/ph.svg" width="30" alt="Filipino (phi)" title="Filipino (phi)"></a>
+  <a href="docs/i18n/hi/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="हिन्दी (hi)" title="हिन्दी (hi)"></a>
+  <a href="docs/i18n/gu/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ગુજરાતી (gu)" title="ગુજરાતી (gu)"></a>
+  <a href="docs/i18n/mr/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="मराठी (mr)" title="मराठी (mr)"></a>
+  <a href="docs/i18n/ta/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="தமிழ் (ta)" title="தமிழ் (ta)"></a>
+  <a href="docs/i18n/te/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="తెలుగు (te)" title="తెలుగు (te)"></a>
+  <a href="docs/i18n/bn/README.md"><img src="docs/assets/flags/bd.svg" width="30" alt="বাংলা (bn)" title="বাংলা (bn)"></a>
+  <a href="docs/i18n/ur/README.md"><img src="docs/assets/flags/pk.svg" width="30" alt="اردو (ur)" title="اردو (ur)"></a>
+  <a href="docs/i18n/fa/README.md"><img src="docs/assets/flags/ir.svg" width="30" alt="فارسی (fa)" title="فارسی (fa)"></a>
+  <a href="docs/i18n/ar/README.md"><img src="docs/assets/flags/sa.svg" width="30" alt="العربية (ar)" title="العربية (ar)"></a>
+  <a href="docs/i18n/he/README.md"><img src="docs/assets/flags/il.svg" width="30" alt="עברית (he)" title="עברית (he)"></a>
+  <a href="docs/i18n/tr/README.md"><img src="docs/assets/flags/tr.svg" width="30" alt="Türkçe (tr)" title="Türkçe (tr)"></a>
+  <a href="docs/i18n/az/README.md"><img src="docs/assets/flags/az.svg" width="30" alt="Azərbaycan (az)" title="Azərbaycan (az)"></a>
+  <a href="docs/i18n/sw/README.md"><img src="docs/assets/flags/tz.svg" width="30" alt="Kiswahili (sw)" title="Kiswahili (sw)"></a>
+  <a href="docs/i18n/el/README.md"><img src="docs/assets/flags/gr.svg" width="30" alt="Ελληνικά (el)" title="Ελληνικά (el)"></a>
+  <a href="docs/i18n/hr/README.md"><img src="docs/assets/flags/hr.svg" width="30" alt="Hrvatski (hr)" title="Hrvatski (hr)"></a>
+  <a href="docs/i18n/sr/README.md"><img src="docs/assets/flags/rs.svg" width="30" alt="Српски (sr)" title="Српски (sr)"></a>
+  <a href="docs/i18n/lt/README.md"><img src="docs/assets/flags/lt.svg" width="30" alt="Lietuvių (lt)" title="Lietuvių (lt)"></a>
+  <a href="docs/i18n/et/README.md"><img src="docs/assets/flags/ee.svg" width="30" alt="Eesti (et)" title="Eesti (et)"></a>
+  <a href="docs/i18n/lv/README.md"><img src="docs/assets/flags/lv.svg" width="30" alt="Latviešu (lv)" title="Latviešu (lv)"></a>
+  <a href="docs/i18n/sl/README.md"><img src="docs/assets/flags/si.svg" width="30" alt="Slovenščina (sl)" title="Slovenščina (sl)"></a>
+  <a href="docs/i18n/mt/README.md"><img src="docs/assets/flags/mt.svg" width="30" alt="Malti (mt)" title="Malti (mt)"></a>
+  <a href="docs/i18n/ga/README.md"><img src="docs/assets/flags/ie.svg" width="30" alt="Gaeilge (ga)" title="Gaeilge (ga)"></a>
+  <a href="docs/i18n/kn/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ಕನ್ನಡ (kn)" title="ಕನ್ನಡ (kn)"></a>
+  <a href="docs/i18n/ml/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="മലയാളം (ml)" title="മലയാളം (ml)"></a>
+  <a href="docs/i18n/or/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ଓଡ଼ିଆ (or)" title="ଓଡ଼ିଆ (or)"></a>
+  <a href="docs/i18n/pa/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ਪੰਜਾਬੀ (pa)" title="ਪੰਜਾਬੀ (pa)"></a>
+  <a href="docs/i18n/ne/README.md"><img src="docs/assets/flags/np.svg" width="30" alt="नेपाली (ne)" title="नेपाली (ne)"></a>
+  <a href="docs/i18n/si/README.md"><img src="docs/assets/flags/lk.svg" width="30" alt="සිංහල (si)" title="සිංහල (si)"></a>
+  <a href="docs/i18n/my/README.md"><img src="docs/assets/flags/mm.svg" width="30" alt="မြန်မာ (my)" title="မြန်မာ (my)"></a>
+  <a href="docs/i18n/km/README.md"><img src="docs/assets/flags/kh.svg" width="30" alt="ខ្មែរ (km)" title="ខ្មែរ (km)"></a>
+  <a href="docs/i18n/ha/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Hausa (ha)" title="Hausa (ha)"></a>
+  <a href="docs/i18n/yo/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Yorùbá (yo)" title="Yorùbá (yo)"></a>
+  <a href="docs/i18n/ig/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Igbo (ig)" title="Igbo (ig)"></a>
   <a href="docs/i18n/am/README.md"><img src="docs/assets/flags/et.svg" width="30" alt="አማርኛ (am)" title="አማርኛ (am)"></a>
-  <a href="docs/i18n/uz/README.md"><img src="docs/assets/flags/uz.svg" width="30" alt="ኡዝቤክኛ (uz)" title="ኡዝቤክኛ (uz)"></a>
-  <a href="docs/i18n/ka/README.md"><img src="docs/assets/flags/ge.svg" width="30" alt="ጆርጂያኛ (ka)" title="ጆርጂያኛ (ka)"></a>
-  <a href="docs/i18n/hy/README.md"><img src="docs/assets/flags/am.svg" width="30" alt="አርመንኛ (hy)" title="አርመንኛ (hy)"></a>
-  <a href="docs/i18n/bs/README.md"><img src="docs/assets/flags/ba.svg" width="30" alt="ቦስኒያኛ (bs)" title="ቦስኒያኛ (bs)"></a>
+  <a href="docs/i18n/uz/README.md"><img src="docs/assets/flags/uz.svg" width="30" alt="Oʻzbekcha (uz)" title="Oʻzbekcha (uz)"></a>
+  <a href="docs/i18n/ka/README.md"><img src="docs/assets/flags/ge.svg" width="30" alt="ქართული (ka)" title="ქართული (ka)"></a>
+  <a href="docs/i18n/hy/README.md"><img src="docs/assets/flags/am.svg" width="30" alt="Հայերեն (hy)" title="Հայերեն (hy)"></a>
+  <a href="docs/i18n/bs/README.md"><img src="docs/assets/flags/ba.svg" width="30" alt="Bosanski (bs)" title="Bosanski (bs)"></a>
 </div>
 
 <br/>
@@ -224,23 +213,23 @@
 
 <a id="first-run"></a>
 
-## 🆓 ጫን፣ አቅራቢን አገናኝ፣ ከዚያም በአንድ ኤንድፖይንት በኩል አዘዋውር
+## 🆓 ጫን ፣ አቅራቢን ያገናኙ ፣ ከዚያ በአንድ የመጨረሻ ነጥብ በኩል ይሂዱ
 
 </div>
 
-<img src="./docs/diagrams/works-zero-config.svg" width="100%" alt="ሶስት ደረጃዎች፦ OmniRouteን ጫንና አስጀምር፣ ብቁ የሆነ አቅራቢን በራስህ መለያ ወይም API ቁልፍ አገናኝ፣ ከዚያም መሣሪያህን localhost:20128/v1 ላይ በOmniRoute API ቁልፍ እና በራስ-ሰር ሞዴል እንዲጠቀም አድርግ። ማዘዋወር የሚወሰነው ባሉ ብቁ ግንኙነቶች እና በአቅራቢ ገደቦች ላይ ነው።"/>
+<img src="./docs/diagrams/works-zero-config.svg" width="100%" alt="Three steps: install and start OmniRoute, connect an eligible provider with your own account or API key, then point your tool at localhost:20128/v1 using an OmniRoute API key and model auto. Routing depends on available eligible connections and provider limits."/>
 
 ```bash
-# አቅራቢን ካገናኘህ በኋላ የOmniRoute ቁልፍህን ከDashboard → Endpoints ቅዳ፦
+# After connecting a provider, copy your OmniRoute key from Dashboard → Endpoints:
 curl http://localhost:20128/v1/chat/completions \
   -H "Authorization: Bearer YOUR_OMNIROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"auto","messages":[{"role":"user","content":"Hello!"}]}'
 ```
 
-<sub>`auto` ብቁ የሆነ የማዘዋወሪያ መንገድ ያስፈልገዋል። አዲስ ጭነት ምንም ብቁ የቁልፍ-አልባ መዳረሻዎች ላይኖሩት ይችላል፣ እና ቁልፍ-አልባ አቅራቢ የሶስተኛ ወገን ደንበኞችን ሊቀበል ይችላል። `tos: avoid` ተብለው የተመለከቱ አቅራቢዎች፣ Kiroን ጨምሮ፣ በነባሪ ከራስ-ሰር ማዘዋወር ውጭ ይደረጋሉ፤ መለያን ማገናኘት ይህን ቅንብር አይሽረውም። አቅራቢ ከመምረጥህ በፊት [የነፃ ደረጃዎች መመሪያ](docs/getting-started/FREE-TIERS-GUIDE.md)ን ተመልከት።</sub>
+<sub>`auto` ብቁ የሆነ መንገድ ያስፈልገዋል። አዲስ ተከላ ምንም ብቁ ቁልፍ የለሽ ኢላማዎች ሊኖሩት አይችልም፣ እና ቁልፍ የሌለው አቅራቢ የሶስተኛ ወገን ደንበኞችን ውድቅ ሊያደርግ ይችላል። `tos: avoid` Kiro ጨምሮ አቅራቢዎች በነባሪ ከራስ-ሰር ማዘዋወር የተገለሉ ናቸው። መለያን ማገናኘት ቅንብሩን አይሽረውም። አቅራቢ ከመምረጥዎ በፊት [የነጻ ደረጃዎች መመሪያን](docs/getting-started/FREE-TIERS-GUIDE.md) ይመልከቱ።</sub>
 
-<sub>📦 ለ**Python፣ Node.js፣ PHP እና cURL** የተዘጋጁ የፈጣን ጅምር ስክሪፕቶችን ቅዳና ለጥፍ → [`examples/quickstart/`](examples/quickstart/)</sub>
+<sub>📦 የፈጣን ጅምር ስክሪፕቶችን ይለጥፉ** Python፣ Node.js፣ PHP እና cURL** → [`examples/quickstart/`](examples/quickstart/)</sub>
 
 <br/>
 
@@ -250,22 +239,22 @@ curl http://localhost:20128/v1/chat/completions \
 
 </div>
 
-<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="ተስፋው — አንድ ኤንድፖይንት እና 385 አቅራቢዎች። ሌላ ጤናማ መዳረሻ እስካለ ድረስ ራስ-ሰር መተካት ማዘዋወሩን ይቀጥላል። ስድስት መሠረታዊ አምዶች፦ በ385 አቅራቢዎች መካከል ጽኑ የመተካት አቅም · ብቁ በሆኑ የሥራ ጫናዎች ላይ እስከ 95% የቶከን ቁጠባ · ከ150+ ነፃ ደረጃዎች እና 52 በየጊዜው የሚሰጡ/ቁልፍ-አልባ ለዘላለም ነፃ አቅራቢዎች ጋር በ$0 መጀመር · በአንድ ቅንብር በኩል 39 CLI/agent ውህደቶች · OpenAI፣ Claude፣ Gemini እና Responses API ተኳሃኝነት በ/v1 · የወረዳ ቆራጮች፣ TLS stealth፣ MCP 110 መሣሪያዎች፣ A2A፣ ማስታወሻ፣ guardrails፣ evals እና በ7,800+ የተከታተሉ የሙከራ ፋይሎች ውስጥ ከ56,000+ የማይንቀሳቀሱ የሙከራ መግለጫዎችን ጨምሮ የምርት አካባቢ ቁጥጥሮች።"/>
+<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="The Promise — One endpoint and 385 providers. Automatic fallback keeps routing while another healthy target is available. Six pillars: resilient fallback across 385 providers · up to 95% token savings on eligible workloads · $0 to start with 150+ free tiers and 52 recurring/keyless free-forever providers · 39 CLI/agent integrations through one config · OpenAI, Claude, Gemini and Responses API compatibility at /v1 · production controls including circuit breakers, TLS stealth, MCP 110 tools, A2A, memory, guardrails, evals and 56,000+ static test declarations across 7,800+ tracked test files."/>
 
 <br/>
 <br/>
 
 <div align="center">
 
-# 🤔 OmniRouteን ለምን?
+# 🤔 ለምን OmniRoute?
 
 </div>
 
-<img src="./docs/diagrams/why-pain-fix.svg" width="100%" alt="OmniRouteን ለምን — 10 ዳሽቦርዶችን፣ የሞቱ API ቁልፎችን እና ያልተጠበቁ ክፍያዎችን ማስተናገድ አቁም። አስር የዕለት ተዕለት ችግሮች እና መፍትሄዎቻቸው፦ ኮታ ሳይጠቀም ጊዜው ማለፍ → ምዝገባዎችን ከፍ አድርጎ መጠቀም፤ በኮድ መጻፍ መካከል የፍጥነት ገደቦች → 4-ደረጃ ራስ-ሰር መተካት (ምዝገባ → API → ርካሽ → ነፃ)፤ የመሣሪያ ውጤቶች ቶከኖችን ማባከን → RTK + Caveman መጭመቂያ (15–95%)፤ ውድ APIs → ወጪን የሚያመቻች ማዘዋወር፤ እያንዳንዱ መሣሪያ የራሱ ማዋቀር → አንድ ኤንድፖይንት፣ አንድ ዳሽቦርድ፤ AI መታገድ → 3-ደረጃ ፕሮክሲ + TLS stealth፤ የሞቱ ቁልፎች → 3-ንብርብር ጽናት (የወረዳ ቆራጮች፣ የቁልፍ ማቀዝቀዣ፣ የሞዴል መቆለፊያ)፤ ቡድን አንድ ምዝገባ መጋራት → ፍትሃዊ የጋራ ኮታ ያላቸው የቁልፍ ስብስቦች፤ ጥያቄዎችን በሌላ ሰው cloud በኩል ማሳለፍ → AES-256-GCM የተመሰጠሩ ቁልፎች ያለው local-first፤ የወጪ ታይነት አለመኖር → ቀጥታ ትንታኔ (አጠቃቀም፣ ኮታ፣ ቁጠባ፣ p95 መዘግየት)።"/>
+<img src="./docs/diagrams/why-pain-fix.svg" width="100%" alt="Why OmniRoute — stop juggling 10 dashboards, dead API keys and surprise bills. Ten daily pains vs fixes: quota expiring unused → maximize subscriptions; rate limits mid-coding → 4-tier auto-fallback (Subscription → API → Cheap → Free); tool outputs burning tokens → RTK + Caveman compression (15–95%); expensive APIs → cost-optimized routing; every tool its own setup → one endpoint, one dashboard; AI blocked → 3-level proxy + TLS stealth; dead keys → 3-layer resilience (circuit breakers, key cooldown, model lockout); team sharing one subscription → key pools with fair-share quotas; prompts through someone's cloud → local-first with AES-256-GCM encrypted keys; no spend visibility → live analytics (usage, quota, savings, p95 latency)."/>
 
 <div align="center">
 
-<img src="./docs/diagrams/tier-cascade.svg" width="100%" alt="የOmniRoute ጥያቄ ፍሰት፦ IDE ወይም CLIህ (Claude Code፣ Cursor፣ Cline…) አንድ የአካባቢ ኤንድፖይንት (http://localhost:20128/v1) ይጠራል፤ የOmniRoute Smart Router (RTK + Caveman መጭመቂያ፣ 20 የማዘዋወሪያ ስልቶች፣ የወረዳ ቆራጮች፣ TLS stealth፣ MCP፣ A2A፣ guardrails) ብቁ እና ጤናማ መዳረሻ እስካለ ድረስ በ4 የአቅራቢ ደረጃዎች መካከል መተካት ይችላል — ደረጃ 1 ምዝገባ፣ ደረጃ 2 API ቁልፍ፣ ደረጃ 3 ርካሽ እና ደረጃ 4 ነፃ።"/>
+<img src="./docs/diagrams/tier-cascade.svg" width="100%" alt="OmniRoute request flow: your IDE or CLI (Claude Code, Cursor, Cline…) calls one local endpoint (http://localhost:20128/v1); the OmniRoute Smart Router (RTK + Caveman compression, 20 routing strategies, circuit breakers, TLS stealth, MCP, A2A, guardrails) can fall back across 4 provider tiers while an eligible healthy target remains — Tier 1 Subscription, Tier 2 API Key, Tier 3 Cheap and Tier 4 Free."/>
 
 </div>
 
@@ -506,13 +495,13 @@ curl http://localhost:20128/v1/chat/completions \
 
 <div align="center">
 
-## 🏆 OmniRouteን የሚለየው ምንድን ነው?
+## 🏆 OmniRoute የሚለየው ምንድን ነው
 
 </div>
 
-<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="OmniRouteን የሚለየው — በ13 ችሎታዎች ላይ ከ9router፣ OpenRouter፣ CLIProxyAPI እና LiteLLM ጋር የተደረገ የቀን ማህተም ያለው የባህሪያት ንጽጽር። OmniRoute፦ 385 አቅራቢዎች፣ ከ150 በላይ ነፃ የአጠቃቀም ደረጃዎች አብረው የተካተቱ፣ 20 የማዞሪያ ስልቶች፣ 12-ሞተር የቶከን መጨመቂያ፣ 110 መሣሪያዎች ያሉት አብሮገነብ MCP አገልጋይ፣ A2A የኤጀንት ፕሮቶኮል፣ ቋሚ ማህደረ ትውስታ፣ የመከላከያ መመሪያዎች፣ የደመና ኤጀንቶች፣ የTLS አሻራ ምስጢራዊነት፣ Desktop/Termux/PWA እና 67 የi18n የተጠቃሚ በይነገጽ አካባቢያዊ ትርጉሞች። OmniRoute በMIT ፈቃድ የተሰጠው እና በራስዎ ማስተናገድ የሚችሉት ነው። የተወዳዳሪዎቹ ችሎታዎችና ቁጥሮች ሊቀየሩ ይችላሉ፤ የተገናኘውን ዘዴያዊ ሰነድ ይመልከቱ።"/>
+<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="What sets OmniRoute apart — a dated feature snapshot vs 9router, OpenRouter, CLIProxyAPI and LiteLLM across 13 capabilities. OmniRoute: 385 providers, 150+ free tiers built in, 20 routing strategies, 12-engine token compression, built-in MCP server with 110 tools, A2A agent protocol, persistent memory, guardrails, cloud agents, TLS fingerprint stealth, Desktop/Termux/PWA and 67 i18n UI locales. OmniRoute is MIT-licensed and self-hostable. Competitor capabilities and counts may change; see the linked methodology."/>
 
-<sub>📊 ሙሉ ዘዴያዊ ሰነድ እና በእያንዳንዱ ባህሪ ላይ ዝርዝር ንጽጽር ከ9router፣ OpenRouter፣ CLIProxyAPI እና LiteLLM ጋር → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
+<sub>📊 ሙሉ ዘዴ &amp; በእያንዳንዱ ባህሪ ዝርዝር vs 9router፣ OpenRouter፣ CLIProxyAPI &amp; LiteLLM → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
 
 <br/>
 
@@ -580,35 +569,35 @@ Radar በምርጫ የሚነቃ ሲሆን GET ጥያቄዎችን ብቻ ይጠ�
 
 </div>
 
-> ከ **v3.8.20 → v3.8.54** ያሉ የቅርብ ጊዜ ዋና ማሻሻያዎች። ሙሉ ታሪክ በ [`CHANGELOG.md`](CHANGELOG.md) ይገኛል።
+> የቅርብ ጊዜ ድምቀቶች ከ** v3.8.20 → v3.8.54** . ሙሉ ታሪክ በ [`CHANGELOG.md`](CHANGELOG.md)
 
-- **⚖️ `quota-weighted` ራውቲንግ** — 20ኛው የኮምቦ ስትራቴጂ ኮታቸውን የጨረሱ መለያዎችን ያልፋል፤ ከዚያም በቀሩት መካከል በቀሪ ኮታ ÷ በሂደት ላይ ባለ ጭነት መጠን መሠረት ይመርጣል፣ ነባር ውይይቶችንም በተመሳሳይ መለያ ላይ ያቆያል። → [Auto-Combo](docs/routing/AUTO-COMBO.md)
-- **🧰 ራስ-አልባ ሁነታ** — `omniroute serve --headless` (ወይም `OMNIROUTE_HEADLESS=1`) የ`/v1/*` ፕሮክሲ ሞተሩን ብቻ ያስኬዳል፤ ዳሽቦርዱና ለዳሽቦርዱ ብቻ የሚያገለግሉ ንዑስ ስርዓቶች ይጠፋሉ። → [Headless Mode](docs/guides/HEADLESS.md)
-- **🔎 የሞዴል ፍለጋ** — `/v1/models` በችሎታ፣ በአውድ፣ በዓይነት እና በጽሑፍ ይሰራል፤ `POST /v1/models/query` ደግሞ ተመሳሳይ በእያንዳንዱ ቁልፍ የሚወሰን ታይነት ያለው አጭርና በቆራጥነት የሚወሰን የምርጫ ዝርዝር ይመልሳል። → [API Reference](docs/reference/API_REFERENCE.md)
-- **🔑 በቁልፍ ደረጃ የራውቲንግ ቁጥጥር** — አንድ API ቁልፍን `forcedModel` በመጠቀም ወደ አንድ ሞዴል ወይም ኮምቦ ይሰኩ፤ እንዲሁም የአንድ ቁልፍ ሞዴሎችንና ኮምቦዎችን በአቶሚክ ሁኔታ ይጨምሩ ወይም ያስወግዱ (`/api/keys/{id}/access`)። → [API Reference](docs/reference/API_REFERENCE.md) · [OpenAPI](docs/openapi.yaml)
-- **🛡️ የተሻሉ የPII ቁጥጥሮች** — በዓይነት መምረጥ፣ እስከ 20 የተረጋገጡ ብጁ የመሸፈኛ ቅጦች እና በዓይነት የሚቆጠሩ የማወቂያ ቆጣሪዎች፤ መሸፈኑ ግን አሁንም በተጠቃሚው ፈቃድ ብቻ ይነቃል። → [Guardrails](docs/security/GUARDRAILS.md)
-- **🌍 67 ቋንቋዎች** — ዳሽቦርድ፣ የሰነድ መስታወቶች እና CLI፤ `npm run i18n:add-locale` በአንድ ትዕዛዝ ቋንቋን በሁሉም ቦታ ይጨምራል። → [i18n Guide](docs/guides/I18N.md)
-- **🎛️ OmniConductor** — ወደ ወኪሎችዎ መረብ የሚገባ A2A ውክልና፣ በAgent Card ላይ የConductor ችሎታዎች እና የFaro የድምፅ ውይይት ለመናገር-ተጫን የሚል የዳሽቦርድ ፓነል። → [A2A Server](docs/frameworks/A2A-SERVER.md)
-- **🛂 ተለዋዋጭ መቀበያ እና ከመጠን በላይ ጭነት ጥበቃ** — ከባድ የውይይት ጥያቄዎች 503 ከመመለስ ይልቅ ወረፋ ውስጥ ይገባሉ፤ በእያንዳንዱ ግንኙነት ደግሞ አቶሚክ RPM ተንሸራታች ሊዝ ይጠቀማሉ። → [Resilience Guide](docs/architecture/RESILIENCE_GUIDE.md)
-- **🗂️ ቀኖናዊ `/v1/models` ቅደም ተከተል** — ለእያንዳንዱ ፕሮቫይደር አንድ ተያያዥና በፕሮቫይደር የተመደበ ብሎክ (ኮምቦዎች በመጀመሪያ ተሰክተው)፣ ከሁሉም የካታሎግ ምንጮች ጋር የተረጋጋ። → [API Reference](docs/reference/API_REFERENCE.md)
-- **🗜️ የኮምፕሬሽን ጥንካሬ** — በነባሪ የሚነቃ የመስፋፋት ጥበቃ፣ ለDE / FR / JA እና ለቻይንኛ (wényán) Caveman ፓኮች፣ ለGradle እና .NET RTK ማጣሪያዎች። → [Compression](docs/compression/COMPRESSION_ENGINES.md)
-- **💸 ታማኝ የጠፍጣፋ ዋጋ ስሌት** — የምዝገባ / የኮዲንግ-ፕላን ፕሮቫይደሮች በወጪ ትንታኔ ውስጥ **$0** ተብለው ይነበባሉ፤ በጀት፣ ኮታ እና ራውቲንግ ግን ግምታቸውን ይቀጥላሉ። → [API Reference](docs/reference/API_REFERENCE.md)
-- **⚖️ Quota-Share ራውቲንግ** — የጋራ መለያ ኮታን በተመጣጣኝ ሁኔታ በተመደቡ ቁልፎች መካከል ይከፋፍላል፤ እንቅስቃሴ የሌላቸው ክፍሎች ለሌሎች እንዲበደሩ በማድረግ ሀብቱን ሙሉ በሙሉ ይጠቀማል። → [Resilience Guide](docs/architecture/RESILIENCE_GUIDE.md)
-- **🤖 በአንድ ትዕዛዝ CLI/ወኪል ማዋቀር** — 15 የተመዘገቡ `setup-*` ትዕዛዞች፤ `omniroute run` 7 CLIዎችን (Claude Code, Codex, Aider, Goose, OpenCode, Qwen Code, Gemini CLI) ያስጀምራል፤ `omniroute configure` በተጠቃሚ መስተጋብር የሚሰራ የፕሮቫይደር+ሞዴል መራጭና በእያንዳንዱ አውድ ተወዳጆችን ጨምሮ 11 ዒላማዎችን ይደግፋል። → [CLI Integrations](docs/guides/CLI-INTEGRATIONS.md)
-- **🛰️ የርቀት ሁነታ** — የርቀት OmniRouteን በተወሰነ ወሰን ባላቸው ቶከኖች (`connect` / `contexts` / `tokens`) ያስተዳድሩ፤ ለVPS ጭነቶችም `antigravity` OAuth እገዛ ይጠቀሙ። → [Remote Mode](docs/guides/REMOTE-MODE.md)
-- **🧭 የበለጠ ብልህ አውቶ-ራውቲንግ** — `auto/<category>:<tier>` ኮምቦዎች፣ **Fusion** (የሞዴል ፓነል + ዳኛ)፣ ተግባርን የሚያገናዝብ ራውቲንግ፣ በእያንዳንዱ ጥያቄ ሞዴል / ሁነታ / USD-በጀት መቀየሪያዎች። → [Auto-Combo](docs/routing/AUTO-COMBO.md)
-- **🗜️ ሊሰኩ የሚችሉ የኮምፕሬሽን ሞተሮች** — 12 ሊዋሃዱ የሚችሉ ሞተሮች እና Compression Studios፦ LLMLingua-2፣ ባለሁለት-ደረጃ Ultra፣ omniglyph፣ በእያንዳንዱ ደረጃ የታማኝነት መግቢያ፣ GCF v3.2፣ በመጎተት የሚደረደር አርታዒ። → [Compression](docs/compression/COMPRESSION_ENGINES.md)
-- **🕵️ ግልጽ MITM ዲክሪፕት (TPROXY)** — የፕሮክሲ አካባቢ ተለዋዋጮችን ችላ የሚሉ CLIዎችን ይይዛል፤ ከSNI ጋር የተያያዘ CA እና የመተማመኛ ማከማቻ መጫኛ አለው። → [MITM/TPROXY](docs/security/MITM-TPROXY-DECRYPT.md)
-- **💸 በሁሉም ቦታ የወጪ ቴሌሜትሪ** — በእያንዳንዱ ኤንድፖይንት `X-OmniRoute-*` የወጪ/አጠቃቀም ራስጌዎች፣ የካሽ-HIT ቁጠባ ራስጌ እና በእያንዳንዱ ቁልፍ የUSD ወጪ ኮታዎች። → [API Reference](docs/reference/API_REFERENCE.md)
-- **🧠 እርስዎ የሚቆጣጠሩት ማህደረ ትውስታ** — በነባሪ ጠፍቶ ይገኛል፤ በፈቃደኝነት የሚነቃ int8 የቬክተር ኳንታይዜሽን + ዓይነት-ተኮር መቀነስ፣ በእያንዳንዱ ጥያቄ `x-omniroute-no-memory`። → [Memory](docs/frameworks/MEMORY.md)
-- **🛡️ ደህንነት** — በእያንዳንዱ LLM ራውት ላይ የፕሮምፕት-ኢንጀክሽን ጥበቃ (የቀይ-ቡድን ሙከራ ስብስብ)፣ በፈቃደኝነት የሚነቃ የማረጋገጫ መረጃ መሸፈኛ ጥበቃ (የተሰረቁ API ቁልፎችን/ሚስጥሮችን በሁለቱም አቅጣጫዎች ይሰርዛል)፣ ነፃ DuckDuckGo የመጨረሻ አማራጭ የድር ፍለጋ እና ለዳሽቦርዱ አማራጭ OIDC የመግቢያ መግቢያ፤ የይለፍ ቃል መግቢያ ግን ሁልጊዜ ይኖራል። → [Guardrails](docs/security/GUARDRAILS.md)
-- **🖼️ አዲስ ኤንድፖይንቶች** — `/v1/ocr` (Mistral OCR) እና `/v1/audio/translations` (እንደ Whisper ያለ) የሚዲያ ተግባራትን ያሟላሉ። → [API Reference](docs/reference/API_REFERENCE.md)
-- **🎨 የምስል / ቪዲዮ / ድምፅ ማመንጨት** — ለሚዲያ አንድ API፦ xAI Grok Imagine እና Novita AI ቪዲዮ፣ ComfyUI፣ Magnific፣ Adobe Firefly፣ Segmind እና እንደ ElevenLabs ያሉ የንግግር ፕሮቫይደሮች። → [API Reference](docs/reference/API_REFERENCE.md)
-- **🌍 ማሰማራት እና ኦፕሬሽኖች** — የሪቨርስ-ፕሮክሲ `basePath`፣ በአሳሽ ቋንቋ ራስ-ሰር ማወቅ፣ በእያንዳንዱ ቁልፍ የመሣሪያ ክትትል፣ ሩት-አልባ MITM መተማመን፣ zh-TW አካባቢያዊ ትርጉም። → [Environment](docs/reference/ENVIRONMENT.md)
-- **🤝 ተጨማሪ ፕሮቫይደሮች እና ወኪሎች** — የደመና ወኪሎች (Codex Cloud, Cursor, Devin, Jules)፣ Grok Build (xAI) ከአሳሽ + OAuth መግቢያ ጋር፣ የመጀመሪያ-ደረጃ Ollama ካርድ፣ Claude Opus 5 እና Sonnet 5፣ የKimi ይፋዊ አጋርነት (Code/Web/Moonshot)፣ Zed፣ Requesty፣ SenseNova፣ Yuanbao፣ Agnes AI… እና እንደገና የተዘጋጀ **385-ፕሮቫይደር ካታሎግ**። → [Providers](docs/reference/PROVIDER_REFERENCE.md)
-- **📡 ግልጽ የራውቲንግ ሂደት** — እያንዳንዱ ምላሽ ያገለገለውን ስትራቴጂ/ፕሮቫይደር/መዘግየት የሚጠቅስ `X-OmniRoute-Decision` ራስጌ ይይዛል፤ አዲስ `cache-optimized` የኮምቦ ስትራቴጂ + Auto-Combo `cacheAffinity` ምክንያት ተደጋጋሚ ጥያቄዎችን የተሸጎጠውን ቅድመ-ቅጥያ ወደያዘው ግንኙነት ይመልሳል፤ እንዲሁም ተነባቢ-ብቻ `/v1/auto-combo/{channel}/candidates` ኤንድፖይንት የአንድ `auto/*` ቻናል ቀጥታ የእጩዎች ስብስብን ያሳያል። → [Auto-Combo](docs/routing/AUTO-COMBO.md)
-- **⚡ የአካባቢ አፈጻጸም እና መሠረተ ልማት** — በአንድ ጠቅታ የሚሠራ የአካባቢ Redis፣ Cloudflare Workers / Deno Deploy የማስተላለፊያ ማሰማሪያዎች፣ Bifrost እና Mux እንደሚቆጣጠሩ የተካተቱ አገልግሎቶች። → [የተካተቱ አገልግሎቶች](docs/frameworks/EMBEDDED-SERVICES.md)
-- **🧩 እንዲሁም በጥቅሉ ውስጥ** — የፕለጊን ማዕቀፍ እና የገበያ መድረክ፣ Omni/Agent/GitHub የክህሎት ማዕቀፎች፣ የObsidian vault ውህደት (22 MCP መሣሪያዎች)፣ ከOpenAI ጋር ተኳሃኝ የBatch እና Files APIs፣ የትርጉም ምላሽ መሸጎጫ፣ የደረጃ ሰሌዳዎች ያሉት የጨዋታ አቀራረብ፣ ACP የወኪል ግኝት (15 አብሮ የተሰሩ ወኪሎች)፣ ወደ BigQuery በመርሐ-ግብር የሚደረግ የሎግ ማስወጣት፣ `auto/chaos` በትይዩ የሚሠራ የብዝሃ-ሞዴል fan-out፣ የTelegram bot ድልድይ፣ በመተግበሪያው ውስጥ ያለ የስሪት አስተዳዳሪ እና የLMArena-ELO ነፃ አቅራቢዎች ደረጃ አሰጣጦች። → [ሰነዶች](docs/README.md)
+- **⚖️ `quota-weighted` ማዞሪያ** — 20ኛው ጥምር ስትራተጂ የተዳከሙ ሂሳቦችን ይዘላል፣ከቀሪዎቹ መካከል በበረራ ላይ ከሚኖረው የተረፈውን ኮታ ÷ ጋር በማነፃፀር ነባሮቹ ንግግሮች እንዲሰካ ያደርጋሉ። → [ራስ-ኮምቦ](docs/routing/AUTO-COMBO.md)
+- **🧰 ጭንቅላት የሌለው ሁነታ** — `omniroute serve --headless` (ወይም `OMNIROUTE_HEADLESS=1`) የሚሄደው `/v1/*` proxy engine ብቻ ነው፣ ዳሽቦርዱ እና ዳሽቦርድ-ብቻ ንኡስ ሲስተሞች ጠፍተዋል። → [ጭንቅላት የሌለው ሁነታ](docs/guides/HEADLESS.md)
+- **🔎 ሞዴል ግኝት** — `/v1/models` በችሎታ፣ በዐውደ-ጽሑፍ፣ በአይነት እና በጽሑፍ ያጣራል፣ እና `POST /v1/models/query` አጭር የመወሰኛ አጭር ዝርዝር በተመሳሳይ ቁልፍ ታይነት ይመልሳል። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md)
+- **🔑 የፐር-ቁልፍ ማዞሪያ መቆጣጠሪያ** — API ቁልፍን በአንድ ሞዴል ይሰኩት ወይም `forcedModel` ጋር ጥምር፣ እና የቁልፍ ሞዴሎችን እና ጥንብሮችን በአቶሚክ (`/api/keys/{id}/access`) ይጨምሩ ወይም ያስወግዱ። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md) · [OpenAPI](docs/openapi.yaml)
+- **🛡️ Finer PII መቆጣጠሪያዎች** — በየአይነት ምርጫ፣ እስከ 20 የሚደርሱ የተረጋገጡ ብጁ መሸፈኛ ቅጦች እና በእያንዳንዱ ዓይነት የመለየት ቆጣሪዎች; መሸፈኛ እራሱ መርጦ መግባት ይቀራል። → [Guardrails](docs/security/GUARDRAILS.md)
+- **🌍 67 ቋንቋዎች** — ዳሽቦርድ፣ ሰነዶች መስተዋቶች እና CLI፣ `npm run i18n:add-locale` በሁሉም ቦታ ቋንቋን በአንድ ትእዛዝ በማከል። → [i18n መመሪያ](docs/guides/I18N.md)
+- **🎛️ OmniConductor** — ወደ ውስጥ የገባው A2A ውክልና ወደ የእርስዎ ወኪል መርከቦች፣ በወኪል ካርዱ ላይ ያለው የአስተዳዳሪ ችሎታ እና የዳሽቦርድ ፓነል ከፋሮ-ወደ-ንግግር የድምጽ ውይይት። → [A2A አገልጋይ](docs/frameworks/A2A-SERVER.md)
+- **🛂 መላመድ እና ከመጠን በላይ መጫን ጥበቃ** ከ 503ing ይልቅ — የከባድ ሚዛን የቻት ጥያቄ ወረፋ፣ በአቶሚክ RPM የሚንከባለል ሊዝ በአንድ ግንኙነት። → [የመቋቋም መመሪያ](docs/architecture/RESILIENCE_GUIDE.md)
+- **🗂️ ቀኖናዊ `/v1/models` ማዘዝ** — አንድ ተከታታይ አቅራቢ-የተሰበሰበ ብሎክ በአቅራቢው (ኮምቦዎች መጀመሪያ ተሰክተዋል)፣ በሁሉም የካታሎግ ምንጮች ላይ የተረጋጋ። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md)
+- **🗜️ መጭመቂያ ማጠንከሪያ** — ነባሪ የዋጋ ግሽበት ጠባቂ፣ Caveman ጥቅሎች ለ DE / FR / JA + ቻይንኛ (ዌንያን)፣ RTK ማጣሪያዎች ለግራድል እና።NET→ [መጭመቂያ](docs/compression/COMPRESSION_ENGINES.md)
+- **💸 ታማኝ ጠፍጣፋ ዋጋ** — የደንበኝነት ምዝገባ / ኮድ-ዕቅድ አቅራቢዎች አንብበዋል** $0** በወጪ ትንታኔዎች; በጀት፣ ኮታ እና ማዘዋወር ግምቱን ይቀጥሉ። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md)
+- **⚖️ ኮታ-አጋራ ማዘዋወር** — የተጋራ መለያ ኮታ በተቀናጁ ቁልፎች ላይ በትክክል ተከፍሎአል፣ ስራ ቆጣቢ በመሆኑ ስራ ፈት የሆኑ ቁርጥራጮች ተበድረዋል። → [የመቋቋም መመሪያ](docs/architecture/RESILIENCE_GUIDE.md)
+- **🤖 አንድ-ትእዛዝ CLI/agent ማዋቀር** — 15 የተመዘገቡ `setup-*` ትዕዛዞች; `omniroute run` 7 CLIs ይጀምራል (Claude ኮድ, Codex, Aider, Goose, OpenCode, Qwen ኮድ, Gemini CLI); `omniroute configure` በይነተገናኝ አቅራቢ + ሞዴል መራጭ እና በየዓውድ ተወዳጆች ጋር 11 ኢላማዎችን ይደግፋል። → [CLI ውህደቶች](docs/guides/CLI-INTEGRATIONS.md)
+- **🛰️ የርቀት ሁነታ** — የርቀት OmniRoute መንዳት ከተቀመጡ ቶከኖች (`connect` / `contexts` / `tokens`) + an `antigravity` OAuth አጋዥ ለ VPS ጭነቶች። → [የርቀት ሁነታ](docs/guides/REMOTE-MODE.md)
+- **🧭 Smarter ራስ-ማዘዋወር** — `auto/<category>:<tier>` ጥንብሮች,** ውህደት** (ሞዴል ፓነል + ዳኛ)፣ የተግባርን ጠንቅቆ ማዞር፣ በጥያቄ ሞዴል/ሞድ/የUSD-በጀት ይሽራል። → [ራስ-ኮምቦ](docs/routing/AUTO-COMBO.md)
+- **🗜️ ሊሰካ የሚችል መጭመቂያ** — 12 የተቀናጁ ሞተሮች + መጭመቂያ ስቱዲዮዎች LLMLingua-2፣ ባለ ሁለት ደረጃ Ultra፣ omniglyph፣ በእያንዳንዱ ደረጃ ታማኝነት በር፣ GCF v3.2፣ ድራግ-ዳግም አርታዒ። → [መጭመቅ](docs/compression/COMPRESSION_ENGINES.md)
+- **🕵️ ግልጽ MITM ዲክሪፕት (TPROXY)** — በSNI CA + እምነት ማከማቻ ጫኚ፣ ተኪ env varsን ችላ የሚል CLIs ይይዛል። → [MITM/TPROXY](docs/security/MITM-TPROXY-DECRYPT.md)
+- **💸 ወጪ ቴሌሜትሪ በሁሉም ቦታ** — `X-OmniRoute-*` cost/usage ራስጌዎች በእያንዳንዱ የመጨረሻ ነጥብ፣ መሸጎጫ-HIT የቁጠባ ራስጌ፣ በእያንዳንዱ-ቁልፍ USD ወጪ ኮታዎች። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md)
+- **🧠 ሜሞሪ እርስዎ ይቆጣጠራሉ።** — በነባሪ ጠፍቷል፣ መርጦ ግባ int8 vector quantization + የተተየበው መበስበስ፣ በጥያቄ `x-omniroute-no-memory`። → [ማህደረ ትውስታ](docs/frameworks/MEMORY.md)
+- **🛡️ ደህንነት** — ፈጣን መርፌ ጠባቂ በእያንዳንዱ LLM መንገድ (የቀይ ቡድን ስብስብ)፣ የማረጋገጫ ጭንብል ጥበቃን መርጠው ይግቡ (በሁለቱም አቅጣጫ የፈሰሰውን API keys/secrets ያስወግዳል) ፣ ነፃ DuckDuckGo የመጨረሻ ሪዞርት ድር ፍለጋ እና አማራጭ OIDC መግቢያ በር ለዳሽቦርዱ (የይለፍ ቃል መግቢያ ሁል ጊዜ ይገኛል)። → [Guardrails](docs/security/GUARDRAILS.md)
+- **🖼️ አዲስ የመጨረሻ ነጥቦች** — `/v1/ocr` (Mistral OCR) እና `/v1/audio/translations` (ሹክሹክታ) የሚዲያውን ወለል ያጠጋጋሉ። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md)
+- **🎨 ምስል / ቪዲዮ / ኦዲዮ ትውልድ** — አንድ API ለሚዲያ xAI Grok Imagine & Novita AI ቪዲዮ፣ ComfyUI፣ Magnific፣ Adobe Firefly፣ Segmind፣ እና እንደ ElevenLabs ያሉ የንግግር አቅራቢዎች። → [API ማጣቀሻ](docs/reference/API_REFERENCE.md)
+- **🌍 ማሰማራት እና ኦፕስ** — reverse-proxy `basePath`፣ የአሳሽ ቋንቋ ራስ-አግኝት፣ በእያንዳንዱ ቁልፍ መሣሪያ መከታተል፣ ሥር-አልባ MITM እምነት፣ zh-TW አካባቢ። → [አካባቢ](docs/reference/ENVIRONMENT.md)
+- **🤝 ተጨማሪ አቅራቢዎች እና ወኪሎች** — የደመና ወኪሎች (Codex ክላውድ፣ Cursor፣ Devin፣ Jules)፣ Grok ገንባ (xAI) በአሳሽ + OAuth መግቢያ፣ Ollama አንደኛ ደረጃ ካርድ፣ Claude Opus 5 እና Sonnet 5፣ Kimi ይፋዊ ሽርክና (Code/Web/Moonshot)፣ Zed፣ ጥያቄ፣ SenseNova፣ አግነስ AI…** 385-የአቅራቢ ካታሎግ** . → [አቅራቢዎች](docs/reference/PROVIDER_REFERENCE.md)
+- **📡 የማዞሪያ ግልጽነት** — እያንዳንዱ ምላሽ ያገለገለውን strategy/provider/latency የሚል ስም ያለው የ `X-OmniRoute-Decision` ራስጌ ይይዛል፣ አዲስ `cache-optimized` ጥምር ስትራቴጂ + ራስ-ኮምቦ `cacheAffinity` ፋክተር መንገድ የተሸጎጠ ቅድመ ቅጥያ ወደያዘው ግንኙነት የሚቀርቡ ጥያቄዎችን ይደግማል፣ እና ተነባቢ-ብቻ `/v1/auto-combo/{channel}/candidates` የመጨረሻ ነጥብ `auto/*` ቻናል የቀጥታ እጩ ገንዳን ያጋልጣል። → [ራስ-ኮምቦ](docs/routing/AUTO-COMBO.md)
+- **⚡ የአካባቢ አፈጻጸም & infra** — አንድ ጊዜ ጠቅታ የአካባቢ Redis፣ Cloudflare ሠራተኞች / Deno Deploy relay deployers ፣ Bifrost እና Mux እንደ ክትትል የሚደረግላቸው የተካተቱ አገልግሎቶች። → [የተካተቱ አገልግሎቶች](docs/frameworks/EMBEDDED-SERVICES.md)
+- **🧩 በተጨማሪም በሳጥኑ ውስጥ** — plugin framework + የገበያ ቦታ፣ Omni/Agent/GitHub የክህሎት ማዕቀፎች፣ Obsidian ቮልት ውህደት (22 MCP መሳሪያዎች)፣ OpenAI-ተኳሃኝ ባች እና ፋይሎች APIs, የትርጉም ምላሽ መሸጎጫ፣ ከመሪዎች ሰሌዳዎች ጋር ማዋቀር፣ ACP ወኪል ግኝት (15 አብሮገነብ ወኪሎች)፣ የታቀደ ሎግ ወደ BigQuery፣ `auto/chaos` parallel-bot an Telegram -bot aapp አስተዳዳሪ እና LMArena-ELO የነጻ አቅራቢ ደረጃዎች። → [ሰነዶች](docs/README.md)
 
 <br/>
 
@@ -688,15 +677,15 @@ omniroute configure codex          # እንዲሁም: claude opencode qwen aider
 
 <div align="center">
 
-## 🌐 385 የAI አቅራቢዎች — 153 በካታሎግ ነፃ ተመዝግበዋል
+## 🌐 385 AI አቅራቢዎች — 153 ካታሎግ ነፃ ምልክት የተደረገባቸው
 
 </div>
 
-> በመደበኛ የውይይት፣ የሚዲያ፣ የፍለጋ፣ የአካባቢ፣ የክላውድ-ኤጀንት እና የሲስተም ስብስቦች ውስጥ **385 የተመዘገቡ አቅራቢዎች** አሉ፤ ከእነዚህም **153 `hasFree: true` የግኝት ሜታዳታ የያዙ** ናቸው። የውይይት ሞዴል መዝገቡ **239 አቅራቢዎች / 3,059 የተለያዩ አቅራቢ-ሞዴል ጥንዶች / 1,475 ጥሬ የሞዴል መለያዎች** ይሸፍናል፤ የተለየው የነፃ በጀት ካታሎግ ደግሞ **471 በሞዴል የተደራጁ ረድፎች**፣ **34 ተደጋጋሚ ገንዳዎች** እና **52 ተደጋጋሚ/ቁልፍ-አልባ ለዘላለም ነፃ አቅራቢዎች** አሉት። እነዚህ በንድፍ የተለያዩ መለኪያዎች ናቸው፤ ትርጓሜዎቹ እና በገንዳ የተባዙ ስሌቶቹ በ [የአቅራቢ ማጣቀሻ](docs/reference/PROVIDER_REFERENCE.md) እና [ነፃ ደረጃዎች](docs/reference/FREE_TIERS.md) ውስጥ ይገኛሉ።
+> **385 የተመዘገቡ አቅራቢዎች** በቀኖናዊው ውይይት፣ ሚዲያ፣ ፍለጋ፣ አካባቢያዊ፣ የደመና ወኪል እና የሥርዓት ስብስቦች፣ ጨምሮ** 153 `hasFree: true` ግኝት ሜታዳታ ተሸክሟል** . የውይይት ሞዴል መዝገብ ይሸፍናል** 239 አቅራቢዎች / 3,059 የተለየ አቅራቢ-ሞዴል ጥንዶች / 1,475 ጥሬ ሞዴል IDs** ; የተለየ የነፃ በጀት ካታሎግ አለው።** 471 በአንድ ሞዴል ረድፎች** ,** 34 ተደጋጋሚ ገንዳዎች** እና** 52 recurring/keyless ነፃ-ዘላለማዊ አቅራቢዎች** . እነዚህ በንድፍ የተለያዩ መለያዎች ናቸው; ትርጓሜዎች እና ገንዳ-የተቀነሱ ስሌቶች [በአቅራቢው ማጣቀሻ](docs/reference/PROVIDER_REFERENCE.md) እና [በነጻ ደረጃዎች](docs/reference/FREE_TIERS.md) ውስጥ ይኖራሉ።
 
 <div align="center">
 
-### 🏢 እያንዳንዱ ዋና ላብራቶሪ — በአንድ ኤንድፖይንት
+### 🏢 እያንዳንዱ ዋና ላብራቶሪ — በአንድ የመጨረሻ ነጥብ በኩል
 
 <table>
   <tr>
@@ -709,14 +698,14 @@ omniroute configure codex          # እንዲሁም: claude opencode qwen aider
   </tr>
   <tr>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qwen-color.svg" width="40" alt="Qwen"/><br/><sub>Qwen</sub><br/><sub>                           </sub></td>
-    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/meta-color.svg" width="40" alt="Meta Llama"/><br/><sub>Meta Llama</sub><br/><sub>                           </sub></td>
+    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/meta-color.svg" width="40" alt="Meta Llama"/><br/><sub>ሜታ Llama</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><picture><source media="(prefers-color-scheme:dark)" srcset="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-png@1.91.0/dark/groq.png"/><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/groq.svg" width="40" alt="Groq"/></picture><br/><sub>Groq</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/nvidia-color.svg" width="40" alt="NVIDIA"/><br/><sub>NVIDIA</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/minimax-color.svg" width="40" alt="MiniMax"/><br/><sub>MiniMax</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/cohere-color.svg" width="40" alt="Cohere"/><br/><sub>Cohere</sub><br/><sub>                           </sub></td>
   </tr>
   <tr>
-    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/perplexity-color.svg" width="40" alt="Perplexity"/><br/><sub>Perplexity</sub><br/><sub>                           </sub></td>
+    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/perplexity-color.svg" width="40" alt="Perplexity"/><br/><sub>ግራ መጋባት</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/huggingface-color.svg" width="40" alt="Hugging Face"/><br/><sub>HuggingFace</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/together-color.svg" width="40" alt="Together"/><br/><sub>Together</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/fireworks-color.svg" width="40" alt="Fireworks"/><br/><sub>Fireworks</sub><br/><sub>                           </sub></td>
@@ -725,32 +714,32 @@ omniroute configure codex          # እንዲሁም: claude opencode qwen aider
   </tr>
 </table>
 
-<sub>…እና ከ350 በላይ ተጨማሪ — እያንዳንዱ አዶ ከዳሽቦርዱ አቅራቢ ካታሎግ በቀጥታ ይገኛል። 📖 [የአቅራቢ ማጣቀሻ](docs/reference/PROVIDER_REFERENCE.md)</sub>
+<sub>…እና 350 + ተጨማሪ — እያንዳንዱ አዶ ከዳሽቦርዱ አቅራቢ ካታሎግ በቀጥታ ይፈታል። 📖 [የአቅራቢ ማጣቀሻ](docs/reference/PROVIDER_REFERENCE.md)</sub>
 
 <br/>
 
-### 🆓 ለዘላለም ነፃ — $0፣ ካርድ አያስፈልግም
+### 🆓 ነፃ ለዘላለም — $0፣ ምንም ካርድ የለም።
 
 <table>
   <tr>
-    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="OpenCode Zen"/><br/><b>OpenCode Zen</b><br/><sub>DeepSeek V4, Nemotron 3<br/>የቶከን ገደብ የለም</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="Kilo Code"/><br/><b>Kilo Code</b><br/><sub>ራስ-ሰር ራውተር፣ Tencent Hy3<br/>ለዘላለም ነፃ</sub></td>
-    <td align="center" width="150"><img src="./public/providers/requesty.svg" width="42" alt="Requesty"/><br/><b>Requesty</b><br/><sub>GPT-OSS 120B, Nemotron<br/>ለዘላለም ነፃ</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="OpenCode Zen"/><br/><b>OpenCode Zen</b><br/><sub>DeepSeek V4፣ Nemotron 3<br/>ምንም ማስመሰያ ካፕ የለም።</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="Kilo Code"/><br/><b>ኪሎ ኮድ</b><br/><sub>ራስ-ራውተር፣ Tencent Hy3<br/>ለዘላለም ነፃ</sub></td>
+    <td align="center" width="150"><img src="./public/providers/requesty.svg" width="42" alt="Requesty"/><br/><b>ጥያቄ</b><br/><sub>GPT-OSS 120B, Nemotron<br/>ለዘላለም ነፃ</sub></td>
     <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/siliconcloud-color.svg" width="42" alt="SiliconFlow"/><br/><b>SiliconFlow</b><br/><sub>DeepSeek V3.2 / R1<br/>ነፃ ደረጃ</sub></td>
-    <td align="center" width="150"><img src="./public/providers/zhipu.svg" width="42" alt="Z.AI GLM"/><br/><b>Z.AI GLM</b><br/><sub>GLM-4.7 / 4.5-Flash<br/>ለዘላለም ነፃ</sub></td>
+    <td align="center" width="150"><img src="./public/providers/zhipu.svg" width="42" alt="Z.AI GLM"/><br/><b>AI GLM</b><br/><sub>GLM-4.7 / 4.5-ብልጭታ<br/>ለዘላለም ነፃ</sub></td>
     <td align="center" width="150"><img src="./public/providers/baidu.svg" width="42" alt="Baidu ERNIE"/><br/><b>Baidu ERNIE</b><br/><sub>ERNIE 4.0<br/>ለዘላለም ነፃ</sub></td>
   </tr>
   <tr>
-    <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qoder-color.svg" width="42" alt="Qoder AI"/><br/><b>Qoder AI</b><br/><sub>Qwen3-Max, Kimi-K2<br/>ያልተገደበ ነፃ</sub></td>
-    <td align="center" width="150"><img src="./public/providers/pollinations.svg" width="42" alt="Pollinations"/><br/><b>Pollinations</b><br/><sub>GPT, Llama, Claude<br/>ቁልፍ አያስፈልግም</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cloudflare.svg" width="42" alt="Cloudflare AI"/><br/><b>Cloudflare AI</b><br/><sub>ከ50 በላይ ሞዴሎች<br/>10K neurons/ቀን</sub></td>
-    <td align="center" width="150"><img src="./public/providers/nvidia.svg" width="42" alt="NVIDIA NIM"/><br/><b>NVIDIA NIM</b><br/><sub>GLM, MiniMax<br/>በነፃ ወደ 40 RPM ገደማ</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cerebras.svg" width="42" alt="Cerebras"/><br/><b>Cerebras</b><br/><sub>GLM 4.7, GPT-OSS<br/>የአንድ ጊዜ $5 ክሬዲት፤ ካርድ ያስፈልጋል</sub></td>
-    <td align="center" width="150"><img src="./public/providers/openrouter.svg" width="42" alt="OpenRouter"/><br/><b>OpenRouter</b><br/><sub>:free models<br/>+$10 → ከፍተኛ RPM</sub></td>
+    <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qoder-color.svg" width="42" alt="Qoder AI"/><br/><b>Qoder AI</b><br/><sub>Qwen3-Max, Kimi-K2<br/>ያልተገደበ FREE</sub></td>
+    <td align="center" width="150"><img src="./public/providers/pollinations.svg" width="42" alt="Pollinations"/><br/><b>የአበባ ዘር ስርጭት</b><br/><sub>GPT, Llama, Claude<br/>ምንም ቁልፍ አያስፈልግም</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cloudflare.svg" width="42" alt="Cloudflare AI"/><br/><b>Cloudflare AI</b><br/><sub>50 + ሞዴሎች<br/>10 ኪ neurons/day</sub></td>
+    <td align="center" width="150"><img src="./public/providers/nvidia.svg" width="42" alt="NVIDIA NIM"/><br/><b>NVIDIA NIM</b><br/><sub>GLM, MiniMax<br/>~ 40 RPM ነፃ</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cerebras.svg" width="42" alt="Cerebras"/><br/><b>Cerebras</b><br/><sub>GLM 4.7, GPT-OSS<br/>የአንድ ጊዜ 5 ዶላር ክሬዲት; ካርድ ያስፈልጋል</sub></td>
+    <td align="center" width="150"><img src="./public/providers/openrouter.svg" width="42" alt="OpenRouter"/><br/><b>OpenRouter</b><br/><sub>ነፃ ሞዴሎች<br/>+$10 → ከፍ ያለ RPM</sub></td>
   </tr>
 </table>
 
-📖 ሙሉ በማሽን ሊነበብ የሚችል ካታሎግ → [`docs/reference/PROVIDER_REFERENCE.md`](docs/reference/PROVIDER_REFERENCE.md)
+📖 ሙሉ ማሽን-ሊነበብ የሚችል ካታሎግ → [`docs/reference/PROVIDER_REFERENCE.md`](docs/reference/PROVIDER_REFERENCE.md)
 
 <br/>
 </div>
@@ -1286,29 +1275,29 @@ OMNIROUTE_SKIP_POSTINSTALL=1 npm install -g omniroute   # CI=1ም ይዘለዋ�
 <br/>
 <div align="center">
 
-## 🛠️ የቴክኖሎጂ ቁልል
+## 🛠️ ቴክ ቁልል
 
 </div>
 
 <table>
-  <tr><th align="left">ንብር</th><th align="left">ቴክኖሎጂ</th></tr>
-  <tr><td nowrap><b>የማስኬጃ አካባቢ</b></td><td>Node.js 22.x / 24.x LTS — <code>&gt;=22.22.2 &lt;23 || &gt;=24.0.0 &lt;27</code></td></tr>
-  <tr><td nowrap><b>ቋንቋ</b></td><td>TypeScript 6.0 — በ<code>src/</code> እና <code>open-sse/</code> ውስጥ <b>100% TypeScript</b> (ከv2.0 ጀምሮ በዋናው ኮድ ውስጥ ዜሮ <code>any</code>)</td></tr>
-  <tr><td nowrap><b>ፍሬምወርክ</b></td><td>Next.js 16 + React 19 + Tailwind CSS 4</td></tr>
-  <tr><td nowrap><b>የውሂብ ጎታ</b></td><td>better-sqlite3 (SQLite፣ WAL ጆርናሊንግ) + LowDB (የJSON ውርስ) — 147 የዶሜይን ሞጁሎች፣ 232 ማይግሬሽኖች</td></tr>
-  <tr><td nowrap><b>ማህደረ ትውስታ</b></td><td>የSQLite FTS5 ሙሉ-ጽሑፍ + int8-quantized የቬክተር ኢምቤዲንጎች፣ የተየበ መቀነስ</td></tr>
-  <tr><td nowrap><b>ስኪማዎች</b></td><td>Zod 4 — የMCP መሣሪያ I/O ማረጋገጫ + የAPI ውሎች</td></tr>
+  <tr><th align="left">ንብርብር</th><th align="left">ቴክኖሎጂ</th></tr>
+  <tr><td nowrap><b>የሩጫ ጊዜ</b></td><td>Node.js 22.x / 24.x LTS — <code>&gt;=22.22.2 &lt;23 || &gt;=24.0.0 &lt;27</code></td></tr>
+  <tr><td nowrap><b>ቋንቋ</b></td><td>TypeScript 6.0 — <b>100% TypeScript</b> በ <code>src/</code> እና <code>open-sse/</code> (ዜሮ <code>any</code> በኮር ከv2.0 ጀምሮ)</td></tr>
+  <tr><td nowrap><b>ማዕቀፍ</b></td><td>Next.js 16 + React 19 + Tailwind CSS 4</td></tr>
+  <tr><td nowrap><b>የውሂብ ጎታ</b></td><td>better-sqlite3 (SQLite፣ WAL journaling) + LowDB (JSON ቅርስ) — 147 ጎራ ሞጁሎች፣ 232 ፍልሰት</td></tr>
+  <tr><td nowrap><b>ማህደረ ትውስታ</b></td><td>SQLite FTS5 ሙሉ ጽሑፍ + int8-quantized የቬክተር መክተቻዎች፣ የተተየበው መበስበስ</td></tr>
+  <tr><td nowrap><b>መርሃግብሮች</b></td><td>Zod 4 — MCP መሣሪያ I/O ማረጋገጫ + API ኮንትራቶች</td></tr>
   <tr><td nowrap><b>ፕሮቶኮሎች</b></td><td>MCP (stdio / HTTP / SSE) + A2A v0.3 (JSON-RPC 2.0 + SSE)</td></tr>
-  <tr><td nowrap><b>ዥረት ማስተላለፍ</b></td><td>Server-Sent Events (SSE) + WebSocket ድልድይ (<code>/v1/ws</code>)</td></tr>
-  <tr><td nowrap><b>መጭመቅ</b></td><td>12-ሞተር የሂደት መስመር — RTK, Caveman, LLMLingua-2 (MobileBERT ONNX), GCF, OmniGlyph</td></tr>
-  <tr><td nowrap><b>ማረጋገጫ እና ደህንነት</b></td><td>OAuth 2.0 (PKCE) + JWT + API Keys + MCP የተወሰነ ማረጋገጫ · AES-256-GCM በማከማቻ ላይ · DOMPurify</td></tr>
-  <tr><td nowrap><b>ስውርነት</b></td><td>wreq-js — JA3 / JA4 TLS የአሻራ ማስመሰል፣ 3-ደረጃ ፕሮክሲ</td></tr>
-  <tr><td nowrap><b>ጽናት</b></td><td>የወረዳ ማቋረጫ፣ ኤክስፖኔንሻል የመመለሻ መዘግየት፣ የተጠቃሚዎች በአንድ ጊዜ መጨናነቅን መከላከል፣ ራስ-ሰር ጥምረት ራስን መጠገን</td></tr>
-  <tr><td nowrap><b>መዝገብ ማድረግ</b></td><td>pino — የተዋቀሩ የJSON መዝገቦች ከጥያቄ አውድ ጋር</td></tr>
-  <tr><td nowrap><b>ሙከራ</b></td><td>Node.js test runner + Vitest — በ8,400+ በተከታተሉ የሙከራ ፋይሎች (ዩኒት፣ ኢንተግሬሽን፣ E2E፣ ደህንነት፣ ኢኮሲስተም) ውስጥ <b>60,000+ የማይንቀሳቀሱ የሙከራ መግለጫዎች</b></td></tr>
-  <tr><td nowrap><b>መድረኮች</b></td><td>ዴስክቶፕ (Electron) · Android (Termux) · PWA (ማንኛውም አሳሽ)</td></tr>
-  <tr><td nowrap><b>CI/CD</b></td><td>GitHub Actions — በልቀት ጊዜ ራስ-ሰር npm ማተም + Docker Hub</td></tr>
-  <tr><td nowrap><b>አገናኞች</b></td><td><a href="https://omniroute.online">ድረ-ገጽ</a> · <a href="https://www.npmjs.com/package/omniroute">npm</a> · <a href="https://hub.docker.com/r/diegosouzapw/omniroute">Docker Hub</a></td></tr>
+  <tr><td nowrap><b>በዥረት መልቀቅ</b></td><td>በአገልጋይ የተላኩ ክስተቶች (SSE) + WebSocket ድልድይ (<code>/v1/ws</code>)</td></tr>
+  <tr><td nowrap><b>መጨናነቅ</b></td><td>12-ሞተር ቧንቧ መስመር — RTK, Caveman, LLMLingua-2 (MobileBERT ONNX), GCF, OmniGlyph</td></tr>
+  <tr><td nowrap><b>Auth &amp; ደህንነት</b></td><td>OAuth 2.0 (PKCE) + JWT + API ቁልፎች + MCP scoped auth · AES-256-GCM በእረፍት · DOMPurify</td></tr>
+  <tr><td nowrap><b>ስውርነት</b></td><td>wreq-js — JA3 / JA4 TLS የጣት አሻራ ማስመሰል፣ ባለ 3-ደረጃ ፕሮክሲ</td></tr>
+  <tr><td nowrap><b>የመቋቋም ችሎታ</b></td><td>የወረዳ ሰባሪ፣ ገላጭ የኋላ ማጥፋት፣ ፀረ-ነጎድጓድ-መንጋ፣ ራስ-ኮምቦ ራስን መፈወስ</td></tr>
+  <tr><td nowrap><b>መግባት</b></td><td>pino — የተዋቀሩ JSON ምዝግብ ማስታወሻዎች ከጥያቄ አውድ ጋር</td></tr>
+  <tr><td nowrap><b>መሞከር</b></td><td>Node.js የሙከራ ሯጭ + Vitest — <b>60,000 + የማይንቀሳቀስ ሙከራ መግለጫዎች</b> በ8,400 + ክትትል የሚደረግባቸው የሙከራ ፋይሎች (ዩኒት፣ ውህደት፣ E2E፣ ደህንነት፣ ስነ-ምህዳር)</td></tr>
+  <tr><td nowrap><b>መድረኮች</b></td><td>ዴስክቶፕ (Electron) · አንድሮይድ (ቴርሙክስ) · PWA (ማንኛውም አሳሽ)</td></tr>
+  <tr><td nowrap><b>CI/CD</b></td><td>GitHub ድርጊቶች — auto npm + Docker Hub በሚለቀቅበት ጊዜ ያትማል</td></tr>
+  <tr><td nowrap><b>አገናኞች</b></td><td><a href="https://omniroute.online">ድህረገፅ</a> · <a href="https://www.npmjs.com/package/omniroute">npm</a> · <a href="https://hub.docker.com/r/diegosouzapw/omniroute">Docker Hub</a></td></tr>
 </table>
 
 <div align="center">

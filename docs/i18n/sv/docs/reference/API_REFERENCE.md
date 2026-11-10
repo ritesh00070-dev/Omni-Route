@@ -985,33 +985,24 @@ slutförandet.
 
 ## Rapportering av kvoter och problem
 
-| Metod | Sökväg              | Beskrivning                                                                                              |
-| ----- | ------------------- | -------------------------------------------------------------------------------------------------------- |
-| GET   | `/v1/quotas/check`  | Förvalidera kvoten för en `provider` + `accountId` innan en registrerad nyckel utfärdas                  |
-| POST  | `/v1/issues/report` | Rapportera ett misslyckande vid kvot-/nyckelutfärdande till GitHub (kräver `GITHUB_ISSUES_REPO` + token) |
+| Metod | Väg                 | Beskrivning                                                                                |
+| ----- | ------------------- | ------------------------------------------------------------------------------------------ |
+| GET   | `/v1/quotas/check`  | Förvalidera kvoten för en `provider` + `accountId` innan du utfärdar en registrerad nyckel |
+| POST  | `/v1/issues/report` | Rapportera ett quota/key -emissionsfel till GitHub (kräver `GITHUB_ISSUES_REPO` + token)   |
 
-**Autentisering:** Bearer API-nyckel (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` tar en bärare API nyckel (`isAuthenticated`). `/v1/issues/report` är enbart för hantering (`requireManagementAuth`), som `/api/v1/registered-keys`: en instrumentpanelsession, den lokala CLI tokenen eller en API nyckel med `manage`/`admin` omfattning; API -nycklar endast för slutledning får `403`.
 
-### Återställning av kvotsession (valfritt)
+### Återställning av kvotsession (opt-in)
 
-En icke-strömmande `POST /v1/chat/completions` eller `POST /v1/responses` som misslyckas med
-ett terminalt kvotfel (`402`/`429`/`503` vars body anger att kvoten eller krediterna är slut)
-kan parkeras och spelas upp senare i stället för att returnera felet. Anroparen väljer detta per
-begäran med tre headers:
+En icke-strömmande `POST /v1/chat/completions` eller `POST /v1/responses` som misslyckas med ett terminal kvotfel (`402`/`429`/`503` vars kropp säger att kvoten eller krediterna är slut) kan parkeras och spelas upp senare istället för att returnera felet. Den som ringer väljer att delta per begäran med tre rubriker:
 
-| Header                       | Värde                                            |
-| ---------------------------- | ------------------------------------------------ |
-| `x-omniroute-quota-recovery` | `auto`                                           |
-| `x-omniroute-session`        | sessions-ID, `[A-Za-z0-9._:-]{1,128}`            |
-| `x-omniroute-recovery-turn`  | tur-ID som är unikt inom sessionen (samma regel) |
+| Rubrik                       | Värde                                      |
+| ---------------------------- | ------------------------------------------ |
+| `x-omniroute-quota-recovery` | `auto`                                     |
+| `x-omniroute-session`        | sessions-id, `[A-Za-z0-9._:-]{1,128}`      |
+| `x-omniroute-recovery-turn`  | turn-id unikt inom sessionen (samma regel) |
 
-Endast turer med `stream: false` utan verktyg, verktygshistorik eller `previous_response_id`, och utan
-`x-omniroute-connection`-bindning, är berättigade, och `STORAGE_ENCRYPTION_KEY` måste vara angiven
-(begäran lagras krypterad i upp till 24 timmar). Svaret blir då `202` med
-`recovery.poll`; polla `GET /v1/quota-recoveries/{id}` (`202` medan den väntar, `200` med den
-återställda bodyn när den är klar) eller avbryt med `DELETE`. Ärenden är endast synliga för den API-
-nyckel som skapade dem. En uppspelning vars resultat är osäkert avslutas i `needs_confirmation`
-i stället för att skickas två gånger. Källa: `src/lib/quota/quotaSessionRecovery.ts`.
+Endast `stream: false` varv utan verktyg, verktygshistorik eller `previous_response_id`, och ingen `x-omniroute-connection` -stift, är berättigade, och `STORAGE_ENCRYPTION_KEY` måste ställas in (förfrågan lagras krypterad i upp till 24 timmar). Svaret är sedan `202` med `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` i väntan, `200` med den återställda kroppen när den är klar) eller avbryt med `DELETE`. Biljetter är endast synliga för API nyckeln som skapade dem. En repris vars utfall är osäkert slutar i `needs_confirmation` istället för att skickas två gånger. Källa: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1766,17 +1757,21 @@ Utgående webhookprenumerationer för OmniRoute-händelser (slutförda begärand
 
 ## Registrerade nycklar (automatisk hantering)
 
-Används av undersystemet för automatisk nyckelhantering för att utfärda och rotera API-nycklar mot en underliggande leverantör/ett konto, med dagliga/timvisa kvoter.
+Används av undersystemet för automatisk nyckelhantering för att utfärda och rotera API nycklar mot en stödjande provider/account, med daily/hourly kvoter.
 
-| Metod  | Sökväg                                | Beskrivning                                                                                                                                                                                                  |
+| Metod  | Väg                                   | Beskrivning                                                                                                                                                                                                  |
 | ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GET    | `/api/v1/registered-keys`             | Lista registrerade nycklar (endast maskerat prefix)                                                                                                                                                          |
-| POST   | `/api/v1/registered-keys`             | Utfärda en ny registrerad nyckel — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Returnerar den råa nyckeln **en gång**. Returnerar `429` vid nekad kvot. |
-| GET    | `/api/v1/registered-keys/[id]`        | Hämta metadata för en registrerad nyckel (inget råvärde)                                                                                                                                                     |
+| GET    | `/api/v1/registered-keys`             | Lista registrerade nycklar (endast maskerade prefix)                                                                                                                                                         |
+| POST   | `/api/v1/registered-keys`             | Ge en ny registrerad nyckel — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Returnerar den råa nyckeln** en gång** . Returnerar `429` vid avslag på kvot. |
+| GET    | `/api/v1/registered-keys/[id]`        | Hämta en registrerad nyckels metadata (inget råmaterial)                                                                                                                                                     |
 | DELETE | `/api/v1/registered-keys/[id]`        | Återkalla en registrerad nyckel                                                                                                                                                                              |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Explicit endpoint för återkallande (samma effekt som DELETE)                                                                                                                                                 |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Explicit återkallelseslutpunkt (samma effekt som DELETE)                                                                                                                                                     |
+| GET    | `/api/v1/providers/[provider]/limits` | Läs leverantörens emissionstak                                                                                                                                                                               |
+| PUT    | `/api/v1/providers/[provider]/limits` | Ställ in leverantörens emissionstak — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                          |
+| GET    | `/api/v1/accounts/[id]/limits`        | Läs kontots emissionstak                                                                                                                                                                                     |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Ställ in kontots emissionstak — samma text som leverantörsvägen                                                                                                                                              |
 
-**Autentisering:** hanteringssession/API-nyckel (`requireManagementAuth`) — samma skydd som `/api/keys`: en dashboardsession, den lokala CLI-token eller en API-nyckel med scopet `manage`/`admin`; API-nycklar som endast har behörighet för inferens får `403`. Se även `/v1/quotas/check` och `/v1/issues/report`.
+**Auth:** management session/API nyckel (`requireManagementAuth`) — samma skydd som `/api/keys`: en instrumentpanelsession, den lokala CLI tokenen eller en API nyckel med `manage`/`admin` -omfattning; API -nycklar endast för slutledning får `403`. Se även `/v1/quotas/check` och `/v1/issues/report`.
 
 ---
 

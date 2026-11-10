@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `components/`                    | Komponenta nadzorne ploče API: adapteri preko `packages/ui-kit` — vidi `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: nazivi ikona koje koriste zasloni → Lucide komponente (`<Icon>`)                                |
-| `constants/providers.ts`         | **381 pružatelja usluga** sa Zod validacijom (izvor istine)                                                 |
+| `constants/providers.ts`         | **385 pružatelja usluga** sa Zod validacijom (izvor istine)                                                 |
 | `constants/cliTools.ts`          | Vanjski registar CLI alata                                                                                  |
 | `constants/routingStrategies.ts` | **20 strategija usmjeravanja** s prioritetima                                                               |
 | `constants/publicApiRoutes.ts`   | Rute koje zahtijevaju autorizaciju nositelja (nasuprot upravljanju).                                        |
@@ -395,24 +395,24 @@ open-sse/
 
 ### Vodiči na najvišoj razini
 
-| O tome govori doc           | Svrha                                                                                      |
-| --------------------------- | ------------------------------------------------------------------------------------------ |
-| `ARCHITECTURE.md`           | Arhitektura visoke razine, karta podsustava, površina nadzorne ploče                       |
-| `CODEBASE_DOCUMENTATION.md` | Inženjerske reference: imenici, moduli, konvencije                                         |
-| `FEATURES.md`               | Matrica značajki s istaknutim točkama v3.8                                                 |
-| `USER_GUIDE.md`             | Priručnik za krajnjeg korisnika (postavljanje, modeli, kombinacije, CLIs, audio itd.)      |
-| `API_REFERENCE.md`          | API referenca krajnje točke s modelom autentifikacije                                      |
-| `openapi.yaml`              | specifikacija OpenAPI 3.0 (121 staza)                                                      |
-| `SETUP_GUIDE.md`            | Metode instalacije (npm, npx, Docker, Electron, Termux, izvor)                             |
-| `ENVIRONMENT.md`            | Sve env vars (~ 800 dokumentirano, ~ 3050 redaka `.env.example`)                           |
-| `TROUBLESHOOTING.md`        | Uobičajene pogreške + v3.8.0 poznati problemi                                              |
-| `RELEASE_CHECKLIST.md`      | Potpuni tijek izdanja (vještine, husky, konvencionalna predaja, implementacija)            |
-| `COVERAGE_PLAN.md`          | Ciljevi pokrića i trenutno stanje                                                          |
-| `FREE_TIERS.md`             | Odabrani pružatelji besplatne razine (48 + besplatno + 11 OAuth)                           |
-| `CLI-TOOLS.md`              | Vanjske CLI integracije + Interne OmniRoute CLI                                            |
-| `I18N.md`                   | i18n arhitektura, dodavanje jezika, 67 jezika                                              |
-| `UNINSTALL.md`              | Čisti koraci deinstalacije                                                                 |
-| `PROVIDER_REFERENCE.md`     | **Automatski generirano** katalog 381 pružatelja (regen: `npm run gen:provider-reference`) |
+| O tome govori doc           | Svrha                                                                                    |
+| --------------------------- | ---------------------------------------------------------------------------------------- |
+| `ARCHITECTURE.md`           | Arhitektura visoke razine, karta podsustava, površina nadzorne ploče                     |
+| `CODEBASE_DOCUMENTATION.md` | Inženjerske reference: imenici, moduli, konvencije                                       |
+| `FEATURES.md`               | Matrica značajki s istaknutim točkama v3.8                                               |
+| `USER_GUIDE.md`             | Priručnik za krajnjeg korisnika (postavljanje, modeli, kombinacije, CLIs, audio itd.)    |
+| `API_REFERENCE.md`          | API referenca krajnje točke s modelom autentifikacije                                    |
+| `openapi.yaml`              | specifikacija OpenAPI 3.0 (121 staza)                                                    |
+| `SETUP_GUIDE.md`            | Metode instalacije (npm, npx, Docker, Electron, Termux, izvor)                           |
+| `ENVIRONMENT.md`            | Sve env vars (~ 800 dokumentirano, ~ 3050 redaka `.env.example`)                         |
+| `TROUBLESHOOTING.md`        | Uobičajene pogreške + v3.8.0 poznati problemi                                            |
+| `RELEASE_CHECKLIST.md`      | Potpuni tijek izdanja (vještine, husky, konvencionalna predaja, implementacija)          |
+| `COVERAGE_PLAN.md`          | Ciljevi pokrića i trenutno stanje                                                        |
+| `FREE_TIERS.md`             | Odabrani pružatelji besplatne razine (48 + besplatno + 11 OAuth)                         |
+| `CLI-TOOLS.md`              | Vanjske CLI integracije + Interne OmniRoute CLI                                          |
+| `I18N.md`                   | i18n arhitektura, dodavanje jezika, 67 jezika                                            |
+| `UNINSTALL.md`              | Čisti koraci deinstalacije                                                               |
+| `PROVIDER_REFERENCE.md`     | **Automatski generirano** katalog 385 ponuđača (regen: `npm run gen:provider-reference`) |
 
 ### Podsustav dubokog ronjenja
 

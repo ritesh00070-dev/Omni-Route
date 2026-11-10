@@ -14,7 +14,7 @@ OmniRoute — це локальний шлюз маршрутизації та �
 
 Основні можливості:
 
-- OpenAI-сумісна поверхня API для CLI/tools (381 провайдер, 159 модулів-виконавців)
+- OpenAI-compatible API surface for CLI/tools (385 providers, 159 executor modules)
 - переклад Request/response між форматами постачальників
 - Резервний комбінований варіант моделі (послідовність кількох моделей)
 - Структуровані комбіновані кроки (`provider + model + connection`) з упорядкуванням часу виконання за `compositeTiers`

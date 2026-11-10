@@ -14,7 +14,7 @@ OmniRoute on paikallinen AI -reititysyhdyskäytävä ja kojelauta, joka on raken
 
 Ydinominaisuudet:
 
-- OpenAI-yhteensopiva API pinta CLI/tools (381 tarjoajaa, 159 toteuttajamoduulia)
+- OpenAI-yhteensopiva API -pinta CLI/tools (385 tarjoajaa, 159 toteuttajamoduulia)
 - Request/response -käännös eri palveluntarjoajien formaateissa
 - Mallin yhdistelmävara (usean mallin sarja)
 - Strukturoidut yhdistelmäaskeleet (`provider + model + connection`) `compositeTiers`:n ajonaikaisessa järjestyksessä
@@ -63,7 +63,7 @@ Ydinominaisuudet:
 - Nopea ruiskutussuojan väliohjelmisto
 - Nopea pakkausputki, jossa on Caveman, RTK, pinotut putkistot, pakkausyhdistelmät, kielipaketit ja analytiikka
 - ACP (Agent Communication Protocol) -rekisteri
-- Modular OAuth providers (22 individual modules under `src/lib/oauth/providers/`)
+- Modulaariset OAuth toimittajat (22 yksittäistä moduulia `src/lib/oauth/providers/` n alla)
 - Uninstall/full-uninstall -skriptit
 - OAuth ympäristön korjaustoimet
 - WebSocket silta OpenAI-yhteensopiville WS asiakkaille (`/v1/ws`)

@@ -923,35 +923,26 @@ CLI `base_url + /responses` ünvanını WebSocket-ə yüksəldir və OmniRoute o
 
 ---
 
-## Kvotalar və Problemlər üzrə Hesabat
+## Kvotalar və Məsələlər Hesabatı
 
-| Metod | Yol                 | Təsvir                                                                                                    |
-| ----- | ------------------- | --------------------------------------------------------------------------------------------------------- |
-| GET   | `/v1/quotas/check`  | Qeydiyyatdan keçmiş açarı təqdim etməzdən əvvəl `provider` + `accountId` üçün kvotanı əvvəlcədən yoxlayır |
-| POST  | `/v1/issues/report` | GitHub-a kvota/açar təqdimetmə xətası barədə məlumat verir (`GITHUB_ISSUES_REPO` + token tələb olunur)    |
+| Metod | Yol                 | Təsvir                                                                                                |
+| ----- | ------------------- | ----------------------------------------------------------------------------------------------------- |
+| GET   | `/v1/quotas/check`  | Qeydə alınmış açarı verməzdən əvvəl `provider` + `accountId` üçün kvotanı əvvəlcədən təsdiqləyin      |
+| POST  | `/v1/issues/report` | quota/key buraxılışının uğursuzluğunu GitHub ə bildirin ( `GITHUB_ISSUES_REPO` + nişanı tələb olunur) |
 
-**Autentifikasiya:** Bearer API açarı (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` Daşıyıcı API açarını (`isAuthenticated`) götürür. `/v1/issues/report` yalnız idarəetmə üçündür (`requireManagementAuth`), `/api/v1/registered-keys` kimi: idarə paneli sessiyası, yerli CLI nişanı və ya `manage`/`admin` əhatə dairəsi olan API açarı; yalnız nəticə çıxaran API düymələri `403` alır.
 
-### Kvota sessiyasının bərpası (istəyə bağlı)
+### Kvota sessiyasının bərpası (daxil olmaq)
 
-Terminal kvota xətası ilə (cavab gövdəsində kvotanın və ya kreditlərin tükəndiyi bildirilən
-`402`/`429`/`503`) nəticələnən axınsız `POST /v1/chat/completions` və ya `POST /v1/responses`
-sorğusu xətanı qaytarmaq əvəzinə gözləməyə alına və daha sonra yenidən icra oluna bilər. Çağıran tərəf
-hər sorğu üçün üç başlıqla bu funksiyanı aktivləşdirir:
+Terminal kvota xətası (bədəni kvota və ya kreditlərin tükəndiyini bildirən `402`/`429`/`503` ) ilə uğursuz olan, axın etməyən `POST /v1/chat/completions` və ya `POST /v1/responses` xətanı qaytarmaq əvəzinə park edilə və sonra yenidən oxuna bilər. Zəng edən şəxs üç başlıq ilə hər sorğuya qoşulur:
 
-| Başlıq                       | Dəyər                                             |
-| ---------------------------- | ------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                            |
-| `x-omniroute-session`        | sessiya ID-si, `[A-Za-z0-9._:-]{1,128}`           |
-| `x-omniroute-recovery-turn`  | sessiya daxilində unikal dönüş ID-si (eyni qayda) |
+| Başlıq                       | Dəyər                                          |
+| ---------------------------- | ---------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                         |
+| `x-omniroute-session`        | sessiya id, `[A-Za-z0-9._:-]{1,128}`           |
+| `x-omniroute-recovery-turn`  | sessiya daxilində unikal id çevir (eyni qayda) |
 
-Yalnız `stream: false`, alətlər, alət tarixçəsi və ya `previous_response_id` olmayan və
-`x-omniroute-connection` pin-i təyin edilməyən dönüşlər uyğun hesab olunur; həmçinin
-`STORAGE_ENCRYPTION_KEY` təyin edilməlidir (sorğu 24 saata qədər şifrələnmiş şəkildə saxlanılır). Cavab daha sonra
-`202` və `recovery.poll` ilə qaytarılır; `GET /v1/quota-recoveries/{id}` sorğusu ilə yoxlama aparılır
-(gözləmə zamanı `202`, tamamlandıqda bərpa edilmiş gövdə ilə `200`) və ya `DELETE` ilə ləğv edilir. Biletlər yalnız
-onları yaradan API açarına görünür. Nəticəsi qeyri-müəyyən olan təkrar icra iki dəfə göndərilmək əvəzinə
-`needs_confirmation` vəziyyəti ilə başa çatır. Mənbə: `src/lib/quota/quotaSessionRecovery.ts`.
+Yalnız alətləri, alət tarixçəsi və ya `previous_response_id` olmayan və `x-omniroute-connection` pinsiz `stream: false` növbələri uyğundur və `STORAGE_ENCRYPTION_KEY` təyin edilməlidir (sorğu 24 saata qədər şifrələnmiş şəkildə saxlanılır). Cavab daha sonra `recovery.poll` ilə `202` olur; sorğu `GET /v1/quota-recoveries/{id}` (`202` gözləyəndə, `200` tamamlandıqda bərpa edilmiş bədənlə) və ya `DELETE` ilə ləğv edin. Biletləri yalnız onları yaradan API açarı görə bilər. Nəticəsi qeyri-müəyyən olan təkrar oxunuş iki dəfə göndərilmək əvəzinə `needs_confirmation` ilə bitir. Mənbə: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1693,19 +1684,23 @@ OmniRoute hadisələri üçün çıxan vebhuk abunəlikləri (sorğunun tamamlan
 
 ---
 
-## Qeydiyyatdan Keçirilmiş Açarlar (Avtomatik İdarəetmə)
+## Qeydiyyatlı Açarlar (Avtomatik İdarəetmə)
 
-Gündəlik/saatlıq kvotalarla dəstəkləyici provayderə/hesaba qarşı API açarlarının verilməsi və rotasiyası üçün avtomatik açar idarəetməsi altsistemi tərəfindən istifadə olunur.
+Avtomatik açar idarəetmə alt sistemi tərəfindən daily/hourly kvotaları ilə dəstəklənən provider/account-ə qarşı API düymələrini buraxmaq və fırlatmaq üçün istifadə olunur.
 
-| Metod  | Yol                                   | Təsvir                                                                                                                                                                                                                  |
-| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Qeydiyyatdan keçirilmiş açarları siyahıla (yalnız maskalanmış prefiks)                                                                                                                                                  |
-| POST   | `/api/v1/registered-keys`             | Yeni qeydiyyatdan keçirilmiş açar ver — gövdə: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Xam açarı **yalnız bir dəfə** qaytarır. Kvota imtinası zamanı `429` qaytarır. |
-| GET    | `/api/v1/registered-keys/[id]`        | Qeydiyyatdan keçirilmiş açarın metadatasını əldə et (xam material yoxdur)                                                                                                                                               |
-| DELETE | `/api/v1/registered-keys/[id]`        | Qeydiyyatdan keçirilmiş açarı ləğv et                                                                                                                                                                                   |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Açıq ləğvetmə endpoint-i (DELETE ilə eyni təsirə malikdir)                                                                                                                                                              |
+| Metod  | Yol                                   | Təsvir                                                                                                                                                                                                             |
+| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| GET    | `/api/v1/registered-keys`             | Qeydiyyatdan keçmiş açarların siyahısı (yalnız maskalı prefiks)                                                                                                                                                    |
+| POST   | `/api/v1/registered-keys`             | Yeni qeydiyyatdan keçmiş açarı buraxın — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Xam açarı qaytarır** bir dəfə** . Kvotadan imtina zamanı `429` qaytarır. |
+| GET    | `/api/v1/registered-keys/[id]`        | Qeydə alınmış açarın metadatasını əldə edin (xammal yoxdur)                                                                                                                                                        |
+| DELETE | `/api/v1/registered-keys/[id]`        | Qeydə alınmış açarı ləğv edin                                                                                                                                                                                      |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Aydın ləğv son nöqtəsi ( DELETE ilə eyni effekt)                                                                                                                                                                   |
+| GET    | `/api/v1/providers/[provider]/limits` | Provayderin buraxılış qapaqlarını oxuyun                                                                                                                                                                           |
+| PUT    | `/api/v1/providers/[provider]/limits` | Provayderin buraxılış qapaqlarını təyin edin — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                       |
+| GET    | `/api/v1/accounts/[id]/limits`        | Hesabın buraxılış qapaqlarını oxuyun                                                                                                                                                                               |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Hesabın buraxılış qapaqlarını provayder marşrutu ilə eyni — təyin edin                                                                                                                                             |
 
-**Autentifikasiya:** idarəetmə sessiyası/API açarı (`requireManagementAuth`) — `/api/keys` ilə eyni qoruyucu: idarə paneli sessiyası, lokal CLI tokeni və ya `manage`/`admin` əhatə dairəsinə malik API açarı; yalnız inference üçün olan API açarları `403` alır. Həmçinin `/v1/quotas/check` və `/v1/issues/report` bölmələrinə baxın.
+**Auth:** idarəetmə session/API açarı (`requireManagementAuth`) — `/api/keys` ilə eyni qoruyucu: tablosuna sessiya, yerli CLI nişanı və ya `manage`/`admin` əhatə dairəsi olan API açarı; yalnız nəticə çıxaran API düymələri `403` alır. Həmçinin `/v1/quotas/check` və `/v1/issues/report` baxın.
 
 ---
 

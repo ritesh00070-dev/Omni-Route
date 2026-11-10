@@ -180,9 +180,9 @@ La page du tableau de bord située à l’adresse `/dashboard/webhooks` (voir
 - Effectuer une livraison de test en un clic
 - Activer/désactiver manuellement un webhook
 
-## Exemples de charges utiles
+## Exemples de charge utile
 
-### request.completed
+### demande.terminée
 
 ```json
 {
@@ -214,7 +214,7 @@ La page du tableau de bord située à l’adresse `/dashboard/webhooks` (voir
 }
 ```
 
-La structure des champs pour les événements autres que `test.ping` est définie par les sites d’appel qui les émettent ; considérez l’objet `data` comme compatible avec les évolutions futures (ajoutez des champs, ne vous fiez pas à leur absence).
+Les formes de champ pour les événements non-`test.ping` sont définies par les sites d'appels qui les émettent ; traitez l'objet `data` comme compatible avec les versions ultérieures (ajoutez des champs, ne dépendez pas de l'absence).
 
 ## Bonnes pratiques
 

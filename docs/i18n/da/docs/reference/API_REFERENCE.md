@@ -982,32 +982,24 @@ fuldførelsen.
 
 ## Rapportering af kvoter og problemer
 
-| Metode | Sti                 | Beskrivelse                                                                                   |
-| ------ | ------------------- | --------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Forudvalider kvoten for en `provider` + `accountId`, før en registreret nøgle udstedes        |
-| POST   | `/v1/issues/report` | Rapportér en fejl ved kvote-/nøgleudstedelse til GitHub (kræver `GITHUB_ISSUES_REPO` + token) |
+| Metode | Sti                 | Beskrivelse                                                                                 |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Forhåndsvalider kvoten for en `provider` + `accountId` før du udsteder en registreret nøgle |
+| POST   | `/v1/issues/report` | Rapporter en quota/key -udstedelsesfejl til GitHub (kræver `GITHUB_ISSUES_REPO` + token)    |
 
-**Godkendelse:** Bearer API-nøgle (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` tager en bærer API nøgle (`isAuthenticated`). `/v1/issues/report` er kun til administration (`requireManagementAuth`), ligesom `/api/v1/registered-keys`: en dashboard-session, det lokale CLI token eller en API nøgle med `manage`/`admin` omfang; inferens-kun API nøgler får `403`.
 
-### Gendannelse af kvotesession (tilvælgelse)
+### Gendannelse af kvotesession (tilvalg)
 
-En ikke-streamende `POST /v1/chat/completions` eller `POST /v1/responses`, der mislykkes med
-en terminal kvotefejl (`402`/`429`/`503` hvis body'en angiver, at kvoten eller kreditterne er opbrugt),
-kan parkeres og afspilles senere i stedet for at returnere fejlen. Klienten tilvælger dette pr. anmodning med tre headers:
+En ikke-streaming `POST /v1/chat/completions` eller `POST /v1/responses`, der fejler med en terminal kvotefejl (`402`/`429`/`503`, hvis krop siger, at kvoten eller kreditterne er opbrugt) kan parkeres og afspilles senere i stedet for at returnere fejlen. Den, der ringer op, tilmelder sig pr. anmodning med tre overskrifter:
 
-| Header                       | Værdi                                            |
-| ---------------------------- | ------------------------------------------------ |
-| `x-omniroute-quota-recovery` | `auto`                                           |
-| `x-omniroute-session`        | sessions-id, `[A-Za-z0-9._:-]{1,128}`            |
-| `x-omniroute-recovery-turn`  | turn-id, unikt inden for sessionen (samme regel) |
+| Overskrift                   | Værdi                                   |
+| ---------------------------- | --------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                  |
+| `x-omniroute-session`        | sessions-id, `[A-Za-z0-9._:-]{1,128}`   |
+| `x-omniroute-recovery-turn`  | turn id unikt i sessionen (samme regel) |
 
-Kun `stream: false`-turns uden værktøjer, værktøjshistorik eller `previous_response_id` og uden
-en `x-omniroute-connection`-fastlåsning er kvalificerede, og `STORAGE_ENCRYPTION_KEY` skal være angivet
-(anmodningen gemmes krypteret i op til 24 timer). Svaret er derefter `202` med
-`recovery.poll`; afvent med `GET /v1/quota-recoveries/{id}` (`202` mens den afventer, `200` med det
-gendannede body, når den er færdig), eller annullér med `DELETE`. Billetter er kun synlige for den API-nøgle,
-der oprettede dem. En afspilning, hvis resultat er usikkert, afsluttes i `needs_confirmation`
-i stedet for at blive sendt to gange. Kilde: `src/lib/quota/quotaSessionRecovery.ts`.
+Kun `stream: false` -sving uden værktøjer, værktøjshistorik eller `previous_response_id` og ingen `x-omniroute-connection` pin er berettigede, og `STORAGE_ENCRYPTION_KEY` skal indstilles (anmodningen gemmes krypteret i op til 24 timer). Svaret er så `202` med `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` mens afventende, `200` med den genoprettede krop når den er fuldført) eller annuller med `DELETE`. Billetter er kun synlige for den API nøgle, der oprettede dem. En gentagelse, hvis udfald er usikkert, ender med `needs_confirmation` i stedet for at blive sendt to gange. Kilde: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1748,19 +1740,23 @@ Udgående webhook-abonnementer for OmniRoute-hændelser (fuldførelse af anmodni
 
 ---
 
-## Registrerede nøgler (automatisk administration)
+## Registrerede nøgler (automatisk styring)
 
-Bruges af undersystemet til automatisk nøgleadministration til at udstede og rotere API-nøgler mod en underliggende udbyder/konto med daglige og timelige kvoter.
+Bruges af undersystemet til automatisk nøglestyring til at udstede og rotere API nøgler mod en backing- provider/account med daily/hourly kvoter.
 
-| Metode | Sti                                   | Beskrivelse                                                                                                                                                                                                              |
-| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GET    | `/api/v1/registered-keys`             | Vis registrerede nøgler (kun maskeret præfiks)                                                                                                                                                                           |
-| POST   | `/api/v1/registered-keys`             | Udsted en ny registreret nøgle — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Returnerer den rå nøgle **én gang**. Returnerer `429` ved afvisning på grund af kvote. |
-| GET    | `/api/v1/registered-keys/[id]`        | Hent en registreret nøgles metadata (ingen rå nøgledata)                                                                                                                                                                 |
-| DELETE | `/api/v1/registered-keys/[id]`        | Tilbagekald en registreret nøgle                                                                                                                                                                                         |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Eksplicit slutpunkt til tilbagekaldelse (samme effekt som DELETE)                                                                                                                                                        |
+| Metode | Sti                                   | Beskrivelse                                                                                                                                                                                              |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Liste registrerede nøgler (kun maskeret præfiks)                                                                                                                                                         |
+| POST   | `/api/v1/registered-keys`             | Udsted en ny registreret nøgle — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Returnerer den rå nøgle** engang** . Returnerer `429` ved kvoteafslag. |
+| GET    | `/api/v1/registered-keys/[id]`        | Hent en registreret nøgles metadata (ingen råmateriale)                                                                                                                                                  |
+| DELETE | `/api/v1/registered-keys/[id]`        | Tilbagekald en registreret nøgle                                                                                                                                                                         |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Eksplicit tilbagekaldende slutpunkt (samme effekt som DELETE)                                                                                                                                            |
+| GET    | `/api/v1/providers/[provider]/limits` | Læs udbyderens udstedelseslofter                                                                                                                                                                         |
+| PUT    | `/api/v1/providers/[provider]/limits` | Indstil udbyderens udstedelsesgrænser — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                    |
+| GET    | `/api/v1/accounts/[id]/limits`        | Læs kontoens udstedelsesgrænser                                                                                                                                                                          |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Indstil kontoens udstedelsesgrænser — samme tekst som udbyderruten                                                                                                                                       |
 
-**Godkendelse:** administrationssession/API-nøgle (`requireManagementAuth`) — samme kontrol som `/api/keys`: en dashboardsession, det lokale CLI-token eller en API-nøgle med `manage`-/`admin`-scope; API-nøgler, der kun bruges til inferens, får `403`. Se også `/v1/quotas/check` og `/v1/issues/report`.
+**Auth:** management session/API key (`requireManagementAuth`) — den samme vagt som `/api/keys`: en dashboard-session, det lokale CLI token eller en API nøgle med `manage`/`admin` omfang; API -nøgler, der kun er inferens, får `403`. Se også `/v1/quotas/check` og `/v1/issues/report`.
 
 ---
 

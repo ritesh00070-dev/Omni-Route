@@ -982,36 +982,26 @@ ja suoratoistaa valmistuneen vastauksen.
 
 ---
 
-## Kiintiöt ja ongelmien raportointi
+## Kiintiöt ja ongelmaraportointi
 
-| Menetelmä | Polku               | Kuvaus                                                                                                        |
-| --------- | ------------------- | ------------------------------------------------------------------------------------------------------------- |
-| GET       | `/v1/quotas/check`  | Tarkistaa kiintiön etukäteen yhdistelmälle `provider` + `accountId` ennen rekisteröidyn avaimen myöntämistä   |
-| POST      | `/v1/issues/report` | Raportoi kiintiö-/avaimenmyöntämisvirheen GitHubiin (edellyttää `GITHUB_ISSUES_REPO`-asetusta ja tunnistetta) |
+| Menetelmä | Polku               | Kuvaus                                                                                                |
+| --------- | ------------------- | ----------------------------------------------------------------------------------------------------- |
+| GET       | `/v1/quotas/check`  | Esivahvistaa `provider` + `accountId` :n kiintiö ennen rekisteröidyn avaimen myöntämistä              |
+| POST      | `/v1/issues/report` | Ilmoita quota/key myöntämisen epäonnistumisesta GitHub lle (vaatii `GITHUB_ISSUES_REPO` + -tunnuksen) |
 
-**Todennus:** Bearer-API-avain (`isAuthenticated`).
+**Todennus:** `/v1/quotas/check` vie Bearer API -avaimen (`isAuthenticated`). `/v1/issues/report` on vain hallintaan tarkoitettu (`requireManagementAuth`), kuten `/api/v1/registered-keys`: kojelautaistunto, paikallinen CLI -tunnus tai API avain, jonka laajuus on `manage`/`admin` ; vain päätelmiä varten API -avaimet saavat `403`.
 
-### Kiintiöistunnon palautus (valinnainen)
+### Kiintiöistunnon palautus (opt-in)
 
-Suoratoistamaton `POST /v1/chat/completions`- tai `POST /v1/responses`-pyyntö, joka epäonnistuu
-lopulliseen kiintiövirheeseen (`402`/`429`/`503`, jonka leipäteksti ilmoittaa kiintiön tai krediittien
-loppuneen), voidaan asettaa jonoon ja toistaa myöhemmin virheen palauttamisen sijaan. Kutsuja ottaa
-ominaisuuden käyttöön pyyntökohtaisesti kolmella otsakkeella:
+Ei-suoratoisto `POST /v1/chat/completions` tai `POST /v1/responses`, joka epäonnistuu päätekiintiövirheen vuoksi (`402`/`429`/`503`, jonka runko sanoo kiintiön tai krediittien loppuneen), voidaan pysäköidä ja toistaa myöhemmin uudelleen virheen palauttamisen sijaan. Soittaja valitsee pyynnön kolmella otsikolla:
 
-| Otsake                       | Arvo                                                      |
-| ---------------------------- | --------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                    |
-| `x-omniroute-session`        | istunnon tunnus, `[A-Za-z0-9._:-]{1,128}`                 |
-| `x-omniroute-recovery-turn`  | istunnon sisällä yksilöllinen vuoron tunnus (sama sääntö) |
+| Otsikko                      | Arvo                                                       |
+| ---------------------------- | ---------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                     |
+| `x-omniroute-session`        | istunnon tunnus, `[A-Za-z0-9._:-]{1,128}`                  |
+| `x-omniroute-recovery-turn`  | muuta tunnus yksilölliseksi istunnon sisällä (sama sääntö) |
 
-Vain `stream: false` -vuorot, joissa ei ole työkaluja, työkaluhistoriaa tai
-`previous_response_id`-tunnistetta eikä `x-omniroute-connection`-kiinnitystä, ovat kelvollisia, ja
-`STORAGE_ENCRYPTION_KEY` on asetettava (pyyntö tallennetaan salattuna enintään 24 tunniksi). Vastaus
-on tällöin `202` ja sisältää `recovery.poll`; kysy tila uudelleen osoitteella
-`GET /v1/quota-recoveries/{id}` (`202` odottamisen aikana, `200` ja palautettu leipäteksti
-valmistumisen jälkeen) tai peruuta toiminto komennolla `DELETE`. Tiketit näkyvät vain niiden luoneelle
-API-avaimelle. Toisto, jonka lopputulos on epävarma, päätyy tilaan `needs_confirmation` sen sijaan,
-että se lähetettäisiin kahdesti. Lähde: `src/lib/quota/quotaSessionRecovery.ts`.
+Vain `stream: false` -käännökset ilman työkaluja, työkaluhistoriaa tai `previous_response_id` ja `x-omniroute-connection` -nastaa ovat kelvollisia, ja `STORAGE_ENCRYPTION_KEY` on asetettava (pyyntö tallennetaan salattuna 24 tunnin ajan). Vastaus on tällöin `202` ja `recovery.poll`; kysely `GET /v1/quota-recoveries/{id}` (`202` odottaessa, `200` palautetulla rungolla, kun se on valmis) tai peruuta painamalla `DELETE`. Liput näkyvät vain ne luoneelle API -näppäimelle. Toisto, jonka lopputulos on epävarma, päättyy `needs_confirmation` sen sijaan, että se lähetetään kahdesti. Lähde: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1765,17 +1755,21 @@ OmniRoute-tapahtumien lähtevät webhook-tilaukset (pyynnön valmistuminen, kiin
 
 ## Rekisteröidyt avaimet (automaattinen hallinta)
 
-Automaattinen avaintenhallintajärjestelmä käyttää tätä API-avainten myöntämiseen ja kiertämiseen taustalla olevan palveluntarjoajan/tilin kautta sekä päivä- ja tuntikohtaisten kiintiöiden hallintaan.
+Automaattisen avainten hallinnan alijärjestelmä käyttää API avaimien myöntämiseen ja kiertämiseen tausta provider/account vastaan daily/hourly -kiintiöillä.
 
-| Menetelmä | Polku                                 | Kuvaus                                                                                                                                                                                                                           |
-| --------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET       | `/api/v1/registered-keys`             | Luettele rekisteröidyt avaimet (vain peitetty etuliite)                                                                                                                                                                          |
-| POST      | `/api/v1/registered-keys`             | Myönnä uusi rekisteröity avain — runko: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Palauttaa raakamuotoisen avaimen **vain kerran**. Palauttaa `429`, jos kiintiö estää pyynnön. |
-| GET       | `/api/v1/registered-keys/[id]`        | Nouda rekisteröidyn avaimen metatiedot (ei raakamuotoista avainta)                                                                                                                                                               |
-| DELETE    | `/api/v1/registered-keys/[id]`        | Peruuta rekisteröity avain                                                                                                                                                                                                       |
-| POST      | `/api/v1/registered-keys/[id]/revoke` | Nimenomainen peruutuspäätepiste (sama vaikutus kuin komennolla `DELETE`)                                                                                                                                                         |
+| Menetelmä | Polku                                 | Kuvaus                                                                                                                                                                                                     |
+| --------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET       | `/api/v1/registered-keys`             | Listaa rekisteröidyt avaimet (vain peitetty etuliite)                                                                                                                                                      |
+| POST      | `/api/v1/registered-keys`             | Anna uusi rekisteröity avain — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Palauttaa raaka-avaimen** kerran** . Palauttaa `429` kiintiön epäämisestä. |
+| GET       | `/api/v1/registered-keys/[id]`        | Hae rekisteröidyn avaimen metatiedot (ei raaka-ainetta)                                                                                                                                                    |
+| DELETE    | `/api/v1/registered-keys/[id]`        | Peruuta rekisteröity avain                                                                                                                                                                                 |
+| POST      | `/api/v1/registered-keys/[id]/revoke` | Eksplisiittinen peruutuspäätepiste (sama vaikutus kuin DELETE)                                                                                                                                             |
+| GET       | `/api/v1/providers/[provider]/limits` | Lue palveluntarjoajan liikkeeseenlaskijat                                                                                                                                                                  |
+| PUT       | `/api/v1/providers/[provider]/limits` | Aseta palveluntarjoajan myöntämisrajat — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                     |
+| GET       | `/api/v1/accounts/[id]/limits`        | Lue tilin myöntämisrajat                                                                                                                                                                                   |
+| PUT       | `/api/v1/accounts/[id]/limits`        | Aseta tilin myöntämisrajat — samaan runkoon kuin palveluntarjoajan reitti                                                                                                                                  |
 
-**Todennus:** hallintaistunto/API-avain (`requireManagementAuth`) — sama suojaus kuin kohteessa `/api/keys`: hallintapaneelin istunto, paikallinen CLI-tunnus tai API-avain, jolla on `manage`/`admin`-käyttöoikeusalue; vain päättelyyn tarkoitetut API-avaimet saavat vastauksen `403`. Katso myös `/v1/quotas/check` ja `/v1/issues/report`.
+**Todennus:** hallinta session/API avain (`requireManagementAuth`) — sama suoja kuin `/api/keys`: kojelautaistunto, paikallinen CLI -tunnus tai API -avain, jonka laajuus on `manage`/`admin` ; API -näppäimet saavat vain päättelyä varten `403`. Katso myös `/v1/quotas/check` ja `/v1/issues/report`.
 
 ---
 

@@ -490,7 +490,7 @@ open-sse/
 
 `antigravity`, `azure-openai`, `blackbox-web`, `cliproxyapi`, `chatgpt-web-codex`, `cloudflare-ai`, `codex`, `commandCode`, `cursor`, `default`, `devin-cli`, `muse-spark-web`, `nlpcloud`, `opencode`, `perplexity-web`, `petals`, `pollinations`, `qoder`, `vertex` `devin-desktop` plus identita `claudeIdentity.ts`, `index.ts` (registra).
 
-> Poznámka: Poskytovatelia, ktorí tu nie sú uvedení, sú obsluhovaní `default.ts` pomocou všeobecného spúšťača kompatibilného s OpenAI. Úplný katalóg poskytovateľov (381 poskytovateľov) žije v `src/shared/constants/providers.ts`.
+> Poznámka: Poskytovatelia, ktorí tu nie sú uvedení, sú obsluhovaní `default.ts` pomocou všeobecného spúšťača kompatibilného s OpenAI. Úplný katalóg poskytovateľov (385 poskytovateľov) žije v `src/shared/constants/providers.ts`.
 
 ### 4.3 `open-sse/translator/`
 

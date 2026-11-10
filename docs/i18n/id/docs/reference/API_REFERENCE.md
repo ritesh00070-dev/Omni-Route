@@ -1001,33 +1001,24 @@ CLI meng-upgrade `base_url + /responses` menjadi WebSocket dan OmniRoute menerus
 
 ## Pelaporan Kuota & Masalah
 
-| Metode | Path                | Deskripsi                                                                                            |
-| ------ | ------------------- | ---------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Memvalidasi kuota terlebih dahulu untuk `provider` + `accountId` sebelum menerbitkan kunci terdaftar |
-| POST   | `/v1/issues/report` | Melaporkan kegagalan penerbitan kuota/kunci ke GitHub (memerlukan `GITHUB_ISSUES_REPO` + token)      |
+| Metode | Jalur               | Keterangan                                                                                   |
+| ------ | ------------------- | -------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Pra-validasi kuota untuk `provider` + `accountId` sebelum mengeluarkan kunci terdaftar       |
+| POST   | `/v1/issues/report` | Laporkan kegagalan penerbitan quota/key ke GitHub (memerlukan token `GITHUB_ISSUES_REPO` + ) |
 
-**Auth:** Kunci API Bearer (`isAuthenticated`).
+**Otentikasi:** `/v1/quotas/check` mengambil kunci Pembawa API (`isAuthenticated`). `/v1/issues/report` hanya bersifat manajemen (`requireManagementAuth`), seperti `/api/v1/registered-keys`: sesi dasbor, token CLI lokal, atau kunci API dengan cakupan `manage`/`admin` ; kunci API khusus inferensi mendapatkan `403`.
 
-### Pemulihan sesi kuota (opsional)
+### Pemulihan sesi kuota (ikut serta)
 
-`POST /v1/chat/completions` atau `POST /v1/responses` non-streaming yang gagal dengan
-kesalahan kuota terminal (`402`/`429`/`503` yang isi responsnya menyatakan bahwa kuota atau kredit
-telah habis) dapat ditangguhkan dan diputar ulang nanti, alih-alih mengembalikan kesalahan tersebut. Pemanggil memilih
-fitur ini untuk setiap permintaan menggunakan tiga header berikut:
+`POST /v1/chat/completions` atau `POST /v1/responses` non-streaming yang gagal karena kesalahan kuota terminal (`402`/`429`/`503` yang isi kuota atau kreditnya habis) dapat diparkir dan diputar ulang nanti alih-alih mengembalikan kesalahan. Penelepon ikut serta per permintaan dengan tiga header:
 
-| Header                       | Nilai                                              |
+| Tajuk                        | Nilai                                              |
 | ---------------------------- | -------------------------------------------------- |
 | `x-omniroute-quota-recovery` | `auto`                                             |
 | `x-omniroute-session`        | id sesi, `[A-Za-z0-9._:-]{1,128}`                  |
-| `x-omniroute-recovery-turn`  | id giliran yang unik dalam sesi (aturan yang sama) |
+| `x-omniroute-recovery-turn`  | ubah id menjadi unik dalam sesi (aturan yang sama) |
 
-Hanya giliran dengan `stream: false` tanpa tools, riwayat tool, atau `previous_response_id`, serta tanpa
-pin `x-omniroute-connection`, yang memenuhi syarat, dan `STORAGE_ENCRYPTION_KEY` harus ditetapkan
-(permintaan disimpan dalam keadaan terenkripsi hingga 24 jam). Respons kemudian berupa `202` dengan
-`recovery.poll`; lakukan polling ke `GET /v1/quota-recoveries/{id}` (`202` saat masih menunggu, `200` dengan
-isi yang dipulihkan saat selesai) atau batalkan dengan `DELETE`. Tiket hanya terlihat oleh kunci API
-yang membuatnya. Pemutaran ulang yang hasilnya tidak pasti berakhir dalam status `needs_confirmation`
-alih-alih dikirim dua kali. Sumber: `src/lib/quota/quotaSessionRecovery.ts`.
+Hanya putaran `stream: false` tanpa alat, riwayat alat atau `previous_response_id`, dan tanpa pin `x-omniroute-connection`, yang memenuhi syarat, dan `STORAGE_ENCRYPTION_KEY` harus disetel (permintaan disimpan terenkripsi hingga 24 jam). Responsnya kemudian `202` dengan `recovery.poll`; polling `GET /v1/quota-recoveries/{id}` (`202` selagi tertunda, `200` dengan isi yang dipulihkan setelah selesai) atau batalkan dengan `DELETE`. Tiket hanya dapat dilihat oleh kunci API yang membuatnya. Pemutaran ulang yang hasilnya tidak pasti berakhir dengan `needs_confirmation` alih-alih dikirim dua kali. Sumber: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1782,17 +1773,21 @@ Langganan webhook keluar untuk peristiwa OmniRoute (penyelesaian permintaan, kuo
 
 ## Kunci Terdaftar (Manajemen Otomatis)
 
-Digunakan oleh subsistem manajemen kunci otomatis untuk menerbitkan dan merotasi kunci API pada provider/akun pendukung, dengan kuota harian/jam.
+Digunakan oleh subsistem manajemen kunci otomatis untuk menerbitkan dan memutar kunci API terhadap provider/account pendukung, dengan kuota daily/hourly.
 
-| Method | Path                                  | Description                                                                                                                                                                                                                   |
-| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Menampilkan daftar kunci terdaftar (hanya awalan yang disamarkan)                                                                                                                                                             |
-| POST   | `/api/v1/registered-keys`             | Menerbitkan kunci terdaftar baru — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Mengembalikan kunci mentah **sekali**. Mengembalikan `429` jika kuota menolak permintaan. |
-| GET    | `/api/v1/registered-keys/[id]`        | Mengambil metadata kunci terdaftar (tanpa materi mentah)                                                                                                                                                                      |
-| DELETE | `/api/v1/registered-keys/[id]`        | Mencabut kunci terdaftar                                                                                                                                                                                                      |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Endpoint pencabutan eksplisit (efeknya sama seperti DELETE)                                                                                                                                                                   |
+| Metode | Jalur                                 | Keterangan                                                                                                                                                                                                           |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Daftar kunci terdaftar (hanya awalan bertopeng)                                                                                                                                                                      |
+| POST   | `/api/v1/registered-keys`             | Keluarkan badan — kunci terdaftar baru: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Mengembalikan kunci mentah** sekali** . Mengembalikan `429` pada penolakan kuota. |
+| GET    | `/api/v1/registered-keys/[id]`        | Ambil metadata kunci terdaftar (tanpa bahan mentah)                                                                                                                                                                  |
+| DELETE | `/api/v1/registered-keys/[id]`        | Cabut kunci terdaftar                                                                                                                                                                                                |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Titik akhir pencabutan secara eksplisit (efek yang sama seperti DELETE)                                                                                                                                              |
+| GET    | `/api/v1/providers/[provider]/limits` | Baca batas penerbitan penyedia                                                                                                                                                                                       |
+| PUT    | `/api/v1/providers/[provider]/limits` | Tetapkan batas penerbitan penyedia — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                   |
+| GET    | `/api/v1/accounts/[id]/limits`        | Baca batas penerbitan akun                                                                                                                                                                                           |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Tetapkan batas penerbitan akun — sama dengan rute penyedia                                                                                                                                                           |
 
-**Autentikasi:** sesi/kunci API manajemen (`requireManagementAuth`) — pengaman yang sama seperti `/api/keys`: sesi dasbor, token CLI lokal, atau kunci API dengan cakupan `manage`/`admin`; kunci API khusus inferensi mendapatkan `403`. Lihat juga `/v1/quotas/check` dan `/v1/issues/report`.
+**Otentikasi:** manajemen kunci session/API (`requireManagementAuth`) — penjaga yang sama dengan `/api/keys`: sesi dasbor, token CLI lokal, atau kunci API dengan cakupan `manage`/`admin` ; kunci API khusus inferensi mendapatkan `403`. Lihat juga `/v1/quotas/check` dan `/v1/issues/report`.
 
 ---
 

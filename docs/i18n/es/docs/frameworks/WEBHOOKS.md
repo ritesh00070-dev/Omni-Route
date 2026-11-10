@@ -180,9 +180,9 @@ La página del panel de control en `/dashboard/webhooks` (consulte
 - Entrega de prueba con un solo clic
 - Activación/desactivación manual
 
-## Ejemplos de payloads
+## Ejemplos de carga útil
 
-### request.completed
+### solicitud.completada
 
 ```json
 {
@@ -201,7 +201,7 @@ La página del panel de control en `/dashboard/webhooks` (consulte
 }
 ```
 
-### test.ping
+### prueba.ping
 
 ```json
 {
@@ -214,7 +214,7 @@ La página del panel de control en `/dashboard/webhooks` (consulte
 }
 ```
 
-La estructura de los campos para los eventos distintos de `test.ping` está definida por los puntos de llamada que los emiten; trate el objeto `data` como compatible con versiones futuras (añada campos, no dependa de su ausencia).
+Las formas de los campos para eventos que no son `test.ping` están definidas por los sitios de llamada que los emiten; trate el objeto `data` como compatible con versiones posteriores (agregue campos, no dependa de la ausencia).
 
 ## Prácticas recomendadas
 

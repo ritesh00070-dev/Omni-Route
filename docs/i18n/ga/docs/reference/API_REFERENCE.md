@@ -991,35 +991,26 @@ comhlánú.
 
 ---
 
-## Tuairisciú Cuótaí agus Saincheisteanna
+## Cuótaí & Tuairisciú Saincheisteanna
 
-| Modh | Conair              | Cur síos                                                                                                |
-| ---- | ------------------- | ------------------------------------------------------------------------------------------------------- |
-| GET  | `/v1/quotas/check`  | Réamhbhailíochtaigh an cuóta do `provider` + `accountId` sula n-eisítear eochair chláraithe             |
-| POST | `/v1/issues/report` | Tuairiscigh teip ar eochair a eisiúint nó ar chuóta chuig GitHub (éilíonn `GITHUB_ISSUES_REPO` + token) |
+| Modh | Conair              | Cur síos                                                                                          |
+| ---- | ------------------- | ------------------------------------------------------------------------------------------------- |
+| GET  | `/v1/quotas/check`  | Réamhbhailíochtaigh cuóta le haghaidh `provider` + `accountId` sula n-eisítear eochair chláraithe |
+| POST | `/v1/issues/report` | Tuairiscigh teip eisiúna quota/key chuig GitHub (tá comhartha `GITHUB_ISSUES_REPO` + ag teastáil) |
 
-**Údarú:** Eochair API Bearer (`isAuthenticated`).
+**Údar:** Glacann `/v1/quotas/check` eochair Iompróir API (`isAuthenticated`). Is bainistíocht-amháin é `/v1/issues/report` (`requireManagementAuth`), cosúil le `/api/v1/registered-keys`: seisiún deais, an comhartha CLI áitiúil, nó eochair API le scóip `manage`/`admin` ; Faigheann eochracha API tátal amháin `403`.
 
-### Aisghabháil seisiúin chuóta (rogha)
+### Aisghabháil seisiún cuóta (rogha an diúltaithe)
 
-Is féidir `POST /v1/chat/completions` nó `POST /v1/responses` neamh-sruthaithe a theipeann le
-hearráid chríochnaitheach chuóta (`402`/`429`/`503` a ndeir a chorp go bhfuil an cuóta nó na creidmheasanna ídithe)
-a chur ar fionraí agus a athsheinm níos déanaí seachas an earráid a thabhairt ar ais. Roghnaíonn an glaoiteoir é seo
-in aghaidh na hiarrata le trí cheanntásc:
+Is féidir `POST /v1/chat/completions` nó `POST /v1/responses` neamhshruthaithe a theipeann air le hearráid cuóta teirminéil (`402`/`429`/`503` a deir a chomhlacht go bhfuil an cuóta nó na creidmheasanna ídithe) a pháirceáil agus a athsheinn níos déanaí seachas an earráid a thabhairt ar ais. Roghnaíonn an glaoiteoir isteach in aghaidh an iarratais le trí cheanntásc:
 
-| Ceanntásc                    | Luach                                                                       |
-| ---------------------------- | --------------------------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                                      |
-| `x-omniroute-session`        | aitheantas seisiúin, `[A-Za-z0-9._:-]{1,128}`                               |
-| `x-omniroute-recovery-turn`  | aitheantas an tsleachta atá uathúil laistigh den seisiún (an riail chéanna) |
+| Ceanntásc                    | Luach                                                          |
+| ---------------------------- | -------------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                         |
+| `x-omniroute-session`        | seisiún id, `[A-Za-z0-9._:-]{1,128}`                           |
+| `x-omniroute-recovery-turn`  | cas aitheantas uathúil laistigh den seisiún (an riail chéanna) |
 
-Níl ach sleachta le `stream: false` gan uirlisí, stair uirlisí ná `previous_response_id`, agus gan
-phionna `x-omniroute-connection`, incháilithe, agus ní mór `STORAGE_ENCRYPTION_KEY` a bheith socraithe
-(stóráiltear an iarraidh criptithe ar feadh suas le 24 uair). Ansin is é `202` freagra na hiarrata le
-`recovery.poll`; déan `GET /v1/quota-recoveries/{id}` a cheistiú (`202` agus é ar feitheamh, `200` leis an
-gcorp aisghafa nuair a bhíonn sé críochnaithe) nó cuir ar ceal le `DELETE`. Ní bhíonn ticéid le feiceáil ach ag an
-eochair API a chruthaigh iad. Críochnaíonn athsheinm a bhfuil a thoradh éiginnte i
-`needs_confirmation` seachas é a sheoladh faoi dhó. Foinse: `src/lib/quota/quotaSessionRecovery.ts`.
+Níl ach casadh `stream: false` gan aon uirlisí, stair uirlisí nó `previous_response_id`, agus gan bioráin `x-omniroute-connection`, incháilithe, agus ní mór `STORAGE_ENCRYPTION_KEY` a shocrú (stóráiltear an t-iarratas criptithe ar feadh suas le 24 h). Is é an freagra ansin `202` le `recovery.poll`; vótaíocht `GET /v1/quota-recoveries/{id}` (`202` agus tú ar feitheamh, `200` leis an gcomhlacht aisghafa nuair a bheidh sé críochnaithe) nó cealaigh le `DELETE`. Níl na ticéid le feiceáil ach ag an eochair API a chruthaigh iad. Críochnaíonn athimirt a bhfuil a thoradh éiginnte ag `needs_confirmation` seachas é a sheoladh faoi dhó. Foinse: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1746,19 +1737,23 @@ Síntiúis webhook amach le haghaidh imeachtaí OmniRoute (críochnú iarratais,
 
 ---
 
-## Eochracha Cláraithe (Bainistíocht Uathoibríoch)
+## Eochracha Cláraithe (Uathbhainistíocht)
 
-Úsáideann fochóras bainistíochta uathoibríoch na n-eochracha é seo chun eochracha API a eisiúint agus a rothlú i gcoinne soláthraí/cuntais thacaíochta, le cuótaí laethúla/uairiúla.
+Úsáidte ag an bhfochóras bainistíochta uath-eochair chun eochracha API a eisiúint agus a rothlú i gcoinne tacaíochta provider/account, le cuótaí daily/hourly.
 
-| Method | Path                                  | Description                                                                                                                                                                                                                                     |
-| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Liostaigh eochracha cláraithe (réimír chumhdaithe amháin)                                                                                                                                                                                       |
-| POST   | `/api/v1/registered-keys`             | Eisigh eochair chláraithe nua — corp: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Seoltar an eochair amh ar ais **uair amháin**. Seoltar `429` ar ais nuair a dhiúltaítear mar gheall ar chuóta. |
-| GET    | `/api/v1/registered-keys/[id]`        | Faigh meiteashonraí eochrach cláraithe (gan ábhar amh)                                                                                                                                                                                          |
-| DELETE | `/api/v1/registered-keys/[id]`        | Cúlghair eochair chláraithe                                                                                                                                                                                                                     |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Críochphointe sainráite cúlghairme (an éifeacht chéanna le DELETE)                                                                                                                                                                              |
+| Modh   | Conair                                | Cur síos                                                                                                                                                                                                             |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Liostaigh eochracha cláraithe (réimír chumhdaithe amháin)                                                                                                                                                            |
+| POST   | `/api/v1/registered-keys`             | Eisigh comhlacht — eochair chláraithe nua: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Filleann an eochair amh** uair amháin** . Tuairisceáin `429` ar dhiúltú cuóta. |
+| GET    | `/api/v1/registered-keys/[id]`        | Aisghabh meiteashonraí eochair chláraithe (gan aon amhábhar)                                                                                                                                                         |
+| DELETE | `/api/v1/registered-keys/[id]`        | Déan eochair chláraithe a chúlghairm                                                                                                                                                                                 |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | críochphointe cúlghairme sainráite (éifeacht chéanna le DELETE)                                                                                                                                                      |
+| GET    | `/api/v1/providers/[provider]/limits` | Léigh caipíní eisiúna an tsoláthraí                                                                                                                                                                                  |
+| PUT    | `/api/v1/providers/[provider]/limits` | Socraigh caipíní eisiúint an tsoláthraí comhlacht — : `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                        |
+| GET    | `/api/v1/accounts/[id]/limits`        | Léigh caipíní eisiúna an chuntais                                                                                                                                                                                    |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Socraigh caipíní eisiúna an chuntais — comhlacht céanna leis an mbealach soláthraí                                                                                                                                   |
 
-**Fíordheimhniú:** seisiún/eochair API bainistíochta (`requireManagementAuth`) — an garda céanna le `/api/keys`: seisiún deais, comhartha CLI áitiúil, nó eochair API le raon feidhme `manage`/`admin`; faigheann eochracha API le haghaidh tátail amháin `403`. Féach freisin `/v1/quotas/check` agus `/v1/issues/report`.
+**Údar:** eochair session/API bainistíochta (`requireManagementAuth`) — an garda céanna le `/api/keys`: seisiún painéal, an comhartha CLI áitiúil, nó eochair API le scóip `manage`/`admin` ; Tátail-amháin API eochracha a fháil `403`. Féach freisin `/v1/quotas/check` agus `/v1/issues/report`.
 
 ---
 

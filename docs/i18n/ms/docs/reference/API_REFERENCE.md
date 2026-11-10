@@ -954,33 +954,24 @@ CLI menaik taraf `base_url + /responses` kepada WebSocket dan OmniRoute membuat 
 
 ## Pelaporan Kuota & Isu
 
-| Kaedah | Laluan              | Perihalan                                                                                          |
-| ------ | ------------------- | -------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Pra-pengesahan kuota untuk `provider` + `accountId` sebelum mengeluarkan kunci berdaftar           |
-| POST   | `/v1/issues/report` | Laporkan kegagalan pengeluaran kuota/kunci kepada GitHub (memerlukan `GITHUB_ISSUES_REPO` + token) |
+| Kaedah | Laluan              | Penerangan                                                                                        |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Pra-sahkan kuota untuk `provider` + `accountId` sebelum mengeluarkan kunci berdaftar              |
+| POST   | `/v1/issues/report` | Laporkan kegagalan pengeluaran quota/key kepada GitHub (memerlukan token `GITHUB_ISSUES_REPO` + ) |
 
-**Pengesahan:** Kunci API Bearer (`isAuthenticated`).
+**Pengesahan:** `/v1/quotas/check` mengambil kunci API Pembawa (`isAuthenticated`). `/v1/issues/report` ialah pengurusan sahaja (`requireManagementAuth`), seperti `/api/v1/registered-keys`: sesi papan pemuka, token CLI setempat atau kunci API dengan skop `manage`/`admin` ; kunci API inferens sahaja mendapat `403`.
 
-### Pemulihan sesi kuota (pilihan)
+### Pemulihan sesi kuota (ikut serta)
 
-Permintaan `POST /v1/chat/completions` atau `POST /v1/responses` tanpa penstriman yang gagal dengan
-ralat kuota terminal (`402`/`429`/`503` yang isi kandungannya menyatakan kuota atau kredit telah habis)
-boleh diletakkan sementara dan dimainkan semula kemudian dan bukannya memulangkan ralat tersebut. Pemanggil memilih
-fungsi ini untuk setiap permintaan menggunakan tiga pengepala:
+`POST /v1/chat/completions` atau `POST /v1/responses` bukan penstriman yang gagal dengan ralat kuota terminal (`402`/`429`/`503` yang badannya mengatakan kuota atau kredit telah habis) boleh diletakkan dan dimainkan semula kemudian dan bukannya mengembalikan ralat itu. Pemanggil mengikut serta setiap permintaan dengan tiga pengepala:
 
-| Pengepala                    | Nilai                                                 |
-| ---------------------------- | ----------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                |
-| `x-omniroute-session`        | id sesi, `[A-Za-z0-9._:-]{1,128}`                     |
-| `x-omniroute-recovery-turn`  | id giliran yang unik dalam sesi (peraturan yang sama) |
+| Pengepala                    | Nilai                                            |
+| ---------------------------- | ------------------------------------------------ |
+| `x-omniroute-quota-recovery` | `auto`                                           |
+| `x-omniroute-session`        | id sesi, `[A-Za-z0-9._:-]{1,128}`                |
+| `x-omniroute-recovery-turn`  | jadikan id unik dalam sesi (peraturan yang sama) |
 
-Hanya giliran `stream: false` tanpa alat, sejarah alat atau `previous_response_id`, dan tanpa
-pin `x-omniroute-connection`, layak diproses, serta `STORAGE_ENCRYPTION_KEY` mesti ditetapkan (permintaan
-disimpan secara disulitkan sehingga 24 jam). Respons kemudiannya ialah `202` dengan
-`recovery.poll`; lakukan tinjauan pada `GET /v1/quota-recoveries/{id}` (`202` sementara menunggu, `200` dengan
-isi kandungan yang dipulihkan apabila selesai) atau batalkan dengan `DELETE`. Tiket hanya boleh dilihat oleh kunci API
-yang menciptanya. Main semula yang keputusannya tidak pasti akan berakhir dalam `needs_confirmation`
-dan bukannya dihantar dua kali. Sumber: `src/lib/quota/quotaSessionRecovery.ts`.
+Hanya `stream: false` pusingan tanpa alat, sejarah alat atau `previous_response_id`, dan tiada pin `x-omniroute-connection`, layak dan `STORAGE_ENCRYPTION_KEY` mesti ditetapkan (permintaan disimpan disulitkan sehingga 24 jam). Jawapannya kemudiannya `202` dengan `recovery.poll`; undian `GET /v1/quota-recoveries/{id}` (`202` sementara belum selesai, `200` dengan badan pulih apabila selesai) atau batalkan dengan `DELETE`. Tiket kelihatan hanya kepada kunci API yang menciptanya. Main semula yang hasilnya tidak pasti berakhir dengan `needs_confirmation` dan bukannya dihantar dua kali. Sumber: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1709,19 +1700,23 @@ Langganan webhook keluar untuk acara OmniRoute (penyelesaian permintaan, kehabis
 
 ---
 
-## Kunci Berdaftar (Pengurusan Automatik)
+## Kunci Berdaftar (Pengurusan Auto)
 
-Digunakan oleh subsistem pengurusan kunci automatik untuk mengeluarkan dan menggil ir kunci API terhadap pembekal/akaun sokongan, dengan kuota harian/jam.
+Digunakan oleh subsistem pengurusan kunci automatik untuk mengeluarkan dan memutar kunci API terhadap provider/account sandaran , dengan kuota daily/hourly.
 
-| Kaedah | Laluan                                | Perihalan                                                                                                                                                                                                              |
+| Kaedah | Laluan                                | Penerangan                                                                                                                                                                                                             |
 | ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Senaraikan kunci berdaftar (hanya awalan yang disamarkan)                                                                                                                                                              |
-| POST   | `/api/v1/registered-keys`             | Keluarkan kunci berdaftar baharu — badan: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Mengembalikan kunci mentah **sekali**. Mengembalikan `429` apabila kuota ditolak. |
-| GET    | `/api/v1/registered-keys/[id]`        | Dapatkan metadata kunci berdaftar (tiada nilai mentah)                                                                                                                                                                 |
+| GET    | `/api/v1/registered-keys`             | Senaraikan kunci berdaftar (awalan bertopeng sahaja)                                                                                                                                                                   |
+| POST   | `/api/v1/registered-keys`             | Keluarkan badan — kunci berdaftar baharu: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Mengembalikan kunci mentah** sekali** . Mengembalikan `429` atas penolakan kuota. |
+| GET    | `/api/v1/registered-keys/[id]`        | Dapatkan semula metadata kunci berdaftar (tiada bahan mentah)                                                                                                                                                          |
 | DELETE | `/api/v1/registered-keys/[id]`        | Batalkan kunci berdaftar                                                                                                                                                                                               |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Titik akhir pembatalan eksplisit (kesan yang sama seperti DELETE)                                                                                                                                                      |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Titik akhir pembatalan yang jelas (kesan yang sama seperti DELETE)                                                                                                                                                     |
+| GET    | `/api/v1/providers/[provider]/limits` | Baca had pengeluaran pembekal                                                                                                                                                                                          |
+| PUT    | `/api/v1/providers/[provider]/limits` | Tetapkan had pengeluaran pembekal — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                      |
+| GET    | `/api/v1/accounts/[id]/limits`        | Baca had pengeluaran akaun                                                                                                                                                                                             |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Tetapkan had pengeluaran akaun — badan yang sama dengan laluan pembekal                                                                                                                                                |
 
-**Pengesahan:** sesi/kunci API pengurusan (`requireManagementAuth`) — pengawal yang sama seperti `/api/keys`: sesi papan pemuka, token CLI setempat atau kunci API dengan skop `manage`/`admin`; kunci API khusus inferens menerima `403`. Lihat juga `/v1/quotas/check` dan `/v1/issues/report`.
+**Pengesahan:** kunci session/API pengurusan (`requireManagementAuth`) — pengawal yang sama seperti `/api/keys`: sesi papan pemuka, token CLI setempat atau kunci API dengan skop `manage`/`admin` ; kunci API inferens sahaja mendapat `403`. Lihat juga `/v1/quotas/check` dan `/v1/issues/report`.
 
 ---
 

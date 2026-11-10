@@ -14,7 +14,7 @@ OmniRoute በ Next.js ላይ የተገነባ የአካባቢያዊ AI ማዞሪ�
 
 ዋና ችሎታዎች፡-
 
-- ክፍት AI-ተኳሃኝ API ወለል ለ CLI/tools (381 አቅራቢዎች፣ 159 አስፈፃሚ ሞጁሎች)
+- ክፍት AI-ተኳሃኝ API ወለል ለ CLI/tools (385 አቅራቢዎች፣ 159 አስፈፃሚ ሞጁሎች)
 - Request/response ትርጉም በአቅራቢ ቅርጸቶች
 - የሞዴል ጥምር ውድቀት (ባለብዙ ሞዴል ተከታታይ)
 - የተዋቀሩ ጥምር ደረጃዎች (`provider + model + connection`) በአሂድ ጊዜ በ `compositeTiers`

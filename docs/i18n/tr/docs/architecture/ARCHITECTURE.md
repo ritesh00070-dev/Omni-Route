@@ -14,7 +14,7 @@ OmniRoute Next.js üzerine kurulu yerel bir AI yönlendirme ağ geçidi ve kontr
 
 Çekirdek yetenekler:
 
-- CLI/tools için OpenAI uyumlu API yüzeyi (381 sağlayıcı, 159 yürütücü modül)
+- CLI/tools için OpenAI uyumlu API yüzeyi (385 sağlayıcı, 159 yürütücü modül)
 - sağlayıcı formatları arasında Request/response çevirisi
 - Model birleşimi geri dönüşü (çoklu model sırası)
 - `compositeTiers` tarafından çalışma zamanı sıralamasıyla yapılandırılmış birleşik adımlar (`provider + model + connection`)

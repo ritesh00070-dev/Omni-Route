@@ -184,7 +184,7 @@ src/
 | `radar/`                                 | Radar-Free-Model-Katalog-Client: `feedSchema.ts`, `pinnedKeys.ts`, `verify.ts`, `sync.ts`, `applyFeed.ts`, `index.ts` (`getRadarCatalog()`) — `docs/frameworks/RADAR.md`                                                                                                                                                     |
 | `display/`                               | UI -Formatierungshilfen (Kosten, Latenz usw.)                                                                                                                                                                                                                                                                                |
 | `embeddings/`                            | Helfer des Einbettungsdienstes                                                                                                                                                                                                                                                                                               |
-| `env/`                                   | Env-Variablenanalyse, + -Validierung                                                                                                                                                                                                                                                                                         |
+| `env/`                                   | Env-Variablenparsing, + -Validierung                                                                                                                                                                                                                                                                                         |
 | `evals/`                                 | Eval-Framework (Suites, Runner, Runtime) — siehe `docs/frameworks/EVALS.md`                                                                                                                                                                                                                                                  |
 | `guardrails/`                            | PII Masker, sofortige Injektion, Vision-Brücke — siehe `docs/security/GUARDRAILS.md`                                                                                                                                                                                                                                         |
 | `jobs/`                                  | Hintergrundjobs (Cron-ähnlich)                                                                                                                                                                                                                                                                                               |
@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | `components/`                    | Dashboard-Komponente API: Adapter über `packages/ui-kit` — siehe `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: Von den Bildschirmen verwendete Symbolnamen → Lucide-Komponenten (`<Icon>`)               |
-| `constants/providers.ts`         | **381 Anbieter** mit Zod -Validierung (Quelle der Wahrheit)                                           |
+| `constants/providers.ts`         | **385 Anbieter** mit Zod -Validierung (Quelle der Wahrheit)                                           |
 | `constants/cliTools.ts`          | Externe CLI Tool-Registrierung                                                                        |
 | `constants/routingStrategies.ts` | **20 Routing-Strategien** mit Prioritäten                                                             |
 | `constants/publicApiRoutes.ts`   | Routen, die eine Bearer-Authentifizierung (vs. Management-Authentifizierung) erfordern                |
@@ -412,7 +412,7 @@ open-sse/
 | `CLI-TOOLS.md`              | Externe CLI -Integrationen + Interne OmniRoute CLI                                            |
 | `I18N.md`                   | i18n-Architektur, Hinzufügen einer Sprache, 67 Gebietsschemas                                 |
 | `UNINSTALL.md`              | Saubere Deinstallationsschritte                                                               |
-| `PROVIDER_REFERENCE.md`     | **Automatisch generiert** Katalog von 381 Anbietern (regen: `npm run gen:provider-reference`) |
+| `PROVIDER_REFERENCE.md`     | **Automatisch generiert** Katalog von 385 Anbietern (regen: `npm run gen:provider-reference`) |
 
 ### Tiefgehende Einblicke in das Subsystem
 

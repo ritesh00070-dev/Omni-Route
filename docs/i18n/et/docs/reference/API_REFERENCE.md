@@ -990,33 +990,24 @@ ChatGPT tagastab `codex.rate_limits` + `response.created` ning voogedastab lõpe
 
 ## Kvootide ja probleemide aruandlus
 
-| Meetod | Tee                 | Kirjeldus                                                                                                |
-| ------ | ------------------- | -------------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Kvoodi eelvalideerimine kombinatsioonile `provider` + `accountId` enne registreeritud võtme väljastamist |
-| POST   | `/v1/issues/report` | Kvoodi või võtme väljastamise tõrke teatamine GitHubile (nõuab `GITHUB_ISSUES_REPO` + tokenit)           |
+| meetod | Tee                 | Kirjeldus                                                                                       |
+| ------ | ------------------- | ----------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Enne registreeritud võtme väljastamist eelkinnitage `provider` + `accountId` kvoot              |
+| POST   | `/v1/issues/report` | Teatage quota/key väljastamise ebaõnnestumisest GitHub (vajalik on `GITHUB_ISSUES_REPO` + märk) |
 
-**Autentimine:** Bearer API-võti (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` võtab kandja API võtme (`isAuthenticated`). `/v1/issues/report` on ainult halduse jaoks mõeldud (`requireManagementAuth`), nagu `/api/v1/registered-keys`: armatuurlaua seanss, kohalik CLI märk või API klahv `manage`/`admin` ulatusega; ainult järelduste tegemiseks mõeldud API klahvid saavad `403`.
 
-### Kvoodiseansi taastamine (valikuline)
+### Kvoodiseansi taastamine (lubamine)
 
-Mittevoogedastav `POST /v1/chat/completions` või `POST /v1/responses`, mis nurjub
-lõpliku kvoodiveaga (`402`/`429`/`503`, mille keha ütleb, et kvoot või krediidid on ammendunud),
-saab vea tagastamise asemel ootele panna ja hiljem uuesti esitada. Helistaja lubab selle iga päringu
-jaoks kolme päisega:
+Voogesituseta `POST /v1/chat/completions` või `POST /v1/responses`, mis ebaõnnestub terminali kvoodi vea tõttu (`402`/`429`/`503`, mille keha ütleb, et kvoot või krediidid on ammendatud), saab tõrke tagastamise asemel parkida ja hiljem uuesti esitada. Helistaja valib taotluse kolme päisega:
 
 | Päis                         | Väärtus                                         |
 | ---------------------------- | ----------------------------------------------- |
 | `x-omniroute-quota-recovery` | `auto`                                          |
 | `x-omniroute-session`        | seansi ID, `[A-Za-z0-9._:-]{1,128}`             |
-| `x-omniroute-recovery-turn`  | seansi piires unikaalne pöörde ID (sama reegel) |
+| `x-omniroute-recovery-turn`  | muuda ID seansi sees ainulaadseks (sama reegel) |
 
-Sobivad ainult `stream: false` pöörded, millel pole tööriistu, tööriistade ajalugu ega
-`previous_response_id`-i ning millel pole `x-omniroute-connection`-i sidumist; lisaks peab olema määratud
-`STORAGE_ENCRYPTION_KEY` (päring salvestatakse krüptitult kuni 24 tunniks). Vastuseks saadetakse
-seejärel `202` koos väljaga `recovery.poll`; küsitlege `GET /v1/quota-recoveries/{id}` kaudu
-ootel oleku ajal `202`, lõpetamisel aga `200` koos taastatud kehaga, või tühistage päring käsuga `DELETE`.
-Piletid on nähtavad ainult need loonud API-võtmele. Taasesitus, mille tulemus on ebakindel, lõpeb olekus
-`needs_confirmation`, selle asemel et päringut kaks korda saata. Allikas: `src/lib/quota/quotaSessionRecovery.ts`.
+Sobivad on ainult `stream: false` -pöörded, millel pole tööriistu, tööriista ajalugu või `previous_response_id` ja `x-omniroute-connection` nööpnõela, ning `STORAGE_ENCRYPTION_KEY` tuleb seadistada (päring salvestatakse krüpteeritult kuni 24 tundi). Vastus on siis `202` koos `recovery.poll`; küsitlus `GET /v1/quota-recoveries/{id}` (`202` ootel, `200` taastatud kehaga, kui see on lõpetatud) või tühistage `DELETE`. Piletid on nähtavad ainult API klahvile, mis need lõi. Kordus, mille tulemus on ebakindel, lõpeb kahekordse saatmise asemel `needs_confirmation` iga. Allikas: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1768,19 +1759,23 @@ OmniRoute'i sündmuste (päringu lõpuleviimine, kvoodi ammendumine, võtme rota
 
 ---
 
-## Registreeritud võtmed (automaatne haldus)
+## Registreeritud võtmed (automaatne haldamine)
 
-Kasutatakse automaatse võtmehalduse alamsüsteemis API-võtmete väljastamiseks ja rotatsiooniks varupakkuja/-konto vastu, koos päeva- ja tunnipõhiste kvootidega.
+Automaatse võtmehalduse alamsüsteem kasutab API võtmete väljastamiseks ja pööramiseks tugi provider/account vastu koos daily/hourly -kvootidega.
 
-| Meetod | Tee                                   | Kirjeldus                                                                                                                                                                                                                |
-| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| GET    | `/api/v1/registered-keys`             | Loetleb registreeritud võtmed (näidatakse ainult maskeeritud prefiksit)                                                                                                                                                  |
-| POST   | `/api/v1/registered-keys`             | Väljastab uue registreeritud võtme — keha: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Tagastab töötlemata võtme **üks kord**. Kvoodist keeldumise korral tagastab `429`. |
-| GET    | `/api/v1/registered-keys/[id]`        | Hangib registreeritud võtme metaandmed (töötlemata võtit ei tagastata)                                                                                                                                                   |
-| DELETE | `/api/v1/registered-keys/[id]`        | Tühistab registreeritud võtme                                                                                                                                                                                            |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Selgesõnaline tühistamise lõpp-punkt (sama toime nagu DELETE)                                                                                                                                                            |
+| meetod | Tee                                   | Kirjeldus                                                                                                                                                                                                              |
+| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Registreeritud võtmete loend (ainult maskeeritud eesliide)                                                                                                                                                             |
+| POST   | `/api/v1/registered-keys`             | Väljasta uus registreeritud võti — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Tagastab töötlemata võtme** üks kord** . Tagastab kvoodist keeldumise kohta `429`. |
+| GET    | `/api/v1/registered-keys/[id]`        | Registreeritud võtme metaandmete toomine (toormaterjali pole)                                                                                                                                                          |
+| DELETE | `/api/v1/registered-keys/[id]`        | Registreeritud võtme tühistamine                                                                                                                                                                                       |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Selgesõnaline tühistamise lõpp-punkt (sama efekt mis DELETE)                                                                                                                                                           |
+| GET    | `/api/v1/providers/[provider]/limits` | Lugege teenusepakkuja väljastamise piirmäärasid                                                                                                                                                                        |
+| PUT    | `/api/v1/providers/[provider]/limits` | Määrake teenusepakkuja väljastamise piirangud — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                          |
+| GET    | `/api/v1/accounts/[id]/limits`        | Lugege konto väljastamise piirmäärasid                                                                                                                                                                                 |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Määrake konto väljastamise ülempiirid — sama sisuga, mis teenusepakkuja marsruudil                                                                                                                                     |
 
-**Autentimine:** haldussessioon/API-võti (`requireManagementAuth`) — sama kontroll nagu `/api/keys` puhul: armatuurlaua sessioon, lokaalne CLI-luba või `manage`/`admin` ulatusega API-võti; ainult järeldamiseks mõeldud API-võtmed saavad vastuseks `403`. Vt ka `/v1/quotas/check` ja `/v1/issues/report`.
+**Auth:** haldamine session/API klahv (`requireManagementAuth`) — sama valvur mis `/api/keys`: armatuurlaua seanss, kohalik CLI luba või API võti `manage`/`admin` ulatusega; API klahvid saavad `403`. Vaata ka `/v1/quotas/check` ja `/v1/issues/report`.
 
 ---
 

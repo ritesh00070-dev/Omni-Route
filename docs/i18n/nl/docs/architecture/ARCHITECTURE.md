@@ -14,7 +14,7 @@ OmniRoute is een lokale AI -routeringsgateway en dashboard gebouwd op Next.js. H
 
 Kernmogelijkheden:
 
-- OpenAI-compatibel API oppervlak voor CLI/tools (381 providers, 159 uitvoerdermodules)
+- OpenAI-compatibel API oppervlak voor CLI/tools (385 providers, 159 uitvoerdermodules)
 - Request/response -vertaling in verschillende providerformaten
 - Terugval op modelcombinaties (reeks met meerdere modellen)
 - Gestructureerde combostappen (`provider + model + connection`) met runtime-bestelling door `compositeTiers`
@@ -68,7 +68,7 @@ Kernmogelijkheden:
 - OAuth milieuherstelactie
 - WebSocket bridge voor OpenAI-compatibele WS clients (`/v1/ws`)
 - Synchronisatietokenbeheer (issue/revoke, download van configuratiebundel met ETag-versie)
-- GLM Thinking (`glmt`) first-class provider preset
+- GLM Thinking (`glmt`) eersteklas providervoorinstelling
 - Hybride token tellen ( `/messages/count_tokens` aan de providerzijde met terugval op schattingen)
 - Automatisch zaaien van modelalias (30 + cross-proxy dialectnormalisaties bij het opstarten)
 - Veilig uitgaand ophalen met SSRF bewaking, privé- URL -blokkering en configureerbaar opnieuw proberen

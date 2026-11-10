@@ -956,33 +956,24 @@ sa napiling codex OAuth connection. Na-validate ito end-to-end laban sa lokal na
 
 ## Pag-uulat ng Mga Quota at Isyu
 
-| Paraan | Path                | Paglalarawan                                                                                             |
-| ------ | ------------------- | -------------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Paunang pagpapatunay ng quota para sa `provider` + `accountId` bago mag-isyu ng nakarehistrong key       |
-| POST   | `/v1/issues/report` | Iulat sa GitHub ang pagkabigo sa pag-isyu ng quota/key (nangangailangan ng `GITHUB_ISSUES_REPO` + token) |
+| Pamamaraan | Daan                | Paglalarawan                                                                                                 |
+| ---------- | ------------------- | ------------------------------------------------------------------------------------------------------------ |
+| GET        | `/v1/quotas/check`  | Paunang i-validate ang quota para sa isang `provider` + `accountId` bago mag-isyu ng nakarehistrong key      |
+| POST       | `/v1/issues/report` | Mag-ulat ng pagkabigo sa pagbibigay ng quota/key sa GitHub (nangangailangan ng `GITHUB_ISSUES_REPO` + token) |
 
-**Auth:** Bearer API key (`isAuthenticated`).
+**Awth:** kumukuha `/v1/quotas/check` ng isang Bearer API key (`isAuthenticated`). `/v1/issues/report` ay management-only (`requireManagementAuth`), tulad ng `/api/v1/registered-keys`: isang dashboard session, ang lokal na CLI token, o isang API key na may `manage`/`admin` scope; ang mga inference-only API key ay nakakakuha ng `403`.
 
-### Pagbawi ng quota session (opsyonal)
+### Pagbawi ng session ng quota (opt-in)
 
-Ang isang non-streaming na `POST /v1/chat/completions` o `POST /v1/responses` na nabigo dahil sa
-terminal quota error (`402`/`429`/`503` na ang body ay nagsasabing naubos na ang quota o credits)
-ay maaaring iparada at i-replay sa ibang pagkakataon sa halip na ibalik ang error. Nag-o-opt in ang
-caller sa bawat request gamit ang tatlong header:
+Ang isang hindi nag-stream `POST /v1/chat/completions` o `POST /v1/responses` na nabigo sa isang error sa terminal quota (`402`/`429`/`503` na ang katawan ay nagsasabing ubos na ang quota o mga credit) ay maaaring iparada at i-replay sa ibang pagkakataon sa halip na ibalik ang error. Nag-opt in ang tumatawag sa bawat kahilingan na may tatlong header:
 
-| Header                       | Halaga                                                        |
-| ---------------------------- | ------------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                        |
-| `x-omniroute-session`        | session id, `[A-Za-z0-9._:-]{1,128}`                          |
-| `x-omniroute-recovery-turn`  | turn id na natatangi sa loob ng session (parehong panuntunan) |
+| Header                       | Halaga                                                         |
+| ---------------------------- | -------------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                         |
+| `x-omniroute-session`        | session id, `[A-Za-z0-9._:-]{1,128}`                           |
+| `x-omniroute-recovery-turn`  | gawing kakaiba ang id sa loob ng session (parehong panuntunan) |
 
-Ang mga turn lang na `stream: false` na walang tools, tool history o `previous_response_id`, at walang
-`x-omniroute-connection` pin, ang kwalipikado, at dapat nakatakda ang `STORAGE_ENCRYPTION_KEY` (ang
-request ay naka-store na encrypted nang hanggang 24 na oras). Ang response ay magiging `202` na may
-`recovery.poll`; i-poll ang `GET /v1/quota-recoveries/{id}` (`202` habang nakabinbin, `200` na may
-recovered body kapag nakumpleto) o kanselahin gamit ang `DELETE`. Ang mga ticket ay makikita lamang ng
-API key na lumikha sa mga ito. Ang replay na hindi tiyak ang kinalabasan ay nagtatapos sa
-`needs_confirmation` sa halip na maipadala nang dalawang beses. Source: `src/lib/quota/quotaSessionRecovery.ts`.
+Ang `stream: false` lang ang lumiliko na walang tool, history ng tool o `previous_response_id`, at walang `x-omniroute-connection` pin, ang kwalipikado, at dapat itakda `STORAGE_ENCRYPTION_KEY` (naka-imbak ang kahilingan nang naka-encrypt nang hanggang 24 na oras). Ang tugon ay `202` na may `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` habang nakabinbin, `200` kasama ang nakuhang katawan kapag nakumpleto) o kanselahin gamit ang `DELETE`. Ang mga tiket ay makikita lamang ng API key na lumikha sa kanila. Ang isang replay na hindi tiyak ang kinalabasan ay nagtatapos sa `needs_confirmation` sa halip na ipadala nang dalawang beses. Pinagmulan: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1732,19 +1723,23 @@ Mga outbound na subscription ng webhook para sa mga event ng OmniRoute (pagkumpl
 
 ---
 
-## Mga Nakarehistrong Key (Awtomatikong Pamamahala)
+## Mga Rehistradong Susi (Auto-Pamamahala)
 
-Ginagamit ng subsystem ng awtomatikong pamamahala ng key upang mag-isyu at magpaikot ng mga API key laban sa isang backing provider/account, na may mga quota bawat araw/oras.
+Ginagamit ng auto-key management subsystem para mag-isyu at mag-rotate ng mga API key laban sa isang backing provider/account, na may mga daily/hourly quota.
 
-| Paraan | Path                                  | Paglalarawan                                                                                                                                                                                                                                          |
-| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Ilista ang mga nakarehistrong key (masked prefix lamang)                                                                                                                                                                                              |
-| POST   | `/api/v1/registered-keys`             | Mag-isyu ng bagong nakarehistrong key — katawan: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Ibinabalik ang raw key **nang isang beses lamang**. Nagbabalik ng `429` kapag tinanggihan dahil sa quota. |
-| GET    | `/api/v1/registered-keys/[id]`        | Kunin ang metadata ng isang nakarehistrong key (walang raw material)                                                                                                                                                                                  |
-| DELETE | `/api/v1/registered-keys/[id]`        | Bawiin ang isang nakarehistrong key                                                                                                                                                                                                                   |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Tiyak na endpoint para sa pagbawi (kapareho ng epekto ng DELETE)                                                                                                                                                                                      |
+| Pamamaraan | Daan                                  | Paglalarawan                                                                                                                                                                                                                 |
+| ---------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET        | `/api/v1/registered-keys`             | Ilista ang mga nakarehistrong key (masked prefix lang)                                                                                                                                                                       |
+| POST       | `/api/v1/registered-keys`             | Mag-isyu ng bagong rehistradong key — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Ibinabalik ang hilaw na susi** minsan** . Ibinabalik ang `429` sa pagtanggi sa quota. |
+| GET        | `/api/v1/registered-keys/[id]`        | Kunin ang metadata ng rehistradong key (walang raw material)                                                                                                                                                                 |
+| DELETE     | `/api/v1/registered-keys/[id]`        | Bawiin ang isang nakarehistrong susi                                                                                                                                                                                         |
+| POST       | `/api/v1/registered-keys/[id]/revoke` | Ang tahasang pagbawi ng endpoint (parehong epekto ng DELETE)                                                                                                                                                                 |
+| GET        | `/api/v1/providers/[provider]/limits` | Basahin ang mga limitasyon ng pagpapalabas ng provider                                                                                                                                                                       |
+| PUT        | `/api/v1/providers/[provider]/limits` | Itakda ang mga takip ng pagpapalabas ng provider — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                             |
+| GET        | `/api/v1/accounts/[id]/limits`        | Basahin ang mga limitasyon ng pagpapalabas ng account                                                                                                                                                                        |
+| PUT        | `/api/v1/accounts/[id]/limits`        | Itakda ang mga limitasyon ng pagpapalabas ng account — parehong katawan bilang ruta ng provider                                                                                                                              |
 
-**Pagpapatunay:** management session/API key (`requireManagementAuth`) — kaparehong guard ng `/api/keys`: isang dashboard session, ang lokal na CLI token, o isang API key na may `manage`/`admin` scope; ang mga API key na para lamang sa inference ay nakakakuha ng `403`. Tingnan din ang `/v1/quotas/check` at `/v1/issues/report`.
+**Awth:** management session/API key (`requireManagementAuth`) — ang parehong bantay bilang `/api/keys`: isang sesyon ng dashboard, ang lokal na CLI token, o isang API key na may saklaw na `manage`/`admin` ; inference-only API keys get `403`. Tingnan din `/v1/quotas/check` at `/v1/issues/report`.
 
 ---
 

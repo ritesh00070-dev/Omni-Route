@@ -490,7 +490,7 @@ open-sse/
 
 `antigravity`, `azure-openai`, `blackbox-web`, `cliproxyapi`, `chatgpt-web-codex`, `cloudflare-ai`, `codex`, `commandCode`, `cursor`, `default`, `devin-cli`, `muse-spark-web`, `nlpcloud`, `opencode`, `perplexity-web`, `petals`, `pollinations`, `qoder` `devin-desktop` `vertex` `claudeIdentity.ts` պլյուս (ընդհանուր) օգնական `index.ts`
 
-> Նշում․ այստեղ չնշված մատակարարները սպասարկվում են `default.ts` կողմից՝ օգտագործելով ընդհանուր OpenAI-ի հետ համատեղելի կատարողը: Պրովայդերների ամբողջական կատալոգը (381 մատակարար) ապրում է `src/shared/constants/providers.ts` ում:
+> Նշում․ այստեղ չնշված մատակարարները սպասարկվում են `default.ts` կողմից՝ օգտագործելով ընդհանուր OpenAI-ի հետ համատեղելի կատարողը: Պրովայդերների ամբողջական կատալոգը (385 մատակարար) ապրում է `src/shared/constants/providers.ts` ում:
 
 ### 4.3 `open-sse/translator/`
 

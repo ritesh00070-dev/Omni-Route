@@ -180,9 +180,9 @@ Ukurasa wa dashibodi katika `/dashboard/webhooks` (angalia
 - Uwasilishaji wa majaribio kwa mbofyo mmoja
 - Kitufe cha kuwezesha/kuzima kwa mikono
 
-## Mifano ya Payload
+## Mifano ya Upakiaji
 
-### request.completed
+### ombi.limekamilika
 
 ```json
 {
@@ -201,7 +201,7 @@ Ukurasa wa dashibodi katika `/dashboard/webhooks` (angalia
 }
 ```
 
-### test.ping
+### mtihani.ping
 
 ```json
 {
@@ -214,9 +214,7 @@ Ukurasa wa dashibodi katika `/dashboard/webhooks` (angalia
 }
 ```
 
-Miundo ya sehemu za matukio yasiyo ya `test.ping` hufafanuliwa na sehemu za msimbo zinazoyatoa;
-chukulia kipengee cha `data` kuwa kinachooana na matoleo yajayo (ongeza sehemu, usitegemee
-kutokuwepo kwake).
+Maumbo ya uwanja kwa matukio yasiyo ya `test.ping` yanafafanuliwa na tovuti za simu zinazozitoa; chukulia kitu cha `data` kama kinachoendana mbele (ongeza uwanja, usitegemee kutokuwepo).
 
 ## Mbinu Bora
 

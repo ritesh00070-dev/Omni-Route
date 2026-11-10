@@ -956,26 +956,26 @@ completamento.
 
 ---
 
-## Report di quote e problemi
+## Reporting su quote e problemi
 
-| Metodo | Percorso            | Descrizione                                                                                                    |
-| ------ | ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Preconvalida la quota per una combinazione di `provider` + `accountId` prima di emettere una chiave registrata |
-| POST   | `/v1/issues/report` | Segnala a GitHub un errore di emissione di quota/chiave (richiede `GITHUB_ISSUES_REPO` + token)                |
+| Metodo | Sentiero            | Descrizione                                                                                      |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------------ |
+| GET    | `/v1/quotas/check`  | Quota di pre-convalida per `provider` + `accountId` prima di emettere una chiave registrata      |
+| POST   | `/v1/issues/report` | Segnala un errore di emissione di quota/key a GitHub (richiede il token `GITHUB_ISSUES_REPO` + ) |
 
-**Autenticazione:** chiave API Bearer (`isAuthenticated`).
+**Autenticazione:** `/v1/quotas/check` accetta una chiave Bearer API (`isAuthenticated`). `/v1/issues/report` è di sola gestione (`requireManagementAuth`), come `/api/v1/registered-keys`: una sessione del dashboard, il token CLI locale o una chiave API con ambito `manage`/`admin` ; Le chiavi API di sola inferenza ottengono `403`.
 
-### Recupero della sessione di quota (facoltativo)
+### Recupero sessione quota (attivazione)
 
-Una richiesta `POST /v1/chat/completions` o `POST /v1/responses` non in streaming che restituisce un errore di quota terminale (`402`/`429`/`503` il cui corpo indica che la quota o i crediti sono esauriti) può essere messa in attesa e riprodotta in seguito invece di restituire l'errore. Il chiamante abilita questa opzione per ogni richiesta con tre intestazioni:
+Uno `POST /v1/chat/completions` o `POST /v1/responses` non in streaming che fallisce con un errore di quota terminale (`402`/`429`/`503` il cui corpo dice che la quota o i crediti sono esauriti) può essere parcheggiato e riprodotto in seguito invece di restituire l'errore. Il chiamante accetta per richiesta con tre intestazioni:
 
-| Intestazione                 | Valore                                              |
-| ---------------------------- | --------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                              |
-| `x-omniroute-session`        | ID sessione, `[A-Za-z0-9._:-]{1,128}`               |
-| `x-omniroute-recovery-turn`  | ID del turno univoco nella sessione (stessa regola) |
+| Intestazione                 | Valore                                                            |
+| ---------------------------- | ----------------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                            |
+| `x-omniroute-session`        | ID sessione, `[A-Za-z0-9._:-]{1,128}`                             |
+| `x-omniroute-recovery-turn`  | trasforma l'id univoco all'interno della sessione (stessa regola) |
 
-Sono idonei solo i turni con `stream: false`, senza strumenti, cronologia degli strumenti o `previous_response_id`, e senza un pin `x-omniroute-connection`; inoltre, `STORAGE_ENCRYPTION_KEY` deve essere impostata (la richiesta viene archiviata in forma crittografata per un massimo di 24 ore). La risposta è quindi `202` con `recovery.poll`; eseguire il polling su `GET /v1/quota-recoveries/{id}` (`202` mentre è in sospeso, `200` con il corpo recuperato al completamento) oppure annullare con `DELETE`. I ticket sono visibili solo alla chiave API che li ha creati. Una riproduzione il cui esito è incerto termina in `needs_confirmation` invece di essere inviata due volte. Fonte: `src/lib/quota/quotaSessionRecovery.ts`.
+Sono idonee solo le svolte `stream: false` senza utensili, cronologia utensili o `previous_response_id` e senza pin `x-omniroute-connection` e `STORAGE_ENCRYPTION_KEY` deve essere impostato (la richiesta viene archiviata crittografata per un massimo di 24 ore). La risposta è quindi `202` con `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` mentre è in sospeso, `200` con il corpo recuperato una volta completato) o annulla con `DELETE`. I ticket sono visibili solo alla chiave API che li ha creati. Un replay il cui esito è incerto termina in `needs_confirmation` invece di essere inviato due volte. Fonte: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1731,19 +1731,23 @@ Sottoscrizioni a webhook in uscita per gli eventi di OmniRoute (completamento de
 
 ---
 
-## Chiavi registrate (gestione automatica)
+## Chiavi Registrate (Autogestione)
 
-Utilizzate dal sottosistema di gestione automatica delle chiavi per emettere e ruotare chiavi API tramite un provider/account di supporto, con quote giornaliere/orarie.
+Utilizzato dal sottosistema di gestione delle chiavi automatiche per emettere e ruotare le chiavi API rispetto a un provider/account di supporto, con quote daily/hourly.
 
-| Metodo | Percorso                              | Descrizione                                                                                                                                                                                                                             |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Elenca le chiavi registrate (solo il prefisso mascherato)                                                                                                                                                                               |
-| POST   | `/api/v1/registered-keys`             | Emette una nuova chiave registrata — corpo: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Restituisce la chiave grezza **una sola volta**. Restituisce `429` in caso di rifiuto per quota. |
-| GET    | `/api/v1/registered-keys/[id]`        | Recupera i metadati di una chiave registrata (nessun materiale grezzo)                                                                                                                                                                  |
-| DELETE | `/api/v1/registered-keys/[id]`        | Revoca una chiave registrata                                                                                                                                                                                                            |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Endpoint di revoca esplicita (stesso effetto di DELETE)                                                                                                                                                                                 |
+| Metodo | Sentiero                              | Descrizione                                                                                                                                                                                                                      |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Elenca le chiavi registrate (solo prefisso mascherato)                                                                                                                                                                           |
+| POST   | `/api/v1/registered-keys`             | Emettere una nuova chiave registrata corpo — : `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Restituisce la chiave grezza** una volta** . Restituisce `429` al rifiuto della quota. |
+| GET    | `/api/v1/registered-keys/[id]`        | Recuperare i metadati di una chiave registrata (nessuna materia prima)                                                                                                                                                           |
+| DELETE | `/api/v1/registered-keys/[id]`        | Revoca una chiave registrata                                                                                                                                                                                                     |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Endpoint di revoca esplicita (stesso effetto di DELETE)                                                                                                                                                                          |
+| GET    | `/api/v1/providers/[provider]/limits` | Leggi i limiti di emissione del fornitore                                                                                                                                                                                        |
+| PUT    | `/api/v1/providers/[provider]/limits` | Imposta i limiti di emissione del fornitore — corpo: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                     |
+| GET    | `/api/v1/accounts/[id]/limits`        | Leggi i limiti di emissione del conto                                                                                                                                                                                            |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Imposta i limiti di emissione dell'account — stesso corpo del percorso del fornitore                                                                                                                                             |
 
-**Autenticazione:** sessione/chiave API di gestione (`requireManagementAuth`) — la stessa protezione di `/api/keys`: una sessione della dashboard, il token CLI locale o una chiave API con ambito `manage`/`admin`; le chiavi API di sola inferenza ricevono `403`. Vedi anche `/v1/quotas/check` e `/v1/issues/report`.
+**Autenticazione:** gestione della chiave session/API (`requireManagementAuth`) — la stessa guardia di `/api/keys`: una sessione del dashboard, il token CLI locale o una chiave API con ambito `manage`/`admin` ; le chiavi API di sola inferenza ottengono `403`. Vedi anche `/v1/quotas/check` e `/v1/issues/report`.
 
 ---
 

@@ -14,7 +14,7 @@ OmniRoute - Next.js-da qurilgan mahalliy AI marshrutlash shlyuzi va asboblar pan
 
 Asosiy qobiliyatlar:
 
-- CLI/tools uchun OpenAI-mos API yuzasi (381 ta provayder, 159 ta ijrochi modul)
+- CLI/tools uchun OpenAI-mos API yuzasi (385 ta provayder, 159 ta ijrochi modul)
 - provayder formatlari bo'ylab Request/response tarjimasi
 - Model kombinatsiyasi (ko'p modelli ketma-ketlik)
 - Strukturaviy kombinatsiyalangan qadamlar (`provider + model + connection`) `compositeTiers` tomonidan ish vaqti tartibi

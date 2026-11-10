@@ -901,26 +901,26 @@ CLI 会将 `base_url + /responses` 升级为 WebSocket，OmniRoute 再将其隧�
 
 ---
 
-## 配额与问题报告
+## 配额和问题报告
 
-| 方法 | 路径                | 描述                                                                  |
-| ---- | ------------------- | --------------------------------------------------------------------- |
-| GET  | `/v1/quotas/check`  | 在签发已注册密钥之前，预先验证 `provider` + `accountId` 的配额        |
-| POST | `/v1/issues/report` | 将配额/密钥签发失败报告到 GitHub（需要 `GITHUB_ISSUES_REPO` + token） |
+| 方法 | 小路                | 描述                                                            |
+| ---- | ------------------- | --------------------------------------------------------------- |
+| GET  | `/v1/quotas/check`  | 在发布注册密钥之前预先验证`provider` + `accountId`的配额        |
+| POST | `/v1/issues/report` | 向GitHub报告quota/key发行失败（需要`GITHUB_ISSUES_REPO` +代币） |
 
-**身份验证：**Bearer API 密钥（`isAuthenticated`）。
+**授权：** `/v1/quotas/check`采用 Bearer API密钥 (`isAuthenticated`)。 `/v1/issues/report`仅限管理 (`requireManagementAuth`)，如`/api/v1/registered-keys`：仪表板会话、本地CLI令牌或具有`manage`/`admin`范围的API密钥；仅推理API键获取`403`。
 
-### 配额会话恢复（选择启用）
+### 配额会话恢复（选择加入）
 
-非流式 `POST /v1/chat/completions` 或 `POST /v1/responses` 如果因终止性配额错误而失败（`402`/`429`/`503`，且响应正文表明配额或额度已耗尽），可以将请求暂存并稍后重放，而不是直接返回错误。调用方可以在每个请求中通过以下三个标头选择启用：
+因终端配额错误而失败的非流式`POST /v1/chat/completions`或`POST /v1/responses` （`402`/`429`/`503`其主体表示配额或积分已耗尽）可以停放并稍后重播，而不是返回错误。调用者选择使用三个标头的每个请求：
 
-| 标头                         | 值                                |
-| ---------------------------- | --------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                            |
-| `x-omniroute-session`        | 会话 ID，`[A-Za-z0-9._:-]{1,128}` |
-| `x-omniroute-recovery-turn`  | 会话内唯一的回合 ID（相同规则）   |
+| 标头                         | 价值                                 |
+| ---------------------------- | ------------------------------------ |
+| `x-omniroute-quota-recovery` | `auto`                               |
+| `x-omniroute-session`        | 会话 ID、 `[A-Za-z0-9._:-]{1,128}`   |
+| `x-omniroute-recovery-turn`  | 将 id 在会话中设置为唯一（相同规则） |
 
-只有满足以下条件的回合才符合要求：`stream: false`、没有工具、工具历史记录或 `previous_response_id`，且没有设置 `x-omniroute-connection` 固定连接；此外还必须设置 `STORAGE_ENCRYPTION_KEY`（请求会以加密形式存储最多 24 小时）。响应随后为 `202`，并包含 `recovery.poll`；可以轮询 `GET /v1/quota-recoveries/{id}`（待处理时返回 `202`，完成时返回包含恢复后正文的 `200`），也可以使用 `DELETE` 取消。工单仅对创建它的 API 密钥可见。如果重放结果不确定，则会进入 `needs_confirmation` 状态，而不会发送两次。来源：`src/lib/quota/quotaSessionRecovery.ts`。
+只有没有工具、工具历史记录或`previous_response_id`且没有`x-omniroute-connection`引脚的`stream: false`轮次才符合资格，并且必须设置`STORAGE_ENCRYPTION_KEY` （请求加密存储最多 24 小时）。那么响应是`202`和`recovery.poll`； poll `GET /v1/quota-recoveries/{id}` （待处理时为`202` ，完成后`200`与恢复的正文）或使用`DELETE`取消。票证仅对创建票证的API键可见。结果不确定的重播以`needs_confirmation`结束，而不是发送两次。来源： `src/lib/quota/quotaSessionRecovery.ts`。
 
 ---
 
@@ -1649,19 +1649,23 @@ DELETE /api/usage/token-limits?id=tl-abc
 
 ---
 
-## 已注册密钥（自动管理）
+## 注册密钥（自动管理）
 
-由自动密钥管理子系统使用，用于针对后端提供者/账户签发和轮换 API 密钥，并设置每日/每小时配额。
+由自动密钥管理子系统用来针对支持provider/account颁发和轮换API密钥，并具有daily/hourly配额。
 
-| Method | Path                                  | Description                                                                                                                                                            |
-| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | 列出已注册密钥（仅显示掩码后的前缀）                                                                                                                                   |
-| POST   | `/api/v1/registered-keys`             | 签发新的已注册密钥 — 请求体：`{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`。原始密钥仅返回**一次**。配额拒绝时返回 `429`。 |
-| GET    | `/api/v1/registered-keys/[id]`        | 获取已注册密钥的元数据（不包含原始密钥内容）                                                                                                                           |
-| DELETE | `/api/v1/registered-keys/[id]`        | 撤销已注册密钥                                                                                                                                                         |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | 显式撤销端点（效果与 `DELETE` 相同）                                                                                                                                   |
+| 方法   | 小路                                  | 描述                                                                                                                                                            |
+| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | 列出已注册的键（仅限屏蔽前缀）                                                                                                                                  |
+| POST   | `/api/v1/registered-keys`             | 发出新的注册密钥—主体： `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`。返回原始密钥**一次**。配额拒绝时返回`429` 。 |
+| GET    | `/api/v1/registered-keys/[id]`        | 检索已注册密钥的元数据（无原材料）                                                                                                                              |
+| DELETE | `/api/v1/registered-keys/[id]`        | 撤销已注册的密钥                                                                                                                                                |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | 显式撤销端点（与DELETE效果相同）                                                                                                                                |
+| GET    | `/api/v1/providers/[provider]/limits` | 阅读提供者的发行上限                                                                                                                                            |
+| PUT    | `/api/v1/providers/[provider]/limits` | 设置提供者的发行上限— body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                             |
+| GET    | `/api/v1/accounts/[id]/limits`        | 查看账户的发行上限                                                                                                                                              |
+| PUT    | `/api/v1/accounts/[id]/limits`        | 设置账户的发行上限—与提供者路由相同                                                                                                                             |
 
-**身份验证：**管理会话/API 密钥（`requireManagementAuth`）— 与 `/api/keys` 使用相同的保护机制：仪表板会话、本地 CLI 令牌，或具有 `manage`/`admin` 作用域的 API 密钥；仅推理 API 密钥将获得 `403`。另请参阅 `/v1/quotas/check` 和 `/v1/issues/report`。
+**授权：**管理session/API密钥 (`requireManagementAuth`) —与`/api/keys`相同的保护：仪表板会话、本地CLI令牌或具有`manage`/`admin`范围的API密钥；仅推理API键得到`403`。另请参见`/v1/quotas/check`和`/v1/issues/report`。
 
 ---
 

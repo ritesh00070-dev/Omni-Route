@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `components/`                    | Armatuurlaua komponent API: `packages/ui-kit` adapterid — vt `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: ekraanidel kasutatavad ikooninimed → Lucide'i komponendid (`<Icon>`)                  |
-| `constants/providers.ts`         | **381 pakkujat** Zod valideerimisega (tõe allikas)                                                |
+| `constants/providers.ts`         | **385 pakkujat** Zod valideerimisega (tõe allikas)                                                |
 | `constants/cliTools.ts`          | Väline CLI tööriista register                                                                     |
 | `constants/routingStrategies.ts` | **20 marsruutimisstrateegiat** prioriteetidega                                                    |
 | `constants/publicApiRoutes.ts`   | Marsruudid, mis nõuavad kandja (vs haldamise) autentimist                                         |
@@ -395,24 +395,24 @@ open-sse/
 
 ### Tipptasemel juhendid
 
-| Doc                         | Eesmärk                                                                                        |
-| --------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ARCHITECTURE.md`           | Kõrgetasemeline arhitektuur, alamsüsteemi kaart, armatuurlaua pind                             |
-| `CODEBASE_DOCUMENTATION.md` | Tehniline viide: kataloogid, moodulid, kokkulepped                                             |
-| `FEATURES.md`               | Funktsioonimaatriks koos v3.8 esiletõstmistega                                                 |
-| `USER_GUIDE.md`             | Lõppkasutaja käsiraamat (seadistus, mudelid, kombinatsioonid, CLIs, heli jne)                  |
-| `API_REFERENCE.md`          | API lõpp-punkti viide autentimismudeliga                                                       |
-| `openapi.yaml`              | OpenAPI 3.0 spetsifikatsioon (121 rada)                                                        |
-| `SETUP_GUIDE.md`            | Installimismeetodid (npm, npx, Docker, Electron, Termux, allikas)                              |
-| `ENVIRONMENT.md`            | Kõik env-vars (dokumenteeritud ~ 800, ~ 3050 rida `.env.example`)                              |
-| `TROUBLESHOOTING.md`        | Levinud vead + v3.8.0 teadaolevad probleemid                                                   |
-| `RELEASE_CHECKLIST.md`      | Täielik vabastamise voog (oskused, husky, tavapärased kohustused, juurutamine)                 |
-| `COVERAGE_PLAN.md`          | Katvuse eesmärgid ja hetkeseis                                                                 |
-| `FREE_TIERS.md`             | Kureeritud vabataseme pakkujad (48 + tasuta + 11 OAuth)                                        |
-| `CLI-TOOLS.md`              | Välised CLI integratsioonid + Sisemine OmniRoute CLI                                           |
-| `I18N.md`                   | i18n arhitektuur, keele lisamine, 67 lokaali                                                   |
-| `UNINSTALL.md`              | Puhastage desinstalli sammud                                                                   |
-| `PROVIDER_REFERENCE.md`     | **Automaatselt genereeritud** kataloog 381 pakkujast (regen: `npm run gen:provider-reference`) |
+| Doc                         | Eesmärk                                                                                      |
+| --------------------------- | -------------------------------------------------------------------------------------------- |
+| `ARCHITECTURE.md`           | Kõrgetasemeline arhitektuur, alamsüsteemi kaart, armatuurlaua pind                           |
+| `CODEBASE_DOCUMENTATION.md` | Tehniline viide: kataloogid, moodulid, kokkulepped                                           |
+| `FEATURES.md`               | Funktsioonimaatriks koos v3.8 esiletõstmistega                                               |
+| `USER_GUIDE.md`             | Lõppkasutaja käsiraamat (seadistus, mudelid, kombinatsioonid, CLIs, heli jne)                |
+| `API_REFERENCE.md`          | API lõpp-punkti viide autentimismudeliga                                                     |
+| `openapi.yaml`              | OpenAPI 3.0 spetsifikatsioon (121 rada)                                                      |
+| `SETUP_GUIDE.md`            | Installimismeetodid (npm, npx, Docker, Electron, Termux, allikas)                            |
+| `ENVIRONMENT.md`            | Kõik env-vars (dokumenteeritud ~ 800, ~ 3050 rida `.env.example`)                            |
+| `TROUBLESHOOTING.md`        | Levinud vead + v3.8.0 teadaolevad probleemid                                                 |
+| `RELEASE_CHECKLIST.md`      | Täielik vabastamise voog (oskused, husky, tavapärased kohustused, juurutamine)               |
+| `COVERAGE_PLAN.md`          | Katvuse eesmärgid ja hetkeseis                                                               |
+| `FREE_TIERS.md`             | Kureeritud vabataseme pakkujad (48 + tasuta + 11 OAuth)                                      |
+| `CLI-TOOLS.md`              | Välised CLI integratsioonid + Sisemine OmniRoute CLI                                         |
+| `I18N.md`                   | i18n arhitektuur, keele lisamine, 67 lokaali                                                 |
+| `UNINSTALL.md`              | Puhastage desinstalli sammud                                                                 |
+| `PROVIDER_REFERENCE.md`     | **Automaatselt genereeritud** 385 pakkuja kataloog (regen: `npm run gen:provider-reference`) |
 
 ### Alamsüsteemi süvasukeldumised
 

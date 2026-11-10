@@ -914,35 +914,26 @@ CLI는 `base_url + /responses`를 WebSocket으로 업그레이드하고, OmniRou
 
 ---
 
-## 할당량 및 이슈 보고
+## 할당량 및 문제 보고
 
-| Method | Path                | Description                                                             |
-| ------ | ------------------- | ----------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | 등록된 키를 발급하기 전에 `provider` + `accountId`의 할당량을 사전 검증 |
-| POST   | `/v1/issues/report` | 할당량/키 발급 실패를 GitHub에 보고 (`GITHUB_ISSUES_REPO` + 토큰 필요)  |
+| 방법 | 길                  | 설명                                                                                 |
+| ---- | ------------------- | ------------------------------------------------------------------------------------ |
+| GET  | `/v1/quotas/check`  | 등록된 키를 발급하기 전에 `provider` + `accountId` 에 대한 할당량을 사전 검증하세요. |
+| POST | `/v1/issues/report` | quota/key 발급 실패를 GitHub 에 보고합니다( `GITHUB_ISSUES_REPO` + 토큰 필요)        |
 
-**인증:** Bearer API 키 (`isAuthenticated`).
+**인증:** `/v1/quotas/check` Bearer API 키(`isAuthenticated`)를 사용합니다. `/v1/issues/report` `/api/v1/registered-keys` 와 같이 관리 전용(`requireManagementAuth`)입니다. 대시보드 세션, 로컬 CLI 토큰 또는 `manage`/`admin` 범위가 있는 API 키입니다. 추론 전용 API 키는 `403` 얻습니다.
 
-### 할당량 세션 복구 (선택 사항)
+### 할당량 세션 복구(선택)
 
-터미널 할당량 오류(`402`/`429`/`503`이며 본문에 할당량 또는 크레딧이 소진되었다고 표시됨)로
-실패한 비스트리밍 `POST /v1/chat/completions` 또는 `POST /v1/responses` 요청은 오류를
-반환하는 대신 보류한 후 나중에 재생할 수 있습니다. 호출자는 요청별로 다음 세 헤더를 사용하여
-옵트인합니다.
+터미널 할당량 오류(본문에 할당량이나 크레딧이 소진되었다고 표시된 `402`/`429`/`503` )로 인해 실패한 비스트리밍 `POST /v1/chat/completions` 또는 `POST /v1/responses` 오류를 반환하는 대신 나중에 주차하고 재생할 수 있습니다. 호출자는 세 개의 헤더를 사용하여 요청별로 옵트인합니다.
 
-| Header                       | Value                                  |
-| ---------------------------- | -------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                 |
-| `x-omniroute-session`        | 세션 ID, `[A-Za-z0-9._:-]{1,128}`      |
-| `x-omniroute-recovery-turn`  | 세션 내에서 고유한 턴 ID (동일한 규칙) |
+| 헤더                         | 값                                              |
+| ---------------------------- | ----------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                          |
+| `x-omniroute-session`        | 세션 ID, `[A-Za-z0-9._:-]{1,128}`               |
+| `x-omniroute-recovery-turn`  | 세션 내에서 ID를 고유하게 설정합니다(동일 규칙) |
 
-`stream: false`이고 도구, 도구 기록 또는 `previous_response_id`가 없으며
-`x-omniroute-connection` 고정이 없는 턴만 대상이 됩니다. 또한 `STORAGE_ENCRYPTION_KEY`가
-설정되어 있어야 합니다(요청은 최대 24시간 동안 암호화된 상태로 저장됨). 이후 응답은
-`202` 및 `recovery.poll`이 되며, 폴링은 `GET /v1/quota-recoveries/{id}`를 사용합니다
-(대기 중에는 `202`, 완료되면 복구된 본문과 함께 `200`). 또는 `DELETE`로 취소할 수 있습니다.
-티켓은 해당 티켓을 생성한 API 키에만 표시됩니다. 결과가 불확실한 재생은 두 번 전송되는 대신
-`needs_confirmation` 상태로 종료됩니다. 출처: `src/lib/quota/quotaSessionRecovery.ts`.
+도구, 도구 기록 또는 `previous_response_id` 없고 `x-omniroute-connection` 핀이 없는 `stream: false` 회전만 적격하며 `STORAGE_ENCRYPTION_KEY` 설정해야 합니다(요청은 최대 24시간 동안 암호화되어 저장됩니다). 그러면 응답은 `202` 와 `recovery.poll` 입니다. `GET /v1/quota-recoveries/{id}` 폴링하거나(보류 중인 동안 `202`, 완료되면 복구된 본문을 사용하여 `200` ) `DELETE` 로 취소합니다. 티켓은 티켓을 생성한 API 키에만 표시됩니다. 결과가 불확실한 재생은 두 번 전송되는 대신 `needs_confirmation` 로 끝납니다. 출처: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1682,17 +1673,21 @@ OmniRoute 이벤트(요청 완료, 할당량 소진, 키 순환 등)에 대한 �
 
 ## 등록된 키(자동 관리)
 
-자동 키 관리 하위 시스템에서 백업 제공자/계정에 대한 API 키를 발급하고 순환하는 데 사용하며, 일일/시간별 할당량을 적용합니다.
+자동 키 관리 하위 시스템에서 daily/hourly 할당량을 사용하여 지원 provider/account 에 대해 API 키를 발급하고 순환하는 데 사용됩니다.
 
-| Method | Path                                  | Description                                                                                                                                                                             |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | 등록된 키 목록 조회 (마스킹된 접두사만 표시)                                                                                                                                            |
-| POST   | `/api/v1/registered-keys`             | 새 등록 키 발급 — 본문: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. 원본 키는 **한 번만** 반환됩니다. 할당량 거부 시 `429`를 반환합니다. |
-| GET    | `/api/v1/registered-keys/[id]`        | 등록된 키의 메타데이터 조회 (원본 키 자료 없음)                                                                                                                                         |
-| DELETE | `/api/v1/registered-keys/[id]`        | 등록된 키 폐기                                                                                                                                                                          |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | 명시적 폐기 엔드포인트 (DELETE와 동일한 효과)                                                                                                                                           |
+| 방법   | 길                                    | 설명                                                                                                                                                                                               |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | 등록된 키 나열(마스킹된 접두사만)                                                                                                                                                                  |
+| POST   | `/api/v1/registered-keys`             | 새로 등록된 키 — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}` 발급합니다. 원시 키를 반환합니다.** 한 번** . 할당량이 거부되면 `429` 반환합니다. |
+| GET    | `/api/v1/registered-keys/[id]`        | 등록된 키의 메타데이터 검색(원본 없음)                                                                                                                                                             |
+| DELETE | `/api/v1/registered-keys/[id]`        | 등록된 키 취소                                                                                                                                                                                     |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | 명시적 취소 엔드포인트( DELETE 와 동일한 효과)                                                                                                                                                     |
+| GET    | `/api/v1/providers/[provider]/limits` | 공급자의 발행 한도 읽기                                                                                                                                                                            |
+| PUT    | `/api/v1/providers/[provider]/limits` | 공급자의 발행 한도 설정 — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                            |
+| GET    | `/api/v1/accounts/[id]/limits`        | 계정의 발행 한도 읽기                                                                                                                                                                              |
+| PUT    | `/api/v1/accounts/[id]/limits`        | 계정의 발행 한도 — 공급자 경로와 동일한 본문으로 설정합니다.                                                                                                                                       |
 
-**인증:** 관리 세션/API 키(`requireManagementAuth`) — `/api/keys`와 동일한 가드입니다. 대시보드 세션, 로컬 CLI 토큰 또는 `manage`/`admin` 스코프가 있는 API 키를 사용할 수 있으며, 추론 전용 API 키는 `403`을 반환합니다. `/v1/quotas/check` 및 `/v1/issues/report`도 참조하세요.
+**인증:** 관리 session/API 키(`requireManagementAuth`) — `/api/keys` 와 동일한 가드: 대시보드 세션, 로컬 CLI 토큰 또는 `manage`/`admin` 범위가 있는 API 키. 추론 전용 API 키는 `403` 얻습니다. `/v1/quotas/check` 및 `/v1/issues/report` 도 참조하세요.
 
 ---
 

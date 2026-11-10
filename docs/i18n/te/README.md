@@ -6,34 +6,34 @@
 
 <div align="center">
 
-<img src="./docs/screenshots/MainOmniRoute.png" alt="OmniRoute డాష్బోర్డ్" width="820"/>
+<img src="./docs/screenshots/MainOmniRoute.png" alt="OmniRoute Dashboard" width="820"/>
 
 <br/>
 <br/>
 
 # 🚀 OmniRoute — ఉచిత AI గేట్వే
 
-**[Diego Souza](https://github.com/diegosouzapw) రూపొందించారు**
+**[డియెగో సౌజాచే](https://github.com/diegosouzapw) సృష్టించబడింది**
 
-<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — కోడింగ్ను ఎప్పటికీ ఆపవద్దు. ప్రతి AI సాధనం → 385 ప్రొవైడర్లు — 150+ ఉచితం — ఒకే ఎండ్పాయింట్ ద్వారా. Claude Code, Codex, Cursor, Cline, Copilot & Antigravity → ఉచిత Claude / GPT / Geminiకి ఆటో-ఫాల్బ్యాక్తో. RTK + Caveman స్ట్యాక్డ్ కంప్రెషన్ 15–95% టోకెన్లను (~89% సగటు) ఆదా చేస్తుంది — పరిమితులను ఎప్పటికీ తాకవద్దు. 385 AI ప్రొవైడర్లు · 150+ ఉచిత శ్రేణులు · ~1.62B ఉచిత టోకెన్లు/నెల · 20 రూటింగ్ వ్యూహాలు · ప్రారంభించడానికి $0."/>
+<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — Never stop coding. Every AI tool → 385 providers — 150+ free — through one endpoint. Claude Code, Codex, Cursor, Cline, Copilot & Antigravity into FREE Claude / GPT / Gemini with auto-fallback. RTK + Caveman stacked compression saves 15–95% tokens (~89% avg) — never hit limits. 385 AI providers · 150+ free tiers · ~1.62B free tokens/mo · 20 routing strategies · $0 to start."/>
 
 </div>
 
 <div align="center">
 
-## 💰 మూడవ పక్ష ఉచిత టియర్లలో నెలకు ~1.62B టోకెన్లు
+## 💰 ~ 1.62B టోకెన్లు / నెల అంతటా థర్డ్-పార్టీ ఉచిత శ్రేణులు
 
 </div>
 
-> **మీ స్వంత ప్రొవైడర్ ఖాతాలను ఉపయోగించండి.** ఇది విడివిడిగా అర్హత పొందిన మూడవ పక్ష ఉచిత టియర్ల సమగ్ర అంచనా మాత్రమే; OmniRoute అందించే టోకెన్ గ్రాంట్ కాదు. సైన్ అప్ చేసి, అవసరమైన చోట క్రెడెన్షియల్లను పొందండి, మీరు ఉపయోగించగల ప్రొవైడర్లను కనెక్ట్ చేయండి; ప్రతి ప్రొవైడర్ తన పరిమితులు, అందుబాటు మరియు నిబంధనలను నియంత్రిస్తుంది.
+> **మీ స్వంత ప్రొవైడర్ ఖాతాలను తీసుకురండి.** ఇది OmniRoute నుండి టోకెన్ మంజూరు కాకుండా విడివిడిగా అర్హత కలిగిన మూడవ పక్ష ఉచిత శ్రేణులలో అంచనా వేసిన మొత్తం. సైన్ అప్ చేయండి, అవసరమైన చోట ఆధారాలను పొందండి మరియు మీరు ఉపయోగించగల ప్రొవైడర్లను కనెక్ట్ చేయండి; ప్రతి ప్రొవైడర్ దాని పరిమితులు, లభ్యత మరియు నిబంధనలను నియంత్రిస్తుంది.
 >
-> ఉచిత టియర్లను చేతితో కలపడం చాలా కష్టమైన పని — డజన్ల కొద్దీ SDKలు, డజన్ల కొద్దీ రేట్ పరిమితులు, నిజంగా మీకు ఎంత అందుబాటులో ఉందో తెలియని పరిస్థితి. OmniRoute **34 పునరావృత పూల్ కీలు అంతటా 465 ఉచిత-టియర్ ఎంట్రీలను** కేటలాగ్ చేస్తుంది మరియు **ప్రచురించిన సానుకూల నెలవారీ బడ్జెట్ ఉన్న 17 పూల్లతో పాటు ప్రతి-మోడల్ Groq పరిమితులు ఐదు** నుంచి టోకెన్ హెడ్లైన్ను లెక్కిస్తుంది; భాగస్వామ్య పూల్లను డూప్లికేట్గా లెక్కించదు. ప్రాంతీయ గుర్తింపు తనిఖీ తర్వాత మాత్రమే తెరుచుకునే కోటాలను (ప్రస్తుతం: ModelScope) విడిగా చూపిస్తుంది, ప్రాంతీయ గుర్తింపు ధృవీకరణ వెనుక +~6Mగా పేర్కొంటుంది, హెడ్లైన్లో ఎప్పుడూ కలపదు. ఫలితం డాష్బోర్డ్లో (`/dashboard/free-tiers`) కనిపిస్తూనే ఉంటుంది.
+> — డజన్ల కొద్దీ SDKs, డజన్ల కొద్దీ రేట్ పరిమితులు మరియు మీరు నిజంగా ఎంత కలిగి ఉన్నారో తెలియదు. OmniRoute కేటలాగ్లు** 34 పునరావృత పూల్ కీలలో 465 ఫ్రీ-టైర్ ఎంట్రీలు** మరియు నుండి టోకెన్ హెడ్లైన్ను గణిస్తుంది** ప్రచురించిన సానుకూల నెలవారీ బడ్జెట్తో పాటు 17 పూల్స్తో పాటు ఒక్కో మోడల్కు ఐదు Groq క్యాప్లు** , షేర్డ్ పూల్ ద్వారా డీప్లికేట్ చేయబడింది. ప్రాంతీయ గుర్తింపు తనిఖీ తర్వాత మాత్రమే తెరవబడే కోటాలు (ఈనాడు: ModelScope) వేరుగా చూపబడతాయి, ప్రాంతీయ గుర్తింపు ధృవీకరణ వెనుక +~ 6M, మరియు ఎప్పుడూ హెడ్లైన్లో సంగ్రహించబడలేదు. ఫలితం డాష్బోర్డ్ (`/dashboard/free-tiers`)పై కనిపిస్తుంది.
 
-<img src="./docs/diagrams/free-tier-budget.svg" width="100%" alt="OmniRoute ఉచిత-టియర్ బడ్జెట్ కార్డ్: నెలకు ~1.62B ఉచిత టోకెన్లు స్థిరంగా, సైన్అప్ క్రెడిట్లతో మొదటి నెలలో గరిష్ఠంగా ~2.22B వరకు, ఒకే ఎండ్పాయింట్ వెనుక 465 కేటలాగ్ చేసిన ఉచిత-టియర్ ఎంట్రీలను కవర్ చేసే 34 డాక్యుమెంట్ చేసిన పునరావృత పూల్ కీల నుంచి. నిజాయితీతో కూడిన పూల్-డీడ్యుప్లికేట్ గణితం — భాగస్వామ్య పూల్లన్నీ ఒక్కసారి మాత్రమే లెక్కించబడతాయి; ఇందులో ప్రచురించిన సానుకూల నెలవారీ టోకెన్ బడ్జెట్ ఉన్న 17 పునరావృత పూల్లు, ప్రతి-మోడల్ Groq పరిమితులు ఐదు ఉన్నాయి; నిబంధనల-ప్రమాద కేటలాగ్లో 12 ప్రొవైడర్లు నివారించాల్సినవిగా గుర్తించబడ్డారు, కాబట్టి నిర్ణయం మీది. బడ్జెట్ బార్లో Mistral 1B, Nara 210M, LLM7 150M, xKiro 150M, Groq 30M (ప్రతి-మోడల్ పరిమితులు ఐదు) మరియు చిన్న పూల్లు, అలాగే మొదటి నెల సైన్అప్ క్రెడిట్లు మరియు శాశ్వతంగా ఉచితమైన, టోకెన్ పరిమితి లేని ప్రొవైడర్లు విడిగా చూపబడతాయి; అందువల్ల అవి హెడ్లైన్ను ఎప్పుడూ పెంచవు. /dashboard/free-tiersలో ప్రత్యక్షంగా ఉపయోగించినవి/మిగిలినవి చూపబడతాయి."/>
+<img src="./docs/diagrams/free-tier-budget.svg" width="100%" alt="OmniRoute free-tier budget card: ~1.62B free tokens per month steady, up to ~2.22B in the first month with signup credits, from 34 documented recurring pool keys covering 465 cataloged free-tier entries behind one endpoint. Honest pool-deduped math — each shared pool counted once, including 17 recurring pools with a published positive monthly token budget plus five per-model Groq caps; 12 providers are marked avoid in the terms-risk catalog so you decide. Budget bar includes Mistral 1B, Nara 210M, LLM7 150M, xKiro 150M, Groq 30M (five per-model caps) and smaller pools, plus first-month signup credits and permanently-free no-token-cap providers surfaced separately so they never inflate the headline. Live used/remaining on /dashboard/free-tiers."/>
 
-> ప్రత్యక్ష `/dashboard/free-tiers` పేజీ యొక్క యానిమేటెడ్ సారాంశం. పూర్తి పద్ధతి (పూల్ డీడ్యుప్, క్రెడిట్ టియర్లు, ప్రొవైడర్ నిబంధనలు): **[docs/reference/FREE_TIERS.md](docs/reference/FREE_TIERS.md)**.
+> ప్రత్యక్ష `/dashboard/free-tiers` పేజీ యొక్క యానిమేటెడ్ సారాంశం. పూర్తి పద్దతి (పూల్ డెడ్యూప్, క్రెడిట్ టైర్లు, ప్రొవైడర్ నిబంధనలు):** [docs/reference/FREE_TIERS.md](docs/reference/FREE_TIERS.md)** .
 >
-> <sub>ఈ గణాంకాలు ప్రత్యక్ష కేటలాగ్తో ప్రతి రెండు వారాలకు మళ్లీ ఆడిట్ చేయబడతాయి మరియు **రెండు దిశల్లోనూ మారుతాయి** — ఒక ప్రొవైడర్ ఉచిత టియర్ను ముగిస్తే సంఖ్య తగ్గుతుంది; కొత్తది చేరితే పెరుగుతుంది. కేటలాగ్ వాస్తవంగా లెక్కించే గణాంకాలనే మేము ప్రచురిస్తాము, పైకి రౌండ్ చేసిన ఉత్తమ-సందర్భాన్ని ఎప్పుడూ ప్రచురించము.</sub>
+> <sub> ఈ గణాంకాలు లైవ్ కేటలాగ్కు వ్యతిరేకంగా ప్రతి రెండు వారాలకు మళ్లీ ఆడిట్ చేయబడతాయి మరియు** రెండు విధాలుగా తరలించండి** — ప్రొవైడర్ ఉచిత శ్రేణిని ముగించింది మరియు సంఖ్య పడిపోతుంది; కొత్తది దిగుతుంది మరియు అది ఎక్కుతుంది. మేము కేటలాగ్ వాస్తవికంగా గణించే వాటిని ప్రచురిస్తాము, ఇది ఉత్తమమైన సందర్భం కాదు.</sub>
 
 <br/>
 
@@ -41,49 +41,43 @@
 
 <h3>
 
-OMNIROUTE మీకు డబ్బు ఆదా చేసి, మీ పనిని సులభతరం చేయడంలో సహాయపడితే రిపోజిటరీకి ⭐ స్టార్ ఇవ్వండి.
+⭐ డబ్బు ఆదా చేయడంలో మరియు మీ పనిని సులభతరం చేయడంలో OMNIROUTE మీకు సహాయం చేస్తే రెపోకు నక్షత్రం వేయండి.
 
 </h3>
 
-[![స్టార్లు](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social)](https://github.com/diegosouzapw/OmniRoute)
+[![నక్షత్రాలు](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social) ](https://github.com/diegosouzapw/OmniRoute)
 <a href="https://trendshift.io/repositories/23589" target="_blank"><img src="https://trendshift.io/api/badge/repositories/23589" alt="diegosouzapw%2FOmniRoute | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-[![స్టార్ చరిత్ర ర్యాంక్](https://api.star-history.com/badge?repo=diegosouzapw/OmniRoute&theme=dark)](https://www.star-history.com/diegosouzapw/omniroute)
-[![olud.ai](https://olud.ai/badge.php?tool=diegosouzapw-omniroute)](https://olud.ai/project/diegosouzapw-omniroute.html)
+[![స్టార్ హిస్టరీ ర్యాంక్](https://api.star-history.com/badge?repo=diegosouzapw/OmniRoute&theme=dark) ](https://www.star-history.com/diegosouzapw/omniroute) [![olud.ai](https://olud.ai/badge.php?tool=diegosouzapw-omniroute) ](https://olud.ai/project/diegosouzapw-omniroute.html)
 
-### 💬 కమ్యూనిటీలో చేరండి
+### 💬 సంఘంలో చేరండి
 
-**👋 మెయింటైనర్ను ఫాలో అవ్వండి — కొత్త ప్రొవైడర్లు, విడుదలలు మరియు చిట్కాలను ముందుగా పొందండి:**
+**👋 మెయింటెయినర్ని అనుసరించండి — ముందుగా కొత్త ప్రొవైడర్లు, విడుదలలు & చిట్కాలను పొందండి:**
 
-[![LinkedInలో Diegoను ఫాలో అవ్వండి](https://img.shields.io/badge/Follow_Diego_on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diegosouzapw/)
-[![GitHubలో @diegosouzapwను ఫాలో అవ్వండి](https://img.shields.io/github/followers/diegosouzapw?style=for-the-badge&logo=github&logoColor=white&label=Follow%20on%20GitHub&color=181717)](https://github.com/diegosouzapw)
+[![ LinkedIn లో డియెగోను అనుసరించండి](https://img.shields.io/badge/Follow_Diego_on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white) ](https://www.linkedin.com/in/diegosouzapw/) [![ GitHub లో @diegosouzapwని అనుసరించండి](https://img.shields.io/github/followers/diegosouzapw?style=for-the-badge&logo=github&logoColor=white&label=Follow%20on%20GitHub&color=181717) ](https://github.com/diegosouzapw)
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/U47eFqAXCn)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/omnirouteOficial)
-[![WhatsApp Global](https://img.shields.io/badge/WhatsApp_Global-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4)
-[![WhatsApp Brasil](https://img.shields.io/badge/WhatsApp_Brasil-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4)
-[![వెబ్సైట్](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white)](https://omniroute.online)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white) ](https://discord.gg/U47eFqAXCn) [![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white) ](https://t.me/omnirouteOficial) [![WhatsApp గ్లోబల్](https://img.shields.io/badge/WhatsApp_Global-25D366?style=for-the-badge&logo=whatsapp&logoColor=white) ](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) [![WhatsApp Brasil](https://img.shields.io/badge/WhatsApp_Brasil-25D366?style=for-the-badge&logo=whatsapp&logoColor=white) ](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) [![వెబ్సైట్](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white) ](https://omniroute.online)
 
-**ప్రశ్నలు, ప్రొవైడర్ చిట్కాలు, రోడ్మ్యాప్ మరియు సహాయం → [Discord](https://discord.gg/U47eFqAXCn) · [Telegram](https://t.me/omnirouteOficial) · WhatsApp [🌍 గ్లోబల్](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) / [🇧🇷 బ్రెజిల్](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) / [పోర్టల్](https://portal.sthub.com.br/communities/groups/st-hub/channels/Omniroute-World-8kRjmK)**
+**ప్రశ్నలు, ప్రొవైడర్ చిట్కాలు, రోడ్మ్యాప్ & మద్దతు → [Discord](https://discord.gg/U47eFqAXCn) · [Telegram](https://t.me/omnirouteOficial) · WhatsApp [🌍 Global](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) / [🇧🇷 Brasil](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) / [📢 అధికారిక ఛానెల్](https://whatsapp.com/channel/0029VbDwC7A3wtb5PN6a5t2R) / [పోర్టల్](https://portal.sthub.com.br/communities/groups/st-hub/channels/Omniroute-World-8kRjmK)**
 
 <br/>
 
-## 📈 గేట్వే నిరంతరం అభివృద్ధి చెందుతోంది
+## 📈 గేట్వే పెరుగుతూనే ఉంది
 
 <div align="center">
 
-|                                |          v3.8.50          | **v3.8.51** |      `v3.8.54+`       |
-| ------------------------------ | :-----------------------: | :---------: | :-------------------: |
-| 🌐 ప్రొవైడర్లు                 |            352            |   **358**   |          385          |
-| 🧠 ప్రత్యేకమైన చాట్ మోడల్ IDలు |           1320            |  **1374**   |         1491          |
-| 🖼️ మోడాలిటీ బ్రిడ్జ్           | 🆕 విజన్ + ఆడియో + వీడియో |      ✓      |           ✓           |
-| 📡 రాడార్ ఉచిత కేటలాగ్         |       🆕 ఆప్ట్-ఇన్        |      ✓      |           ✓           |
-| ⚖️ కోటా-ఆధారిత షెడ్యూలింగ్     |      🆕 Quota-Share       |      ✓      |           ✓           |
-| 📊 కోటా టెలిమెట్రీ             |       🆕 ప్రత్యక్ష        |      ✓      |           ✓           |
-| 🧰 హెడ్లెస్ మోడ్               |             —             |      —      | 🆕 `serve --headless` |
-| 🛤️ LTS రైల్ ఇన్ఫ్రా            |             —             |      —      |  🆕 విడుదల ఛానెల్లు   |
-| 🔎 మోడల్ డిస్కవరీ API          |             —             |      —      | 🆕 `/v1/models/query` |
+|                            |           v3.8.50           | **v3.8.51** |      `v3.8.54+`       |
+| -------------------------- | :-------------------------: | :---------: | :-------------------: |
+| 🌐 ప్రొవైడర్లు             |             352             |   **358**   |          385          |
+| 🧠 ప్రత్యేక చాట్ మోడల్ IDs |            1320             |  **1374**   |         1491          |
+| 🖼️ మోడాలిటీ వంతెన          |  🆕 విజన్ + ఆడియో + వీడియో  |      ✓      |           ✓           |
+| 📡 రాడార్ ఉచిత కేటలాగ్     |          🆕 ఎంపిక           |      ✓      |           ✓           |
+| ⚖️ కోటా-అవేర్ షెడ్యూలింగ్  |        🆕 కోటా-షేర్         |      ✓      |           ✓           |
+| 📊 కోటా టెలిమెట్రీ         | 🆕 ప్రత్యక్ష ప్రసారం చేసారు |      ✓      |           ✓           |
+| 🧰 హెడ్లెస్ మోడ్           |              —              |      —      | 🆕 `serve --headless` |
+| 🛤️ LTS రైలు ఇన్ఫ్రా        |              —              |      —      |  🆕 విడుదల ఛానెల్లు   |
+| 🔎 మోడల్ ఆవిష్కరణ API      |              —              |      —      | 🆕 `/v1/models/query` |
 
-**→ [రోడ్మ్యాప్](ROADMAP.md) — `v3.9.0 LTS` వైపు రైల్పై ప్రయాణం**
+**→ [రోడ్మ్యాప్](ROADMAP.md) — `v3.9.0 LTS` కి రైలును నడుపుతోంది**
 
 </div>
 
@@ -91,54 +85,49 @@ OMNIROUTE మీకు డబ్బు ఆదా చేసి, మీ పని�
 
 ## 🧩 అందుబాటులో ఉంది
 
-[![npm సంస్కరణ](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm)](https://www.npmjs.com/package/omniroute)
-![NPM నెలవారీ డౌన్లోడ్లు](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm)
-[![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/diegosouzapw/omniroute)
-[![లైసెన్స్: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-![Docker పుల్లు](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED)
-![Electron డౌన్లోడ్లు](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
+[![npm వెర్షన్](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm) ](https://www.npmjs.com/package/omniroute) ![NPM Monthly](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm) [![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED) ](https://hub.docker.com/r/diegosouzapw/omniroute) [![లైసెన్స్: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square) ](LICENSE) ![Docker Pulls](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED) ![Electron Downloads](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
 
 <table>
   <tr>
-    <td align="right"><b>🚀 ప్రారంభించండి</b></td>
+    <td align="right"><b>🚀 ప్రారంభం</b></td>
     <td align="center"><a href="#-quick-start">🚀 త్వరిత ప్రారంభం</a></td>
     <td align="center"><a href="#-more-install-methods--docker-source-pnpm-arch">📦 ఇన్స్టాల్ చేయండి</a></td>
-    <td align="center"><a href="#first-run">🆓 ప్రొవైడర్ను కనెక్ట్ చేయండి</a></td>
+    <td align="center"><a href="#first-run">🆓 ప్రొవైడర్ని కనెక్ట్ చేయండి</a></td>
   </tr>
   <tr>
-    <td align="right"><b>💡 తెలుసుకోండి</b></td>
-    <td align="center"><a href="#-the-promise">💥 హామీ</a></td>
-    <td align="center"><a href="#-why-omniroute">🤔 OmniRoute ఎందుకు</a></td>
-    <td align="center"><a href="#-what-sets-omniroute-apart">🏆 ప్రత్యేకతలు</a></td>
+    <td align="right"><b>💡 నేర్చుకోండి</b></td>
+    <td align="center"><a href="#-the-promise">💥 ది ప్రామిస్</a></td>
+    <td align="center"><a href="#-why-omniroute">🤔 ఎందుకు OmniRoute</a></td>
+    <td align="center"><a href="#-what-sets-omniroute-apart">🏆 ఏమి వేరుగా ఉంటుంది</a></td>
   </tr>
   <tr>
     <td align="right"><b>⚙️ ఫీచర్లు</b></td>
-    <td align="center"><a href="#-combos--the-flagship">🎯 కాంబోలు</a></td>
+    <td align="center"><a href="#-combos--the-flagship">🎯 కాంబోస్</a></td>
     <td align="center"><a href="#-385-ai-providers--153-catalog-marked-free">🌐 ప్రొవైడర్లు</a></td>
     <td align="center"><a href="#-full-cli--a2a--mcp">🔌 CLI &amp; MCP</a></td>
   </tr>
   <tr>
     <td align="right"></td>
-    <td align="center"><a href="#%EF%B8%8F-save-1595-tokens--automatically">🗜️ కంప్రెషన్</a></td>
-    <td align="center"><a href="#%EF%B8%8F-where-omniroute-runs--anywhere">🖥️ ఇది ఎక్కడ నడుస్తుంది</a></td>
+    <td align="center"><a href="#%EF%B8%8F-save-1595-tokens--automatically">🗜️ కుదింపు</a></td>
+    <td align="center"><a href="#%EF%B8%8F-where-omniroute-runs--anywhere">🖥️ ఎక్కడ నడుస్తుంది</a></td>
     <td align="center"><a href="#-private--local-first">🔒 ప్రైవేట్</a></td>
   </tr>
   <tr>
-    <td align="right"><b>👀 చూడండి</b></td>
-    <td align="center"><a href="#-omniroute-in-action">🎬 ఆచరణలో</a></td>
+    <td align="right"><b>👀 ఇది చూడండి</b></td>
+    <td align="center"><a href="#-omniroute-in-action">🎬 చర్యలో ఉంది</a></td>
     <td align="center"><a href="#-whats-new">✨ కొత్తవి ఏమిటి</a></td>
-    <td align="center"><a href="#-compatible-clis--coding-agents">🤖 అనుకూల CLIలు</a></td>
+    <td align="center"><a href="#-compatible-clis--coding-agents">🤖 అనుకూలత CLIs</a></td>
   </tr>
   <tr>
     <td align="right"><b>💚 మద్దతు</b></td>
     <td align="center"><a href="#-support-omniroute">💚 మద్దతు / విరాళం</a></td>
-    <td align="center"><a href="#-community--help">💬 కమ్యూనిటీ</a></td>
+    <td align="center"><a href="#-community--help">💬 సంఘం</a></td>
     <td align="center"><a href="#-sponsors">💖 స్పాన్సర్లు</a></td>
   </tr>
   <tr>
     <td align="right"><b>📦 ప్రాజెక్ట్</b></td>
     <td align="center"><a href="#%EF%B8%8F-tech-stack">🛠️ టెక్ స్టాక్</a></td>
-    <td align="center"><a href="#-documentation">📖 డాక్యుమెంటేషన్</a></td>
+    <td align="center"><a href="#-documentation">📖 డాక్స్</a></td>
     <td align="center"><a href="#-1000-contributors">👥 కంట్రిబ్యూటర్లు</a></td>
   </tr>
 </table>
@@ -146,75 +135,75 @@ OMNIROUTE మీకు డబ్బు ఆదా చేసి, మీ పని�
 </div>
 
 <div align="center">
-  <b>🌐 67 భాషల్లో</b>
+  <b>🌐 67 భాషలలో</b>
   <br/><br/>
-  <a href="README.md"><img src="docs/assets/flags/us.svg" width="30" alt="ఆంగ్లం (en)" title="ఆంగ్లం (en)"></a>
-  <a href="docs/i18n/pt-BR/README.md"><img src="docs/assets/flags/br.svg" width="30" alt="పోర్చుగీస్ — బ్రెజిల్ (pt-BR)" title="పోర్చుగీస్ — బ్రెజిల్ (pt-BR)"></a>
-  <a href="docs/i18n/pt/README.md"><img src="docs/assets/flags/pt.svg" width="30" alt="పోర్చుగీస్ (pt)" title="పోర్చుగీస్ (pt)"></a>
-  <a href="docs/i18n/es/README.md"><img src="docs/assets/flags/es.svg" width="30" alt="స్పానిష్ (es)" title="స్పానిష్ (es)"></a>
-  <a href="docs/i18n/fr/README.md"><img src="docs/assets/flags/fr.svg" width="30" alt="ఫ్రెంచ్ (fr)" title="ఫ్రెంచ్ (fr)"></a>
-  <a href="docs/i18n/it/README.md"><img src="docs/assets/flags/it.svg" width="30" alt="ఇటాలియన్ (it)" title="ఇటాలియన్ (it)"></a>
-  <a href="docs/i18n/de/README.md"><img src="docs/assets/flags/de.svg" width="30" alt="జర్మన్ (de)" title="జర్మన్ (de)"></a>
-  <a href="docs/i18n/nl/README.md"><img src="docs/assets/flags/nl.svg" width="30" alt="డచ్ (nl)" title="డచ్ (nl)"></a>
-  <a href="docs/i18n/ru/README.md"><img src="docs/assets/flags/ru.svg" width="30" alt="రష్యన్ (ru)" title="రష్యన్ (ru)"></a>
-  <a href="docs/i18n/uk-UA/README.md"><img src="docs/assets/flags/ua.svg" width="30" alt="ఉక్రేనియన్ (uk-UA)" title="ఉక్రేనియన్ (uk-UA)"></a>
-  <a href="docs/i18n/pl/README.md"><img src="docs/assets/flags/pl.svg" width="30" alt="పోలిష్ (pl)" title="పోలిష్ (pl)"></a>
-  <a href="docs/i18n/cs/README.md"><img src="docs/assets/flags/cz.svg" width="30" alt="చెక్ (cs)" title="చెక్ (cs)"></a>
-  <a href="docs/i18n/sk/README.md"><img src="docs/assets/flags/sk.svg" width="30" alt="స్లోవాక్ (sk)" title="స్లోవాక్ (sk)"></a>
-  <a href="docs/i18n/ro/README.md"><img src="docs/assets/flags/ro.svg" width="30" alt="రోమేనియన్ (ro)" title="రోమేనియన్ (ro)"></a>
-  <a href="docs/i18n/hu/README.md"><img src="docs/assets/flags/hu.svg" width="30" alt="హంగేరియన్ (hu)" title="హంగేరియన్ (hu)"></a>
-  <a href="docs/i18n/bg/README.md"><img src="docs/assets/flags/bg.svg" width="30" alt="బల్గేరియన్ (bg)" title="బల్గేరియన్ (bg)"></a>
-  <a href="docs/i18n/da/README.md"><img src="docs/assets/flags/dk.svg" width="30" alt="డానిష్ (da)" title="డానిష్ (da)"></a>
-  <a href="docs/i18n/fi/README.md"><img src="docs/assets/flags/fi.svg" width="30" alt="ఫిన్నిష్ (fi)" title="ఫిన్నిష్ (fi)"></a>
-  <a href="docs/i18n/no/README.md"><img src="docs/assets/flags/no.svg" width="30" alt="నార్వేజియన్ (no)" title="నార్వేజియన్ (no)"></a>
-  <a href="docs/i18n/sv/README.md"><img src="docs/assets/flags/se.svg" width="30" alt="స్వీడిష్ (sv)" title="స్వీడిష్ (sv)"></a>
-  <a href="docs/i18n/zh-CN/README.md"><img src="docs/assets/flags/cn.svg" width="30" alt="చైనీస్ — సరళీకృతం (zh-CN)" title="చైనీస్ — సరళీకృతం (zh-CN)"></a>
-  <a href="docs/i18n/zh-TW/README.md"><img src="docs/assets/flags/tw.svg" width="30" alt="చైనీస్ — సాంప్రదాయికం (zh-TW)" title="చైనీస్ — సాంప్రదాయికం (zh-TW)"></a>
-  <a href="docs/i18n/ja/README.md"><img src="docs/assets/flags/jp.svg" width="30" alt="జపనీస్ (ja)" title="జపనీస్ (ja)"></a>
-  <a href="docs/i18n/ko/README.md"><img src="docs/assets/flags/kr.svg" width="30" alt="కొరియన్ (ko)" title="కొరియన్ (ko)"></a>
-  <a href="docs/i18n/th/README.md"><img src="docs/assets/flags/th.svg" width="30" alt="థాయ్ (th)" title="థాయ్ (th)"></a>
-  <a href="docs/i18n/vi/README.md"><img src="docs/assets/flags/vn.svg" width="30" alt="వియత్నామీస్ (vi)" title="వియత్నామీస్ (vi)"></a>
-  <a href="docs/i18n/id/README.md"><img src="docs/assets/flags/id.svg" width="30" alt="ఇండోనేషియన్ (id)" title="ఇండోనేషియన్ (id)"></a>
-  <a href="docs/i18n/ms/README.md"><img src="docs/assets/flags/my.svg" width="30" alt="మలయ్ (ms)" title="మలయ్ (ms)"></a>
-  <a href="docs/i18n/phi/README.md"><img src="docs/assets/flags/ph.svg" width="30" alt="ఫిలిపినో (phi)" title="ఫిలిపినో (phi)"></a>
-  <a href="docs/i18n/hi/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="హిందీ (hi)" title="హిందీ (hi)"></a>
-  <a href="docs/i18n/gu/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="గుజరాతీ (gu)" title="గుజరాతీ (gu)"></a>
-  <a href="docs/i18n/mr/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="మరాఠీ (mr)" title="మరాఠీ (mr)"></a>
-  <a href="docs/i18n/ta/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="తమిళం (ta)" title="తమిళం (ta)"></a>
+  <a href="README.md"><img src="docs/assets/flags/us.svg" width="30" alt="English (en)" title="English (en)"></a>
+  <a href="docs/i18n/pt-BR/README.md"><img src="docs/assets/flags/br.svg" width="30" alt="Português — Brasil (pt-BR)" title="Português — Brasil (pt-BR)"></a>
+  <a href="docs/i18n/pt/README.md"><img src="docs/assets/flags/pt.svg" width="30" alt="Português (pt)" title="Português (pt)"></a>
+  <a href="docs/i18n/es/README.md"><img src="docs/assets/flags/es.svg" width="30" alt="Español (es)" title="Español (es)"></a>
+  <a href="docs/i18n/fr/README.md"><img src="docs/assets/flags/fr.svg" width="30" alt="Français (fr)" title="Français (fr)"></a>
+  <a href="docs/i18n/it/README.md"><img src="docs/assets/flags/it.svg" width="30" alt="Italiano (it)" title="Italiano (it)"></a>
+  <a href="docs/i18n/de/README.md"><img src="docs/assets/flags/de.svg" width="30" alt="Deutsch (de)" title="Deutsch (de)"></a>
+  <a href="docs/i18n/nl/README.md"><img src="docs/assets/flags/nl.svg" width="30" alt="Nederlands (nl)" title="Nederlands (nl)"></a>
+  <a href="docs/i18n/ru/README.md"><img src="docs/assets/flags/ru.svg" width="30" alt="Русский (ru)" title="Русский (ru)"></a>
+  <a href="docs/i18n/uk-UA/README.md"><img src="docs/assets/flags/ua.svg" width="30" alt="Українська (uk-UA)" title="Українська (uk-UA)"></a>
+  <a href="docs/i18n/pl/README.md"><img src="docs/assets/flags/pl.svg" width="30" alt="Polski (pl)" title="Polski (pl)"></a>
+  <a href="docs/i18n/cs/README.md"><img src="docs/assets/flags/cz.svg" width="30" alt="Čeština (cs)" title="Čeština (cs)"></a>
+  <a href="docs/i18n/sk/README.md"><img src="docs/assets/flags/sk.svg" width="30" alt="Slovenčina (sk)" title="Slovenčina (sk)"></a>
+  <a href="docs/i18n/ro/README.md"><img src="docs/assets/flags/ro.svg" width="30" alt="Română (ro)" title="Română (ro)"></a>
+  <a href="docs/i18n/hu/README.md"><img src="docs/assets/flags/hu.svg" width="30" alt="Magyar (hu)" title="Magyar (hu)"></a>
+  <a href="docs/i18n/bg/README.md"><img src="docs/assets/flags/bg.svg" width="30" alt="Български (bg)" title="Български (bg)"></a>
+  <a href="docs/i18n/da/README.md"><img src="docs/assets/flags/dk.svg" width="30" alt="Dansk (da)" title="Dansk (da)"></a>
+  <a href="docs/i18n/fi/README.md"><img src="docs/assets/flags/fi.svg" width="30" alt="Suomi (fi)" title="Suomi (fi)"></a>
+  <a href="docs/i18n/no/README.md"><img src="docs/assets/flags/no.svg" width="30" alt="Norsk (no)" title="Norsk (no)"></a>
+  <a href="docs/i18n/sv/README.md"><img src="docs/assets/flags/se.svg" width="30" alt="Svenska (sv)" title="Svenska (sv)"></a>
+  <a href="docs/i18n/zh-CN/README.md"><img src="docs/assets/flags/cn.svg" width="30" alt="中文 — 简体 (zh-CN)" title="中文 — 简体 (zh-CN)"></a>
+  <a href="docs/i18n/zh-TW/README.md"><img src="docs/assets/flags/tw.svg" width="30" alt="中文 — 繁體 (zh-TW)" title="中文 — 繁體 (zh-TW)"></a>
+  <a href="docs/i18n/ja/README.md"><img src="docs/assets/flags/jp.svg" width="30" alt="日本語 (ja)" title="日本語 (ja)"></a>
+  <a href="docs/i18n/ko/README.md"><img src="docs/assets/flags/kr.svg" width="30" alt="한국어 (ko)" title="한국어 (ko)"></a>
+  <a href="docs/i18n/th/README.md"><img src="docs/assets/flags/th.svg" width="30" alt="ไทย (th)" title="ไทย (th)"></a>
+  <a href="docs/i18n/vi/README.md"><img src="docs/assets/flags/vn.svg" width="30" alt="Tiếng Việt (vi)" title="Tiếng Việt (vi)"></a>
+  <a href="docs/i18n/id/README.md"><img src="docs/assets/flags/id.svg" width="30" alt="Bahasa Indonesia (id)" title="Bahasa Indonesia (id)"></a>
+  <a href="docs/i18n/ms/README.md"><img src="docs/assets/flags/my.svg" width="30" alt="Bahasa Melayu (ms)" title="Bahasa Melayu (ms)"></a>
+  <a href="docs/i18n/phi/README.md"><img src="docs/assets/flags/ph.svg" width="30" alt="Filipino (phi)" title="Filipino (phi)"></a>
+  <a href="docs/i18n/hi/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="हिन्दी (hi)" title="हिन्दी (hi)"></a>
+  <a href="docs/i18n/gu/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ગુજરાતી (gu)" title="ગુજરાતી (gu)"></a>
+  <a href="docs/i18n/mr/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="मराठी (mr)" title="मराठी (mr)"></a>
+  <a href="docs/i18n/ta/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="தமிழ் (ta)" title="தமிழ் (ta)"></a>
   <a href="docs/i18n/te/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="తెలుగు (te)" title="తెలుగు (te)"></a>
-  <a href="docs/i18n/bn/README.md"><img src="docs/assets/flags/bd.svg" width="30" alt="బెంగాలీ (bn)" title="బెంగాలీ (bn)"></a>
-  <a href="docs/i18n/ur/README.md"><img src="docs/assets/flags/pk.svg" width="30" alt="ఉర్దూ (ur)" title="ఉర్దూ (ur)"></a>
-  <a href="docs/i18n/fa/README.md"><img src="docs/assets/flags/ir.svg" width="30" alt="పర్షియన్ (fa)" title="పర్షియన్ (fa)"></a>
-  <a href="docs/i18n/ar/README.md"><img src="docs/assets/flags/sa.svg" width="30" alt="అరబిక్ (ar)" title="అరబిక్ (ar)"></a>
-  <a href="docs/i18n/he/README.md"><img src="docs/assets/flags/il.svg" width="30" alt="హీబ్రూ (he)" title="హీబ్రూ (he)"></a>
-  <a href="docs/i18n/tr/README.md"><img src="docs/assets/flags/tr.svg" width="30" alt="టర్కిష్ (tr)" title="టర్కిష్ (tr)"></a>
-  <a href="docs/i18n/az/README.md"><img src="docs/assets/flags/az.svg" width="30" alt="అజర్బైజానీ (az)" title="అజర్బైజానీ (az)"></a>
-  <a href="docs/i18n/sw/README.md"><img src="docs/assets/flags/tz.svg" width="30" alt="స్వాహిలి (sw)" title="స్వాహిలి (sw)"></a>
-  <a href="docs/i18n/el/README.md"><img src="docs/assets/flags/gr.svg" width="30" alt="గ్రీక్ (el)" title="గ్రీక్ (el)"></a>
-  <a href="docs/i18n/hr/README.md"><img src="docs/assets/flags/hr.svg" width="30" alt="క్రొయేషియన్ (hr)" title="క్రొయేషియన్ (hr)"></a>
-  <a href="docs/i18n/sr/README.md"><img src="docs/assets/flags/rs.svg" width="30" alt="సెర్బియన్ (sr)" title="సెర్బియన్ (sr)"></a>
-  <a href="docs/i18n/lt/README.md"><img src="docs/assets/flags/lt.svg" width="30" alt="లిథువేనియన్ (lt)" title="లిథువేనియన్ (lt)"></a>
-  <a href="docs/i18n/et/README.md"><img src="docs/assets/flags/ee.svg" width="30" alt="ఎస్టోనియన్ (et)" title="ఎస్టోనియన్ (et)"></a>
-  <a href="docs/i18n/lv/README.md"><img src="docs/assets/flags/lv.svg" width="30" alt="లాట్వియన్ (lv)" title="లాట్వియన్ (lv)"></a>
-  <a href="docs/i18n/sl/README.md"><img src="docs/assets/flags/si.svg" width="30" alt="స్లోవేనియన్ (sl)" title="స్లోవేనియన్ (sl)"></a>
-  <a href="docs/i18n/mt/README.md"><img src="docs/assets/flags/mt.svg" width="30" alt="మాల్టీస్ (mt)" title="మాల్టీస్ (mt)"></a>
-  <a href="docs/i18n/ga/README.md"><img src="docs/assets/flags/ie.svg" width="30" alt="ఐరిష్ (ga)" title="ఐరిష్ (ga)"></a>
-  <a href="docs/i18n/kn/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="కన్నడ (kn)" title="కన్నడ (kn)"></a>
-  <a href="docs/i18n/ml/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="మలయాళం (ml)" title="మలయాళం (ml)"></a>
-  <a href="docs/i18n/or/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ఒడియా (or)" title="ఒడియా (or)"></a>
-  <a href="docs/i18n/pa/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="పంజాబీ (pa)" title="పంజాబీ (pa)"></a>
-  <a href="docs/i18n/ne/README.md"><img src="docs/assets/flags/np.svg" width="30" alt="నేపాలీ (ne)" title="నేపాలీ (ne)"></a>
-  <a href="docs/i18n/si/README.md"><img src="docs/assets/flags/lk.svg" width="30" alt="సింహళం (si)" title="సింహళం (si)"></a>
-  <a href="docs/i18n/my/README.md"><img src="docs/assets/flags/mm.svg" width="30" alt="బర్మీస్ (my)" title="బర్మీస్ (my)"></a>
-  <a href="docs/i18n/km/README.md"><img src="docs/assets/flags/kh.svg" width="30" alt="ఖ్మేర్ (km)" title="ఖ్మేర్ (km)"></a>
-  <a href="docs/i18n/ha/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="హౌసా (ha)" title="హౌసా (ha)"></a>
-  <a href="docs/i18n/yo/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="యోరుబా (yo)" title="యోరుబా (yo)"></a>
-  <a href="docs/i18n/ig/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="ఇగ్బో (ig)" title="ఇగ్బో (ig)"></a>
-  <a href="docs/i18n/am/README.md"><img src="docs/assets/flags/et.svg" width="30" alt="అమ్హారిక్ (am)" title="అమ్హారిక్ (am)"></a>
-  <a href="docs/i18n/uz/README.md"><img src="docs/assets/flags/uz.svg" width="30" alt="ఉజ్బెక్ (uz)" title="ఉజ్బెక్ (uz)"></a>
-  <a href="docs/i18n/ka/README.md"><img src="docs/assets/flags/ge.svg" width="30" alt="జార్జియన్ (ka)" title="జార్జియన్ (ka)"></a>
-  <a href="docs/i18n/hy/README.md"><img src="docs/assets/flags/am.svg" width="30" alt="ఆర్మేనియన్ (hy)" title="ఆర్మేనియన్ (hy)"></a>
-  <a href="docs/i18n/bs/README.md"><img src="docs/assets/flags/ba.svg" width="30" alt="బోస్నియన్ (bs)" title="బోస్నియన్ (bs)"></a>
+  <a href="docs/i18n/bn/README.md"><img src="docs/assets/flags/bd.svg" width="30" alt="বাংলা (bn)" title="বাংলা (bn)"></a>
+  <a href="docs/i18n/ur/README.md"><img src="docs/assets/flags/pk.svg" width="30" alt="اردو (ur)" title="اردو (ur)"></a>
+  <a href="docs/i18n/fa/README.md"><img src="docs/assets/flags/ir.svg" width="30" alt="فارسی (fa)" title="فارسی (fa)"></a>
+  <a href="docs/i18n/ar/README.md"><img src="docs/assets/flags/sa.svg" width="30" alt="العربية (ar)" title="العربية (ar)"></a>
+  <a href="docs/i18n/he/README.md"><img src="docs/assets/flags/il.svg" width="30" alt="עברית (he)" title="עברית (he)"></a>
+  <a href="docs/i18n/tr/README.md"><img src="docs/assets/flags/tr.svg" width="30" alt="Türkçe (tr)" title="Türkçe (tr)"></a>
+  <a href="docs/i18n/az/README.md"><img src="docs/assets/flags/az.svg" width="30" alt="Azərbaycan (az)" title="Azərbaycan (az)"></a>
+  <a href="docs/i18n/sw/README.md"><img src="docs/assets/flags/tz.svg" width="30" alt="Kiswahili (sw)" title="Kiswahili (sw)"></a>
+  <a href="docs/i18n/el/README.md"><img src="docs/assets/flags/gr.svg" width="30" alt="Ελληνικά (el)" title="Ελληνικά (el)"></a>
+  <a href="docs/i18n/hr/README.md"><img src="docs/assets/flags/hr.svg" width="30" alt="Hrvatski (hr)" title="Hrvatski (hr)"></a>
+  <a href="docs/i18n/sr/README.md"><img src="docs/assets/flags/rs.svg" width="30" alt="Српски (sr)" title="Српски (sr)"></a>
+  <a href="docs/i18n/lt/README.md"><img src="docs/assets/flags/lt.svg" width="30" alt="Lietuvių (lt)" title="Lietuvių (lt)"></a>
+  <a href="docs/i18n/et/README.md"><img src="docs/assets/flags/ee.svg" width="30" alt="Eesti (et)" title="Eesti (et)"></a>
+  <a href="docs/i18n/lv/README.md"><img src="docs/assets/flags/lv.svg" width="30" alt="Latviešu (lv)" title="Latviešu (lv)"></a>
+  <a href="docs/i18n/sl/README.md"><img src="docs/assets/flags/si.svg" width="30" alt="Slovenščina (sl)" title="Slovenščina (sl)"></a>
+  <a href="docs/i18n/mt/README.md"><img src="docs/assets/flags/mt.svg" width="30" alt="Malti (mt)" title="Malti (mt)"></a>
+  <a href="docs/i18n/ga/README.md"><img src="docs/assets/flags/ie.svg" width="30" alt="Gaeilge (ga)" title="Gaeilge (ga)"></a>
+  <a href="docs/i18n/kn/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ಕನ್ನಡ (kn)" title="ಕನ್ನಡ (kn)"></a>
+  <a href="docs/i18n/ml/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="മലയാളം (ml)" title="മലയാളം (ml)"></a>
+  <a href="docs/i18n/or/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ଓଡ଼ିଆ (or)" title="ଓଡ଼ିଆ (or)"></a>
+  <a href="docs/i18n/pa/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ਪੰਜਾਬੀ (pa)" title="ਪੰਜਾਬੀ (pa)"></a>
+  <a href="docs/i18n/ne/README.md"><img src="docs/assets/flags/np.svg" width="30" alt="नेपाली (ne)" title="नेपाली (ne)"></a>
+  <a href="docs/i18n/si/README.md"><img src="docs/assets/flags/lk.svg" width="30" alt="සිංහල (si)" title="සිංහල (si)"></a>
+  <a href="docs/i18n/my/README.md"><img src="docs/assets/flags/mm.svg" width="30" alt="မြန်မာ (my)" title="မြန်မာ (my)"></a>
+  <a href="docs/i18n/km/README.md"><img src="docs/assets/flags/kh.svg" width="30" alt="ខ្មែរ (km)" title="ខ្មែរ (km)"></a>
+  <a href="docs/i18n/ha/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Hausa (ha)" title="Hausa (ha)"></a>
+  <a href="docs/i18n/yo/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Yorùbá (yo)" title="Yorùbá (yo)"></a>
+  <a href="docs/i18n/ig/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Igbo (ig)" title="Igbo (ig)"></a>
+  <a href="docs/i18n/am/README.md"><img src="docs/assets/flags/et.svg" width="30" alt="አማርኛ (am)" title="አማርኛ (am)"></a>
+  <a href="docs/i18n/uz/README.md"><img src="docs/assets/flags/uz.svg" width="30" alt="Oʻzbekcha (uz)" title="Oʻzbekcha (uz)"></a>
+  <a href="docs/i18n/ka/README.md"><img src="docs/assets/flags/ge.svg" width="30" alt="ქართული (ka)" title="ქართული (ka)"></a>
+  <a href="docs/i18n/hy/README.md"><img src="docs/assets/flags/am.svg" width="30" alt="Հայերեն (hy)" title="Հայերեն (hy)"></a>
+  <a href="docs/i18n/bs/README.md"><img src="docs/assets/flags/ba.svg" width="30" alt="Bosanski (bs)" title="Bosanski (bs)"></a>
 </div>
 
 <br/>
@@ -224,48 +213,48 @@ OMNIROUTE మీకు డబ్బు ఆదా చేసి, మీ పని�
 
 <a id="first-run"></a>
 
-## 🆓 ఇన్స్టాల్ చేసి, ఒక ప్రొవైడర్ను కనెక్ట్ చేసి, ఆపై ఒకే ఎండ్పాయింట్ ద్వారా రూట్ చేయండి
+## 🆓 ఇన్స్టాల్ చేయండి, ప్రొవైడర్ను కనెక్ట్ చేయండి, ఆపై ఒక ఎండ్ పాయింట్ ద్వారా రూట్ చేయండి
 
 </div>
 
-<img src="./docs/diagrams/works-zero-config.svg" width="100%" alt="మూడు దశలు: OmniRouteను ఇన్స్టాల్ చేసి ప్రారంభించండి, మీ స్వంత ఖాతా లేదా API కీతో అర్హత కలిగిన ప్రొవైడర్ను కనెక్ట్ చేయండి, ఆపై OmniRoute API కీ మరియు మోడల్ autoతో మీ టూల్ను localhost:20128/v1కు సూచించండి. రూటింగ్ అందుబాటులో ఉన్న అర్హత కలిగిన కనెక్షన్లు మరియు ప్రొవైడర్ పరిమితులపై ఆధారపడి ఉంటుంది."/>
+<img src="./docs/diagrams/works-zero-config.svg" width="100%" alt="Three steps: install and start OmniRoute, connect an eligible provider with your own account or API key, then point your tool at localhost:20128/v1 using an OmniRoute API key and model auto. Routing depends on available eligible connections and provider limits."/>
 
 ```bash
-# ప్రొవైడర్ను కనెక్ట్ చేసిన తర్వాత, Dashboard → Endpoints నుండి మీ OmniRoute కీని కాపీ చేయండి:
+# After connecting a provider, copy your OmniRoute key from Dashboard → Endpoints:
 curl http://localhost:20128/v1/chat/completions \
   -H "Authorization: Bearer YOUR_OMNIROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"auto","messages":[{"role":"user","content":"Hello!"}]}'
 ```
 
-<sub>`auto`కు అర్హత కలిగిన రూట్ అవసరం. కొత్తగా ఇన్స్టాల్ చేసిన సందర్భంలో అర్హత కలిగిన కీ-లెస్ లక్ష్యాలు ఏవీ ఉండకపోవచ్చు, అలాగే కీ-లెస్ ప్రొవైడర్ మూడవ పక్ష క్లయింట్లను తిరస్కరించవచ్చు. Kiroతో సహా `tos: avoid`గా గుర్తించబడిన ప్రొవైడర్లు డిఫాల్ట్గా ఆటోమేటిక్ రూటింగ్ నుండి మినహాయించబడతాయి; ఖాతాను కనెక్ట్ చేయడం ద్వారా ఆ సెట్టింగ్ మారదు. ప్రొవైడర్ను ఎంచుకునే ముందు [ఉచిత టియర్ల గైడ్](docs/getting-started/FREE-TIERS-GUIDE.md) చూడండి.</sub>
+<sub>`auto` అర్హత గల మార్గం అవసరం. తాజా ఇన్స్టాలేషన్కు అర్హత కలిగిన కీలెస్ లక్ష్యాలు ఉండవు మరియు కీలెస్ ప్రొవైడర్ మూడవ పక్ష క్లయింట్లను తిరస్కరించవచ్చు. Kiro తో సహా `tos: avoid` అని గుర్తించబడిన ప్రొవైడర్లు డిఫాల్ట్గా ఆటోమేటిక్ రూటింగ్ నుండి మినహాయించబడ్డారు; ఖాతాను కనెక్ట్ చేయడం ఆ సెట్టింగ్ను భర్తీ చేయదు. ప్రొవైడర్ను ఎంచుకునే ముందు [ఉచిత టైర్స్ గైడ్ని](docs/getting-started/FREE-TIERS-GUIDE.md) చూడండి.</sub>
 
-<sub>📦 **Python, Node.js, PHP, మరియు cURL** కోసం కాపీ-పేస్ట్ చేయగల త్వరిత ప్రారంభ స్క్రిప్ట్లు → [`examples/quickstart/`](examples/quickstart/)</sub>
+<sub>📦 కోసం శీఘ్రప్రారంభ స్క్రిప్ట్లను కాపీ-పేస్ట్ చేయండి** పైథాన్, Node.js, PHP, మరియు cURL** → [`examples/quickstart/`](examples/quickstart/)</sub>
 
 <br/>
 
 <div align="center">
 
-# 💥 వాగ్దానం
+# 💥 ది ప్రామిస్
 
 </div>
 
-<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="వాగ్దానం — ఒక ఎండ్పాయింట్ మరియు 385 ప్రొవైడర్లు. మరొక ఆరోగ్యకరమైన లక్ష్యం అందుబాటులో ఉన్నంతకాలం ఆటోమేటిక్ ఫాల్బ్యాక్ రూటింగ్ను కొనసాగిస్తుంది. ఆరు స్తంభాలు: 385 ప్రొవైడర్లలో స్థిరమైన ఫాల్బ్యాక్ · అర్హత కలిగిన వర్క్లోడ్లపై గరిష్ఠంగా 95% టోకెన్ ఆదా · 150+ ఉచిత టియర్లు మరియు పునరావృతంగా లభించే/కీ-లెస్ శాశ్వత ఉచిత ప్రొవైడర్లు 52తో $0తో ప్రారంభం · ఒకే కాన్ఫిగ్ ద్వారా 39 CLI/ఏజెంట్ ఇంటిగ్రేషన్లు · /v1 వద్ద OpenAI, Claude, Gemini మరియు Responses API అనుకూలత · సర్క్యూట్ బ్రేకర్లు, TLS స్టెల్త్, MCP 110 టూల్స్, A2A, మెమరీ, గార్డ్రెయిల్స్, ఎవాల్స్ మరియు 7,800+ ట్రాక్ చేయబడిన టెస్ట్ ఫైళ్లలో 56,000+ స్టాటిక్ టెస్ట్ డిక్లరేషన్లతో సహా ప్రొడక్షన్ నియంత్రణలు."/>
+<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="The Promise — One endpoint and 385 providers. Automatic fallback keeps routing while another healthy target is available. Six pillars: resilient fallback across 385 providers · up to 95% token savings on eligible workloads · $0 to start with 150+ free tiers and 52 recurring/keyless free-forever providers · 39 CLI/agent integrations through one config · OpenAI, Claude, Gemini and Responses API compatibility at /v1 · production controls including circuit breakers, TLS stealth, MCP 110 tools, A2A, memory, guardrails, evals and 56,000+ static test declarations across 7,800+ tracked test files."/>
 
 <br/>
 <br/>
 
 <div align="center">
 
-# 🤔 OmniRoute ఎందుకు?
+# 🤔 ఎందుకు OmniRoute?
 
 </div>
 
-<img src="./docs/diagrams/why-pain-fix.svg" width="100%" alt="OmniRoute ఎందుకు — 10 డ్యాష్బోర్డ్లు, పనిచేయని API కీలు మరియు ఊహించని బిల్లులను నిర్వహించడం ఆపండి. ప్రతిరోజూ ఎదురయ్యే పది సమస్యలు మరియు పరిష్కారాలు: ఉపయోగించకుండా కోటా ముగియడం → సబ్స్క్రిప్షన్లను గరిష్ఠంగా వినియోగించుకోండి; కోడింగ్ మధ్యలో రేట్ పరిమితులు → 4-స్థాయి ఆటో-ఫాల్బ్యాక్ (సబ్స్క్రిప్షన్ → API → చౌక → ఉచితం); టూల్ అవుట్పుట్లు టోకెన్లను ఖర్చు చేయడం → RTK + Caveman కంప్రెషన్ (15–95%); ఖరీదైన APIలు → ఖర్చు-ఆప్టిమైజ్ చేసిన రూటింగ్; ప్రతి టూల్కు ప్రత్యేక సెటప్ → ఒక ఎండ్పాయింట్, ఒక డ్యాష్బోర్డ్; AI నిరోధించబడటం → 3-స్థాయి ప్రాక్సీ + TLS స్టెల్త్; పనిచేయని కీలు → 3-లేయర్ స్థిరత్వం (సర్క్యూట్ బ్రేకర్లు, కీ కూల్డౌన్, మోడల్ లాక్అవుట్); ఒకే సబ్స్క్రిప్షన్ను బృందం పంచుకోవడం → సమాన భాగస్వామ్య కోటాలతో కీ పూల్లు; ప్రాంప్ట్లు మరొకరి క్లౌడ్ ద్వారా వెళ్లడం → AES-256-GCMతో ఎన్క్రిప్ట్ చేసిన కీలతో లోకల్-ఫస్ట్ విధానం; ఖర్చు కనిపించకపోవడం → లైవ్ అనలిటిక్స్ (వినియోగం, కోటా, ఆదా, p95 లేటెన్సీ)."/>
+<img src="./docs/diagrams/why-pain-fix.svg" width="100%" alt="Why OmniRoute — stop juggling 10 dashboards, dead API keys and surprise bills. Ten daily pains vs fixes: quota expiring unused → maximize subscriptions; rate limits mid-coding → 4-tier auto-fallback (Subscription → API → Cheap → Free); tool outputs burning tokens → RTK + Caveman compression (15–95%); expensive APIs → cost-optimized routing; every tool its own setup → one endpoint, one dashboard; AI blocked → 3-level proxy + TLS stealth; dead keys → 3-layer resilience (circuit breakers, key cooldown, model lockout); team sharing one subscription → key pools with fair-share quotas; prompts through someone's cloud → local-first with AES-256-GCM encrypted keys; no spend visibility → live analytics (usage, quota, savings, p95 latency)."/>
 
 <div align="center">
 
-<img src="./docs/diagrams/tier-cascade.svg" width="100%" alt="OmniRoute అభ్యర్థన ప్రవాహం: మీ IDE లేదా CLI (Claude Code, Cursor, Cline…) ఒకే స్థానిక ఎండ్పాయింట్ (http://localhost:20128/v1)ను పిలుస్తుంది; OmniRoute Smart Router (RTK + Caveman కంప్రెషన్, 20 రూటింగ్ వ్యూహాలు, సర్క్యూట్ బ్రేకర్లు, TLS స్టెల్త్, MCP, A2A, గార్డ్రెయిల్స్) 4 ప్రొవైడర్ టియర్లలో ఫాల్బ్యాక్ చేయగలదు, అర్హత కలిగిన ఆరోగ్యకరమైన లక్ష్యం అందుబాటులో ఉన్నంతకాలం — టియర్ 1 సబ్స్క్రిప్షన్, టియర్ 2 API కీ, టియర్ 3 చౌక మరియు టియర్ 4 ఉచితం."/>
+<img src="./docs/diagrams/tier-cascade.svg" width="100%" alt="OmniRoute request flow: your IDE or CLI (Claude Code, Cursor, Cline…) calls one local endpoint (http://localhost:20128/v1); the OmniRoute Smart Router (RTK + Caveman compression, 20 routing strategies, circuit breakers, TLS stealth, MCP, A2A, guardrails) can fall back across 4 provider tiers while an eligible healthy target remains — Tier 1 Subscription, Tier 2 API Key, Tier 3 Cheap and Tier 4 Free."/>
 
 </div>
 
@@ -506,13 +495,13 @@ curl http://localhost:20128/v1/chat/completions \
 
 <div align="center">
 
-## 🏆 OmniRouteను ప్రత్యేకంగా నిలబెట్టేవి
+## 🏆 ఏది OmniRoute వేరు చేస్తుంది
 
 </div>
 
-<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="OmniRouteను ప్రత్యేకంగా నిలబెట్టేవి — 13 సామర్థ్యాల్లో 9router, OpenRouter, CLIProxyAPI మరియు LiteLLMతో పోల్చిన తేదీతో కూడిన ఫీచర్ స్నాప్షాట్. OmniRoute: 385 ప్రొవైడర్లు, అంతర్నిర్మితంగా 150+ ఉచిత టియర్లు, 20 రూటింగ్ వ్యూహాలు, 12-ఇంజిన్ టోకెన్ కంప్రెషన్, 110 టూల్స్తో అంతర్నిర్మిత MCP సర్వర్, A2A ఏజెంట్ ప్రోటోకాల్, నిరంతర మెమరీ, గార్డ్రైల్స్, క్లౌడ్ ఏజెంట్లు, TLS ఫింగర్ప్రింట్ స్టెల్త్, Desktop/Termux/PWA మరియు 67 i18n UI లోకేల్స్. OmniRoute MIT లైసెన్స్తో అందుబాటులో ఉండి, స్వయంగా హోస్ట్ చేసుకోవచ్చు. ప్రత్యర్థుల సామర్థ్యాలు మరియు సంఖ్యలు మారవచ్చు; లింక్ చేసిన విధానాన్ని చూడండి."/>
+<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="What sets OmniRoute apart — a dated feature snapshot vs 9router, OpenRouter, CLIProxyAPI and LiteLLM across 13 capabilities. OmniRoute: 385 providers, 150+ free tiers built in, 20 routing strategies, 12-engine token compression, built-in MCP server with 110 tools, A2A agent protocol, persistent memory, guardrails, cloud agents, TLS fingerprint stealth, Desktop/Termux/PWA and 67 i18n UI locales. OmniRoute is MIT-licensed and self-hostable. Competitor capabilities and counts may change; see the linked methodology."/>
 
-<sub>📊 9router, OpenRouter, CLIProxyAPI మరియు LiteLLMతో పూర్తి విధానం &amp; ప్రతి ఫీచర్ వివరాలు → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
+<sub>📊 పూర్తి పద్దతి &amp; పర్-ఫీచర్ వివరాలు vs 9రౌటర్, OpenRouter, CLIProxyAPI &amp; LiteLLM → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
 
 <br/>
 
@@ -576,39 +565,39 @@ Radar ఐచ్ఛికం మరియు GET-మాత్రమే. OmniRoute
 
 <div align="center">
 
-## ✨ కొత్తవి
+## ✨ కొత్తవి ఏమిటి
 
 </div>
 
-> **v3.8.20 → v3.8.54** మధ్యకాలంలోని తాజా ముఖ్యాంశాలు. పూర్తి చరిత్ర [`CHANGELOG.md`](CHANGELOG.md)లో ఉంది.
+> నుండి ఇటీవలి ముఖ్యాంశాలు** v3.8.20 → v3.8.54** . [`CHANGELOG.md`](CHANGELOG.md) లో పూర్తి చరిత్ర.
 
-- **⚖️ `quota-weighted` రూటింగ్** — 20వ కాంబో వ్యూహం వినియోగం పూర్తయిన ఖాతాలను దాటవేసి, మిగిలిన వాటిలో మిగిలిన కోటా ÷ ప్రస్తుత లోడ్ నిష్పత్తి ప్రకారం ఎంపిక చేస్తుంది; ఇప్పటికే ఉన్న సంభాషణలు తమ ఖాతాలకు పిన్గానే ఉంటాయి. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
-- **🧰 హెడ్లెస్ మోడ్** — `omniroute serve --headless` (లేదా `OMNIROUTE_HEADLESS=1`) డ్యాష్బోర్డ్ మరియు డ్యాష్బోర్డ్-మాత్రమే ఉపవ్యవస్థలను నిలిపివేసి, `/v1/*` ప్రాక్సీ ఇంజిన్ను మాత్రమే నడుపుతుంది. → [హెడ్లెస్ మోడ్](docs/guides/HEADLESS.md)
-- **🔎 మోడల్ గుర్తింపు** — `/v1/models` సామర్థ్యం, కాంటెక్స్ట్, రకం మరియు టెక్స్ట్ ఆధారంగా ఫిల్టర్ చేస్తుంది; `POST /v1/models/query` ప్రతి కీకి ఉన్న అదే విజిబిలిటీతో చిన్న, డిటర్మినిస్టిక్ షార్ట్లిస్ట్ను అందిస్తుంది. → [API సూచిక](docs/reference/API_REFERENCE.md)
-- **🔑 ప్రతి కీకి రూటింగ్ నియంత్రణ** — `forcedModel`తో API కీని ఒక మోడల్ లేదా కాంబోకు పిన్ చేయండి; కీకి చెందిన మోడళ్లు మరియు కాంబోలను అటామిక్గా జోడించండి లేదా తొలగించండి (`/api/keys/{id}/access`). → [API సూచిక](docs/reference/API_REFERENCE.md) · [OpenAPI](docs/openapi.yaml)
-- **🛡️ మరింత సూక్ష్మమైన PII నియంత్రణలు** — ప్రతి రకాన్ని విడిగా ఎంచుకోవడం, ధృవీకరించబడిన కస్టమ్ మాస్కింగ్ ప్యాటర్న్లను 20 వరకు జోడించడం మరియు ప్రతి రకానికి డిటెక్షన్ కౌంటర్లు; మాస్కింగ్ మాత్రం ఇప్పటికీ ఆప్ట్-ఇన్గానే ఉంటుంది. → [గార్డ్రైల్స్](docs/security/GUARDRAILS.md)
-- **🌍 67 భాషలు** — డ్యాష్బోర్డ్, డాక్స్ మిర్రర్లు మరియు CLIలో అందుబాటులో ఉన్నాయి; `npm run i18n:add-locale` ఒకే కమాండ్తో అన్ని చోట్లా ఒక భాషను జోడిస్తుంది. → [i18n గైడ్](docs/guides/I18N.md)
-- **🎛️ OmniConductor** — మీ ఏజెంట్ సమూహానికి ఇన్బౌండ్ A2A డెలిగేషన్, Agent Cardలో Conductor నైపుణ్యాలు, అలాగే Faro పుష్-టు-టాక్ వాయిస్ చాట్తో కూడిన డ్యాష్బోర్డ్ ప్యానెల్. → [A2A సర్వర్](docs/frameworks/A2A-SERVER.md)
-- **🛂 అనుకూల అడ్మిషన్ మరియు ఓవర్లోడ్ రక్షణ** — భారమైన చాట్ అభ్యర్థనలు 503 ఇవ్వకుండా క్యూ అవుతాయి; ప్రతి కనెక్షన్కు అటామిక్ RPM రోలింగ్ లీజులు ఉపయోగించబడతాయి. → [రెసిలియెన్స్ గైడ్](docs/architecture/RESILIENCE_GUIDE.md)
-- **🗂️ కేనానికల్ `/v1/models` క్రమపద్ధతి** — ప్రతి ప్రొవైడర్కు ఒకే వరుసగా ఉండే ప్రొవైడర్-గ్రూప్ బ్లాక్ (కాంబోలు ముందుగా పిన్ చేయబడతాయి), ప్రతి కాటలాగ్ మూలంలోనూ స్థిరంగా ఉంటుంది. → [API సూచిక](docs/reference/API_REFERENCE.md)
-- **🗜️ కంప్రెషన్ బలోపేతం** — డిఫాల్ట్గా ప్రారంభించబడిన ఇన్ఫ్లేషన్ గార్డ్, DE / FR / JA + చైనీస్ (wényán) కోసం Caveman ప్యాక్లు, Gradle మరియు .NET కోసం RTK ఫిల్టర్లు. → [కంప్రెషన్](docs/compression/COMPRESSION_ENGINES.md)
-- **💸 నిజాయితీగల ఫ్లాట్-రేట్ ఖర్చు** — సబ్స్క్రిప్షన్ / కోడింగ్-ప్లాన్ ప్రొవైడర్ల ఖర్చు విశ్లేషణలో **$0**గా చూపబడుతుంది; బడ్జెట్, కోటా మరియు రూటింగ్ అంచనాలను కొనసాగిస్తాయి. → [API సూచిక](docs/reference/API_REFERENCE.md)
-- **⚖️ Quota-Share రూటింగ్** — పూల్ చేసిన కీల మధ్య షేర్ చేసిన ఖాతా కోటాను సమానంగా విభజిస్తుంది; ఖాళీగా ఉన్న స్లైస్లను అప్పుగా ఇచ్చే విధంగా వర్క్-కన్సర్వింగ్గా పనిచేస్తుంది. → [రెసిలియెన్స్ గైడ్](docs/architecture/RESILIENCE_GUIDE.md)
-- **🤖 ఒకే కమాండ్తో CLI/ఏజెంట్ సెటప్** — 15 నమోదిత `setup-*` కమాండ్లు; `omniroute run` 7 CLIలను (Claude Code, Codex, Aider, Goose, OpenCode, Qwen Code, Gemini CLI) ప్రారంభిస్తుంది; `omniroute configure` ఇంటరాక్టివ్ ప్రొవైడర్+మోడల్ పికర్ మరియు ప్రతి కాంటెక్స్ట్కు ఇష్టమైన ఎంపికలతో 11 లక్ష్యాలకు మద్దతు ఇస్తుంది. → [CLI ఇంటిగ్రేషన్లు](docs/guides/CLI-INTEGRATIONS.md)
-- **🛰️ రిమోట్ మోడ్** — స్కోప్ చేసిన టోకెన్లతో (`connect` / `contexts` / `tokens`) రిమోట్ OmniRouteను నియంత్రించండి; VPS ఇన్స్టాలేషన్ల కోసం `antigravity` OAuth సహాయకం కూడా ఉంది. → [రిమోట్ మోడ్](docs/guides/REMOTE-MODE.md)
-- **🧭 మరింత తెలివైన ఆటో-రూటింగ్** — `auto/<category>:<tier>` కాంబోలు, **Fusion** (మోడల్ ప్యానెల్ + జడ్జ్), టాస్క్-అవేర్ రూటింగ్, ప్రతి అభ్యర్థనకు మోడల్ / మోడ్ / USD-బడ్జెట్ ఓవర్రైడ్లు. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
-- **🗜️ ప్లగ్ చేయగల కంప్రెషన్** — 12 కలపగల ఇంజిన్లు మరియు Compression Studios: LLMLingua-2, రెండు-స్థాయి Ultra, omniglyph, ప్రతి దశకు fidelity gate, GCF v3.2, డ్రాగ్-రీఆర్డర్ ఎడిటర్. → [కంప్రెషన్](docs/compression/COMPRESSION_ENGINES.md)
-- **🕵️ పారదర్శక MITM డీక్రిప్ట్ (TPROXY)** — ప్రాక్సీ ఎన్విరాన్మెంట్ వేరియబుల్స్ను పట్టించుకోని CLIలను క్యాప్చర్ చేయడం, ప్రతి SNIకి CA మరియు trust-store ఇన్స్టాలర్తో. → [MITM/TPROXY](docs/security/MITM-TPROXY-DECRYPT.md)
-- **💸 ప్రతిచోటా ఖర్చు టెలిమెట్రీ** — ప్రతి ఎండ్పాయింట్లో `X-OmniRoute-*` ఖర్చు/వినియోగ హెడర్లు, cache-HIT ఆదా హెడర్, ప్రతి కీకి USD ఖర్చు కోటాలు. → [API సూచిక](docs/reference/API_REFERENCE.md)
-- **🧠 మీ నియంత్రణలో మెమరీ** — డిఫాల్ట్గా ఆఫ్లో ఉంటుంది; ఆప్ట్-ఇన్ int8 వెక్టర్ క్వాంటైజేషన్ + టైప్డ్ డీకే, ప్రతి అభ్యర్థనకు `x-omniroute-no-memory`. → [మెమరీ](docs/frameworks/MEMORY.md)
-- **🛡️ భద్రత** — ప్రతి LLM రూట్పై ప్రాంప్ట్-ఇంజెక్షన్ గార్డ్ (రెడ్-టీమ్ సూట్), ఆప్ట్-ఇన్ క్రెడెన్షియల్-మాస్కింగ్ గార్డ్రైల్ (రెండు దిశల్లో లీకైన API కీలు/సీక్రెట్లను రెడాక్ట్ చేస్తుంది), చివరి ప్రత్యామ్నాయంగా ఉచిత DuckDuckGo వెబ్ శోధన, డ్యాష్బోర్డ్ కోసం ఐచ్ఛిక OIDC లాగిన్ గేట్ (పాస్వర్డ్ లాగిన్ ఎల్లప్పుడూ అందుబాటులో ఉంటుంది). → [గార్డ్రైల్స్](docs/security/GUARDRAILS.md)
-- **🖼️ కొత్త ఎండ్పాయింట్లు** — `/v1/ocr` (Mistral OCR) మరియు `/v1/audio/translations` (Whisper-శైలి) మీడియా ఉపరితలాన్ని మరింత పూర్తి చేస్తాయి. → [API సూచిక](docs/reference/API_REFERENCE.md)
-- **🎨 చిత్రం / వీడియో / ఆడియో జనరేషన్** — మీడియా కోసం ఒకే API: xAI Grok Imagine మరియు Novita AI వీడియో, ComfyUI, Magnific, Adobe Firefly, Segmind, అలాగే ElevenLabs వంటి స్పీచ్ ప్రొవైడర్లు. → [API సూచిక](docs/reference/API_REFERENCE.md)
-- **🌍 డిప్లాయ్మెంట్ మరియు ఆప్స్** — రివర్స్-ప్రాక్సీ `basePath`, బ్రౌజర్-భాష ఆటో-డిటెక్షన్, ప్రతి కీకి డివైస్ ట్రాకింగ్, రూట్-లెస్ MITM ట్రస్ట్, zh-TW స్థానికీకరణ. → [ఎన్విరాన్మెంట్](docs/reference/ENVIRONMENT.md)
-- **🤝 మరిన్ని ప్రొవైడర్లు మరియు ఏజెంట్లు** — క్లౌడ్ ఏజెంట్లు (Codex Cloud, Cursor, Devin, Jules), బ్రౌజర్ + OAuth లాగిన్తో Grok Build (xAI), ఫస్ట్-క్లాస్ కార్డ్గా Ollama, Claude Opus 5 మరియు Sonnet 5, Kimi అధికారిక భాగస్వామ్యం (Code/Web/Moonshot), Zed, Requesty, SenseNova, Yuanbao, Agnes AI… అలాగే పునరుద్ధరించబడిన **385-ప్రొవైడర్ కాటలాగ్**. → [ప్రొవైడర్లు](docs/reference/PROVIDER_REFERENCE.md)
-- **📡 రూటింగ్ పారదర్శకత** — ప్రతి ప్రతిస్పందనలో దాన్ని అందించిన వ్యూహం/ప్రొవైడర్/లేటెన్సీని సూచించే `X-OmniRoute-Decision` హెడర్ ఉంటుంది; కొత్త `cache-optimized` కాంబో వ్యూహం మరియు Auto-Combo `cacheAffinity` ఫ్యాక్టర్ పునరావృత అభ్యర్థనలను క్యాష్ చేసిన ప్రిఫిక్స్ను కలిగి ఉన్న కనెక్షన్కు తిరిగి పంపుతాయి; అలాగే కేవలం చదవగల `/v1/auto-combo/{channel}/candidates` ఎండ్పాయింట్ `auto/*` ఛానల్కి చెందిన ప్రత్యక్ష క్యాండిడేట్ పూల్ను బహిర్గతం చేస్తుంది. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
-- **⚡ స్థానిక పనితీరు & మౌలిక సదుపాయాలు** — ఒక్క క్లిక్తో స్థానిక Redis, Cloudflare Workers / Deno Deploy రిలే డిప్లాయర్లు, పర్యవేక్షిత ఎంబెడెడ్ సేవలుగా Bifrost & Mux. → [ఎంబెడెడ్ సేవలు](docs/frameworks/EMBEDDED-SERVICES.md)
-- **🧩 ప్యాకేజీలో ఇవి కూడా ఉన్నాయి** — ప్లగిన్ ఫ్రేమ్వర్క్ + మార్కెట్ప్లేస్, Omni/Agent/GitHub స్కిల్స్ ఫ్రేమ్వర్క్లు, Obsidian వాల్ట్ ఇంటిగ్రేషన్ (22 MCP సాధనాలు), OpenAI-అనుకూల Batch & Files APIలు, సెమాంటిక్ ప్రతిస్పందన క్యాష్, లీడర్బోర్డ్లతో గేమిఫికేషన్, ACP ఏజెంట్ డిస్కవరీ (అంతర్నిర్మిత 15 ఏజెంట్లు), BigQueryకి షెడ్యూల్ చేసిన లాగ్ ఎగుమతి, `auto/chaos` సమాంతర బహుళ-మోడల్ ఫ్యాన్-అవుట్, Telegram బాట్ బ్రిడ్జ్, యాప్లోని వెర్షన్ మేనేజర్ మరియు LMArena-ELO ఉచిత ప్రొవైడర్ ర్యాంకింగ్లు. → [డాక్యుమెంటేషన్](docs/README.md)
+- **⚖️ `quota-weighted` రూటింగ్** — 20వ కాంబో స్ట్రాటజీ అయిపోయిన ఖాతాలను దాటవేస్తుంది, ఆపై మిగిలిన కోటా ÷ ఇన్-ఫ్లైట్ లోడ్కు అనుగుణంగా, ఇప్పటికే ఉన్న సంభాషణలను పిన్ చేసి ఉంచుతుంది. → [ఆటో-కాంబో](docs/routing/AUTO-COMBO.md)
+- **🧰 హెడ్లెస్ మోడ్** — `omniroute serve --headless` (లేదా `OMNIROUTE_HEADLESS=1`) డ్యాష్బోర్డ్ మరియు డాష్బోర్డ్-మాత్రమే ఉపవ్యవస్థలు ఆఫ్తో `/v1/*` ప్రాక్సీ ఇంజిన్ను మాత్రమే నడుపుతుంది. → [హెడ్లెస్ మోడ్](docs/guides/HEADLESS.md)
+- **🔎 మోడల్ ఆవిష్కరణ** — `/v1/models` సామర్థ్యం, సందర్భం, రకం మరియు వచనం ద్వారా ఫిల్టర్ చేస్తుంది మరియు `POST /v1/models/query` అదే ప్రతి-కీ విజిబిలిటీతో ఒక చిన్న నిర్ణయాత్మక షార్ట్లిస్ట్ను అందిస్తుంది. → [API సూచన](docs/reference/API_REFERENCE.md)
+- **🔑 పర్-కీ రూటింగ్ నియంత్రణ** — ఒక మోడల్కి API కీని పిన్ చేయండి లేదా `forcedModel` తో కాంబోను పిన్ చేయండి మరియు కీ యొక్క మోడల్లు మరియు కాంబోలను అటామిక్గా జోడించండి లేదా తీసివేయండి (`/api/keys/{id}/access`). → [API సూచన](docs/reference/API_REFERENCE.md) · [OpenAPI](docs/openapi.yaml)
+- **🛡️ ఫైనర్ PII నియంత్రణలు** — పర్-టైప్ ఎంపిక, 20 వరకు ధృవీకరించబడిన కస్టమ్ మాస్కింగ్ నమూనాలు మరియు ప్రతి-రకం గుర్తింపు కౌంటర్లు; మాస్కింగ్ అనేది ఎంపికలోనే ఉంటుంది. → [గార్డ్రెయిల్స్](docs/security/GUARDRAILS.md)
+- **🌍 67 భాషలు** — డ్యాష్బోర్డ్, డాక్స్ మిర్రర్స్ మరియు CLI, `npm run i18n:add-locale` ఒక కమాండ్లో ప్రతిచోటా ఒక భాషను జోడిస్తుంది. → [i18n గైడ్](docs/guides/I18N.md)
+- **🎛️ OmniConductor** మీ ఏజెంట్ ఫ్లీట్కు — ఇన్బౌండ్ A2A డెలిగేషన్, ఏజెంట్ కార్డ్లో కండక్టర్ నైపుణ్యాలు మరియు ఫారో పుష్-టు-టాక్ వాయిస్ చాట్తో డాష్బోర్డ్ ప్యానెల్. → [A2A సర్వర్](docs/frameworks/A2A-SERVER.md)
+- **🛂 అడాప్టివ్ అడ్మిషన్ & ఓవర్లోడ్ రక్షణ** 503ingకి బదులుగా — హెవీవెయిట్ చాట్ అభ్యర్థనల క్యూలో, ప్రతి కనెక్షన్కు అటామిక్ RPM రోలింగ్ లీజులతో. → [స్థితిస్థాపకత గైడ్](docs/architecture/RESILIENCE_GUIDE.md)
+- **🗂️ కానానికల్ `/v1/models` ఆర్డరింగ్** — ప్రతి ప్రొవైడర్కు ఒక ప్రక్కనే ఉన్న ప్రొవైడర్-గ్రూప్డ్ బ్లాక్ (కాంబోస్ మొదట పిన్ చేయబడింది), ప్రతి కేటలాగ్ సోర్స్లో స్థిరంగా ఉంటుంది. → [API సూచన](docs/reference/API_REFERENCE.md)
+- **🗜️ కుదింపు గట్టిపడటం** — డిఫాల్ట్-ఆన్ ఇన్ఫ్లేషన్ గార్డ్, కేవ్మ్యాన్ ప్యాక్లు DE / FR / JA + చైనీస్ (wényán), గ్రాడిల్ & కోసం RTK ఫిల్టర్లు.NET→ [కుదింపు](docs/compression/COMPRESSION_ENGINES.md)
+- **💸 నిజాయితీ ఫ్లాట్-రేట్ ధర** — సబ్స్క్రిప్షన్ / కోడింగ్-ప్లాన్ ప్రొవైడర్లు చదివారు** $0** వ్యయ విశ్లేషణలో; బడ్జెట్, కోటా & రూటింగ్ అంచనా వేస్తూ ఉంటాయి. → [API సూచన](docs/reference/API_REFERENCE.md)
+- **⚖️ కోటా-షేర్ రూటింగ్** — భాగస్వామ్య ఖాతా కోటాను పూల్ చేసిన కీల మధ్య చాలా వరకు విభజించింది, పనిని కాపాడుతుంది కాబట్టి నిష్క్రియ స్లైస్లు ఇవ్వబడతాయి. → [స్థితిస్థాపకత గైడ్](docs/architecture/RESILIENCE_GUIDE.md)
+- **🤖 వన్-కమాండ్ CLI/agent సెటప్** — 15 నమోదిత `setup-*` ఆదేశాలు; `omniroute run` 7 CLIs (Claude కోడ్, Codex, Aider, Goose, OpenCode, Qwen కోడ్, Gemini CLI)ని ప్రారంభించింది; `omniroute configure` ఇంటరాక్టివ్ ప్రొవైడర్+ మోడల్ పికర్ మరియు పర్-కాంటెక్స్ట్ ఫేవరెట్లతో 11 లక్ష్యాలకు మద్దతు ఇస్తుంది. → [CLI ఇంటిగ్రేషన్లు](docs/guides/CLI-INTEGRATIONS.md)
+- **🛰️ రిమోట్ మోడ్** — స్కోప్డ్ టోకెన్లతో రిమోట్ OmniRoute OAuth చేయండి (`connect` / `contexts` / `tokens`) VPS ఇన్స్టాల్ల కోసం + `antigravity` హెల్పర్. → [రిమోట్ మోడ్](docs/guides/REMOTE-MODE.md)
+- **🧭 స్మార్టర్ ఆటో-రూటింగ్** — `auto/<category>:<tier>` కాంబోలు,** ఫ్యూజన్** (మోడల్ ప్యానెల్ + న్యాయమూర్తి), టాస్క్-అవేర్ రూటింగ్, ప్రతి అభ్యర్థన మోడల్ / మోడ్ / USD-బడ్జెట్ ఓవర్రైడ్లు. → [ఆటో-కాంబో](docs/routing/AUTO-COMBO.md)
+- **🗜️ ప్లగ్గబుల్ కంప్రెషన్** — 12 కంపోజబుల్ ఇంజన్లు + కంప్రెషన్ స్టూడియోస్: LLMLingua-2, టూ-టైర్ అల్ట్రా, ఓమ్నిగ్లిఫ్, పర్-స్టెప్ ఫిడిలిటీ గేట్, GCF v3.2, డ్రాగ్-రీఆర్డర్ ఎడిటర్. → [కుదింపు](docs/compression/COMPRESSION_ENGINES.md)
+- **🕵️ పారదర్శక MITM డీక్రిప్ట్ (TPROXY)** ప్రతి-SNI CA + ట్రస్ట్-స్టోర్ ఇన్స్టాలర్తో ప్రాక్సీ env varsని విస్మరించే — క్యాప్చర్ CLIs. → [MITM/TPROXY](docs/security/MITM-TPROXY-DECRYPT.md)
+- **💸 ప్రతిచోటా టెలిమెట్రీ ఖర్చు** ప్రతి ఎండ్పాయింట్లో — `X-OmniRoute-*` cost/usage హెడర్లు, కాష్-HIT సేవింగ్స్ హెడర్, పర్-కీ USD స్పెండ్ కోటాలు. → [API సూచన](docs/reference/API_REFERENCE.md)
+- **మీరు నియంత్రించే🧠 మెమరీ** డిఫాల్ట్గా — ఆఫ్, ఆప్ట్-ఇన్ int8 వెక్టర్ క్వాంటైజేషన్ + టైప్ చేసిన క్షయం, ప్రతి అభ్యర్థన `x-omniroute-no-memory`. → [మెమరీ](docs/frameworks/MEMORY.md)
+- **🛡️ భద్రత** ప్రతి LLM మార్గంలో — ప్రాంప్ట్-ఇంజెక్షన్ గార్డ్ (రెడ్-టీమ్ సూట్), ఆప్ట్-ఇన్ క్రెడెన్షియల్-మాస్కింగ్ గార్డ్రైల్ (రెండు దిశలలో లీక్ అయిన API keys/secrets సరిదిద్దుతుంది), ఉచిత DuckDuckGo చివరి-రిసార్ట్ వెబ్ శోధన మరియు డాష్బోర్డ్ కోసం ఐచ్ఛిక OIDC లాగిన్ గేట్ (పాస్వర్డ్ లాగిన్ ఎల్లప్పుడూ అందుబాటులో ఉంటుంది). → [గార్డ్రైల్స్](docs/security/GUARDRAILS.md)
+- **🖼️ కొత్త ముగింపు పాయింట్లు** — `/v1/ocr` (Mistral OCR) మరియు `/v1/audio/translations` (విస్పర్-స్టైల్) మీడియా ఉపరితలాన్ని పూర్తి చేయండి. → [API సూచన](docs/reference/API_REFERENCE.md)
+- **🎨 చిత్రం / వీడియో / ఆడియో ఉత్పత్తి** మీడియా కోసం — one API : xAI Grok ఇమాజిన్ & నోవిటా AI వీడియో, ComfyUI, Magnific, Adobe Firefly, Segmind మరియు ElevenLabs వంటి స్పీచ్ ప్రొవైడర్లు. → [API సూచన](docs/reference/API_REFERENCE.md)
+- **🌍 విస్తరణ & ops** — రివర్స్-ప్రాక్సీ `basePath`, బ్రౌజర్-లాంగ్వేజ్ ఆటో-డిటెక్ట్, పర్-కీ డివైస్ ట్రాకింగ్, రూట్-లెస్ MITM ట్రస్ట్, zh-TW స్థానికీకరణ. → [పర్యావరణం](docs/reference/ENVIRONMENT.md)
+- **🤝 మరిన్ని ప్రొవైడర్లు & ఏజెంట్లు** — క్లౌడ్ ఏజెంట్లు (Codex క్లౌడ్, Cursor, Devin, Jules), Grok బిల్డ్ (xAI) బ్రౌజర్తో + OAuth లాగిన్, Ollama ఫస్ట్-క్లాస్ కార్డ్, Claude Opus 5 & Sonnet 5, Kimi Zed Rezsty భాగస్వామ్యం,Code/Web/Moonshot, ఆగ్నెస్ SenseNovaAI మరియు ఒక రిఫ్రెష్** 385-ప్రొవైడర్ కేటలాగ్** . → [ప్రొవైడర్లు](docs/reference/PROVIDER_REFERENCE.md)
+- **📡 రూటింగ్ పారదర్శకత** — ప్రతి స్పందన దానికి అందించిన strategy/provider/latency పేరును సూచించే `X-OmniRoute-Decision` హెడర్ను కలిగి ఉంటుంది, ఒక కొత్త `cache-optimized` కాంబో స్ట్రాటజీ + ఆటో-కాంబో `cacheAffinity` ఫ్యాక్టర్ రూట్ రిపీట్ రిక్వెస్ట్లను కాష్ చేసిన ఉపసర్గను కలిగి ఉన్న కనెక్షన్కు తిరిగి పంపుతుంది మరియు చదవడానికి మాత్రమే `/v1/auto-combo/{channel}/candidates` ముగింపు పాయింట్ `auto/*` ఛానెల్ యొక్క ప్రత్యక్ష అభ్యర్థి పూల్ను బహిర్గతం చేస్తుంది. → [ఆటో-కాంబో](docs/routing/AUTO-COMBO.md)
+- **⚡ స్థానిక పనితీరు & ఇన్ఫ్రా** — ఒక-క్లిక్ లోకల్ Redis, Cloudflare వర్కర్స్ / Deno డిప్లాయ్ రిలే డిప్లోయర్లు, Bifrost & Muxని పర్యవేక్షించబడే ఎంబెడెడ్ సేవలు. → [ఎంబెడెడ్ సేవలు](docs/frameworks/EMBEDDED-SERVICES.md)
+- **🧩 కూడా పెట్టెలో** — ప్లగిన్ ఫ్రేమ్వర్క్ + మార్కెట్ప్లేస్, Omni/Agent/GitHub నైపుణ్యాల ఫ్రేమ్వర్క్లు, Obsidian వాల్ట్ ఇంటిగ్రేషన్ (22 MCP టూల్స్), OpenAI- అనుకూల బ్యాచ్ & ఫైల్స్ APIs, సెమాంటిక్ రెస్పాన్స్ కాష్, లీడర్బోర్డ్లతో గేమిఫికేషన్, ACP ఏజెంట్ డిస్కవరీ (15 అంతర్నిర్మిత Telegram BigQuery ఏజెంట్లు), బహుళ-మోడల్ ఫ్యాన్-అవుట్, `auto/chaos` బోట్ బ్రిడ్జ్, ఇన్-యాప్ వెర్షన్ మేనేజర్ మరియు LMArena-ELO ఉచిత ప్రొవైడర్ ర్యాంకింగ్లు. → [డాక్స్](docs/README.md)
 
 <br/>
 
@@ -689,15 +678,15 @@ omniroute configure codex          # అలాగే: claude opencode qwen aider
 
 <div align="center">
 
-## 🌐 385 AI ప్రొవైడర్లు — 153 క్యాటలాగ్లో ఉచితంగా గుర్తించబడినవి
+## 🌐 385 AI ప్రొవైడర్లు — 153 కాటలాగ్-మార్క్ చేయబడినవి ఉచితం
 
 </div>
 
-> **385 నమోదైన ప్రొవైడర్లు** canonical chat, media, search, local, cloud-agent మరియు system సేకరణలలో ఉన్నాయి. వీరిలో **153 ప్రొవైడర్లు `hasFree: true` డిస్కవరీ మెటాడేటాను కలిగి ఉన్నారు**. Chat model registryలో **239 ప్రొవైడర్లు / 3,059 ప్రత్యేక provider-model జతలు / 1,475 raw model IDs** ఉన్నాయి; వేరు free-budget catalogలో **471 ప్రతి-మోడల్ వరుసలు**, **34 పునరావృత poolలు** మరియు **52 పునరావృతం/keyless free-forever ప్రొవైడర్లు** ఉన్నాయి. ఇవి ఉద్దేశపూర్వకంగా వేర్వేరు denominators; నిర్వచనాలు మరియు pool-deduped లెక్కలు [ప్రొవైడర్ రిఫరెన్స్](docs/reference/PROVIDER_REFERENCE.md) మరియు [ఫ్రీ టియర్స్](docs/reference/FREE_TIERS.md)లో ఉన్నాయి.
+> **385 నమోదిత ప్రొవైడర్లు** కానానికల్ చాట్, మీడియా, సెర్చ్, లోకల్, క్లౌడ్-ఏజెంట్ మరియు సిస్టమ్ కలెక్షన్లతో సహా** 153 మోస్తున్న `hasFree: true` డిస్కవరీ మెటాడేటా** . చాట్ మోడల్ రిజిస్ట్రీ కవర్లు** 239 ప్రొవైడర్లు / 3,059 విభిన్న ప్రొవైడర్-మోడల్ జతల / 1,475 ముడి మోడల్ IDs** ; ప్రత్యేక ఉచిత-బడ్జెట్ కేటలాగ్ ఉంది** ప్రతి మోడల్ వరుసలు 471** ,** 34 పునరావృత కొలనులు** మరియు** 52 recurring/keyless ఉచిత-ఎప్పటికీ ప్రొవైడర్లు** . ఇవి డిజైన్ ద్వారా విభిన్న హారం; నిర్వచనాలు మరియు పూల్-డెడ్యూప్డ్ లెక్కలు [ప్రొవైడర్ రిఫరెన్స్](docs/reference/PROVIDER_REFERENCE.md) మరియు [ఫ్రీ టైర్స్లో](docs/reference/FREE_TIERS.md) ప్రత్యక్షంగా ఉంటాయి.
 
 <div align="center">
 
-### 🏢 ప్రతి ప్రధాన ల్యాబ్ — ఒకే endpoint ద్వారా
+### 🏢 ప్రతి ప్రధాన ల్యాబ్ — ఒక ఎండ్ పాయింట్ ద్వారా
 
 <table>
   <tr>
@@ -710,14 +699,14 @@ omniroute configure codex          # అలాగే: claude opencode qwen aider
   </tr>
   <tr>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qwen-color.svg" width="40" alt="Qwen"/><br/><sub>Qwen</sub><br/><sub>                           </sub></td>
-    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/meta-color.svg" width="40" alt="Meta Llama"/><br/><sub>Meta Llama</sub><br/><sub>                           </sub></td>
+    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/meta-color.svg" width="40" alt="Meta Llama"/><br/><sub>మెటా Llama</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><picture><source media="(prefers-color-scheme:dark)" srcset="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-png@1.91.0/dark/groq.png"/><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/groq.svg" width="40" alt="Groq"/></picture><br/><sub>Groq</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/nvidia-color.svg" width="40" alt="NVIDIA"/><br/><sub>NVIDIA</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/minimax-color.svg" width="40" alt="MiniMax"/><br/><sub>MiniMax</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/cohere-color.svg" width="40" alt="Cohere"/><br/><sub>Cohere</sub><br/><sub>                           </sub></td>
   </tr>
   <tr>
-    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/perplexity-color.svg" width="40" alt="Perplexity"/><br/><sub>Perplexity</sub><br/><sub>                           </sub></td>
+    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/perplexity-color.svg" width="40" alt="Perplexity"/><br/><sub>కలవరపాటు</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/huggingface-color.svg" width="40" alt="Hugging Face"/><br/><sub>HuggingFace</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/together-color.svg" width="40" alt="Together"/><br/><sub>Together</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/fireworks-color.svg" width="40" alt="Fireworks"/><br/><sub>Fireworks</sub><br/><sub>                           </sub></td>
@@ -726,32 +715,32 @@ omniroute configure codex          # అలాగే: claude opencode qwen aider
   </tr>
 </table>
 
-<sub>…మరిన్ని 350+ — ప్రతి ఐకాన్ dashboard యొక్క provider catalog నుంచి ప్రత్యక్షంగా లోడ్ అవుతుంది. 📖 [ప్రొవైడర్ రిఫరెన్స్](docs/reference/PROVIDER_REFERENCE.md)</sub>
+<sub>…మరియు 350 + మరింత — ప్రతి చిహ్నం డాష్బోర్డ్ ప్రొవైడర్ కేటలాగ్ నుండి ప్రత్యక్షంగా పరిష్కరిస్తుంది. 📖 [ప్రొవైడర్ సూచన](docs/reference/PROVIDER_REFERENCE.md)</sub>
 
 <br/>
 
-### 🆓 ఎల్లప్పుడూ ఉచితం — $0, కార్డ్ అవసరం లేదు
+### 🆓 ఉచిత ఫరెవర్ — $0, కార్డ్ లేదు
 
 <table>
   <tr>
-    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="OpenCode Zen"/><br/><b>OpenCode Zen</b><br/><sub>DeepSeek V4, Nemotron 3<br/>టోకెన్ పరిమితి లేదు</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="Kilo Code"/><br/><b>Kilo Code</b><br/><sub>ఆటో-రూటర్, Tencent Hy3<br/>ఎల్లప్పుడూ ఉచితం</sub></td>
-    <td align="center" width="150"><img src="./public/providers/requesty.svg" width="42" alt="Requesty"/><br/><b>Requesty</b><br/><sub>GPT-OSS 120B, Nemotron<br/>ఎల్లప్పుడూ ఉచితం</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="OpenCode Zen"/><br/><b>OpenCode జెన్</b><br/><sub>DeepSeek V4, నెమోట్రాన్ 3<br/>టోకెన్ క్యాప్ లేదు</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="Kilo Code"/><br/><b>కిలో కోడ్</b><br/><sub>ఆటో-రూటర్, Tencent Hy3<br/>ఎప్పటికీ ఉచితం</sub></td>
+    <td align="center" width="150"><img src="./public/providers/requesty.svg" width="42" alt="Requesty"/><br/><b>అభ్యర్థన</b><br/><sub>GPT-OSS 120B, నెమోట్రాన్<br/>ఎప్పటికీ ఉచితం</sub></td>
     <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/siliconcloud-color.svg" width="42" alt="SiliconFlow"/><br/><b>SiliconFlow</b><br/><sub>DeepSeek V3.2 / R1<br/>ఉచిత శ్రేణి</sub></td>
-    <td align="center" width="150"><img src="./public/providers/zhipu.svg" width="42" alt="Z.AI GLM"/><br/><b>Z.AI GLM</b><br/><sub>GLM-4.7 / 4.5-Flash<br/>ఎల్లప్పుడూ ఉచితం</sub></td>
-    <td align="center" width="150"><img src="./public/providers/baidu.svg" width="42" alt="Baidu ERNIE"/><br/><b>Baidu ERNIE</b><br/><sub>ERNIE 4.0<br/>ఎల్లప్పుడూ ఉచితం</sub></td>
+    <td align="center" width="150"><img src="./public/providers/zhipu.svg" width="42" alt="Z.AI GLM"/><br/><b>Z.AI GLM</b><br/><sub>GLM-4.7 / 4.5-ఫ్లాష్<br/>ఎప్పటికీ ఉచితం</sub></td>
+    <td align="center" width="150"><img src="./public/providers/baidu.svg" width="42" alt="Baidu ERNIE"/><br/><b>Baidu ERNIE</b><br/><sub>ERNIE 4.0<br/>ఎప్పటికీ ఉచితం</sub></td>
   </tr>
   <tr>
-    <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qoder-color.svg" width="42" alt="Qoder AI"/><br/><b>Qoder AI</b><br/><sub>Qwen3-Max, Kimi-K2<br/>అపరిమిత ఉచితం</sub></td>
-    <td align="center" width="150"><img src="./public/providers/pollinations.svg" width="42" alt="Pollinations"/><br/><b>Pollinations</b><br/><sub>GPT, Llama, Claude<br/>కీ అవసరం లేదు</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cloudflare.svg" width="42" alt="Cloudflare AI"/><br/><b>Cloudflare AI</b><br/><sub>50+ మోడళ్లు<br/>రోజుకు 10K న్యూరాన్లు</sub></td>
-    <td align="center" width="150"><img src="./public/providers/nvidia.svg" width="42" alt="NVIDIA NIM"/><br/><b>NVIDIA NIM</b><br/><sub>GLM, MiniMax<br/>~40 RPM ఉచితం</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cerebras.svg" width="42" alt="Cerebras"/><br/><b>Cerebras</b><br/><sub>GLM 4.7, GPT-OSS<br/>ఒక్కసారి లభించే $5 క్రెడిట్; కార్డ్ అవసరం</sub></td>
-    <td align="center" width="150"><img src="./public/providers/openrouter.svg" width="42" alt="OpenRouter"/><br/><b>OpenRouter</b><br/><sub>:free మోడళ్లు<br/>+$10 → అధిక RPM</sub></td>
+    <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qoder-color.svg" width="42" alt="Qoder AI"/><br/><b>Qoder AI</b><br/><sub>Qwen3-Max, Kimi-K2<br/>అపరిమిత FREE</sub></td>
+    <td align="center" width="150"><img src="./public/providers/pollinations.svg" width="42" alt="Pollinations"/><br/><b>పరాగ సంపర్కాలు</b><br/><sub>GPT, Llama, Claude<br/>కీ అవసరం లేదు</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cloudflare.svg" width="42" alt="Cloudflare AI"/><br/><b>Cloudflare AI</b><br/><sub>50 + నమూనాలు<br/>10K neurons/day</sub></td>
+    <td align="center" width="150"><img src="./public/providers/nvidia.svg" width="42" alt="NVIDIA NIM"/><br/><b>NVIDIA NIM</b><br/><sub>GLM, MiniMax<br/>~ 40 RPM ఉచితం</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cerebras.svg" width="42" alt="Cerebras"/><br/><b>Cerebras</b><br/><sub>GLM 4.7, GPT-OSS<br/>వన్-టైమ్ $5 క్రెడిట్; కార్డు అవసరం</sub></td>
+    <td align="center" width="150"><img src="./public/providers/openrouter.svg" width="42" alt="OpenRouter"/><br/><b>OpenRouter</b><br/><sub>: ఉచిత నమూనాలు<br/>+$10 → అధిక RPM</sub></td>
   </tr>
 </table>
 
-📖 పూర్తి మెషీన్-రీడబుల్ కేటలాగ్ → [`docs/reference/PROVIDER_REFERENCE.md`](docs/reference/PROVIDER_REFERENCE.md)
+📖 పూర్తి మెషిన్-రీడబుల్ కేటలాగ్ → [`docs/reference/PROVIDER_REFERENCE.md`](docs/reference/PROVIDER_REFERENCE.md)
 
 <br/>
 </div>
@@ -1286,29 +1275,29 @@ OMNIROUTE_SKIP_POSTINSTALL=1 npm install -g omniroute   # CI=1 కూడా ద�
 <br/>
 <div align="center">
 
-## 🛠️ టెక్నాలజీ స్టాక్
+## 🛠️ టెక్ స్టాక్
 
 </div>
 
 <table>
-  <tr><th align="left">పొర</th><th align="left">టెక్నాలజీ</th></tr>
+  <tr><th align="left">పొర</th><th align="left">సాంకేతికత</th></tr>
   <tr><td nowrap><b>రన్టైమ్</b></td><td>Node.js 22.x / 24.x LTS — <code>&gt;=22.22.2 &lt;23 || &gt;=24.0.0 &lt;27</code></td></tr>
-  <tr><td nowrap><b>భాష</b></td><td>TypeScript 6.0 — <code>src/</code> మరియు <code>open-sse/</code> అంతటా <b>100% TypeScript</b> (v2.0 నుండి కోర్లో సున్నా <code>any</code>)</td></tr>
-  <tr><td nowrap><b>ఫ్రేమ్వర్క్</b></td><td>Next.js 16 + React 19 + Tailwind CSS 4</td></tr>
-  <tr><td nowrap><b>డేటాబేస్</b></td><td>better-sqlite3 (SQLite, WAL జర్నలింగ్) + LowDB (JSON లెగసీ) — 147 డొమైన్ మాడ్యూళ్లు, 232 మైగ్రేషన్లు</td></tr>
-  <tr><td nowrap><b>మెమరీ</b></td><td>SQLite FTS5 పూర్తి-పాఠ్య + int8-క్వాంటైజ్ చేసిన వెక్టర్ ఎంబెడ్డింగ్లు, టైప్ చేసిన డికే</td></tr>
-  <tr><td nowrap><b>స్కీమాలు</b></td><td>Zod 4 — MCP టూల్ I/O ధృవీకరణ + API కాంట్రాక్ట్లు</td></tr>
+  <tr><td nowrap><b>భాష</b></td><td>TypeScript 6.0 — <b>100% TypeScript</b> <code>src/</code> మరియు <code>open-sse/</code> అంతటా (v2.0 నుండి కోర్లో సున్నా <code>any</code> )</td></tr>
+  <tr><td nowrap><b>ముసాయిదా</b></td><td>Next.js 16 + React 19 + Tailwind CSS 4</td></tr>
+  <tr><td nowrap><b>డేటాబేస్</b></td><td>better-sqlite3 (SQLite, WAL జర్నలింగ్) + LowDB (JSON లెగసీ) — 147 డొమైన్ మాడ్యూల్స్, 232 మైగ్రేషన్లు</td></tr>
+  <tr><td nowrap><b>జ్ఞాపకశక్తి</b></td><td>SQLite FTS5 పూర్తి-వచనం + int8-quantized వెక్టర్ ఎంబెడ్డింగ్లు, టైప్ చేసిన క్షయం</td></tr>
+  <tr><td nowrap><b>స్కీమాలు</b></td><td>Zod 4 — MCP సాధనం I/O ధ్రువీకరణ + API ఒప్పందాలు</td></tr>
   <tr><td nowrap><b>ప్రోటోకాల్లు</b></td><td>MCP (stdio / HTTP / SSE) + A2A v0.3 (JSON-RPC 2.0 + SSE)</td></tr>
-  <tr><td nowrap><b>స్ట్రీమింగ్</b></td><td>Server-Sent Events (SSE) + WebSocket బ్రిడ్జ్ (<code>/v1/ws</code>)</td></tr>
-  <tr><td nowrap><b>కంప్రెషన్</b></td><td>12-ఇంజిన్ పైప్లైన్ — RTK, Caveman, LLMLingua-2 (MobileBERT ONNX), GCF, OmniGlyph</td></tr>
-  <tr><td nowrap><b>ఆథ్ &amp; భద్రత</b></td><td>OAuth 2.0 (PKCE) + JWT + API Keys + MCP స్కోప్డ్ ఆథ్ · విశ్రాంతి సమయంలో AES-256-GCM · DOMPurify</td></tr>
-  <tr><td nowrap><b>స్టెల్త్</b></td><td>wreq-js — JA3 / JA4 TLS ఫింగర్ప్రింట్ ఇంపర్సనేషన్, 3-స్థాయి ప్రాక్సీ</td></tr>
-  <tr><td nowrap><b>స్థైర్యం</b></td><td>సర్క్యూట్ బ్రేకర్, ఎక్స్పోనెన్షియల్ బ్యాక్ఆఫ్, యాంటీ-థండరింగ్-హెర్డ్, ఆటో-కాంబో సెల్ఫ్-హీలింగ్</td></tr>
-  <tr><td nowrap><b>లాగింగ్</b></td><td>pino — రిక్వెస్ట్ సందర్భంతో కూడిన నిర్మిత JSON లాగ్లు</td></tr>
-  <tr><td nowrap><b>పరీక్షలు</b></td><td>Node.js టెస్ట్ రన్నర్ + Vitest — 8,400+ ట్రాక్ చేసిన టెస్ట్ ఫైళ్లలో <b>60,000+ స్టాటిక్ టెస్ట్ డిక్లరేషన్లు</b> (యూనిట్, ఇంటిగ్రేషన్, E2E, భద్రత, ఎకోసిస్టమ్)</td></tr>
-  <tr><td nowrap><b>ప్లాట్ఫారమ్లు</b></td><td>డెస్క్టాప్ (Electron) · Android (Termux) · PWA (ఏదైనా బ్రౌజర్)</td></tr>
-  <tr><td nowrap><b>CI/CD</b></td><td>GitHub Actions — విడుదల సమయంలో ఆటో npm పబ్లిష్ + Docker Hub</td></tr>
-  <tr><td nowrap><b>లింక్లు</b></td><td><a href="https://omniroute.online">వెబ్సైట్</a> · <a href="https://www.npmjs.com/package/omniroute">npm</a> · <a href="https://hub.docker.com/r/diegosouzapw/omniroute">Docker Hub</a></td></tr>
+  <tr><td nowrap><b>స్ట్రీమింగ్</b></td><td>సర్వర్-పంపిన ఈవెంట్లు (SSE) + WebSocket వంతెన (<code>/v1/ws</code>)</td></tr>
+  <tr><td nowrap><b>కుదింపు</b></td><td>12-ఇంజిన్ పైప్లైన్ — RTK, కేవ్మ్యాన్, LLMLingua-2 (MobileBERT ONNX), GCF, OmniGlyph</td></tr>
+  <tr><td nowrap><b>Auth &amp; భద్రత</b></td><td>OAuth 2.0 (PKCE) + JWT + API కీలు + MCP స్కోప్డ్ auth · AES-256-GCM విశ్రాంతిగా · DOMPurify</td></tr>
+  <tr><td nowrap><b>దొంగతనం</b></td><td>wreq-js — JA3 / JA4 TLS వేలిముద్ర ప్రతిరూపం, 3-స్థాయి ప్రాక్సీ</td></tr>
+  <tr><td nowrap><b>స్థితిస్థాపకత</b></td><td>సర్క్యూట్ బ్రేకర్, ఎక్స్పోనెన్షియల్ బ్యాక్ఆఫ్, యాంటీ థండరింగ్-హెర్డ్, ఆటో-కాంబో సెల్ఫ్ హీలింగ్</td></tr>
+  <tr><td nowrap><b>లాగింగ్</b></td><td>అభ్యర్థన సందర్భంతో pino — నిర్మాణాత్మక JSON లాగ్లు</td></tr>
+  <tr><td nowrap><b>పరీక్షిస్తోంది</b></td><td>Node.js టెస్ట్ రన్నర్ + Vitest — <b>60,000 + స్టాటిక్ టెస్ట్ డిక్లరేషన్లు</b> 8,400 + ట్రాక్ చేసిన టెస్ట్ ఫైల్లలో (యూనిట్, ఇంటిగ్రేషన్, E2E, సెక్యూరిటీ, ఎకోసిస్టమ్)</td></tr>
+  <tr><td nowrap><b>వేదికలు</b></td><td>డెస్క్టాప్ (Electron) · Android (Termux) · PWA (ఏదైనా బ్రౌజర్)</td></tr>
+  <tr><td nowrap><b>CI/CD</b></td><td>GitHub చర్యలు — ఆటో npm విడుదలైనప్పుడు + Docker హబ్ను ప్రచురిస్తుంది</td></tr>
+  <tr><td nowrap><b>లింకులు</b></td><td><a href="https://omniroute.online">వెబ్సైట్</a> · <a href="https://www.npmjs.com/package/omniroute">npm</a> · <a href="https://hub.docker.com/r/diegosouzapw/omniroute">Docker హబ్</a></td></tr>
 </table>
 
 <div align="center">

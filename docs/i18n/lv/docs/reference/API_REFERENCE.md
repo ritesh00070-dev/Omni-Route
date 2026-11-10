@@ -956,35 +956,26 @@ ChatGPT atgriež `codex.rate_limits` + `response.created` un straumē pabeigto a
 
 ---
 
-## Kvotu un problēmu ziņošana
+## Ziņošana par kvotām un problēmām
 
-| Metode | Ceļš                | Apraksts                                                                                               |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------------------ |
-| GET    | `/v1/quotas/check`  | Iepriekš pārbaudīt kvotu `provider` + `accountId` kombinācijai pirms reģistrētas atslēgas izsniegšanas |
-| POST   | `/v1/issues/report` | Ziņot par kvotas/atslēgas izsniegšanas kļūmi GitHub (nepieciešams `GITHUB_ISSUES_REPO` + marķieris)    |
+| Metode | Ceļš                | Apraksts                                                                                      |
+| ------ | ------------------- | --------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Pirms reģistrētas atslēgas izsniegšanas iepriekš apstipriniet `provider` + `accountId` kvotu  |
+| POST   | `/v1/issues/report` | Ziņojiet par quota/key izdošanas kļūmi GitHub (nepieciešams `GITHUB_ISSUES_REPO` + marķieris) |
 
-**Autentifikācija:** Bearer API atslēga (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` paņem nesēja API atslēgu (`isAuthenticated`). `/v1/issues/report` ir paredzēts tikai pārvaldībai (`requireManagementAuth`), piemēram `/api/v1/registered-keys`: informācijas paneļa sesija, lokālais CLI marķieris vai API atslēga ar `manage`/`admin` tvērumu; API taustiņi tikai secinājumiem iegūst `403`.
 
-### Kvotas sesijas atkopšana (pēc izvēles)
+### Kvotas sesijas atkopšana (izvēlēties)
 
-Neplūstošs `POST /v1/chat/completions` vai `POST /v1/responses`, kas neizdodas ar
-terminālu kvotas kļūdu (`402`/`429`/`503`), kuras pamatteksts norāda, ka kvota vai kredīti ir izsmelti,
-var tikt atlikts un vēlāk atkārtots, nevis atgriezt kļūdu. Izsaucējs var to aktivizēt katram pieprasījumam,
-izmantojot trīs galvenes:
+Nestraumētu `POST /v1/chat/completions` vai `POST /v1/responses`, kas neizdodas ar termināļa kvotas kļūdu (`402`/`429`/`503`, kura pamattekstā norādīts, ka kvota vai kredīti ir izsmelti), var novietot stāvvietā un vēlāk atskaņot, nevis atgriezt kļūdu. Zvanītājs izvēlas katram pieprasījumam ar trim galvenēm:
 
-| Galvene                      | Vērtība                                                    |
-| ---------------------------- | ---------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                     |
-| `x-omniroute-session`        | sesijas ID, `[A-Za-z0-9._:-]{1,128}`                       |
-| `x-omniroute-recovery-turn`  | apgrieziena ID, kas sesijā ir unikāls (tas pats noteikums) |
+| Virsraksts                   | Vērtība                                         |
+| ---------------------------- | ----------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                          |
+| `x-omniroute-session`        | sesijas id, `[A-Za-z0-9._:-]{1,128}`            |
+| `x-omniroute-recovery-turn`  | pārvērst ID sesijā unikālu (tas pats noteikums) |
 
-Kvalificēti ir tikai `stream: false` apgriezieni bez rīkiem, rīku vēstures vai `previous_response_id`,
-kā arī bez `x-omniroute-connection` piesaistes, un ir jābūt iestatītam `STORAGE_ENCRYPTION_KEY`
-(pieprasījums tiek glabāts šifrētā veidā līdz 24 stundām). Pēc tam atbilde ir `202` ar
-`recovery.poll`; veiciet aptauju, izmantojot `GET /v1/quota-recoveries/{id}` (`202`, kamēr gaida,
-`200` ar atkoptu pamattekstu pēc pabeigšanas), vai atceliet, izmantojot `DELETE`. Biļetes ir redzamas tikai
-API atslēgai, kas tās izveidoja. Ja atkārtojuma iznākums ir neskaidrs, tas beidzas stāvoklī
-`needs_confirmation`, nevis tiek nosūtīts divreiz. Avots: `src/lib/quota/quotaSessionRecovery.ts`.
+Ir piemēroti tikai `stream: false` pagriezieni bez instrumentiem, instrumentu vēstures vai `previous_response_id` un bez `x-omniroute-connection` tapas, un ir jāiestata `STORAGE_ENCRYPTION_KEY` (pieprasījums tiek glabāts šifrēts līdz 24 stundām). Tad atbilde ir `202` ar `recovery.poll`; aptauja `GET /v1/quota-recoveries/{id}` (`202` gaidīšanas laikā, `200` ar atkopto pamattekstu, kad tas ir pabeigts) vai atcelt ar `DELETE`. Biļetes ir redzamas tikai API taustiņam, kas tās izveidoja. Atkārtojums, kura iznākums nav skaidrs, beidzas ar `needs_confirmation`, nevis tiek nosūtīts divreiz. Avots: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1736,17 +1727,21 @@ Izejošo tīmekļa āķu abonementi OmniRoute notikumiem (pieprasījuma pabeigš
 
 ## Reģistrētās atslēgas (automātiskā pārvaldība)
 
-Izmanto automātiskās atslēgu pārvaldības apakšsistēma, lai izsniegtu un rotētu API atslēgas pret atbalsta pakalpojumu sniedzēju/kontu, ar dienas/stundas kvotām.
+Automātiskās atslēgu pārvaldības apakšsistēma izmanto, lai izdotu un pagrieztu API atslēgas pret provider/account ar daily/hourly kvotām.
 
-| Metode | Ceļš                                  | Apraksts                                                                                                                                                                                                                                      |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Uzskaitīt reģistrētās atslēgas (tikai maskēts prefikss)                                                                                                                                                                                       |
-| POST   | `/api/v1/registered-keys`             | Izsniegt jaunu reģistrētu atslēgu — pamatteksts: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Neapstrādātā atslēga tiek atgriezta **vienreiz**. Kvotas atteikuma gadījumā tiek atgriezts `429`. |
-| GET    | `/api/v1/registered-keys/[id]`        | Iegūt reģistrētās atslēgas metadatus (bez neapstrādātās atslēgas)                                                                                                                                                                             |
-| DELETE | `/api/v1/registered-keys/[id]`        | Atsaukt reģistrētu atslēgu                                                                                                                                                                                                                    |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Skaidras atsaukšanas galapunkts (tāds pats rezultāts kā DELETE)                                                                                                                                                                               |
+| Metode | Ceļš                                  | Apraksts                                                                                                                                                                                                             |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Reģistrēto atslēgu saraksts (tikai maskēts prefikss)                                                                                                                                                                 |
+| POST   | `/api/v1/registered-keys`             | Izdodiet jaunu reģistrēto atslēgu — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Atgriež neapstrādāto atslēgu** vienreiz** . Atgriež `429` par kvotas atteikumu. |
+| GET    | `/api/v1/registered-keys/[id]`        | Reģistrētās atslēgas metadatu izgūšana (bez izejmateriāla)                                                                                                                                                           |
+| DELETE | `/api/v1/registered-keys/[id]`        | Atsaukt reģistrēto atslēgu                                                                                                                                                                                           |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Skaidrs atsaukšanas galapunkts (tāds pats efekts kā DELETE)                                                                                                                                                          |
+| GET    | `/api/v1/providers/[provider]/limits` | Izlasiet pakalpojumu sniedzēja izdošanas ierobežojumus                                                                                                                                                               |
+| PUT    | `/api/v1/providers/[provider]/limits` | Iestatiet nodrošinātāja izdošanas ierobežojumus — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                      |
+| GET    | `/api/v1/accounts/[id]/limits`        | Izlasiet konta izdošanas ierobežojumus                                                                                                                                                                               |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Iestatiet konta izdošanas ierobežojumus — tādi paši kā pakalpojumu sniedzēja maršrutā                                                                                                                                |
 
-**Autentifikācija:** pārvaldības sesija/API atslēga (`requireManagementAuth`) — tas pats aizsargs, kas tiek izmantots `/api/keys`: informācijas panelī izveidota sesija, lokālais CLI marķieris vai API atslēga ar `manage`/`admin` tvērumu; tikai secināšanai paredzētās API atslēgas saņem `403`. Skatiet arī `/v1/quotas/check` un `/v1/issues/report`.
+**Auth:** pārvaldības session/API atslēga (`requireManagementAuth`) — tas pats aizsargs kā `/api/keys`: informācijas paneļa sesija, lokālais CLI marķieris vai API atslēga ar `manage`/`admin` tvērumu; API taustiņi tikai secinājumiem iegūst `403`. Skatiet arī `/v1/quotas/check` un `/v1/issues/report`.
 
 ---
 

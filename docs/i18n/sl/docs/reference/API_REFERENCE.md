@@ -960,31 +960,22 @@ CLI nadgradi `base_url + /responses` v WebSocket, OmniRoute pa povezavo tunelira
 
 | Metoda | Pot                 | Opis                                                                                  |
 | ------ | ------------------- | ------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Predhodno preveri kvoto za `provider` + `accountId` pred izdajo registriranega ključa |
-| POST   | `/v1/issues/report` | Prijavi neuspešno izdajo kvote/ključa v GitHub (zahteva `GITHUB_ISSUES_REPO` + žeton) |
+| GET    | `/v1/quotas/check`  | Vnaprej preverite kvoto za `provider` + `accountId` pred izdajo registriranega ključa |
+| POST   | `/v1/issues/report` | Prijavite napako pri izdaji quota/key GitHub (zahteva žeton `GITHUB_ISSUES_REPO` + )  |
 
-**Overjanje:** API-ključ Bearer (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` prevzame nosilni ključ API (`isAuthenticated`). `/v1/issues/report` je samo za upravljanje (`requireManagementAuth`), tako kot `/api/v1/registered-keys`: seja nadzorne plošče, lokalni žeton CLI ali ključ API z obsegom `manage`/`admin` ; ključi API samo za sklepanje dobijo `403`.
 
-### Obnovitev seje kvote (izbirno)
+### Obnovitev kvote seje (opt-in)
 
-Nestreaming zahteva `POST /v1/chat/completions` ali `POST /v1/responses`, ki ne uspe
-zaradi končne napake kvote (`402`/`429`/`503`), katere telo navaja, da je kvota ali dobroimetje
-izčrpano, se lahko odloži in pozneje znova predvaja, namesto da bi vrnila napako. Klicatelj to
-omogoči za posamezno zahtevo s tremi glavami:
+Nepretočni `POST /v1/chat/completions` ali `POST /v1/responses`, ki ne uspe zaradi napake terminalske kvote (`402`/`429`/`503`, katerega telo pravi, da so kvota ali krediti izčrpani), lahko parkirate in predvajate pozneje, namesto da vrnete napako. Klicatelj se odloči za zahtevo s tremi glavami:
 
-| Glava                        | Vrednost                                        |
-| ---------------------------- | ----------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                          |
-| `x-omniroute-session`        | ID seje, `[A-Za-z0-9._:-]{1,128}`               |
-| `x-omniroute-recovery-turn`  | ID obrata, enoličen znotraj seje (isto pravilo) |
+| Glava                        | Vrednost                                           |
+| ---------------------------- | -------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                             |
+| `x-omniroute-session`        | id seje, `[A-Za-z0-9._:-]{1,128}`                  |
+| `x-omniroute-recovery-turn`  | spremeni ID v enoličen znotraj seje (isto pravilo) |
 
-Upravičeni so samo obrati z `stream: false`, brez orodij, zgodovine orodij ali
-`previous_response_id` ter brez pripetega `x-omniroute-connection`, nastavljena pa mora biti
-tudi `STORAGE_ENCRYPTION_KEY` (zahteva se šifrirano shrani za največ 24 ur). Odgovor je nato
-`202` z `recovery.poll`; poizvedite z `GET /v1/quota-recoveries/{id}` (`202`, dokler čaka,
-`200` z obnovljenim telesom po dokončanju) ali prekličite z `DELETE`. Vstopnice so vidne samo
-API-ključu, ki jih je ustvaril. Ponovitev, pri kateri izid ni zanesljiv, se konča v stanju
-`needs_confirmation`, namesto da bi bila poslana dvakrat. Vir: `src/lib/quota/quotaSessionRecovery.ts`.
+Upravičeni so samo zavoji `stream: false` brez orodij, zgodovine orodij ali `previous_response_id` in brez zatiča `x-omniroute-connection`, nastavljen pa mora biti `STORAGE_ENCRYPTION_KEY` (zahteva je shranjena šifrirana do 24 ur). Odgovor je nato `202` z `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` med čakanjem, `200` z obnovljenim telesom, ko je končano) ali prekliči z `DELETE`. Vstopnice so vidne le ključu API, ki jih je ustvaril. Ponovitev, katere rezultat je negotov, se konča v `needs_confirmation` namesto da bi bila poslana dvakrat. Vir: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1735,17 +1726,21 @@ Odhodne naročnine na spletne kavlje za dogodke OmniRoute (dokončanje zahtevka,
 
 ## Registrirani ključi (samodejno upravljanje)
 
-Uporablja ga podsistem za samodejno upravljanje ključev za izdajanje in rotacijo ključev API pri zalednem ponudniku/računu, z dnevnimi/urnimi kvotami.
+Uporablja ga podsistem za samodejno upravljanje ključev za izdajo in rotacijo ključev API glede na podporni provider/account s kvotami daily/hourly.
 
-| Metoda | Pot                                   | Opis                                                                                                                                                                                                |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Seznam registriranih ključev (prikazana je samo maskirana predpona)                                                                                                                                 |
-| POST   | `/api/v1/registered-keys`             | Izdaj nov registrirani ključ — telo: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Vrne surovi ključ **enkrat**. Ob zavrnitvi zaradi kvote vrne `429`. |
-| GET    | `/api/v1/registered-keys/[id]`        | Pridobi metapodatke registriranega ključa (brez surovega ključa)                                                                                                                                    |
-| DELETE | `/api/v1/registered-keys/[id]`        | Prekliči registrirani ključ                                                                                                                                                                         |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Izrecna končna točka za preklic (enak učinek kot DELETE)                                                                                                                                            |
+| Metoda | Pot                                   | Opis                                                                                                                                                                                               |
+| ------ | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Seznam registriranih ključev (samo maskirana predpona)                                                                                                                                             |
+| POST   | `/api/v1/registered-keys`             | Izdajte nov registriran ključ — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Vrne neobdelani ključ** enkrat** . Vrne `429` ob zavrnitvi kvote. |
+| GET    | `/api/v1/registered-keys/[id]`        | Pridobite metapodatke registriranega ključa (brez surovine)                                                                                                                                        |
+| DELETE | `/api/v1/registered-keys/[id]`        | Preklic registriranega ključa                                                                                                                                                                      |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Končna točka eksplicitnega preklica (enak učinek kot DELETE)                                                                                                                                       |
+| GET    | `/api/v1/providers/[provider]/limits` | Preberite omejitve izdaje ponudnika                                                                                                                                                                |
+| PUT    | `/api/v1/providers/[provider]/limits` | Nastavite ponudnikove omejitve izdaje — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                              |
+| GET    | `/api/v1/accounts/[id]/limits`        | Preberite omejitve izdaje računa                                                                                                                                                                   |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Nastavite zgornje meje izdaje — isto telo kot pot ponudnika                                                                                                                                        |
 
-**Preverjanje pristnosti:** upravljavska seja/ključ API (`requireManagementAuth`) — isti varnostni mehanizem kot pri `/api/keys`: seja nadzorne plošče, lokalni žeton CLI ali ključ API z obsegom `manage`/`admin`; ključi API, namenjeni samo sklepanju, prejmejo `403`. Oglejte si tudi `/v1/quotas/check` in `/v1/issues/report`.
+**Auth:** upravljanje session/API ključ (`requireManagementAuth`) — isti čuvaj kot `/api/keys`: seja nadzorne plošče, lokalni žeton CLI ali ključ API z obsegom `manage`/`admin` ; ključi API samo za sklepanje dobijo `403`. Glej tudi `/v1/quotas/check` in `/v1/issues/report`.
 
 ---
 

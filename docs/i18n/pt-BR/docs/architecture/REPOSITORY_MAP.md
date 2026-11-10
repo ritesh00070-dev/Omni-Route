@@ -188,7 +188,7 @@ src/
 | `evals/`                                 | Estrutura de avaliação (suites, runner, runtime) — consulte `docs/frameworks/EVALS.md`                                                                                                                                                                                                                                                  |
 | `guardrails/`                            | mascarador PII, injeção imediata, ponte de visão — veja `docs/security/GUARDRAILS.md`                                                                                                                                                                                                                                                   |
 | `jobs/`                                  | Trabalhos em segundo plano (semelhantes ao cron)                                                                                                                                                                                                                                                                                        |
-| `memory/`                                | Memória de conversação (SQLite FTS5 + sqlite-vec híbrido RRF + Qdrant nível 2) — veja `docs/frameworks/MEMORY.md`                                                                                                                                                                                                                       |
+| `memory/`                                | Memória de conversação (SQLite FTS5 + sqlite-vec híbrido RRF + Qdrant camada 2) — veja `docs/frameworks/MEMORY.md`                                                                                                                                                                                                                      |
 | `memory/embedding/`                      | Camada de incorporação de múltiplas fontes: `index.ts` (resolver), `remote.ts`, `staticPotion.ts`, `transformersLocal.ts`, `cache.ts`, `types.ts` (plano 21)                                                                                                                                                                            |
 | `memory/vectorStore.ts`                  | wrapper sqlite-vec v0.1.9 — KNN força bruta + híbrido RRF (vetor FTS5 +, k = 60). Lazy-init, degrada normalmente quando o sqlite-vec não está disponível. (plano 21)                                                                                                                                                                    |
 | `memory/reindex.ts`                      | `runReindexBatch()` — processa memórias com `needs_reindex=1` em segundo plano; chamado por `POST /api/memory/reindex` e caminho de preenchimento lento. (plano 21)                                                                                                                                                                     |
@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `components/`                    | Componente do painel API: adaptadores sobre `packages/ui-kit` — consulte `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: nomes de ícones usados pelas telas → componentes Lucide (`<Icon>`)                                |
-| `constants/providers.ts`         | **381 provedores** com validação Zod (fonte da verdade)                                                       |
+| `constants/providers.ts`         | **385 provedores** com validação Zod (fonte da verdade)                                                       |
 | `constants/cliTools.ts`          | Registro externo da ferramenta CLI                                                                            |
 | `constants/routingStrategies.ts` | **20 estratégias de roteamento** com prioridades                                                              |
 | `constants/publicApiRoutes.ts`   | Rotas que exigem autenticação do portador (vs gerenciamento)                                                  |
@@ -412,7 +412,7 @@ open-sse/
 | `CLI-TOOLS.md`              | Integrações CLI externas + OmniRoute interno CLI                                                |
 | `I18N.md`                   | Arquitetura i18n, adicionando um idioma, 67 localidades                                         |
 | `UNINSTALL.md`              | Limpe as etapas de desinstalação                                                                |
-| `PROVIDER_REFERENCE.md`     | **Gerado automaticamente** catálogo de 381 provedores (regen: `npm run gen:provider-reference`) |
+| `PROVIDER_REFERENCE.md`     | **Gerado automaticamente** catálogo de 385 provedores (regen: `npm run gen:provider-reference`) |
 
 ### Aprofundamentos do subsistema
 

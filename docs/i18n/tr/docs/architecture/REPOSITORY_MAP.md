@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `components/`                    | Kontrol paneli bileşeni API: `packages/ui-kit` üzerindeki adaptörler — bkz. `docs/architecture/DESIGN_SYSTEM.md` |
 | `constants/iconMap.ts`           | `ICON_MAP`: ekranlar tarafından kullanılan simge adları → Lucide bileşenleri (`<Icon>`)                          |
-| `constants/providers.ts`         | **381 sağlayıcı** Zod doğrulaması ile (gerçeğin kaynağı)                                                         |
+| `constants/providers.ts`         | **385 sağlayıcı** Zod doğrulaması ile (gerçeğin kaynağı)                                                         |
 | `constants/cliTools.ts`          | Harici CLI aracı kaydı                                                                                           |
 | `constants/routingStrategies.ts` | **20 yönlendirme stratejisi** önceliklere sahip                                                                  |
 | `constants/publicApiRoutes.ts`   | Taşıyıcı (yönetim vs.) kimlik doğrulaması gerektiren rotalar                                                     |
@@ -395,24 +395,24 @@ open-sse/
 
 ### Üst düzey kılavuzlar
 
-| Doktor                      | Amaç                                                                                                   |
-| --------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `ARCHITECTURE.md`           | Üst düzey mimari, alt sistem haritası, gösterge paneli yüzeyi                                          |
-| `CODEBASE_DOCUMENTATION.md` | Mühendislik referansı: dizinler, modüller, kurallar                                                    |
-| `FEATURES.md`               | v3.8'in öne çıkan özelliklerini içeren özellik matrisi                                                 |
-| `USER_GUIDE.md`             | Son kullanıcı kılavuzu (kurulum, modeller, kombinasyonlar, CLIs, ses vb.)                              |
-| `API_REFERENCE.md`          | Kimlik doğrulama modeliyle API uç nokta referansı                                                      |
-| `openapi.yaml`              | OpenAPI 3.0 spesifikasyonu (121 yol)                                                                   |
-| `SETUP_GUIDE.md`            | Kurulum yöntemleri (npm, npx, Docker, Electron, Termux, kaynak)                                        |
-| `ENVIRONMENT.md`            | Tüm env değişkenleri (~ 800 belgelenmiştir, ~ 3.050 satır `.env.example`)                              |
-| `TROUBLESHOOTING.md`        | Yaygın hatalar + v3.8.0'da bilinen sorunlar                                                            |
-| `RELEASE_CHECKLIST.md`      | Tam sürüm akışı (beceriler, husky, geleneksel taahhütler, dağıtım)                                     |
-| `COVERAGE_PLAN.md`          | Kapsam hedefleri ve mevcut durum                                                                       |
-| `FREE_TIERS.md`             | Seçilmiş ücretsiz katmanlı sağlayıcılar (48 + ücretsiz + 11 OAuth)                                     |
-| `CLI-TOOLS.md`              | Harici CLI entegrasyonları + Dahili OmniRoute CLI                                                      |
-| `I18N.md`                   | i18n mimarisi, dil ekleme, 67 yerel ayar                                                               |
-| `UNINSTALL.md`              | Kaldırma adımlarını temizleyin                                                                         |
-| `PROVIDER_REFERENCE.md`     | **Otomatik olarak oluşturuldu** 381 sağlayıcının kataloğu (yenileme: `npm run gen:provider-reference`) |
+| Doktor                      | Amaç                                                                                                         |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `ARCHITECTURE.md`           | Üst düzey mimari, alt sistem haritası, gösterge paneli yüzeyi                                                |
+| `CODEBASE_DOCUMENTATION.md` | Mühendislik referansı: dizinler, modüller, kurallar                                                          |
+| `FEATURES.md`               | v3.8'in öne çıkan özelliklerini içeren özellik matrisi                                                       |
+| `USER_GUIDE.md`             | Son kullanıcı kılavuzu (kurulum, modeller, kombinasyonlar, CLIs, ses vb.)                                    |
+| `API_REFERENCE.md`          | Kimlik doğrulama modeliyle API uç nokta referansı                                                            |
+| `openapi.yaml`              | OpenAPI 3.0 spesifikasyonu (121 yol)                                                                         |
+| `SETUP_GUIDE.md`            | Kurulum yöntemleri (npm, npx, Docker, Electron, Termux, kaynak)                                              |
+| `ENVIRONMENT.md`            | Tüm env değişkenleri (~ 800 belgelenmiştir, ~ 3.050 satır `.env.example`)                                    |
+| `TROUBLESHOOTING.md`        | Yaygın hatalar + v3.8.0'da bilinen sorunlar                                                                  |
+| `RELEASE_CHECKLIST.md`      | Tam sürüm akışı (beceriler, husky, geleneksel taahhütler, dağıtım)                                           |
+| `COVERAGE_PLAN.md`          | Kapsam hedefleri ve mevcut durum                                                                             |
+| `FREE_TIERS.md`             | Seçilmiş ücretsiz katmanlı sağlayıcılar (48 + ücretsiz + 11 OAuth)                                           |
+| `CLI-TOOLS.md`              | Harici CLI entegrasyonları + Dahili OmniRoute CLI                                                            |
+| `I18N.md`                   | i18n mimarisi, dil ekleme, 67 yerel ayar                                                                     |
+| `UNINSTALL.md`              | Kaldırma adımlarını temizleyin                                                                               |
+| `PROVIDER_REFERENCE.md`     | **Otomatik olarak oluşturuldu** 385 sağlayıcıdan oluşan katalog (yenileme: `npm run gen:provider-reference`) |
 
 ### Alt sistem derinlemesine incelemeleri
 

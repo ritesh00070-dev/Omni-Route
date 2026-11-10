@@ -14,7 +14,7 @@ OmniRoute er en lokal AI rutinggateway og dashbord bygget på Next.js. Den gir e
 
 Kjernefunksjoner:
 
-- OpenAI-kompatibel API overflate for CLI/tools (381 leverandører, 159 eksekveringsmoduler)
+- OpenAI-kompatibel API overflate for CLI/tools (385 leverandører, 159 eksekveringsmoduler)
 - Request/response -oversettelse på tvers av leverandørformater
 - Modell combo fallback (multi-modell sekvens)
 - Strukturerte kombinasjonstrinn (`provider + model + connection`) med kjøretidsbestilling etter `compositeTiers`

@@ -14,7 +14,7 @@ OmniRoute jẹ ẹnu-ọna afisona AI agbegbe ati dasibodu ti a ṣe lori Next.j
 
 Awọn agbara koko:
 
-- Ṣii-ibaramu API dada fun CLI/tools (awọn olupese 381, awọn modulu alaṣẹ 159)
+- Ṣii-ibaramu API dada fun CLI/tools (awọn olupese 385, awọn modulu alaṣẹ 159)
 - Request/response itumọ kọja awọn ọna kika olupese
 - Awoṣe konbo fallback (ọkọọkan awoṣe pupọ)
 - Awọn igbesẹ konbo ti a ṣeto (`provider + model + connection`) pẹlu pipaṣẹ akoko ṣiṣe nipasẹ `compositeTiers`

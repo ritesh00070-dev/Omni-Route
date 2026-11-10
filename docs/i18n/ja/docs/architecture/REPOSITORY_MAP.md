@@ -242,7 +242,7 @@ src/
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `components/`                    | ダッシュボードコンポーネントAPI: `packages/ui-kit`上のアダプター— `docs/architecture/DESIGN_SYSTEM.md`を参照 |
 | `constants/iconMap.ts`           | `ICON_MAP`: 画面で使用されるアイコン名→ Lucide コンポーネント (`<Icon>`)                                     |
-| `constants/providers.ts`         | **381 プロバイダー**Zod検証あり (信頼できる情報源)                                                           |
+| `constants/providers.ts`         | **385 プロバイダー**Zod検証あり (信頼できる情報源)                                                           |
 | `constants/cliTools.ts`          | 外部CLIツール レジストリ                                                                                     |
 | `constants/routingStrategies.ts` | **20 のルーティング戦略**優先順位を付けて                                                                    |
 | `constants/publicApiRoutes.ts`   | ベアラー (管理ではなく) 認証が必要なルート                                                                   |
@@ -395,24 +395,24 @@ open-sse/
 
 ### トップレベルのガイド
 
-| ドクター                    | 目的                                                                              |
-| --------------------------- | --------------------------------------------------------------------------------- |
-| `ARCHITECTURE.md`           | 高レベルのアーキテクチャ、サブシステム マップ、ダッシュボードの表面               |
-| `CODEBASE_DOCUMENTATION.md` | エンジニアリングリファレンス: ディレクトリ、モジュール、規約                      |
-| `FEATURES.md`               | v3.8 のハイライトを含む機能マトリックス                                           |
-| `USER_GUIDE.md`             | エンドユーザーマニュアル (セットアップ、モデル、コンボ、 CLIs、オーディオなど)    |
-| `API_REFERENCE.md`          | 認証モデルを使用したAPIエンドポイント参照                                         |
-| `openapi.yaml`              | OpenAPI 3.0 仕様 (121 パス)                                                       |
-| `SETUP_GUIDE.md`            | インストール方法 (npm、npx、 Docker、 Electron、Termux、source)                   |
-| `ENVIRONMENT.md`            | すべての環境変数 (~ 800 文書化、 ~ 3,050 行`.env.example`)                        |
-| `TROUBLESHOOTING.md`        | 一般的なエラー+ v3.8.0 の既知の問題                                               |
-| `RELEASE_CHECKLIST.md`      | 完全なリリース フロー (スキル、ハスキー、従来のコミット、デプロイ)                |
-| `COVERAGE_PLAN.md`          | 対象範囲の目標と現状                                                              |
-| `FREE_TIERS.md`             | 厳選された無料利用枠プロバイダー (48 +無料+ 11 OAuth)                             |
-| `CLI-TOOLS.md`              | 外部CLI統合+内部OmniRoute CLI                                                     |
-| `I18N.md`                   | i18n アーキテクチャ、言語の追加、67 ロケール                                      |
-| `UNINSTALL.md`              | クリーンなアンインストール手順                                                    |
-| `PROVIDER_REFERENCE.md`     | **自動生成**381 プロバイダーのカタログ (再生成: `npm run gen:provider-reference`) |
+| ドクター                    | 目的                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| `ARCHITECTURE.md`           | 高レベルのアーキテクチャ、サブシステム マップ、ダッシュボードの表面             |
+| `CODEBASE_DOCUMENTATION.md` | エンジニアリングリファレンス: ディレクトリ、モジュール、規約                    |
+| `FEATURES.md`               | v3.8 のハイライトを含む機能マトリックス                                         |
+| `USER_GUIDE.md`             | エンドユーザーマニュアル (セットアップ、モデル、コンボ、 CLIs、オーディオなど)  |
+| `API_REFERENCE.md`          | 認証モデルを使用したAPIエンドポイント参照                                       |
+| `openapi.yaml`              | OpenAPI 3.0 仕様 (121 パス)                                                     |
+| `SETUP_GUIDE.md`            | インストール方法 (npm、npx、 Docker、 Electron、Termux、source)                 |
+| `ENVIRONMENT.md`            | すべての環境変数 (~ 800 文書化、 ~ 3,050 行`.env.example`)                      |
+| `TROUBLESHOOTING.md`        | 一般的なエラー+ v3.8.0 の既知の問題                                             |
+| `RELEASE_CHECKLIST.md`      | 完全なリリース フロー (スキル、ハスキー、従来のコミット、デプロイ)              |
+| `COVERAGE_PLAN.md`          | 対象範囲の目標と現状                                                            |
+| `FREE_TIERS.md`             | 厳選された無料利用枠プロバイダー (48 +無料+ 11 OAuth)                           |
+| `CLI-TOOLS.md`              | 外部CLI統合+内部OmniRoute CLI                                                   |
+| `I18N.md`                   | i18n アーキテクチャ、言語の追加、67 ロケール                                    |
+| `UNINSTALL.md`              | クリーンなアンインストール手順                                                  |
+| `PROVIDER_REFERENCE.md`     | **自動生成**385 プロバイダーのカタログ (再生: `npm run gen:provider-reference`) |
 
 ### サブシステムの詳細
 

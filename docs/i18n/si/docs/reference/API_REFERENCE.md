@@ -880,35 +880,26 @@ CLI එක `base_url + /responses` WebSocket එකක් බවට upgrade ක�
 
 ---
 
-## කෝටා සහ ගැටලු වාර්තාකරණය
+## කෝටා සහ ගැටළු වාර්තා කිරීම
 
 | ක්රමය | මාර්ගය              | විස්තරය                                                                                                |
 | ----- | ------------------- | ------------------------------------------------------------------------------------------------------ |
-| GET   | `/v1/quotas/check`  | ලියාපදිංචි කළ යතුරක් නිකුත් කිරීමට පෙර `provider` + `accountId` සඳහා කෝටාව පූර්ව වලංගු කිරීම           |
-| POST  | `/v1/issues/report` | GitHub වෙත කෝටා/යතුරු නිකුත් කිරීමේ අසාර්ථකත්වයක් වාර්තා කිරීම (`GITHUB_ISSUES_REPO` + ටෝකනය අවශ්ය වේ) |
+| GET   | `/v1/quotas/check`  | ලියාපදිංචි යතුරක් නිකුත් කිරීමට පෙර `provider` + `accountId` සඳහා කෝටාව පූර්ව වලංගු කරන්න              |
+| POST  | `/v1/issues/report` | quota/key නිකුත් කිරීමේ අසාර්ථක වීමක් GitHub වෙත වාර්තා කරන්න ( `GITHUB_ISSUES_REPO` + ටෝකනය අවශ්‍යයි) |
 
-**සත්යාපනය:** Bearer API යතුර (`isAuthenticated`).
+**සත්‍යාපනය:** `/v1/quotas/check` Bearer API යතුරක් (`isAuthenticated`) ගනී. `/v1/issues/report` යනු කළමනාකරණයට පමණි (`requireManagementAuth`), `/api/v1/registered-keys` වැනි: උපකරණ පුවරු සැසිය, දේශීය CLI ටෝකනය, හෝ `manage`/`admin` විෂය පථය සහිත API යතුර; අනුමාන-පමණි API යතුරු `403` ලබා ගනී.
 
-### කෝටා සැසිය ප්රතිසාධනය (විකල්පයෙන් සක්රීය කළ හැක)
+### පංගු සැසි ප්‍රතිසාධනය (තෝරාගැනීම)
 
-ප්රවාහගත නොවන `POST /v1/chat/completions` හෝ `POST /v1/responses` ඉල්ලීමක්
-අවසන් කෝටා දෝෂයකින් (`402`/`429`/`503`, එහි body එකේ කෝටාව හෝ credits අවසන් වී ඇති බව සඳහන් වන විට)
-අසාර්ථක වුවහොත්, දෝෂය ආපසු ලබා දීම වෙනුවට එය තාවකාලිකව තබා පසුව නැවත ධාවනය කළ හැක. ඉල්ලීම්කරු එක් එක්
-ඉල්ලීම සඳහා පහත headers තුන සමඟ මෙය සක්රීය කරයි:
+A non-streaming `POST /v1/chat/completions` or `POST /v1/responses` that fails with a terminal quota error (`402`/`429`/`503` whose body says the quota or credits are exhausted) can be parked and replayed later instead of returning the error. The caller opts in per request with three headers:
 
-| Header                       | අගය                                 |
-| ---------------------------- | ----------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                              |
-| `x-omniroute-session`        | සැසි id, `[A-Za-z0-9._:-]{1,128}`   |
-| `x-omniroute-recovery-turn`  | සැසිය තුළ අනන්ය turn id (එම නීතියම) |
+| ශීර්ෂකය                      | වටිනාකම                                        |
+| ---------------------------- | ---------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                         |
+| `x-omniroute-session`        | සැසි හැඳුනුම්පත, `[A-Za-z0-9._:-]{1,128}`      |
+| `x-omniroute-recovery-turn`  | සැසිය තුළ අනන්‍ය හැඳුනුම්පත හැරවීම (එකම රීතිය) |
 
-`stream: false` වන, tools, tool history හෝ `previous_response_id` නොමැති, සහ
-`x-omniroute-connection` pin එකක් නොමැති turns පමණක් සුදුසු වන අතර, `STORAGE_ENCRYPTION_KEY` සකසා තිබිය යුතුය
-(ඉල්ලීම පැය 24ක් දක්වා සංකේතනය කර ගබඩා කරනු ලැබේ). එවිට ප්රතිචාරය
-`202` සහ `recovery.poll` සමඟ ලැබේ; `GET /v1/quota-recoveries/{id}` මඟින් විමසන්න (`pending` අතරතුර `202`,
-සම්පූර්ණ වූ විට ප්රතිසාධනය කළ body එක සමඟ `200`) හෝ `DELETE` මඟින් අවලංගු කරන්න. ටිකට්පත් සෑදූ API
-යතුරට පමණක් දෘශ්ය වේ. ප්රතිඵලය අවිනිශ්චිත වන නැවත ධාවනයක් දෙවරක් යැවීම වෙනුවට
-`needs_confirmation` තත්ත්වයෙන් අවසන් වේ. මූලාශ්රය: `src/lib/quota/quotaSessionRecovery.ts`.
+මෙවලම්, මෙවලම් ඉතිහාසය හෝ `previous_response_id`, සහ `x-omniroute-connection` පින් නොමැති `stream: false` හැරීම් පමණක් සුදුසු වන අතර `STORAGE_ENCRYPTION_KEY` සැකසිය යුතුය (ඉල්ලීම පැය 24 දක්වා සංකේතනය කර ගබඩා කර ඇත). එවිට ප්‍රතිචාරය `202` සමඟ `recovery.poll` වේ; ඡන්ද විමසීම `GET /v1/quota-recoveries/{id}` (ඉදිරිපත්ව තිබියදී`202`, සම්පූර්ණ වූ විට ප්‍රකෘතිමත් වූ සිරුර සමඟ `200` ) හෝ `DELETE` සමඟ අවලංගු කරන්න. ප්‍රවේශපත්‍ර පෙනෙන්නේ ඒවා නිර්මාණය කළ API යතුරට පමණි. ප්‍රතිඵලය අවිනිශ්චිත වූ නැවත ධාවනයක් දෙවරක් යැවීම වෙනුවට `needs_confirmation` වලින් අවසන් වේ. මූලාශ්රය: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1662,19 +1653,23 @@ OmniRoute සිදුවීම් (ඉල්ලීම් සම්පූර්�
 
 ---
 
-## ලියාපදිංචි කළ යතුරු (ස්වයංක්රීය කළමනාකරණය)
+## ලියාපදිංචි යතුරු (ස්වයංක්‍රීය කළමනාකරණය)
 
-දෛනික/පැයක කෝටා සහිත, පසුබිම් provider/account එකකට එරෙහිව API යතුරු නිකුත් කිරීමට සහ භ්රමණය කිරීමට ස්වයංක්රීය යතුරු කළමනාකරණ උපපද්ධතිය භාවිත කරයි.
+ස්වයංක්‍රීය යතුරු කළමනාකරණ උපපද්ධතිය මඟින් API යතුරු නිකුත් කිරීමට සහ daily/hourly කෝටා සමඟ පිටුබලය provider/account ට එරෙහිව භ්‍රමණය කිරීමට භාවිතා කරයි.
 
-| ක්රමය  | මාර්ගය                                | විස්තරය                                                                                                                                                                                                                           |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | ලියාපදිංචි කළ යතුරු ලැයිස්තුගත කරන්න (ආවරණය කළ prefix පමණි)                                                                                                                                                                       |
-| POST   | `/api/v1/registered-keys`             | නව ලියාපදිංචි කළ යතුරක් නිකුත් කරන්න — අන්තර්ගතය: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. මුල් යතුර **එක් වරක් පමණක්** ආපසු ලබා දෙයි. කෝටා ප්රතික්ෂේපයකදී `429` ආපසු ලබා දෙයි. |
-| GET    | `/api/v1/registered-keys/[id]`        | ලියාපදිංචි කළ යතුරක පාර-දත්ත ලබා ගන්න (මුල් දත්ත නොමැත)                                                                                                                                                                           |
-| DELETE | `/api/v1/registered-keys/[id]`        | ලියාපදිංචි කළ යතුරක් අවලංගු කරන්න                                                                                                                                                                                                 |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | පැහැදිලි අවලංගු කිරීමේ endpoint එක (DELETE හා සමාන බලපෑමක්)                                                                                                                                                                       |
+| ක්රමය  | මාර්ගය                                | විස්තරය                                                                                                                                                                                                                 |
+| ------ | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | ලියාපදිංචි යතුරු ලැයිස්තුගත කරන්න (වෙස් උපසර්ගය පමණි)                                                                                                                                                                   |
+| POST   | `/api/v1/registered-keys`             | නව ලියාපදිංචි යතුරු — ශරීරයක් නිකුත් කරන්න: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. අමු යතුර ආපසු ලබා දෙයි** වරක්** . කෝටා ප්‍රතික්ෂේප කිරීම මත `429` ආපසු ලබා දෙයි. |
+| GET    | `/api/v1/registered-keys/[id]`        | ලියාපදිංචි යතුරක පාර-දත්ත ලබා ගන්න (අමුද්‍රව්‍ය නැත)                                                                                                                                                                    |
+| DELETE | `/api/v1/registered-keys/[id]`        | ලියාපදිංචි යතුරක් අවලංගු කරන්න                                                                                                                                                                                          |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | පැහැදිලි අවලංගු කිරීමේ අන්ත ලක්ෂ්‍යය ( DELETE ට සමාන බලපෑම)                                                                                                                                                             |
+| GET    | `/api/v1/providers/[provider]/limits` | සපයන්නාගේ නිකුත් කිරීමේ සීමාවන් කියවන්න                                                                                                                                                                                 |
+| PUT    | `/api/v1/providers/[provider]/limits` | සපයන්නාගේ නිකුත් කිරීමේ සීමාව — ශරීරය සකසන්න: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                   |
+| GET    | `/api/v1/accounts/[id]/limits`        | ගිණුමේ නිකුත් කිරීමේ සීමාවන් කියවන්න                                                                                                                                                                                    |
+| PUT    | `/api/v1/accounts/[id]/limits`        | ගිණුමේ නිකුත් කිරීමේ සීමාවන් — සපයන්නාගේ මාර්ගය ලෙසම සකසන්න                                                                                                                                                             |
 
-**සත්යාපනය:** කළමනාකරණ session/API key (`requireManagementAuth`) — `/api/keys` සඳහා භාවිත කරන එකම ආරක්ෂක පරීක්ෂකය: dashboard session එකක්, දේශීය CLI token එකක්, හෝ `manage`/`admin` scope සහිත API key එකක්; inference-only API keys සඳහා `403` ලැබේ. `/v1/quotas/check` සහ `/v1/issues/report` ද බලන්න.
+**සත්‍යාපනය:** කළමනාකරණ session/API යතුර (`requireManagementAuth`) — `/api/keys` හා සමාන ආරක්ෂකයා: උපකරණ පුවරු සැසිය, දේශීය CLI ටෝකනය, හෝ `manage`/`admin` විෂය පථය සහිත API යතුර; අනුමාන-පමණි API යතුරු `403` ලබා ගනී. `/v1/quotas/check` සහ `/v1/issues/report` ද බලන්න.
 
 ---
 

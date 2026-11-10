@@ -954,35 +954,26 @@ renvoie `codex.rate_limits` + `response.created` et diffuse la complétion.
 
 ---
 
-## Rapports des quotas et des problèmes
+## Rapports sur les quotas et les problèmes
 
-| Méthode | Chemin              | Description                                                                                    |
-| ------- | ------------------- | ---------------------------------------------------------------------------------------------- |
-| GET     | `/v1/quotas/check`  | Prévalider le quota pour un `provider` + `accountId` avant d’émettre une clé enregistrée       |
-| POST    | `/v1/issues/report` | Signaler un échec d’émission de quota/clé à GitHub (nécessite `GITHUB_ISSUES_REPO` + un jeton) |
+| Méthode | Chemin              | Description                                                                                     |
+| ------- | ------------------- | ----------------------------------------------------------------------------------------------- |
+| GET     | `/v1/quotas/check`  | Pré-valider le quota pour un `provider` + `accountId` avant de délivrer une clé enregistrée     |
+| POST    | `/v1/issues/report` | Signaler un échec d'émission de quota/key à GitHub (nécessite le jeton `GITHUB_ISSUES_REPO` + ) |
 
-**Authentification :** clé API Bearer (`isAuthenticated`).
+**Authentification :** `/v1/quotas/check` prend une clé Bearer API (`isAuthenticated`). `/v1/issues/report` est uniquement de gestion (`requireManagementAuth`), comme `/api/v1/registered-keys`: une session de tableau de bord, le jeton CLI local ou une clé API avec une portée `manage`/`admin` ; Les clés API à inférence uniquement obtiennent `403`.
 
 ### Récupération de session de quota (opt-in)
 
-Un `POST /v1/chat/completions` ou `POST /v1/responses` sans streaming qui échoue avec une erreur de quota
-terminale (`402`/`429`/`503` dont le corps indique que le quota ou les crédits sont épuisés)
-peut être mis en attente puis rejoué ultérieurement au lieu de renvoyer l’erreur. L’appelant active cette
-fonction par requête à l’aide de trois en-têtes :
+Un `POST /v1/chat/completions` ou `POST /v1/responses` sans streaming qui échoue avec une erreur de quota de terminal (`402`/`429`/`503` dont le corps indique que le quota ou les crédits sont épuisés) peut être garé et relu plus tard au lieu de renvoyer l'erreur. L'appelant s'inscrit par demande avec trois en-têtes :
 
-| En-tête                      | Valeur                                                        |
-| ---------------------------- | ------------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                        |
-| `x-omniroute-session`        | identifiant de session, `[A-Za-z0-9._:-]{1,128}`              |
-| `x-omniroute-recovery-turn`  | identifiant de tour unique au sein de la session (même règle) |
+| En-tête                      | Valeur                                                         |
+| ---------------------------- | -------------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                         |
+| `x-omniroute-session`        | identifiant de session, `[A-Za-z0-9._:-]{1,128}`               |
+| `x-omniroute-recovery-turn`  | rendre l'identifiant unique au sein de la session (même règle) |
 
-Seuls les tours avec `stream: false`, sans outils, historique d’outils ni `previous_response_id`, et sans
-ancrage `x-omniroute-connection`, sont éligibles, et `STORAGE_ENCRYPTION_KEY` doit être défini (la
-requête est stockée chiffrée pendant 24 h maximum). La réponse est alors `202` avec
-`recovery.poll` ; interrogez `GET /v1/quota-recoveries/{id}` (`202` pendant l’attente, `200` avec le
-corps récupéré une fois terminé) ou annulez avec `DELETE`. Les tickets ne sont visibles que par la clé API
-qui les a créés. Une nouvelle tentative dont l’issue est incertaine se termine par `needs_confirmation`
-au lieu d’être envoyée deux fois. Source : `src/lib/quota/quotaSessionRecovery.ts`.
+Seuls les tours `stream: false` sans outils, sans historique d'outils ou `previous_response_id` et sans code PIN `x-omniroute-connection`, sont éligibles, et `STORAGE_ENCRYPTION_KEY` doit être défini (la demande est stockée cryptée jusqu'à 24 h). La réponse est alors `202` avec `recovery.poll`; interrogez `GET /v1/quota-recoveries/{id}` (`202` en attente, `200` avec le corps récupéré une fois terminé) ou annulez avec `DELETE`. Les tickets ne sont visibles que par la clé API qui les a créés. Une relecture dont l'issue est incertaine se termine en `needs_confirmation` au lieu d'être envoyée deux fois. Source : `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1731,17 +1722,21 @@ Abonnements aux webhooks sortants pour les événements OmniRoute (achèvement d
 
 ## Clés enregistrées (gestion automatique)
 
-Utilisé par le sous-système de gestion automatique des clés pour émettre et faire tourner des clés API auprès d’un fournisseur ou d’un compte sous-jacent, avec des quotas quotidiens et horaires.
+Utilisé par le sous-système de gestion automatique des clés pour émettre et faire pivoter les clés API par rapport à un support provider/account, avec des quotas daily/hourly.
 
-| Méthode | Chemin                                | Description                                                                                                                                                                                                                   |
-| ------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET     | `/api/v1/registered-keys`             | Lister les clés enregistrées (uniquement le préfixe masqué)                                                                                                                                                                   |
-| POST    | `/api/v1/registered-keys`             | Émettre une nouvelle clé enregistrée — corps : `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Renvoie la clé brute **une seule fois**. Renvoie `429` en cas de refus dû au quota. |
-| GET     | `/api/v1/registered-keys/[id]`        | Récupérer les métadonnées d’une clé enregistrée (aucune donnée brute)                                                                                                                                                         |
-| DELETE  | `/api/v1/registered-keys/[id]`        | Révoquer une clé enregistrée                                                                                                                                                                                                  |
-| POST    | `/api/v1/registered-keys/[id]/revoke` | Point de terminaison de révocation explicite (même effet que DELETE)                                                                                                                                                          |
+| Méthode | Chemin                                | Description                                                                                                                                                                                                           |
+| ------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET     | `/api/v1/registered-keys`             | Liste des clés enregistrées (préfixe masqué uniquement)                                                                                                                                                               |
+| POST    | `/api/v1/registered-keys`             | Émettez un nouveau corps de clé enregistré — : `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Renvoie la clé brute** une fois** . Renvoie `429` en cas de refus de quota. |
+| GET     | `/api/v1/registered-keys/[id]`        | Récupérer les métadonnées d'une clé enregistrée (pas de matière première)                                                                                                                                             |
+| DELETE  | `/api/v1/registered-keys/[id]`        | Révoquer une clé enregistrée                                                                                                                                                                                          |
+| POST    | `/api/v1/registered-keys/[id]/revoke` | Point de terminaison de révocation explicite (même effet que DELETE)                                                                                                                                                  |
+| GET     | `/api/v1/providers/[provider]/limits` | Lire les plafonds d'émission du fournisseur                                                                                                                                                                           |
+| PUT     | `/api/v1/providers/[provider]/limits` | Définir les plafonds d'émission du fournisseur — body : `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                       |
+| GET     | `/api/v1/accounts/[id]/limits`        | Lire les plafonds d'émission du compte                                                                                                                                                                                |
+| PUT     | `/api/v1/accounts/[id]/limits`        | Définir les plafonds d'émission du compte — dans le même corps que l'itinéraire du fournisseur                                                                                                                        |
 
-**Authentification :** session/clé API de gestion (`requireManagementAuth`) — le même garde-fou que pour `/api/keys` : une session du tableau de bord, le jeton CLI local ou une clé API avec la portée `manage`/`admin` ; les clés API limitées à l’inférence reçoivent `403`. Voir également `/v1/quotas/check` et `/v1/issues/report`.
+**Authentification :** gestion clé session/API (`requireManagementAuth`) — la même garde que `/api/keys`: une session de tableau de bord, le jeton CLI local, ou une clé API avec une portée `manage`/`admin` ; Les clés API à inférence uniquement obtiennent `403`. Voir aussi `/v1/quotas/check` et `/v1/issues/report`.
 
 ---
 

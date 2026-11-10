@@ -1039,34 +1039,26 @@ CLI nâng cấp `base_url + /responses` thành một WebSocket và OmniRoute t�
 
 ---
 
-## Báo cáo hạn ngạch & sự cố
+## Báo cáo hạn ngạch & vấn đề
 
-| Phương thức | Đường dẫn           | Mô tả                                                                                   |
-| ----------- | ------------------- | --------------------------------------------------------------------------------------- |
-| GET         | `/v1/quotas/check`  | Xác thực trước hạn ngạch cho một `provider` + `accountId` trước khi cấp khóa đã đăng ký |
-| POST        | `/v1/issues/report` | Báo cáo lỗi cấp hạn ngạch/khóa lên GitHub (yêu cầu `GITHUB_ISSUES_REPO` + token)        |
+| Phương pháp | Con đường           | Sự miêu tả                                                                                |
+| ----------- | ------------------- | ----------------------------------------------------------------------------------------- |
+| GET         | `/v1/quotas/check`  | Xác thực trước hạn ngạch cho `provider` + `accountId` trước khi cấp khóa đã đăng ký       |
+| POST        | `/v1/issues/report` | Báo cáo lỗi phát hành quota/key cho GitHub (yêu cầu mã thông báo `GITHUB_ISSUES_REPO` + ) |
 
-**Xác thực:** Khóa API Bearer (`isAuthenticated`).
+**Xác thực:** `/v1/quotas/check` lấy khóa API Bearer (`isAuthenticated`). `/v1/issues/report` chỉ dành cho quản lý (`requireManagementAuth`), như `/api/v1/registered-keys`: phiên bảng điều khiển, mã thông báo CLI cục bộ hoặc khóa API với phạm vi `manage`/`admin` ; các khóa API chỉ suy luận nhận được `403`.
 
-### Khôi phục phiên hạn ngạch (tùy chọn)
+### Phục hồi phiên hạn ngạch (chọn tham gia)
 
-Một yêu cầu `POST /v1/chat/completions` hoặc `POST /v1/responses` không streaming bị lỗi với
-lỗi hạn ngạch kết thúc (`402`/`429`/`503`, trong đó body cho biết hạn ngạch hoặc tín dụng đã cạn kiệt)
-có thể được tạm dừng và phát lại sau thay vì trả về lỗi. Bên gọi chọn tham gia cho từng yêu cầu bằng ba header:
+`POST /v1/chat/completions` hoặc `POST /v1/responses` không phát trực tuyến bị lỗi do lỗi hạn ngạch đầu cuối (`402`/`429`/`503` có nội dung cho biết hạn ngạch hoặc tín dụng đã hết) có thể được giữ lại và phát lại sau thay vì trả lại lỗi. Người gọi chọn tham gia theo yêu cầu với ba tiêu đề:
 
-| Header                       | Giá trị                                     |
-| ---------------------------- | ------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                      |
-| `x-omniroute-session`        | id phiên, `[A-Za-z0-9._:-]{1,128}`          |
-| `x-omniroute-recovery-turn`  | id lượt duy nhất trong phiên (cùng quy tắc) |
+| tiêu đề                      | Giá trị                                         |
+| ---------------------------- | ----------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                          |
+| `x-omniroute-session`        | id phiên, `[A-Za-z0-9._:-]{1,128}`              |
+| `x-omniroute-recovery-turn`  | biến id duy nhất trong phiên (quy tắc tương tự) |
 
-Chỉ các lượt `stream: false` không có tools, lịch sử tool hoặc `previous_response_id`, và không
-ghim `x-omniroute-connection`, mới đủ điều kiện; đồng thời phải thiết lập `STORAGE_ENCRYPTION_KEY`
-(yêu cầu được lưu trữ ở dạng mã hóa trong tối đa 24 giờ). Sau đó phản hồi là `202` với
-`recovery.poll`; thăm dò bằng `GET /v1/quota-recoveries/{id}` (`202` khi đang chờ, `200` kèm
-body đã khôi phục khi hoàn tất) hoặc hủy bằng `DELETE`. Ticket chỉ hiển thị với khóa API đã tạo chúng.
-Một lần phát lại có kết quả không chắc chắn sẽ kết thúc ở `needs_confirmation` thay vì được gửi hai lần.
-Nguồn: `src/lib/quota/quotaSessionRecovery.ts`.
+Chỉ `stream: false` quay không có công cụ, lịch sử công cụ hoặc `previous_response_id` và không có mã pin `x-omniroute-connection` mới đủ điều kiện và phải đặt `STORAGE_ENCRYPTION_KEY` (yêu cầu được lưu trữ mã hóa trong tối đa 24 giờ). Phản hồi sau đó là `202` với `recovery.poll`; thăm dò `GET /v1/quota-recoveries/{id}` (`202` trong khi chờ xử lý, `200` với phần thân đã được phục hồi khi hoàn thành) hoặc hủy bằng `DELETE`. Vé chỉ hiển thị với khóa API đã tạo ra chúng. Bản phát lại có kết quả không chắc chắn sẽ kết thúc bằng `needs_confirmation` thay vì được gửi hai lần. Nguồn: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1814,19 +1806,23 @@ Các gói đăng ký webhook gửi đi cho các sự kiện của OmniRoute (ho�
 
 ---
 
-## Các khóa đã đăng ký (Tự động quản lý)
+## Khóa đã đăng ký (Quản lý tự động)
 
-Được sử dụng bởi hệ thống quản lý khóa tự động để cấp và xoay vòng API key cho một provider/tài khoản phía sau, với hạn mức theo ngày/giờ.
+Được sử dụng bởi hệ thống con quản lý khóa tự động để phát hành và xoay khóa API dựa trên provider/account dự phòng, với hạn ngạch daily/hourly.
 
-| Phương thức | Đường dẫn                             | Mô tả                                                                                                                                                                                                 |
-| ----------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET         | `/api/v1/registered-keys`             | Liệt kê các khóa đã đăng ký (chỉ hiển thị tiền tố đã che)                                                                                                                                             |
-| POST        | `/api/v1/registered-keys`             | Cấp khóa đã đăng ký mới — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Trả về khóa thô **một lần duy nhất**. Trả về `429` khi từ chối do hạn mức. |
-| GET         | `/api/v1/registered-keys/[id]`        | Lấy siêu dữ liệu của khóa đã đăng ký (không có khóa thô)                                                                                                                                              |
-| DELETE      | `/api/v1/registered-keys/[id]`        | Thu hồi một khóa đã đăng ký                                                                                                                                                                           |
-| POST        | `/api/v1/registered-keys/[id]/revoke` | Endpoint thu hồi rõ ràng (có tác dụng giống DELETE)                                                                                                                                                   |
+| Phương pháp | Con đường                             | Sự miêu tả                                                                                                                                                                                           |
+| ----------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET         | `/api/v1/registered-keys`             | Liệt kê các khóa đã đăng ký (chỉ tiền tố bị che)                                                                                                                                                     |
+| POST        | `/api/v1/registered-keys`             | Cấp một nội dung — khóa đã đăng ký mới: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Trả về khóa thô** một lần** . Trả về `429` khi từ chối hạn ngạch. |
+| GET         | `/api/v1/registered-keys/[id]`        | Truy xuất siêu dữ liệu của khóa đã đăng ký (không có nguyên liệu thô)                                                                                                                                |
+| DELETE      | `/api/v1/registered-keys/[id]`        | Thu hồi key đã đăng ký                                                                                                                                                                               |
+| POST        | `/api/v1/registered-keys/[id]/revoke` | Điểm cuối thu hồi rõ ràng (tác dụng tương tự như DELETE)                                                                                                                                             |
+| GET         | `/api/v1/providers/[provider]/limits` | Đọc giới hạn phát hành của nhà cung cấp                                                                                                                                                              |
+| PUT         | `/api/v1/providers/[provider]/limits` | Đặt giới hạn phát hành của nhà cung cấp — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                              |
+| GET         | `/api/v1/accounts/[id]/limits`        | Đọc giới hạn phát hành của tài khoản                                                                                                                                                                 |
+| PUT         | `/api/v1/accounts/[id]/limits`        | Đặt giới hạn phát hành của tài khoản — giống với lộ trình của nhà cung cấp                                                                                                                           |
 
-**Xác thực:** phiên/API key quản lý (`requireManagementAuth`) — cùng cơ chế bảo vệ như `/api/keys`: phiên dashboard, token CLI cục bộ hoặc API key có phạm vi `manage`/`admin`; API key chỉ dành cho suy luận sẽ nhận `403`. Xem thêm `/v1/quotas/check` và `/v1/issues/report`.
+**Xác thực:** quản lý khóa session/API (`requireManagementAuth`) — bảo vệ giống như `/api/keys`: phiên bảng điều khiển, mã thông báo CLI cục bộ hoặc khóa API có phạm vi `manage`/`admin` ; các khóa API chỉ suy luận nhận được `403`. Xem thêm `/v1/quotas/check` và `/v1/issues/report`.
 
 ---
 

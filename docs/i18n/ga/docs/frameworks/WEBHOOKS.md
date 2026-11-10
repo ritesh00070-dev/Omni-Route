@@ -180,9 +180,9 @@ Soláthraíonn leathanach an phainéil ag `/dashboard/webhooks` (féach
 - Seachadadh tástála le clic amháin
 - Scorán láimhe chun cumasú/díchumasú
 
-## Samplaí Pálasta
+## Samplaí de phárolla
 
-### request.completed
+### iarratas.críochnaithe
 
 ```json
 {
@@ -201,7 +201,7 @@ Soláthraíonn leathanach an phainéil ag `/dashboard/webhooks` (féach
 }
 ```
 
-### test.ping
+### tástáil.ping
 
 ```json
 {
@@ -214,9 +214,7 @@ Soláthraíonn leathanach an phainéil ag `/dashboard/webhooks` (féach
 }
 ```
 
-Sainítear cruthanna na réimsí do theagmhais seachas `test.ping` ag na suíomhanna glao a astaíonn
-iad; caith leis an réad `data` mar réad atá comhoiriúnach chun cinn (cuir réimsí leis, ná bí ag brath ar
-a n-éagmais).
+Sainítear cruthanna allamuigh le haghaidh imeachtaí neamh-`test.ping` ag na suíomhanna glaonna a astaíonn iad; caitheamh leis an oibiacht `data` mar rud atá comhoiriúnach chun tosaigh (cuir réimsí leis, ná bí ag brath ar neamhláithreacht).
 
 ## Dea-Chleachtais
 

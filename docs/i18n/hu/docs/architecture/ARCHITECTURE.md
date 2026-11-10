@@ -14,7 +14,7 @@ OmniRoute egy helyi AI útválasztási átjáró és műszerfal, amely Next.js r
 
 Alapvető képességek:
 
-- OpenAI-kompatibilis API felület CLI/tools (381 szolgáltató, 159 végrehajtó modul)
+- OpenAI-kompatibilis API felület CLI/tools (385 szolgáltató, 159 végrehajtó modul)
 - Request/response fordítás a szolgáltatói formátumok között
 - Modell kombinált tartalék (több modell sorozat)
 - Strukturált kombinált lépések (`provider + model + connection`) `compositeTiers` futásidejű sorrendjével

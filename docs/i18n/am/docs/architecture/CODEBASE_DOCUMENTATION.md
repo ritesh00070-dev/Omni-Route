@@ -490,7 +490,7 @@ open-sse/
 
 `antigravity`, `azure-openai`, `blackbox-web`, `cliproxyapi`, `chatgpt-web-codex`, `cloudflare-ai`, `codex`, `commandCode`, `cursor`, `default`, `devin-cli`, `muse-spark-web`, `nlpcloud`, `opencode`, `perplexity-web`, `petals`, `pollinations`, `qoder`, `vertex`, `devin-desktop`, plus `claudeIdentity.ts` (shared identity helper) and `index.ts` (registry).
 
-> ማሳሰቢያ፡ እዚህ ያልተዘረዘሩ አቅራቢዎች አጠቃላይ የOpenAI-ተኳሃኝ ፈጻሚን በመጠቀም በ `default.ts` ያገለግላሉ። የሙሉ አቅራቢ ካታሎግ (381 አቅራቢዎች) በ `src/shared/constants/providers.ts` ውስጥ ይኖራሉ።
+> ማሳሰቢያ፡ እዚህ ያልተዘረዘሩ አቅራቢዎች አጠቃላይ የOpenAI-ተኳሃኝ ፈጻሚን በመጠቀም በ `default.ts` ያገለግላሉ። የሙሉ አቅራቢ ካታሎግ (385 አቅራቢዎች) በ `src/shared/constants/providers.ts` ውስጥ ይኖራሉ።
 
 ### 4.3 `open-sse/translator/`
 

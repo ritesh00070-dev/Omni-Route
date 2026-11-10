@@ -919,26 +919,26 @@ Il-CLI jaġġorna `base_url + /responses` għal WebSocket u OmniRoute jibgħatha
 
 ---
 
-## Rappurtar tal-Kwoti u l-Kwistjonijiet
+## Kwoti u Rappurtar ta' Kwistjonijiet
 
-| Metodu | Mogħdija            | Deskrizzjoni                                                                                      |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Ivvalida minn qabel il-kwota għal `provider` + `accountId` qabel tinħareġ ċavetta rreġistrata     |
-| POST   | `/v1/issues/report` | Irrapporta falliment fil-ħruġ ta’ kwota/ċavetta lil GitHub (jeħtieġ `GITHUB_ISSUES_REPO` + token) |
+| Metodu | Mogħdija            | Deskrizzjoni                                                                                  |
+| ------ | ------------------- | --------------------------------------------------------------------------------------------- |
+| GET    | `/v1/quotas/check`  | Ivvalida minn qabel il-kwota għal `provider` + `accountId` qabel ma toħroġ ċavetta reġistrata |
+| POST   | `/v1/issues/report` | Irrapporta nuqqas ta' ħruġ ta' quota/key lil GitHub (jeħtieġ token `GITHUB_ISSUES_REPO` + )   |
 
-**Awtentikazzjoni:** Ċavetta API Bearer (`isAuthenticated`).
+**Awth:** `/v1/quotas/check` jieħu ċavetta Bearer API (`isAuthenticated`). `/v1/issues/report` huwa ġestjoni biss (`requireManagementAuth`), bħal `/api/v1/registered-keys`: sessjoni dashboard, it-token CLI lokali, jew ċavetta API b'ambitu `manage`/`admin` ; Inferenza-ċwievet API biss jiksbu `403`.
 
 ### Irkupru tas-sessjoni tal-kwota (opt-in)
 
-`POST /v1/chat/completions` jew `POST /v1/responses` mingħajr streaming li jfalli bi żball terminali tal-kwota (`402`/`429`/`503` li l-kontenut tiegħu jgħid li l-kwota jew il-krediti huma eżawriti) jista’ jitqiegħed fil-kju u jerġa’ jiġi eżegwit aktar tard minflok ma jirritorna l-iżball. Min jagħmel is-sejħa jagħżel din l-għażla għal kull talba bi tliet headers:
+`POST /v1/chat/completions` jew `POST /v1/responses` mhux streaming li jonqos bi żball ta' kwota terminali (`402`/`429`/`503` li l-korp tiegħu jgħid li l-kwota jew il-krediti huma eżawriti) jistgħu jiġu pparkjati u replayed aktar tard minflok ma jirritorna l-iżball. Min iċempel jidħol għal kull talba bi tliet headers:
 
-| Header                       | Valur                                            |
-| ---------------------------- | ------------------------------------------------ |
-| `x-omniroute-quota-recovery` | `auto`                                           |
-| `x-omniroute-session`        | id tas-sessjoni, `[A-Za-z0-9._:-]{1,128}`        |
-| `x-omniroute-recovery-turn`  | id tat-turn uniku fis-sessjoni (l-istess regola) |
+| Header                       | Valur                                          |
+| ---------------------------- | ---------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                         |
+| `x-omniroute-session`        | sessjoni id, `[A-Za-z0-9._:-]{1,128}`          |
+| `x-omniroute-recovery-turn`  | dawwar id unika fis-sessjoni (l-istess regola) |
 
-Huma eliġibbli biss it-turns bi `stream: false` mingħajr għodod, storja tal-għodod jew `previous_response_id`, u mingħajr pin ta’ `x-omniroute-connection`, u `STORAGE_ENCRYPTION_KEY` irid ikun issettjat (it-talba tinħażen kriptata sa 24 siegħa). Ir-rispons imbagħad ikun `202` b’`recovery.poll`; staqsi l-istatus b’`GET /v1/quota-recoveries/{id}` (`202` waqt li jkun pendenti, `200` bil-kontenut irkuprat meta jitlesta) jew ikkanċella b’`DELETE`. It-tickets huma viżibbli biss għaċ-ċavetta API li ħolqothom. Replay li r-riżultat tiegħu mhuwiex ċert jispiċċa fi `needs_confirmation` minflok ma jintbagħat darbtejn. Sors: `src/lib/quota/quotaSessionRecovery.ts`.
+Dawriet `stream: false` biss mingħajr għodda, storja tal-għodda jew `previous_response_id`, u l-ebda pin `x-omniroute-connection`, huma eliġibbli, u `STORAGE_ENCRYPTION_KEY` għandu jiġi ssettjat (it-talba tinħażen kriptata sa 24 siegħa). Ir-rispons huwa mbagħad `202` ma `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` waqt pendenti, `200` mal-ġisem irkuprat meta jitlesta) jew tikkanċella `DELETE`. Il-biljetti huma viżibbli biss għaċ-ċavetta API li ħolqothom. Replay li l-eżitu tiegħu huwa inċert jispiċċa `needs_confirmation` minflok jintbagħat darbtejn. Sors: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1686,19 +1686,23 @@ Abbonamenti għal webhooks ħerġin għall-avvenimenti ta' OmniRoute (tlestija t
 
 ---
 
-## Ċwievet Reġistrati (Ġestjoni Awtomatika)
+## Ċwievet Reġistrati (Immaniġġjar Awtomatiku)
 
-Użati mis-sottosistema tal-ġestjoni awtomatika taċ-ċwievet biex toħroġ u ddawwar iċ-ċwievet API kontra fornitur/kont ta' appoġġ, bi kwoti ta' kuljum/kull siegħa.
+Użat mis-subsistema ta' ġestjoni taċ-ċavetta awtomatika biex toħroġ u ddawwar ċwievet API kontra provider/account ta' appoġġ, bi kwoti daily/hourly.
 
-| Metodu | Mogħdija                              | Deskrizzjoni                                                                                                                                                                                                                             |
-| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Elenka ċ-ċwievet reġistrati (il-prefiss mgħotti biss)                                                                                                                                                                                    |
-| POST   | `/api/v1/registered-keys`             | Oħroġ ċavetta reġistrata ġdida — korp: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Tirritorna ċ-ċavetta mhux ipproċessata **darba waħda**. Tirritorna `429` meta l-kwota tiġi rrifjutata. |
-| GET    | `/api/v1/registered-keys/[id]`        | Irkupra l-metadejta taċ-ċavetta reġistrata (l-ebda materjal mhux ipproċessat)                                                                                                                                                            |
-| DELETE | `/api/v1/registered-keys/[id]`        | Irrivoka ċavetta reġistrata                                                                                                                                                                                                              |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Punt tat-tmiem tar-revoka espliċitu (l-istess effett bħal DELETE)                                                                                                                                                                        |
+| Metodu | Mogħdija                              | Deskrizzjoni                                                                                                                                                                                                                |
+| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Elenka ċwievet irreġistrati (prefiss mgħotti biss)                                                                                                                                                                          |
+| POST   | `/api/v1/registered-keys`             | Oħroġ ċavetta reġistrata ġdida — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Jirritorna ċ-ċavetta mhux ipproċessata** darba** . Jirritorna `429` fuq rifjut tal-kwota. |
+| GET    | `/api/v1/registered-keys/[id]`        | Irkupra l-metadejta taċ-ċavetta rreġistrata (l-ebda materja prima)                                                                                                                                                          |
+| DELETE | `/api/v1/registered-keys/[id]`        | Irrevoka ċavetta reġistrata                                                                                                                                                                                                 |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Endpoint ta' revoka espliċita (l-istess effett bħal DELETE)                                                                                                                                                                 |
+| GET    | `/api/v1/providers/[provider]/limits` | Aqra l-limiti tal-ħruġ tal-fornitur                                                                                                                                                                                         |
+| PUT    | `/api/v1/providers/[provider]/limits` | Issettja l-limiti tal-ħruġ tal-fornitur — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                     |
+| GET    | `/api/v1/accounts/[id]/limits`        | Aqra l-limiti tal-ħruġ tal-kont                                                                                                                                                                                             |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Issettja l-limiti tal-ħruġ tal-kont — istess korp bħar-rotta tal-fornitur                                                                                                                                                   |
 
-**Awtentikazzjoni:** sessjoni ta' ġestjoni/ċavetta API (`requireManagementAuth`) — l-istess kontroll bħal `/api/keys`: sessjoni tad-dashboard, token CLI lokali, jew ċavetta API bl-ambitu `manage`/`admin`; iċ-ċwievet API għall-inferenza biss jirċievu `403`. Ara wkoll `/v1/quotas/check` u `/v1/issues/report`.
+**Awth:** ġestjoni session/API key (`requireManagementAuth`) — l-istess gwardja bħal `/api/keys`: sessjoni dashboard, it-token CLI lokali, jew ċavetta API b'ambitu `manage`/`admin` ; ċwievet API ' inferenza biss jiksbu `403`. Ara wkoll `/v1/quotas/check` u `/v1/issues/report`.
 
 ---
 

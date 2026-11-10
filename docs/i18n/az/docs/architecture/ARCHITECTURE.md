@@ -14,7 +14,7 @@ OmniRoute Next.js üzərində qurulmuş yerli AI marşrutlaşdırma şlüzü və
 
 Əsas imkanlar:
 
-- CLI/tools üçün OpenAI uyğun API səthi (381 provayder, 159 icraçı modul)
+- CLI/tools üçün OpenAI uyğun API səthi (385 provayder, 159 icraçı modul)
 - provayder formatları arasında Request/response tərcüməsi
 - Model kombinasiyası (çox model ardıcıllığı)
 - Strukturlaşdırılmış kombinasiya addımları (`provider + model + connection`) `compositeTiers` tərəfindən iş vaxtı sifarişi ilə

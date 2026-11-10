@@ -963,34 +963,26 @@ De CLI upgradet `base_url + /responses` naar een WebSocket en OmniRoute zet een 
 
 ---
 
-## Rapportage van quota's en problemen
+## Rapportage van quota en problemen
 
-| Methode | Pad                 | Beschrijving                                                                                                 |
-| ------- | ------------------- | ------------------------------------------------------------------------------------------------------------ |
-| GET     | `/v1/quotas/check`  | Quota vooraf valideren voor een `provider` + `accountId` voordat een geregistreerde sleutel wordt uitgegeven |
-| POST    | `/v1/issues/report` | Een mislukte quota-/sleuteluitgifte rapporteren aan GitHub (vereist `GITHUB_ISSUES_REPO` + token)            |
+| Methode | Pad                 | Beschrijving                                                                                               |
+| ------- | ------------------- | ---------------------------------------------------------------------------------------------------------- |
+| GET     | `/v1/quotas/check`  | Valideer het quotum voor een `provider` + `accountId` vooraf voordat u een geregistreerde sleutel uitgeeft |
+| POST    | `/v1/issues/report` | Rapporteer een quota/key -uitgiftefout aan GitHub (vereist `GITHUB_ISSUES_REPO` + token)                   |
 
-**Authenticatie:** Bearer API-sleutel (`isAuthenticated`).
+**Autorisatie:** `/v1/quotas/check` neemt een Bearer API sleutel (`isAuthenticated`). `/v1/issues/report` is alleen voor beheer (`requireManagementAuth`), zoals `/api/v1/registered-keys`: een dashboardsessie, het lokale CLI token of een API sleutel met `manage`/`admin` scope; API -sleutels met alleen gevolgtrekking krijgen `403`.
 
-### Herstel van quotasessies (opt-in)
+### Herstel van quotasessie (opt-in)
 
-Een niet-streamende `POST /v1/chat/completions` of `POST /v1/responses` die mislukt met een
-terminale quota-fout (`402`/`429`/`503` waarvan de body aangeeft dat het quota of de credits zijn uitgeput)
-kan worden geparkeerd en later opnieuw worden afgespeeld in plaats van de fout terug te geven. De aanroeper kiest dit per verzoek met drie headers:
+Een niet-streaming `POST /v1/chat/completions` of `POST /v1/responses` die faalt met een terminalquotumfout (`402`/`429`/`503` waarvan de body zegt dat de quota of credits zijn opgebruikt) kan worden geparkeerd en later opnieuw worden afgespeeld in plaats van de fout te retourneren. De beller meldt zich per verzoek aan met drie headers:
 
-| Header                       | Waarde                                                  |
-| ---------------------------- | ------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                  |
-| `x-omniroute-session`        | sessie-id, `[A-Za-z0-9._:-]{1,128}`                     |
-| `x-omniroute-recovery-turn`  | beurt-id die uniek is binnen de sessie (dezelfde regel) |
+| Koptekst                     | Waarde                                          |
+| ---------------------------- | ----------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                          |
+| `x-omniroute-session`        | sessie-ID, `[A-Za-z0-9._:-]{1,128}`             |
+| `x-omniroute-recovery-turn`  | maak ID uniek binnen de sessie (dezelfde regel) |
 
-Alleen beurten met `stream: false`, zonder tools, toolgeschiedenis of `previous_response_id`, en zonder
-een `x-omniroute-connection`-pin komen in aanmerking, en `STORAGE_ENCRYPTION_KEY` moet zijn ingesteld
-(het verzoek wordt maximaal 24 uur versleuteld opgeslagen). Het antwoord is vervolgens `202` met
-`recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` zolang de bewerking in behandeling is, `200` met de
-herstelde body wanneer deze is voltooid) of annuleer met `DELETE`. Tickets zijn alleen zichtbaar voor de API-sleutel
-waarmee ze zijn aangemaakt. Een replay waarvan de uitkomst onzeker is, eindigt in `needs_confirmation`
-in plaats van tweemaal te worden verzonden. Bron: `src/lib/quota/quotaSessionRecovery.ts`.
+Alleen `stream: false` -beurten zonder gereedschap, gereedschapsgeschiedenis of `previous_response_id` en zonder `x-omniroute-connection` pin komen in aanmerking, en `STORAGE_ENCRYPTION_KEY` moet worden ingesteld (het verzoek wordt maximaal 24 uur versleuteld opgeslagen). Het antwoord is dan `202` met `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` terwijl in behandeling, `200` met het herstelde lichaam wanneer voltooid) of annuleer met `DELETE`. Tickets zijn alleen zichtbaar voor de API sleutel waarmee ze zijn gemaakt. Een herhaling waarvan de uitkomst onzeker is, eindigt in `needs_confirmation` in plaats van twee keer te worden verzonden. Bron: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1721,17 +1713,21 @@ Uitgaande webhook-abonnementen voor OmniRoute-gebeurtenissen (voltooide aanvrage
 
 ## Geregistreerde sleutels (automatisch beheer)
 
-Wordt gebruikt door het subsysteem voor automatisch sleutelbeheer om API-sleutels uit te geven en te roteren bij een achterliggende provider/account, met dagelijkse/uurquota.
+Wordt gebruikt door het subsysteem voor automatisch sleutelbeheer om API sleutels uit te geven en te roteren tegen een back-up provider/account, met daily/hourly quota.
 
-| Methode | Pad                                   | Beschrijving                                                                                                                                                                                                                                  |
-| ------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET     | `/api/v1/registered-keys`             | Geregistreerde sleutels weergeven (alleen gemaskeerd voorvoegsel)                                                                                                                                                                             |
-| POST    | `/api/v1/registered-keys`             | Een nieuwe geregistreerde sleutel uitgeven — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Retourneert de onbewerkte sleutel **eenmalig**. Retourneert `429` bij weigering vanwege quotum. |
-| GET     | `/api/v1/registered-keys/[id]`        | Metagegevens van een geregistreerde sleutel ophalen (geen onbewerkte gegevens)                                                                                                                                                                |
-| DELETE  | `/api/v1/registered-keys/[id]`        | Een geregistreerde sleutel intrekken                                                                                                                                                                                                          |
-| POST    | `/api/v1/registered-keys/[id]/revoke` | Expliciet eindpunt voor intrekking (hetzelfde effect als DELETE)                                                                                                                                                                              |
+| Methode | Pad                                   | Beschrijving                                                                                                                                                                                                                             |
+| ------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET     | `/api/v1/registered-keys`             | Lijst met geregistreerde sleutels (alleen gemaskeerd voorvoegsel)                                                                                                                                                                        |
+| POST    | `/api/v1/registered-keys`             | Geef een nieuwe geregistreerde sleutel — body uit: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Retourneert de onbewerkte sleutel** eenmaal** . Retourneert `429` bij weigering van quota. |
+| GET     | `/api/v1/registered-keys/[id]`        | Haal de metadata van een geregistreerde sleutel op (geen ruw materiaal)                                                                                                                                                                  |
+| DELETE  | `/api/v1/registered-keys/[id]`        | Een geregistreerde sleutel intrekken                                                                                                                                                                                                     |
+| POST    | `/api/v1/registered-keys/[id]/revoke` | Expliciet intrekkingseindpunt (hetzelfde effect als DELETE)                                                                                                                                                                              |
+| GET     | `/api/v1/providers/[provider]/limits` | Lees de uitgiftelimieten van de aanbieder                                                                                                                                                                                                |
+| PUT     | `/api/v1/providers/[provider]/limits` | Stel de uitgiftelimieten van de aanbieder — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                                |
+| GET     | `/api/v1/accounts/[id]/limits`        | Lees de uitgiftelimieten van de rekening                                                                                                                                                                                                 |
+| PUT     | `/api/v1/accounts/[id]/limits`        | Stel de uitgiftelimieten van de rekening in — dezelfde manier als de providerroute                                                                                                                                                       |
 
-**Authenticatie:** beheersessie/API-sleutel (`requireManagementAuth`) — dezelfde beveiliging als `/api/keys`: een dashboardsessie, het lokale CLI-token of een API-sleutel met de scope `manage`/`admin`; API-sleutels die alleen voor inferentie zijn krijgen `403`. Zie ook `/v1/quotas/check` en `/v1/issues/report`.
+**Autorisatie:** beheer session/API sleutel (`requireManagementAuth`) — dezelfde bewaker als `/api/keys`: een dashboardsessie, het lokale CLI token of een API sleutel met `manage`/`admin` scope; API -sleutels met alleen gevolgtrekking krijgen `403`. Zie ook `/v1/quotas/check` en `/v1/issues/report`.
 
 ---
 

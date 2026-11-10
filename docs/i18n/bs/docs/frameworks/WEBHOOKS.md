@@ -170,9 +170,9 @@ Stranica kontrolne ploče na `/dashboard/webhooks` (pogledajte `src/app/(dashboa
 - Testna isporuka jednim klikom
 - Ručni prekidač za omogućavanje/onemogućavanje
 
-## Primjeri sadržaja
+## Primjeri nosivosti
 
-### request.completed
+### zahtjev.završen
 
 ```json
 {
@@ -204,7 +204,7 @@ Stranica kontrolne ploče na `/dashboard/webhooks` (pogledajte `src/app/(dashboa
 }
 ```
 
-Strukture polja za događaje koji nisu `test.ping` definirane su mjestima poziva koja ih emitiraju; tretirajte objekt `data` kao kompatibilan s budućim verzijama (dodajte polja, nemojte se oslanjati na njihovo odsustvo).
+Oblici polja za događaje koji nisu `test.ping` definisani su pozivnim lokacijama koje ih emituju; tretirajte `data` objekat kao kompatibilan za naprijed (dodajte polja, ne ovise o odsustvu).
 
 ## Najbolje prakse
 

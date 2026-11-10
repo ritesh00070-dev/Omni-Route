@@ -180,9 +180,9 @@ A página do painel em `/dashboard/webhooks` (consulte
 - Entrega de teste com um clique
 - Alternância manual entre ativado/desativado
 
-## Exemplos de payloads
+## Exemplos de carga útil
 
-### request.completed
+### solicitação.concluída
 
 ```json
 {
@@ -201,7 +201,7 @@ A página do painel em `/dashboard/webhooks` (consulte
 }
 ```
 
-### test.ping
+### teste.ping
 
 ```json
 {
@@ -214,7 +214,7 @@ A página do painel em `/dashboard/webhooks` (consulte
 }
 ```
 
-Os formatos dos campos para eventos diferentes de `test.ping` são definidos pelos locais de chamada que os emitem; trate o objeto `data` como compatível com versões futuras (adicione campos, não dependa da ausência deles).
+Os formatos de campo para eventos não-`test.ping` são definidos pelos locais de chamada que os emitem; trate o objeto `data` como compatível com versões futuras (adicione campos, não dependa de ausência).
 
 ## Práticas recomendadas
 

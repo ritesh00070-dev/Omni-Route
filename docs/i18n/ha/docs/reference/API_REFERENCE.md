@@ -985,35 +985,26 @@ CLI yana haɓaka `base_url + /responses` zuwa WebSocket, kuma OmniRoute tana rat
 
 ---
 
-## Rahoton Ƙayyadaddun Amfani da Matsaloli
+## Ƙididdigar Ƙidaya & Batun Batutuwa
 
-| Hanya | Hanya               | Bayani                                                                                               |
-| ----- | ------------------- | ---------------------------------------------------------------------------------------------------- |
-| GET   | `/v1/quotas/check`  | Tabbatar da quota tun farko don `provider` + `accountId` kafin bayar da maɓallin da aka yi rajista   |
-| POST  | `/v1/issues/report` | Ba da rahoton gazawar bayar da quota/maɓalli zuwa GitHub (yana buƙatar `GITHUB_ISSUES_REPO` + token) |
+| Hanya | Hanya               | Bayani                                                                                        |
+| ----- | ------------------- | --------------------------------------------------------------------------------------------- |
+| GET   | `/v1/quotas/check`  | Gabatar da ƙimar `provider` + `accountId` kafin bada maɓallin rajista                         |
+| POST  | `/v1/issues/report` | Bayar da gazawar fitar da quota/key zuwa GitHub (yana buƙatar alamar `GITHUB_ISSUES_REPO` + ) |
 
-**Tabbatarwa:** Maɓallin API na Bearer (`isAuthenticated`).
+**Gaskiya:** `/v1/quotas/check` ɗaukar maɓallin API mai ɗauka (`isAuthenticated`). `/v1/issues/report` shine gudanarwa-kawai (`requireManagementAuth`), kamar `/api/v1/registered-keys`: zaman dashboard, alamar CLI na gida, ko maɓallin API mai girman `manage`/`admin` ; maɓallan API kawai suna samun `403`.
 
-### Maido da zaman quota (na zaɓi)
+### Farfadowa zaman jimla (ficewa)
 
-`POST /v1/chat/completions` ko `POST /v1/responses` wanda ba na streaming ba, idan ya gaza da
-kuskuren quota na ƙarshe (`402`/`429`/`503` wanda jikin amsar ya ce quota ko credits sun ƙare),
-ana iya ajiye shi a sake kunna shi daga baya maimakon mayar da kuskuren. Mai kira yana zaɓar wannan
-a kowane request ta amfani da headers guda uku:
+`POST /v1/chat/completions` ko `POST /v1/responses` wanda ba ya gudana wanda ya kasa tare da kuskuren ƙididdiga na ƙarshe (`402`/`429`/`503` wanda jikinsa ya ce adadin ko ƙididdigewa sun ƙare) za a iya ajiye shi a sake kunnawa daga baya maimakon mayar da kuskuren. Mai kiran ya zaɓi shiga kowace buƙata tare da kawuna uku:
 
-| Header                       | Ƙima                                                     |
-| ---------------------------- | -------------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                                   |
-| `x-omniroute-session`        | ID na zaman, `[A-Za-z0-9._:-]{1,128}`                    |
-| `x-omniroute-recovery-turn`  | ID na juyawa na musamman a cikin zaman (ƙa'ida iri ɗaya) |
+| Kai                          | Daraja                                          |
+| ---------------------------- | ----------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                          |
+| `x-omniroute-session`        | zaman id, `[A-Za-z0-9._:-]{1,128}`              |
+| `x-omniroute-recovery-turn`  | juya id na musamman a cikin zaman (ka'ida ɗaya) |
 
-Juyawar da ke da `stream: false` kawai, waɗanda ba su da tools, tarihin tool ko
-`previous_response_id`, kuma ba su da pin na `x-omniroute-connection`, ne suka cancanta; dole ne a saita
-`STORAGE_ENCRYPTION_KEY` (ana adana request ɗin cikin ɓoyayyen tsari na har zuwa awanni 24). Daga nan amsar
-ta zama `202` mai ɗauke da `recovery.poll`; a yi polling da `GET /v1/quota-recoveries/{id}` (`202` yayin da ake jira,
-`200` tare da jikin amsar da aka dawo da ita idan an kammala) ko a soke ta da `DELETE`. Tikiti ana iya ganin su ne kawai
-ga maɓallin API da ya ƙirƙire su. Sake kunna request ɗin da ba a tabbatar da sakamakonsa ba yana ƙarewa da
-`needs_confirmation` maimakon a aika shi sau biyu. Madogara: `src/lib/quota/quotaSessionRecovery.ts`.
+`stream: false` kawai yana juyawa ba tare da kayan aiki ba, tarihin kayan aiki ko `previous_response_id`, kuma babu fil ɗin `x-omniroute-connection`, sun cancanci, kuma dole ne a saita `STORAGE_ENCRYPTION_KEY` (an adana buƙatun a ɓoye har zuwa sa'o'i 24). Amsa sai `202` da `recovery.poll`; zabe `GET /v1/quota-recoveries/{id}` (`202` yayin da ake jiran, `200` tare da jikin da aka samu idan an kammala) ko soke tare da `DELETE`. Ana iya ganin tikiti zuwa maɓallin API wanda ya ƙirƙira su. Sake kunnawa wanda sakamakonsa bai tabbata ba ya ƙare a `needs_confirmation` maimakon a aika sau biyu. Source: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1761,19 +1752,23 @@ Biyan kuɗin webhook na waje don abubuwan OmniRoute (kammala buƙata, ƙarewar k
 
 ---
 
-## Maɓallan da Aka Yi Rajista (Gudanarwa ta atomatik)
+## Maɓallai masu Rijista (Mai sarrafa kansa)
 
-Ana amfani da su ta tsarin gudanar da maɓallai ta atomatik don fitarwa da jujjuya maɓallan API a kan mai samarwa/asusu na baya, tare da kaso na yau da kullum/na awa.
+Ƙarƙashin tsarin sarrafa maɓalli na atomatik ke amfani dashi don fitarwa da juya maɓallan API a kan provider/account mai goyan baya, tare da ƙimar daily/hourly.
 
-| Hanya  | Hanya                                 | Bayani                                                                                                                                                                                                                                  |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Jera maɓallan da aka yi rajista (gabatarwar da aka ɓoye kawai)                                                                                                                                                                          |
-| POST   | `/api/v1/registered-keys`             | Fitar da sabon maɓallin da aka yi rajista — jiki: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Yana dawo da maɓallin danye **sau ɗaya kawai**. Yana dawo da `429` idan an ƙi saboda kaso. |
-| GET    | `/api/v1/registered-keys/[id]`        | Dawo da bayanan maɓallin da aka yi rajista (babu ainihin abin da ke cikin maɓallin)                                                                                                                                                     |
-| DELETE | `/api/v1/registered-keys/[id]`        | Soke maɓallin da aka yi rajista                                                                                                                                                                                                         |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Ƙarshen API na soke maɓalli a sarari (sakamako iri ɗaya da DELETE)                                                                                                                                                                      |
+| Hanya  | Hanya                                 | Bayani                                                                                                                                                                                                        |
+| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Lissafin maɓallan da aka yi rajista (madarar da aka rufe kawai)                                                                                                                                               |
+| POST   | `/api/v1/registered-keys`             | Fitar da sabuwar maɓalli mai rijista — : `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Yana dawo da danyen maɓalli** sau ɗaya** . Yana dawo `429` akan kin ƙima. |
+| GET    | `/api/v1/registered-keys/[id]`        | Maido metadata maɓalli mai rijista (babu ɗanyen abu)                                                                                                                                                          |
+| DELETE | `/api/v1/registered-keys/[id]`        | Murke maɓallin rajista                                                                                                                                                                                        |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Bayanin soke ƙarshen ƙarshen (tasiri ɗaya da DELETE)                                                                                                                                                          |
+| GET    | `/api/v1/providers/[provider]/limits` | Karanta iyakoki na bayarwa na mai bayarwa                                                                                                                                                                     |
+| PUT    | `/api/v1/providers/[provider]/limits` | Saita madaidaitan bayarwa na mai bayarwa jikin — : `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                    |
+| GET    | `/api/v1/accounts/[id]/limits`        | Karanta iyakar fitar da asusun                                                                                                                                                                                |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Saita fitar da asusun ya ƙare — jiki ɗaya da hanyar mai bayarwa                                                                                                                                               |
 
-**Tabbatarwa:** zaman gudanarwa/maɓallin API (`requireManagementAuth`) — mai gadi iri ɗaya da `/api/keys`: zaman dashboard, alamar CLI ta cikin gida, ko maɓallin API mai ikon `manage`/`admin`; maɓallan API na inference-kawai suna samun `403`. Duba kuma `/v1/quotas/check` da `/v1/issues/report`.
+**Gaskiya:** maɓallan session/API na gudanarwa (`requireManagementAuth`) — mai tsaro iri ɗaya da `/api/keys`: zaman dashboard, alamar CLI na gida, ko maɓallin API tare da iyakar `manage`/`admin` ; maɓallan API kawai samun `403`. Duba kuma `/v1/quotas/check` da `/v1/issues/report`.
 
 ---
 

@@ -6,34 +6,34 @@
 
 <div align="center">
 
-<img src="./docs/screenshots/MainOmniRoute.png" alt="OmniRoute informācijas panelis" width="820"/>
+<img src="./docs/screenshots/MainOmniRoute.png" alt="OmniRoute Dashboard" width="820"/>
 
 <br/>
 <br/>
 
-# 🚀 OmniRoute — Bezmaksas MI vārteja
+# 🚀 OmniRoute — Bezmaksas AI vārteja
 
-**Radījis [Diego Souza](https://github.com/diegosouzapw)**
+**Izveidoja [Diego Souza](https://github.com/diegosouzapw)**
 
-<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — Nekad nepārtrauciet programmēt. Katrs MI rīks → 385 nodrošinātājs — 150+ bezmaksas — izmantojot vienu galapunktu. Claude Code, Codex, Cursor, Cline, Copilot un Antigravity uz BEZMAKSAS Claude / GPT / Gemini ar automātisku atkāpšanos. RTK + Caveman kombinētā saspiešana ietaupa 15–95% marķieru (~89% vidēji) — nekad nesasniedziet limitus. 385 MI nodrošinātājs · 150+ bezmaksas līmeņi · ~1,62 miljardi bezmaksas marķieru mēnesī · 20 maršrutēšanas stratēģijas · Sāciet par $0."/>
+<img src="./docs/diagrams/readme-hero.svg" width="100%" alt="OmniRoute — Never stop coding. Every AI tool → 385 providers — 150+ free — through one endpoint. Claude Code, Codex, Cursor, Cline, Copilot & Antigravity into FREE Claude / GPT / Gemini with auto-fallback. RTK + Caveman stacked compression saves 15–95% tokens (~89% avg) — never hit limits. 385 AI providers · 150+ free tiers · ~1.62B free tokens/mo · 20 routing strategies · $0 to start."/>
 
 </div>
 
 <div align="center">
 
-## 💰 ~1,62 miljardi marķieru mēnesī trešo pušu bezmaksas plānos
+## 💰 ~ 1,62 B marķieri/mēnesis trešo pušu bezmaksas līmeņos
 
 </div>
 
-> **Izmantojiet savus pakalpojumu sniedzēju kontus.** Šis ir aptuvens kopsavilkums par atsevišķi pieejamiem trešo pušu bezmaksas plāniem, nevis OmniRoute piešķirts marķieru apjoms. Reģistrējieties, iegūstiet nepieciešamos akreditācijas datus un pievienojiet izmantojamos pakalpojumu sniedzējus; katrs pakalpojumu sniedzējs pats nosaka savus ierobežojumus, pieejamību un lietošanas noteikumus.
+> **Atnesiet savus pakalpojumu sniedzēja kontus.** Šis ir aptuvens kopsavilkums no atsevišķi piemērotiem trešo pušu bezmaksas līmeņiem, nevis OmniRoute simboliskā dotācija. Reģistrējieties, iegūstiet akreditācijas datus, ja nepieciešams, un pievienojiet pakalpojumu sniedzējus, kurus varat izmantot; katrs pakalpojumu sniedzējs kontrolē savus ierobežojumus, pieejamību un noteikumus.
 >
-> Manuāla bezmaksas plānu apvienošana ir apgrūtinoša — desmitiem SDK, desmitiem ātruma ierobežojumu un nav skaidrs, cik daudz jums patiesībā ir pieejams. OmniRoute apkopo **465 bezmaksas plānu ierakstus 34 atkārtoti izmantotās kopu atslēgās** un aprēķina kopējo marķieru apjomu no **17 kopām ar publicētu pozitīvu mēneša budžetu, kā arī pieciem katram modelim paredzētiem Groq ierobežojumiem**, novēršot dublēšanos pēc koplietotās kopas. Kvotas, kas kļūst pieejamas tikai pēc reģionālās identitātes pārbaudes (šobrīd: ModelScope), tiek uzrādītas atsevišķi — +~6 miljoni pēc reģionālās identitātes verifikācijas — un nekad netiek pieskaitītas kopējam apjomam. Rezultāts joprojām ir redzams informācijas panelī (`/dashboard/free-tiers`).
+> Bezmaksas līmeņu sakraušana ar rokām ir sāpīga — desmitiem SDKs, desmitiem likmju ierobežojumu, un nav ne jausmas, cik daudz jums patiesībā ir. OmniRoute katalogi** 465 brīvā līmeņa ieraksti 34 periodiskos baseina taustiņos** un aprēķina marķiera virsrakstu no** 17 baseini ar publicētu pozitīvu mēneša budžetu plus pieci Groq ierobežojumi katram modelim** , dedublēts ar koplietojamo baseinu. Kvotas, kas tiek atvērtas tikai pēc reģionālās identitātes pārbaudes (šodien: ModelScope), tiek parādītas atsevišķi, +~ 6 M aiz reģionālās identitātes verifikācijas, un tās nekad netiek apkopotas virsrakstā. Rezultāts paliek redzams informācijas panelī (`/dashboard/free-tiers`).
 
-<img src="./docs/diagrams/free-tier-budget.svg" width="100%" alt="OmniRoute bezmaksas plānu budžeta kartīte: ~1,62 miljardi bezmaksas marķieru mēnesī nemainīgi, līdz ~2,22 miljardiem pirmajā mēnesī ar reģistrācijas kredītiem, no 34 dokumentētām atkārtoti izmantotām kopu atslēgām, kas aptver 465 katalogā iekļautus bezmaksas plānu ierakstus, izmantojot vienu galapunktu. Godīga, pēc kopām deduplicēta matemātika — katra koplietotā kopa tiek ieskaitīta vienu reizi, tostarp 17 atkārtoti izmantotas kopas ar publicētu pozitīvu mēneša marķieru budžetu, kā arī pieci katram modelim paredzēti Groq ierobežojumi; 12 pakalpojumu sniedzēji noteikumu riska katalogā ir atzīmēti kā izvairāmi, tāpēc lēmumu pieņemat jūs. Budžeta joslā iekļauti Mistral 1B, Nara 210M, LLM7 150M, xKiro 150M, Groq 30M (pieci katram modelim paredzēti ierobežojumi) un mazākas kopas, kā arī pirmā mēneša reģistrācijas kredīti un atsevišķi parādīti pakalpojumu sniedzēji ar pastāvīgi bezmaksas piekļuvi bez marķieru ierobežojuma, lai tie nekad nepalielinātu kopējo apjomu. Aktuālais izmantotais un atlikušais apjoms sadaļā /dashboard/free-tiers."/>
+<img src="./docs/diagrams/free-tier-budget.svg" width="100%" alt="OmniRoute free-tier budget card: ~1.62B free tokens per month steady, up to ~2.22B in the first month with signup credits, from 34 documented recurring pool keys covering 465 cataloged free-tier entries behind one endpoint. Honest pool-deduped math — each shared pool counted once, including 17 recurring pools with a published positive monthly token budget plus five per-model Groq caps; 12 providers are marked avoid in the terms-risk catalog so you decide. Budget bar includes Mistral 1B, Nara 210M, LLM7 150M, xKiro 150M, Groq 30M (five per-model caps) and smaller pools, plus first-month signup credits and permanently-free no-token-cap providers surfaced separately so they never inflate the headline. Live used/remaining on /dashboard/free-tiers."/>
 
-> Animēts tiešraides `/dashboard/free-tiers` lapas kopsavilkums. Pilna metodoloģija (kopu deduplicēšana, kredītu līmeņi, pakalpojumu sniedzēju noteikumi): **[docs/reference/FREE_TIERS.md](docs/reference/FREE_TIERS.md)**.
+> Animēts `/dashboard/free-tiers` lapas kopsavilkums. Pilna metodoloģija (pūles dedupe, kredītlīmeņi, pakalpojumu sniedzēja noteikumi):** [docs/reference/FREE_TIERS.md](docs/reference/FREE_TIERS.md)** .
 >
-> <sub>Šie skaitļi tiek atkārtoti pārbaudīti ik pēc divām nedēļām, salīdzinot ar aktuālo katalogu, un **mainās abos virzienos** — pakalpojumu sniedzējs pārtrauc bezmaksas plānu, un skaitlis samazinās; tiek pievienots jauns, un tas palielinās. Mēs publicējam to, ko katalogs faktiski aprēķina, nevis noapaļotu labākā gadījuma aplēsi.</sub>
+> <sub> Šie skaitļi tiek atkārtoti pārbaudīti ik pēc divām nedēļām, salīdzinot ar tiešo katalogu un** pārvietoties abos virzienos** — pakalpojumu sniedzējs beidz bezmaksas līmeni un skaits samazinās; nolaižas jauns un tas kāpj. Mēs publicējam to, ko katalogs faktiski aprēķina, nevis noapaļotu labāko gadījumu.</sub>
 
 <br/>
 
@@ -41,49 +41,43 @@
 
 <h3>
 
-⭐ Ja OMNIROUTE palīdzēja jums ietaupīt naudu un atvieglot darbu, piešķiriet repozitorijam zvaigznīti.
+⭐ Atzīmējiet repo, ja OMNIROUTE palīdzēja jums ietaupīt naudu un atvieglot darbu.
 
 </h3>
 
-[![Stars](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social)](https://github.com/diegosouzapw/OmniRoute)
+[![Zvaigznes](https://img.shields.io/github/stars/diegosouzapw/OmniRoute?style=social) ](https://github.com/diegosouzapw/OmniRoute)
 <a href="https://trendshift.io/repositories/23589" target="_blank"><img src="https://trendshift.io/api/badge/repositories/23589" alt="diegosouzapw%2FOmniRoute | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-[![Star History Rank](https://api.star-history.com/badge?repo=diegosouzapw/OmniRoute&theme=dark)](https://www.star-history.com/diegosouzapw/omniroute)
-[![olud.ai](https://olud.ai/badge.php?tool=diegosouzapw-omniroute)](https://olud.ai/project/diegosouzapw-omniroute.html)
+[![Zvaigžņu vēstures rangs](https://api.star-history.com/badge?repo=diegosouzapw/OmniRoute&theme=dark) ](https://www.star-history.com/diegosouzapw/omniroute) [![olud.ai](https://olud.ai/badge.php?tool=diegosouzapw-omniroute) ](https://olud.ai/project/diegosouzapw-omniroute.html)
 
 ### 💬 Pievienojieties kopienai
 
-**👋 Sekojiet uzturētājam — vispirms uzziniet par jauniem pakalpojumu sniedzējiem, laidieniem un padomiem:**
+**👋 Sekojiet uzturētājam — vispirms iegūstiet jaunus pakalpojumu sniedzējus, izdevumus un padomus:**
 
-[![Follow Diego on LinkedIn](https://img.shields.io/badge/Follow_Diego_on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diegosouzapw/)
-[![Follow @diegosouzapw on GitHub](https://img.shields.io/github/followers/diegosouzapw?style=for-the-badge&logo=github&logoColor=white&label=Follow%20on%20GitHub&color=181717)](https://github.com/diegosouzapw)
+[![Sekojiet Diego vietnē LinkedIn](https://img.shields.io/badge/Follow_Diego_on-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white) ](https://www.linkedin.com/in/diegosouzapw/) [![Sekojiet @diegosouzapw vietnē GitHub](https://img.shields.io/github/followers/diegosouzapw?style=for-the-badge&logo=github&logoColor=white&label=Follow%20on%20GitHub&color=181717) ](https://github.com/diegosouzapw)
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/U47eFqAXCn)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/omnirouteOficial)
-[![WhatsApp Global](https://img.shields.io/badge/WhatsApp_Global-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4)
-[![WhatsApp Brasil](https://img.shields.io/badge/WhatsApp_Brasil-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4)
-[![Website](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white)](https://omniroute.online)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white) ](https://discord.gg/U47eFqAXCn) [![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white) ](https://t.me/omnirouteOficial) [![WhatsApp Global](https://img.shields.io/badge/WhatsApp_Global-25D366?style=for-the-badge&logo=whatsapp&logoColor=white) ](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) [![WhatsApp Brasil](https://img.shields.io/badge/WhatsApp_Brasil-25D366?style=for-the-badge&logo=whatsapp&logoColor=white) ](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) [![Tīmekļa vietne](https://img.shields.io/badge/Website-omniroute.online-blue?logo=google-chrome&logoColor=white) ](https://omniroute.online)
 
-**Jautājumi, padomi par pakalpojumu sniedzējiem, ceļvedis un atbalsts → [Discord](https://discord.gg/U47eFqAXCn) · [Telegram](https://t.me/omnirouteOficial) · WhatsApp [🌍 Global](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) / [🇧🇷 Brasil](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) / [Portal](https://portal.sthub.com.br/communities/groups/st-hub/channels/Omniroute-World-8kRjmK)**
+**Jautājumi, pakalpojumu sniedzēju padomi, ceļvedis un atbalsts → [Discord](https://discord.gg/U47eFqAXCn) · [Telegram](https://t.me/omnirouteOficial) · WhatsApp [🌍 Global](https://chat.whatsapp.com/FvuCbrpZmQ6I85n2vW5QIC?s=cl&p=a&mlu=4) / [🇧🇷 Brasil](https://chat.whatsapp.com/KWgatljAjmbELQory59Oti?s=cl&p=a&mlu=4) / [📢 Oficiālais kanāls](https://whatsapp.com/channel/0029VbDwC7A3wtb5PN6a5t2R) / [portāls](https://portal.sthub.com.br/communities/groups/st-hub/channels/Omniroute-World-8kRjmK)**
 
 <br/>
 
-## 📈 Vārteja turpina augt
+## 📈 Gateway turpina augt
 
 <div align="center">
 
-|                                 |         v3.8.50          | **v3.8.51** |      `v3.8.54+`       |
-| ------------------------------- | :----------------------: | :---------: | :-------------------: |
-| 🌐 Nodrošinātāji                |           352            |   **358**   |          385          |
-| 🧠 Unikāli tērzēšanas modeļu ID |           1320           |  **1374**   |         1491          |
-| 🖼️ Modalitāšu tilts             | 🆕 redze + audio + video |      ✓      |           ✓           |
-| 📡 Radar bezmaksas katalogs     |      🆕 pēc izvēles      |      ✓      |           ✓           |
-| ⚖️ Kvotām pielāgota plānošana   |      🆕 Quota-Share      |      ✓      |           ✓           |
-| 📊 Kvotu telemetrija            |      🆕 tiešsaistē       |      ✓      |           ✓           |
-| 🧰 Bezgalvas režīms             |            —             |      —      | 🆕 `serve --headless` |
-| 🛤️ LTS sliežu infrastruktūra    |            —             |      —      |  🆕 laidienu kanāli   |
-| 🔎 Modeļu atklāšanas API        |            —             |      —      | 🆕 `/v1/models/query` |
+|                                   |          v3.8.50          | **v3.8.51** |       `v3.8.54+`       |
+| --------------------------------- | :-----------------------: | :---------: | :--------------------: |
+| 🌐 pakalpojumu sniedzēji          |            352            |   **358**   |          385           |
+| 🧠 Unikāls tērzēšanas modelis IDs |           1320            |  **1374**   |          1491          |
+| 🖼️ Modalitātes tilts              | 🆕 vision + audio + video |      ✓      |           ✓            |
+| 📡 Radar bezmaksas katalogs       |      🆕 pieteikšanās      |      ✓      |           ✓            |
+| ⚖️ Kvotu zinoša plānošana         |      🆕 kvotas daļa       |      ✓      |           ✓            |
+| 📊 kvotas telemetrija             |       🆕 tiešraidē        |      ✓      |           ✓            |
+| 🧰 Bezgalvu režīms                |             —             |      —      | 🆕 `serve --headless`  |
+| 🛤️ LTS sliede infra               |             —             |      —      | 🆕 atbrīvošanas kanāli |
+| 🔎 Modeļu atklāšana API           |             —             |      —      | 🆕 `/v1/models/query`  |
 
-**→ [Ceļvedis](ROADMAP.md) — pa sliedēm uz `v3.9.0 LTS`**
+**→ [Ceļvedis](ROADMAP.md) — braucot pa dzelzceļu uz `v3.9.0 LTS`**
 
 </div>
 
@@ -91,54 +85,49 @@
 
 ## 🧩 Pieejams
 
-[![npm versija](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm)](https://www.npmjs.com/package/omniroute)
-![NPM mēnesī](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm)
-[![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED)](https://hub.docker.com/r/diegosouzapw/omniroute)
-[![Licence: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-![Docker lejupielādes](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED)
-![Electron lejupielādes](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
+[![npm versija](https://img.shields.io/npm/v/omniroute?color=cb3837&logo=npm) ](https://www.npmjs.com/package/omniroute) ![NPM Monthly](https://img.shields.io/npm/dm/omniroute?label=npm/month&color=cb3837&logo=npm) [![Docker Hub](https://img.shields.io/docker/v/diegosouzapw/omniroute?label=Docker%20Hub&logo=docker&color=2496ED) ](https://hub.docker.com/r/diegosouzapw/omniroute) [![Licence: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square) ](LICENSE) ![Docker Pulls](https://img.shields.io/docker/pulls/diegosouzapw/omniroute?label=docker%20pulls&logo=docker&color=2496ED) ![Electron Downloads](https://img.shields.io/github/downloads/diegosouzapw/omniroute/total?style=flat&label=electron%20downloads&logo=electron&color=47848F)
 
 <table>
   <tr>
     <td align="right"><b>🚀 Sākt</b></td>
-    <td align="center"><a href="#-quick-start">🚀 Ātrā sākšana</a></td>
-    <td align="center"><a href="#-more-install-methods--docker-source-pnpm-arch">📦 Instalēšana</a></td>
-    <td align="center"><a href="#first-run">🆓 Pievienot nodrošinātāju</a></td>
+    <td align="center"><a href="#-quick-start">🚀 Quick Start</a></td>
+    <td align="center"><a href="#-more-install-methods--docker-source-pnpm-arch">📦 Instalējiet</a></td>
+    <td align="center"><a href="#first-run">🆓 Savienojiet pakalpojumu sniedzēju</a></td>
   </tr>
   <tr>
-    <td align="right"><b>💡 Uzzināt</b></td>
-    <td align="center"><a href="#-the-promise">💥 Solījums</a></td>
+    <td align="right"><b>💡 Uzziniet</b></td>
+    <td align="center"><a href="#-the-promise">💥 The Promise</a></td>
     <td align="center"><a href="#-why-omniroute">🤔 Kāpēc OmniRoute</a></td>
-    <td align="center"><a href="#-what-sets-omniroute-apart">🏆 Ar ko tas izceļas</a></td>
+    <td align="center"><a href="#-what-sets-omniroute-apart">🏆 Kas atšķir</a></td>
   </tr>
   <tr>
-    <td align="right"><b>⚙️ Funkcijas</b></td>
-    <td align="center"><a href="#-combos--the-flagship">🎯 Kombinācijas</a></td>
-    <td align="center"><a href="#-385-ai-providers--153-catalog-marked-free">🌐 Nodrošinātāji</a></td>
-    <td align="center"><a href="#-full-cli--a2a--mcp">🔌 CLI un MCP</a></td>
+    <td align="right"><b>⚙️ funkcijas</b></td>
+    <td align="center"><a href="#-combos--the-flagship">🎯 Combos</a></td>
+    <td align="center"><a href="#-385-ai-providers--153-catalog-marked-free">🌐 pakalpojumu sniedzēji</a></td>
+    <td align="center"><a href="#-full-cli--a2a--mcp">🔌 CLI &amp; MCP</a></td>
   </tr>
   <tr>
     <td align="right"></td>
     <td align="center"><a href="#%EF%B8%8F-save-1595-tokens--automatically">🗜️ Saspiešana</a></td>
     <td align="center"><a href="#%EF%B8%8F-where-omniroute-runs--anywhere">🖥️ Kur tas darbojas</a></td>
-    <td align="center"><a href="#-private--local-first">🔒 Privāts</a></td>
+    <td align="center"><a href="#-private--local-first">🔒 Private</a></td>
   </tr>
   <tr>
-    <td align="right"><b>👀 Apskati</b></td>
-    <td align="center"><a href="#-omniroute-in-action">🎬 Darbībā</a></td>
+    <td align="right"><b>👀 Skaties</b></td>
+    <td align="center"><a href="#-omniroute-in-action">🎬 darbībā</a></td>
     <td align="center"><a href="#-whats-new">✨ Kas jauns</a></td>
-    <td align="center"><a href="#-compatible-clis--coding-agents">🤖 Saderīgie CLI</a></td>
+    <td align="center"><a href="#-compatible-clis--coding-agents">🤖 Saderīgs CLIs</a></td>
   </tr>
   <tr>
-    <td align="right"><b>💚 Atbalsts</b></td>
-    <td align="center"><a href="#-support-omniroute">💚 Atbalstīt / Ziedot</a></td>
-    <td align="center"><a href="#-community--help">💬 Kopiena</a></td>
-    <td align="center"><a href="#-sponsors">💖 Atbalstītāji</a></td>
+    <td align="right"><b>💚 atbalsts</b></td>
+    <td align="center"><a href="#-support-omniroute">💚 Atbalsti / Ziedo</a></td>
+    <td align="center"><a href="#-community--help">💬 kopiena</a></td>
+    <td align="center"><a href="#-sponsors">💖 sponsori</a></td>
   </tr>
   <tr>
-    <td align="right"><b>📦 Projekts</b></td>
-    <td align="center"><a href="#%EF%B8%8F-tech-stack">🛠️ Tehnoloģiju steks</a></td>
-    <td align="center"><a href="#-documentation">📖 Dokumentācija</a></td>
+    <td align="right"><b>📦 projekts</b></td>
+    <td align="center"><a href="#%EF%B8%8F-tech-stack">🛠️ Tech Stack</a></td>
+    <td align="center"><a href="#-documentation">📖 Docs</a></td>
     <td align="center"><a href="#-1000-contributors">👥 Līdzstrādnieki</a></td>
   </tr>
 </table>
@@ -148,73 +137,73 @@
 <div align="center">
   <b>🌐 67 valodās</b>
   <br/><br/>
-  <a href="README.md"><img src="docs/assets/flags/us.svg" width="30" alt="Angļu (en)" title="Angļu (en)"></a>
-  <a href="docs/i18n/pt-BR/README.md"><img src="docs/assets/flags/br.svg" width="30" alt="Portugāļu — Brazīlija (pt-BR)" title="Portugāļu — Brazīlija (pt-BR)"></a>
-  <a href="docs/i18n/pt/README.md"><img src="docs/assets/flags/pt.svg" width="30" alt="Portugāļu (pt)" title="Portugāļu (pt)"></a>
-  <a href="docs/i18n/es/README.md"><img src="docs/assets/flags/es.svg" width="30" alt="Spāņu (es)" title="Spāņu (es)"></a>
-  <a href="docs/i18n/fr/README.md"><img src="docs/assets/flags/fr.svg" width="30" alt="Franču (fr)" title="Franču (fr)"></a>
-  <a href="docs/i18n/it/README.md"><img src="docs/assets/flags/it.svg" width="30" alt="Itāļu (it)" title="Itāļu (it)"></a>
-  <a href="docs/i18n/de/README.md"><img src="docs/assets/flags/de.svg" width="30" alt="Vācu (de)" title="Vācu (de)"></a>
-  <a href="docs/i18n/nl/README.md"><img src="docs/assets/flags/nl.svg" width="30" alt="Nīderlandiešu (nl)" title="Nīderlandiešu (nl)"></a>
-  <a href="docs/i18n/ru/README.md"><img src="docs/assets/flags/ru.svg" width="30" alt="Krievu (ru)" title="Krievu (ru)"></a>
-  <a href="docs/i18n/uk-UA/README.md"><img src="docs/assets/flags/ua.svg" width="30" alt="Ukraiņu (uk-UA)" title="Ukraiņu (uk-UA)"></a>
-  <a href="docs/i18n/pl/README.md"><img src="docs/assets/flags/pl.svg" width="30" alt="Poļu (pl)" title="Poļu (pl)"></a>
-  <a href="docs/i18n/cs/README.md"><img src="docs/assets/flags/cz.svg" width="30" alt="Čehu (cs)" title="Čehu (cs)"></a>
-  <a href="docs/i18n/sk/README.md"><img src="docs/assets/flags/sk.svg" width="30" alt="Slovāku (sk)" title="Slovāku (sk)"></a>
-  <a href="docs/i18n/ro/README.md"><img src="docs/assets/flags/ro.svg" width="30" alt="Rumāņu (ro)" title="Rumāņu (ro)"></a>
-  <a href="docs/i18n/hu/README.md"><img src="docs/assets/flags/hu.svg" width="30" alt="Ungāru (hu)" title="Ungāru (hu)"></a>
-  <a href="docs/i18n/bg/README.md"><img src="docs/assets/flags/bg.svg" width="30" alt="Bulgāru (bg)" title="Bulgāru (bg)"></a>
-  <a href="docs/i18n/da/README.md"><img src="docs/assets/flags/dk.svg" width="30" alt="Dāņu (da)" title="Dāņu (da)"></a>
-  <a href="docs/i18n/fi/README.md"><img src="docs/assets/flags/fi.svg" width="30" alt="Somu (fi)" title="Somu (fi)"></a>
-  <a href="docs/i18n/no/README.md"><img src="docs/assets/flags/no.svg" width="30" alt="Norvēģu (no)" title="Norvēģu (no)"></a>
-  <a href="docs/i18n/sv/README.md"><img src="docs/assets/flags/se.svg" width="30" alt="Zviedru (sv)" title="Zviedru (sv)"></a>
-  <a href="docs/i18n/zh-CN/README.md"><img src="docs/assets/flags/cn.svg" width="30" alt="Ķīniešu — vienkāršotā (zh-CN)" title="Ķīniešu — vienkāršotā (zh-CN)"></a>
-  <a href="docs/i18n/zh-TW/README.md"><img src="docs/assets/flags/tw.svg" width="30" alt="Ķīniešu — tradicionālā (zh-TW)" title="Ķīniešu — tradicionālā (zh-TW)"></a>
-  <a href="docs/i18n/ja/README.md"><img src="docs/assets/flags/jp.svg" width="30" alt="Japāņu (ja)" title="Japāņu (ja)"></a>
-  <a href="docs/i18n/ko/README.md"><img src="docs/assets/flags/kr.svg" width="30" alt="Korejiešu (ko)" title="Korejiešu (ko)"></a>
-  <a href="docs/i18n/th/README.md"><img src="docs/assets/flags/th.svg" width="30" alt="Taju (th)" title="Taju (th)"></a>
-  <a href="docs/i18n/vi/README.md"><img src="docs/assets/flags/vn.svg" width="30" alt="Vjetnamiešu (vi)" title="Vjetnamiešu (vi)"></a>
-  <a href="docs/i18n/id/README.md"><img src="docs/assets/flags/id.svg" width="30" alt="Indonēziešu (id)" title="Indonēziešu (id)"></a>
-  <a href="docs/i18n/ms/README.md"><img src="docs/assets/flags/my.svg" width="30" alt="Malajiešu (ms)" title="Malajiešu (ms)"></a>
-  <a href="docs/i18n/phi/README.md"><img src="docs/assets/flags/ph.svg" width="30" alt="Filipīniešu (phi)" title="Filipīniešu (phi)"></a>
-  <a href="docs/i18n/hi/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Hindi (hi)" title="Hindi (hi)"></a>
-  <a href="docs/i18n/gu/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Gudžaratu (gu)" title="Gudžaratu (gu)"></a>
-  <a href="docs/i18n/mr/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Marathu (mr)" title="Marathu (mr)"></a>
-  <a href="docs/i18n/ta/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Tamilu (ta)" title="Tamilu (ta)"></a>
-  <a href="docs/i18n/te/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Telugu (te)" title="Telugu (te)"></a>
-  <a href="docs/i18n/bn/README.md"><img src="docs/assets/flags/bd.svg" width="30" alt="Bengāļu (bn)" title="Bengāļu (bn)"></a>
-  <a href="docs/i18n/ur/README.md"><img src="docs/assets/flags/pk.svg" width="30" alt="Urdu (ur)" title="Urdu (ur)"></a>
-  <a href="docs/i18n/fa/README.md"><img src="docs/assets/flags/ir.svg" width="30" alt="Persiešu (fa)" title="Persiešu (fa)"></a>
-  <a href="docs/i18n/ar/README.md"><img src="docs/assets/flags/sa.svg" width="30" alt="Arābu (ar)" title="Arābu (ar)"></a>
-  <a href="docs/i18n/he/README.md"><img src="docs/assets/flags/il.svg" width="30" alt="Ivrits (he)" title="Ivrits (he)"></a>
-  <a href="docs/i18n/tr/README.md"><img src="docs/assets/flags/tr.svg" width="30" alt="Turku (tr)" title="Turku (tr)"></a>
-  <a href="docs/i18n/az/README.md"><img src="docs/assets/flags/az.svg" width="30" alt="Azerbaidžāņu (az)" title="Azerbaidžāņu (az)"></a>
-  <a href="docs/i18n/sw/README.md"><img src="docs/assets/flags/tz.svg" width="30" alt="Svahili (sw)" title="Svahili (sw)"></a>
-  <a href="docs/i18n/el/README.md"><img src="docs/assets/flags/gr.svg" width="30" alt="Grieķu (el)" title="Grieķu (el)"></a>
-  <a href="docs/i18n/hr/README.md"><img src="docs/assets/flags/hr.svg" width="30" alt="Horvātu (hr)" title="Horvātu (hr)"></a>
-  <a href="docs/i18n/sr/README.md"><img src="docs/assets/flags/rs.svg" width="30" alt="Serbu (sr)" title="Serbu (sr)"></a>
-  <a href="docs/i18n/lt/README.md"><img src="docs/assets/flags/lt.svg" width="30" alt="Lietuviešu (lt)" title="Lietuviešu (lt)"></a>
-  <a href="docs/i18n/et/README.md"><img src="docs/assets/flags/ee.svg" width="30" alt="Igauņu (et)" title="Igauņu (et)"></a>
+  <a href="README.md"><img src="docs/assets/flags/us.svg" width="30" alt="English (en)" title="English (en)"></a>
+  <a href="docs/i18n/pt-BR/README.md"><img src="docs/assets/flags/br.svg" width="30" alt="Português — Brasil (pt-BR)" title="Português — Brasil (pt-BR)"></a>
+  <a href="docs/i18n/pt/README.md"><img src="docs/assets/flags/pt.svg" width="30" alt="Português (pt)" title="Português (pt)"></a>
+  <a href="docs/i18n/es/README.md"><img src="docs/assets/flags/es.svg" width="30" alt="Español (es)" title="Español (es)"></a>
+  <a href="docs/i18n/fr/README.md"><img src="docs/assets/flags/fr.svg" width="30" alt="Français (fr)" title="Français (fr)"></a>
+  <a href="docs/i18n/it/README.md"><img src="docs/assets/flags/it.svg" width="30" alt="Italiano (it)" title="Italiano (it)"></a>
+  <a href="docs/i18n/de/README.md"><img src="docs/assets/flags/de.svg" width="30" alt="Deutsch (de)" title="Deutsch (de)"></a>
+  <a href="docs/i18n/nl/README.md"><img src="docs/assets/flags/nl.svg" width="30" alt="Nederlands (nl)" title="Nederlands (nl)"></a>
+  <a href="docs/i18n/ru/README.md"><img src="docs/assets/flags/ru.svg" width="30" alt="Русский (ru)" title="Русский (ru)"></a>
+  <a href="docs/i18n/uk-UA/README.md"><img src="docs/assets/flags/ua.svg" width="30" alt="Українська (uk-UA)" title="Українська (uk-UA)"></a>
+  <a href="docs/i18n/pl/README.md"><img src="docs/assets/flags/pl.svg" width="30" alt="Polski (pl)" title="Polski (pl)"></a>
+  <a href="docs/i18n/cs/README.md"><img src="docs/assets/flags/cz.svg" width="30" alt="Čeština (cs)" title="Čeština (cs)"></a>
+  <a href="docs/i18n/sk/README.md"><img src="docs/assets/flags/sk.svg" width="30" alt="Slovenčina (sk)" title="Slovenčina (sk)"></a>
+  <a href="docs/i18n/ro/README.md"><img src="docs/assets/flags/ro.svg" width="30" alt="Română (ro)" title="Română (ro)"></a>
+  <a href="docs/i18n/hu/README.md"><img src="docs/assets/flags/hu.svg" width="30" alt="Magyar (hu)" title="Magyar (hu)"></a>
+  <a href="docs/i18n/bg/README.md"><img src="docs/assets/flags/bg.svg" width="30" alt="Български (bg)" title="Български (bg)"></a>
+  <a href="docs/i18n/da/README.md"><img src="docs/assets/flags/dk.svg" width="30" alt="Dansk (da)" title="Dansk (da)"></a>
+  <a href="docs/i18n/fi/README.md"><img src="docs/assets/flags/fi.svg" width="30" alt="Suomi (fi)" title="Suomi (fi)"></a>
+  <a href="docs/i18n/no/README.md"><img src="docs/assets/flags/no.svg" width="30" alt="Norsk (no)" title="Norsk (no)"></a>
+  <a href="docs/i18n/sv/README.md"><img src="docs/assets/flags/se.svg" width="30" alt="Svenska (sv)" title="Svenska (sv)"></a>
+  <a href="docs/i18n/zh-CN/README.md"><img src="docs/assets/flags/cn.svg" width="30" alt="中文 — 简体 (zh-CN)" title="中文 — 简体 (zh-CN)"></a>
+  <a href="docs/i18n/zh-TW/README.md"><img src="docs/assets/flags/tw.svg" width="30" alt="中文 — 繁體 (zh-TW)" title="中文 — 繁體 (zh-TW)"></a>
+  <a href="docs/i18n/ja/README.md"><img src="docs/assets/flags/jp.svg" width="30" alt="日本語 (ja)" title="日本語 (ja)"></a>
+  <a href="docs/i18n/ko/README.md"><img src="docs/assets/flags/kr.svg" width="30" alt="한국어 (ko)" title="한국어 (ko)"></a>
+  <a href="docs/i18n/th/README.md"><img src="docs/assets/flags/th.svg" width="30" alt="ไทย (th)" title="ไทย (th)"></a>
+  <a href="docs/i18n/vi/README.md"><img src="docs/assets/flags/vn.svg" width="30" alt="Tiếng Việt (vi)" title="Tiếng Việt (vi)"></a>
+  <a href="docs/i18n/id/README.md"><img src="docs/assets/flags/id.svg" width="30" alt="Bahasa Indonesia (id)" title="Bahasa Indonesia (id)"></a>
+  <a href="docs/i18n/ms/README.md"><img src="docs/assets/flags/my.svg" width="30" alt="Bahasa Melayu (ms)" title="Bahasa Melayu (ms)"></a>
+  <a href="docs/i18n/phi/README.md"><img src="docs/assets/flags/ph.svg" width="30" alt="Filipino (phi)" title="Filipino (phi)"></a>
+  <a href="docs/i18n/hi/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="हिन्दी (hi)" title="हिन्दी (hi)"></a>
+  <a href="docs/i18n/gu/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ગુજરાતી (gu)" title="ગુજરાતી (gu)"></a>
+  <a href="docs/i18n/mr/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="मराठी (mr)" title="मराठी (mr)"></a>
+  <a href="docs/i18n/ta/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="தமிழ் (ta)" title="தமிழ் (ta)"></a>
+  <a href="docs/i18n/te/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="తెలుగు (te)" title="తెలుగు (te)"></a>
+  <a href="docs/i18n/bn/README.md"><img src="docs/assets/flags/bd.svg" width="30" alt="বাংলা (bn)" title="বাংলা (bn)"></a>
+  <a href="docs/i18n/ur/README.md"><img src="docs/assets/flags/pk.svg" width="30" alt="اردو (ur)" title="اردو (ur)"></a>
+  <a href="docs/i18n/fa/README.md"><img src="docs/assets/flags/ir.svg" width="30" alt="فارسی (fa)" title="فارسی (fa)"></a>
+  <a href="docs/i18n/ar/README.md"><img src="docs/assets/flags/sa.svg" width="30" alt="العربية (ar)" title="العربية (ar)"></a>
+  <a href="docs/i18n/he/README.md"><img src="docs/assets/flags/il.svg" width="30" alt="עברית (he)" title="עברית (he)"></a>
+  <a href="docs/i18n/tr/README.md"><img src="docs/assets/flags/tr.svg" width="30" alt="Türkçe (tr)" title="Türkçe (tr)"></a>
+  <a href="docs/i18n/az/README.md"><img src="docs/assets/flags/az.svg" width="30" alt="Azərbaycan (az)" title="Azərbaycan (az)"></a>
+  <a href="docs/i18n/sw/README.md"><img src="docs/assets/flags/tz.svg" width="30" alt="Kiswahili (sw)" title="Kiswahili (sw)"></a>
+  <a href="docs/i18n/el/README.md"><img src="docs/assets/flags/gr.svg" width="30" alt="Ελληνικά (el)" title="Ελληνικά (el)"></a>
+  <a href="docs/i18n/hr/README.md"><img src="docs/assets/flags/hr.svg" width="30" alt="Hrvatski (hr)" title="Hrvatski (hr)"></a>
+  <a href="docs/i18n/sr/README.md"><img src="docs/assets/flags/rs.svg" width="30" alt="Српски (sr)" title="Српски (sr)"></a>
+  <a href="docs/i18n/lt/README.md"><img src="docs/assets/flags/lt.svg" width="30" alt="Lietuvių (lt)" title="Lietuvių (lt)"></a>
+  <a href="docs/i18n/et/README.md"><img src="docs/assets/flags/ee.svg" width="30" alt="Eesti (et)" title="Eesti (et)"></a>
   <a href="docs/i18n/lv/README.md"><img src="docs/assets/flags/lv.svg" width="30" alt="Latviešu (lv)" title="Latviešu (lv)"></a>
-  <a href="docs/i18n/sl/README.md"><img src="docs/assets/flags/si.svg" width="30" alt="Slovēņu (sl)" title="Slovēņu (sl)"></a>
-  <a href="docs/i18n/mt/README.md"><img src="docs/assets/flags/mt.svg" width="30" alt="Maltiešu (mt)" title="Maltiešu (mt)"></a>
-  <a href="docs/i18n/ga/README.md"><img src="docs/assets/flags/ie.svg" width="30" alt="Īru (ga)" title="Īru (ga)"></a>
-  <a href="docs/i18n/kn/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Kannadu (kn)" title="Kannadu (kn)"></a>
-  <a href="docs/i18n/ml/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Malajalu (ml)" title="Malajalu (ml)"></a>
-  <a href="docs/i18n/or/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Oriju (or)" title="Oriju (or)"></a>
-  <a href="docs/i18n/pa/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="Pandžabu (pa)" title="Pandžabu (pa)"></a>
-  <a href="docs/i18n/ne/README.md"><img src="docs/assets/flags/np.svg" width="30" alt="Nepāliešu (ne)" title="Nepāliešu (ne)"></a>
-  <a href="docs/i18n/si/README.md"><img src="docs/assets/flags/lk.svg" width="30" alt="Singāļu (si)" title="Singāļu (si)"></a>
-  <a href="docs/i18n/my/README.md"><img src="docs/assets/flags/mm.svg" width="30" alt="Birmiešu (my)" title="Birmiešu (my)"></a>
-  <a href="docs/i18n/km/README.md"><img src="docs/assets/flags/kh.svg" width="30" alt="Khmeru (km)" title="Khmeru (km)"></a>
-  <a href="docs/i18n/ha/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Hausu (ha)" title="Hausu (ha)"></a>
-  <a href="docs/i18n/yo/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Jorubu (yo)" title="Jorubu (yo)"></a>
+  <a href="docs/i18n/sl/README.md"><img src="docs/assets/flags/si.svg" width="30" alt="Slovenščina (sl)" title="Slovenščina (sl)"></a>
+  <a href="docs/i18n/mt/README.md"><img src="docs/assets/flags/mt.svg" width="30" alt="Malti (mt)" title="Malti (mt)"></a>
+  <a href="docs/i18n/ga/README.md"><img src="docs/assets/flags/ie.svg" width="30" alt="Gaeilge (ga)" title="Gaeilge (ga)"></a>
+  <a href="docs/i18n/kn/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ಕನ್ನಡ (kn)" title="ಕನ್ನಡ (kn)"></a>
+  <a href="docs/i18n/ml/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="മലയാളം (ml)" title="മലയാളം (ml)"></a>
+  <a href="docs/i18n/or/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ଓଡ଼ିଆ (or)" title="ଓଡ଼ିଆ (or)"></a>
+  <a href="docs/i18n/pa/README.md"><img src="docs/assets/flags/in.svg" width="30" alt="ਪੰਜਾਬੀ (pa)" title="ਪੰਜਾਬੀ (pa)"></a>
+  <a href="docs/i18n/ne/README.md"><img src="docs/assets/flags/np.svg" width="30" alt="नेपाली (ne)" title="नेपाली (ne)"></a>
+  <a href="docs/i18n/si/README.md"><img src="docs/assets/flags/lk.svg" width="30" alt="සිංහල (si)" title="සිංහල (si)"></a>
+  <a href="docs/i18n/my/README.md"><img src="docs/assets/flags/mm.svg" width="30" alt="မြန်မာ (my)" title="မြန်မာ (my)"></a>
+  <a href="docs/i18n/km/README.md"><img src="docs/assets/flags/kh.svg" width="30" alt="ខ្មែរ (km)" title="ខ្មែរ (km)"></a>
+  <a href="docs/i18n/ha/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Hausa (ha)" title="Hausa (ha)"></a>
+  <a href="docs/i18n/yo/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Yorùbá (yo)" title="Yorùbá (yo)"></a>
   <a href="docs/i18n/ig/README.md"><img src="docs/assets/flags/ng.svg" width="30" alt="Igbo (ig)" title="Igbo (ig)"></a>
-  <a href="docs/i18n/am/README.md"><img src="docs/assets/flags/et.svg" width="30" alt="Amharu (am)" title="Amharu (am)"></a>
-  <a href="docs/i18n/uz/README.md"><img src="docs/assets/flags/uz.svg" width="30" alt="Uzbeku (uz)" title="Uzbeku (uz)"></a>
-  <a href="docs/i18n/ka/README.md"><img src="docs/assets/flags/ge.svg" width="30" alt="Gruzīnu (ka)" title="Gruzīnu (ka)"></a>
-  <a href="docs/i18n/hy/README.md"><img src="docs/assets/flags/am.svg" width="30" alt="Armēņu (hy)" title="Armēņu (hy)"></a>
-  <a href="docs/i18n/bs/README.md"><img src="docs/assets/flags/ba.svg" width="30" alt="Bosniešu (bs)" title="Bosniešu (bs)"></a>
+  <a href="docs/i18n/am/README.md"><img src="docs/assets/flags/et.svg" width="30" alt="አማርኛ (am)" title="አማርኛ (am)"></a>
+  <a href="docs/i18n/uz/README.md"><img src="docs/assets/flags/uz.svg" width="30" alt="Oʻzbekcha (uz)" title="Oʻzbekcha (uz)"></a>
+  <a href="docs/i18n/ka/README.md"><img src="docs/assets/flags/ge.svg" width="30" alt="ქართული (ka)" title="ქართული (ka)"></a>
+  <a href="docs/i18n/hy/README.md"><img src="docs/assets/flags/am.svg" width="30" alt="Հայերեն (hy)" title="Հայերեն (hy)"></a>
+  <a href="docs/i18n/bs/README.md"><img src="docs/assets/flags/ba.svg" width="30" alt="Bosanski (bs)" title="Bosanski (bs)"></a>
 </div>
 
 <br/>
@@ -224,33 +213,33 @@
 
 <a id="first-run"></a>
 
-## 🆓 Instalējiet, pievienojiet pakalpojumu sniedzēju un pēc tam maršrutējiet, izmantojot vienu galapunktu
+## 🆓 Instalējiet, pievienojiet pakalpojumu sniedzēju un pēc tam veiciet maršrutu caur vienu galapunktu
 
 </div>
 
-<img src="./docs/diagrams/works-zero-config.svg" width="100%" alt="Trīs darbības: instalējiet un palaidiet OmniRoute, pievienojiet piemērotu pakalpojumu sniedzēju, izmantojot savu kontu vai API atslēgu, pēc tam norādiet savā rīkā localhost:20128/v1, izmantojot OmniRoute API atslēgu un modeli auto. Maršrutēšana ir atkarīga no pieejamajiem piemērotajiem savienojumiem un pakalpojumu sniedzēju ierobežojumiem."/>
+<img src="./docs/diagrams/works-zero-config.svg" width="100%" alt="Three steps: install and start OmniRoute, connect an eligible provider with your own account or API key, then point your tool at localhost:20128/v1 using an OmniRoute API key and model auto. Routing depends on available eligible connections and provider limits."/>
 
 ```bash
-# Pēc pakalpojumu sniedzēja pievienošanas nokopējiet savu OmniRoute atslēgu no Dashboard → Endpoints:
+# After connecting a provider, copy your OmniRoute key from Dashboard → Endpoints:
 curl http://localhost:20128/v1/chat/completions \
   -H "Authorization: Bearer YOUR_OMNIROUTE_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"auto","messages":[{"role":"user","content":"Hello!"}]}'
 ```
 
-<sub>`auto` ir nepieciešams piemērots maršruts. Tīrā instalācijā var nebūt neviena piemērota mērķa, kas darbotos bez atslēgas, un pakalpojumu sniedzējs, kas darbojas bez atslēgas, var noraidīt trešo pušu klientus. Pakalpojumu sniedzēji, kas atzīmēti ar `tos: avoid`, tostarp Kiro, pēc noklusējuma ir izslēgti no automātiskās maršrutēšanas; konta pievienošana šo iestatījumu nemaina. Pirms pakalpojumu sniedzēja izvēles skatiet [Bezmaksas līmeņu ceļvedi](docs/getting-started/FREE-TIERS-GUIDE.md).</sub>
+<sub>`auto` ir nepieciešams piemērots maršruts. Jaunai instalācijai nevar būt piemēroti bezatslēgas mērķi, un bezatslēgas pakalpojumu sniedzējs var noraidīt trešās puses klientus. Pakalpojumu sniedzēji, kas atzīmēti ar `tos: avoid`, tostarp Kiro, pēc noklusējuma ir izslēgti no automātiskās maršrutēšanas; pievienojot kontu, šis iestatījums netiek ignorēts. Pirms pakalpojumu sniedzēja izvēles skatiet [bezmaksas līmeņu rokasgrāmatu](docs/getting-started/FREE-TIERS-GUIDE.md).</sub>
 
-<sub>📦 Ātrās darba sākšanas skripti, ko var kopēt un ielīmēt, paredzēti **Python, Node.js, PHP un cURL** → [`examples/quickstart/`](examples/quickstart/)</sub>
+<sub>📦 Kopējiet un ielīmējiet ātrās palaišanas skriptus** Python, Node.js, PHP un cURL** → [`examples/quickstart/`](examples/quickstart/)</sub>
 
 <br/>
 
 <div align="center">
 
-# 💥 Solījums
+# 💥 The Promise
 
 </div>
 
-<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="Solījums — viens galapunkts un 385 pakalpojumu sniedzējs. Automātiskā atkāpšanās nodrošina maršrutēšanas turpināšanu, kamēr ir pieejams cits darbspējīgs mērķis. Seši pīlāri: noturīga atkāpšanās starp 385 pakalpojumu sniedzēju · līdz 95% žetonu ietaupījums piemērotām darba slodzēm · $0, lai sāktu, ar vairāk nekā 150 bezmaksas līmeņiem un 52 atkārtoti pieejamiem vai bezatslēgas bezmaksas pakalpojumu sniedzējiem uz visiem laikiem · 39 CLI/aģentu integrācijas, izmantojot vienu konfigurāciju · OpenAI, Claude, Gemini un Responses API saderība ar /v1 · ražošanas vadīklas, tostarp ķēdes pārtraucēji, TLS slepenais režīms, MCP 110 rīki, A2A, atmiņa, aizsargmehānismi, novērtējumi un vairāk nekā 56 000 statisku testu deklarāciju vairāk nekā 7800 izsekotos testu failos."/>
+<img src="./docs/diagrams/promise-pillars.svg" width="100%" alt="The Promise — One endpoint and 385 providers. Automatic fallback keeps routing while another healthy target is available. Six pillars: resilient fallback across 385 providers · up to 95% token savings on eligible workloads · $0 to start with 150+ free tiers and 52 recurring/keyless free-forever providers · 39 CLI/agent integrations through one config · OpenAI, Claude, Gemini and Responses API compatibility at /v1 · production controls including circuit breakers, TLS stealth, MCP 110 tools, A2A, memory, guardrails, evals and 56,000+ static test declarations across 7,800+ tracked test files."/>
 
 <br/>
 <br/>
@@ -261,11 +250,11 @@ curl http://localhost:20128/v1/chat/completions \
 
 </div>
 
-<img src="./docs/diagrams/why-pain-fix.svg" width="100%" alt="Kāpēc OmniRoute — pārtrauciet pārvaldīt 10 informācijas paneļus, neaktīvas API atslēgas un negaidītus rēķinus. Desmit ikdienas problēmas un risinājumi: neizmantots kvotas termiņš beidzas → maksimāli izmantojiet abonementus; ātruma ierobežojumi kodēšanas vidū → 4 līmeņu automātiskā atkāpšanās (Abonements → API → Lēts → Bezmaksas); rīku izvade patērē žetonus → RTK + Caveman saspiešana (15–95%); dārgi API → izmaksu ziņā optimizēta maršrutēšana; katram rīkam nepieciešama atsevišķa iestatīšana → viens galapunkts, viens informācijas panelis; AI ir bloķēts → 3 līmeņu starpniekserveris + TLS slepenais režīms; neaktīvas atslēgas → 3 slāņu noturība (ķēdes pārtraucēji, atslēgas atdzišana, modeļa bloķēšana); komanda koplieto vienu abonementu → atslēgu kopas ar taisnīgi sadalītām kvotām; uzvednes tiek sūtītas caur kāda cita mākoni → lokāla prioritāte ar AES-256-GCM šifrētām atslēgām; nav izdevumu pārskatāmības → tiešā analītika (lietojums, kvota, ietaupījums, p95 latentums)."/>
+<img src="./docs/diagrams/why-pain-fix.svg" width="100%" alt="Why OmniRoute — stop juggling 10 dashboards, dead API keys and surprise bills. Ten daily pains vs fixes: quota expiring unused → maximize subscriptions; rate limits mid-coding → 4-tier auto-fallback (Subscription → API → Cheap → Free); tool outputs burning tokens → RTK + Caveman compression (15–95%); expensive APIs → cost-optimized routing; every tool its own setup → one endpoint, one dashboard; AI blocked → 3-level proxy + TLS stealth; dead keys → 3-layer resilience (circuit breakers, key cooldown, model lockout); team sharing one subscription → key pools with fair-share quotas; prompts through someone's cloud → local-first with AES-256-GCM encrypted keys; no spend visibility → live analytics (usage, quota, savings, p95 latency)."/>
 
 <div align="center">
 
-<img src="./docs/diagrams/tier-cascade.svg" width="100%" alt="OmniRoute pieprasījuma plūsma: jūsu IDE vai CLI (Claude Code, Cursor, Cline…) izsauc vienu lokālu galapunktu (http://localhost:20128/v1); OmniRoute viedais maršrutētājs (RTK + Caveman saspiešana, 20 maršrutēšanas stratēģijas, ķēdes pārtraucēji, TLS slepenais režīms, MCP, A2A, aizsargmehānismi) var pārslēgties starp 4 pakalpojumu sniedzēju līmeņiem, kamēr ir pieejams piemērots darbspējīgs mērķis — 1. līmenis: Abonements, 2. līmenis: API atslēga, 3. līmenis: Lēts un 4. līmenis: Bezmaksas."/>
+<img src="./docs/diagrams/tier-cascade.svg" width="100%" alt="OmniRoute request flow: your IDE or CLI (Claude Code, Cursor, Cline…) calls one local endpoint (http://localhost:20128/v1); the OmniRoute Smart Router (RTK + Caveman compression, 20 routing strategies, circuit breakers, TLS stealth, MCP, A2A, guardrails) can fall back across 4 provider tiers while an eligible healthy target remains — Tier 1 Subscription, Tier 2 API Key, Tier 3 Cheap and Tier 4 Free."/>
 
 </div>
 
@@ -506,13 +495,13 @@ Visas **20** stratēģijas — kombinējiet tās katrā kombinācijas solī:
 
 <div align="center">
 
-## 🏆 Ar ko OmniRoute atšķiras
+## 🏆 Kas atšķir OmniRoute
 
 </div>
 
-<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="Ar ko OmniRoute atšķiras — aktuāls funkciju salīdzinājums ar 9router, OpenRouter, CLIProxyAPI un LiteLLM 13 iespēju kategorijās. OmniRoute: 385 nodrošinātājs, vairāk nekā 150 iebūvēti bezmaksas līmeņi, 20 maršrutēšanas stratēģijas, marķieru saspiešana ar 12 dzinējiem, iebūvēts MCP serveris ar 110 rīkiem, A2A aģentu protokols, pastāvīgā atmiņa, drošības ierobežojumi, mākoņa aģenti, TLS pirkstu nospiedumu slēpšana, Desktop/Termux/PWA un 67 i18n saskarnes lokalizācijas. OmniRoute ir licencēts saskaņā ar MIT licenci, un to var mitināt patstāvīgi. Konkurentu iespējas un skaits var mainīties; skatiet saiti uz metodoloģiju."/>
+<img src="./docs/diagrams/comparison-table.svg" width="100%" alt="What sets OmniRoute apart — a dated feature snapshot vs 9router, OpenRouter, CLIProxyAPI and LiteLLM across 13 capabilities. OmniRoute: 385 providers, 150+ free tiers built in, 20 routing strategies, 12-engine token compression, built-in MCP server with 110 tools, A2A agent protocol, persistent memory, guardrails, cloud agents, TLS fingerprint stealth, Desktop/Termux/PWA and 67 i18n UI locales. OmniRoute is MIT-licensed and self-hostable. Competitor capabilities and counts may change; see the linked methodology."/>
 
-<sub>📊 Pilna metodoloģija un detalizēts salīdzinājums par katru funkciju ar 9router, OpenRouter, CLIProxyAPI un LiteLLM → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
+<sub>📊 Pilna metodoloģija &amp; katras funkcijas informācija salīdzinājumā ar 9maršrutētāju, OpenRouter, CLIProxyAPI &amp; LiteLLM → [`docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md`](docs/comparison/OMNIROUTE_VS_ALTERNATIVES.md)</sub>
 
 <br/>
 
@@ -580,35 +569,35 @@ Radar ir jāiespējo brīvprātīgi, un tas izmanto tikai GET pieprasījumus. Om
 
 </div>
 
-> Jaunākie svarīgākie jaunumi no **v3.8.20 → v3.8.54**. Pilna vēsture pieejama [`CHANGELOG.md`](CHANGELOG.md).
+> Jaunākie svarīgākie momenti no** v3.8.20 → v3.8.54** . Pilna vēsture [`CHANGELOG.md`](CHANGELOG.md).
 
-- **⚖️ `quota-weighted` maršrutēšana** — 20. kombinētā stratēģija izlaiž izsmeltos kontus, pēc tam izvēlas no pārējiem proporcionāli atlikušajai kvotai ÷ aktīvo pieprasījumu slodzei, saglabājot esošo sarunu piesaisti. → [Automātiskās kombinācijas](docs/routing/AUTO-COMBO.md)
-- **🧰 Bezekrāna režīms** — `omniroute serve --headless` (vai `OMNIROUTE_HEADLESS=1`) palaiž tikai `/v1/*` starpniekservera dzini, izslēdzot informācijas paneli un tikai informācijas panelim paredzētās apakšsistēmas. → [Bezekrāna režīms](docs/guides/HEADLESS.md)
-- **🔎 Modeļu atklāšana** — `/v1/models` filtrē pēc iespējām, konteksta, veida un teksta, bet `POST /v1/models/query` atgriež īsu deterministisku kandidātu sarakstu ar tādu pašu katrai atslēgai piemērojamu redzamību. → [API atsauce](docs/reference/API_REFERENCE.md)
-- **🔑 Maršrutēšanas vadība katrai atslēgai** — piesaistiet API atslēgu vienam modelim vai kombinācijai ar `forcedModel` un atomiski pievienojiet vai noņemiet atslēgai pieejamos modeļus un kombinācijas (`/api/keys/{id}/access`). → [API atsauce](docs/reference/API_REFERENCE.md) · [OpenAPI](docs/openapi.yaml)
-- **🛡️ Precīzāka PII vadība** — atlase pēc veida, līdz 20 validētiem pielāgotiem maskēšanas paraugiem un noteikšanas skaitītāji katram veidam; pati maskēšana joprojām ir jāiespējo atsevišķi. → [Aizsargmehānismi](docs/security/GUARDRAILS.md)
-- **🌍 67 valodas** — informācijas panelis, dokumentācijas spoguļkopijas un CLI, bet `npm run i18n:add-locale` pievieno valodu visur ar vienu komandu. → [i18n ceļvedis](docs/guides/I18N.md)
-- **🎛️ OmniConductor** — ienākoša A2A deleģēšana jūsu aģentu saimei, Conductor prasmes Agent Card un informācijas paneļa sadaļa ar Faro rācijsaziņas balss tērzēšanu. → [A2A serveris](docs/frameworks/A2A-SERVER.md)
-- **🛂 Adaptīva pieprasījumu pieņemšana un pārslodzes aizsardzība** — smagie tērzēšanas pieprasījumi tiek ievietoti rindā, nevis atgriež 503 kļūdu, izmantojot atomiskas RPM slīdošās nomas katram savienojumam. → [Noturības ceļvedis](docs/architecture/RESILIENCE_GUIDE.md)
-- **🗂️ Kanoniska `/v1/models` secība** — viens nepārtraukts, pēc pakalpojumu sniedzēja grupēts bloks katram pakalpojumu sniedzējam (kombinācijas vispirms), kas ir stabils visos katalogu avotos. → [API atsauce](docs/reference/API_REFERENCE.md)
-- **🗜️ Kompresijas nostiprināšana** — pēc noklusējuma ieslēgts izvēršanas aizsargs, Caveman pakotnes DE / FR / JA un ķīniešu (wényán) valodai, RTK filtri Gradle un .NET. → [Kompresija](docs/compression/COMPRESSION_ENGINES.md)
-- **💸 Godīgas fiksētas likmes izmaksas** — abonementu un programmēšanas plānu pakalpojumu sniedzēji izmaksu analītikā tiek uzrādīti kā **$0**; budžeta, kvotu un maršrutēšanas aprēķini turpina darboties. → [API atsauce](docs/reference/API_REFERENCE.md)
-- **⚖️ Quota-Share maršrutēšana** — koplietota konta kvota tiek godīgi sadalīta starp apvienotajām atslēgām; sistēma izmanto pieejamos resursus, aizdodot neaktīvās daļas. → [Noturības ceļvedis](docs/architecture/RESILIENCE_GUIDE.md)
-- **🤖 CLI/aģentu iestatīšana ar vienu komandu** — 15 reģistrētas `setup-*` komandas; `omniroute run` palaiž 7 CLI rīkus (Claude Code, Codex, Aider, Goose, OpenCode, Qwen Code, Gemini CLI); `omniroute configure` atbalsta 11 mērķus ar interaktīvu pakalpojumu sniedzēja un modeļa izvēli, kā arī kontekstam specifiskiem favorītiem. → [CLI integrācijas](docs/guides/CLI-INTEGRATIONS.md)
-- **🛰️ Attālais režīms** — vadiet attālu OmniRoute ar ierobežotas darbības tvēruma marķieriem (`connect` / `contexts` / `tokens`) un `antigravity` OAuth palīgu VPS instalācijām. → [Attālais režīms](docs/guides/REMOTE-MODE.md)
-- **🧭 Viedāka automātiskā maršrutēšana** — `auto/<category>:<tier>` kombinācijas, **Fusion** (modeļu panelis + vērtētājs), uzdevumam pielāgota maršrutēšana, kā arī katram pieprasījumam atsevišķi modeļa / režīma / USD budžeta aizstājēji. → [Automātiskās kombinācijas](docs/routing/AUTO-COMBO.md)
-- **🗜️ Pieslēdzama kompresija** — 12 kombinējami dziņi un Compression Studios: LLMLingua-2, divu līmeņu Ultra, omniglyph, precizitātes vārteja katram solim, GCF v3.2, vilkšanas un nomešanas redaktors. → [Kompresija](docs/compression/COMPRESSION_ENGINES.md)
-- **🕵️ Caurspīdīga MITM atšifrēšana (TPROXY)** — uztveršanas CLI rīkiem, kuri ignorē starpniekservera vides mainīgos, ar CA katram SNI un uzticamības krātuves instalētāju. → [MITM/TPROXY](docs/security/MITM-TPROXY-DECRYPT.md)
-- **💸 Izmaksu telemetrija visur** — `X-OmniRoute-*` izmaksu/lietojuma galvenes katrā galapunktā, kešatmiņas HITS ietaupījumu galvene, kā arī USD tēriņu kvotas katrai atslēgai. → [API atsauce](docs/reference/API_REFERENCE.md)
-- **🧠 Jūsu kontrolēta atmiņa** — pēc noklusējuma izslēgta, ar iespēju ieslēgt int8 vektoru kvantēšanu un tipizētu noārdīšanos, kā arī izmantot `x-omniroute-no-memory` katram pieprasījumam. → [Atmiņa](docs/frameworks/MEMORY.md)
-- **🛡️ Drošība** — uzvedņu ievades uzbrukumu aizsargs katrā LLM maršrutā (ar sarkanās komandas testu komplektu), pēc izvēles ieslēdzams akreditācijas datu maskēšanas aizsargmehānisms (rediģē noplūdušas API atslēgas/noslēpumus abos virzienos), bezmaksas DuckDuckGo tīmekļa meklēšana kā pēdējais risinājums un pēc izvēles ieslēdzama OIDC pieteikšanās barjera informācijas panelim (pieteikšanās ar paroli vienmēr paliek pieejama). → [Aizsargmehānismi](docs/security/GUARDRAILS.md)
-- **🖼️ Jauni galapunkti** — `/v1/ocr` (Mistral OCR) un `/v1/audio/translations` (Whisper stila) papildina multivides iespēju klāstu. → [API atsauce](docs/reference/API_REFERENCE.md)
-- **🎨 Attēlu / video / audio ģenerēšana** — viena API multividei: xAI Grok Imagine un Novita AI video, ComfyUI, Magnific, Adobe Firefly, Segmind un runas pakalpojumu sniedzēji, piemēram, ElevenLabs. → [API atsauce](docs/reference/API_REFERENCE.md)
-- **🌍 Izvietošana un darbība** — reversā starpniekservera `basePath`, automātiska pārlūkprogrammas valodas noteikšana, ierīču uzskaite katrai atslēgai, MITM uzticamība bez root tiesībām, zh-TW lokalizācija. → [Vide](docs/reference/ENVIRONMENT.md)
-- **🤝 Vairāk pakalpojumu sniedzēju un aģentu** — mākoņa aģenti (Codex Cloud, Cursor, Devin, Jules), Grok Build (xAI) ar pārlūkprogrammas un OAuth pieteikšanos, pirmās klases Ollama karte, Claude Opus 5 un Sonnet 5, oficiāla Kimi partnerība (Code/Web/Moonshot), Zed, Requesty, SenseNova, Yuanbao, Agnes AI… un atjaunināts **385 pakalpojumu sniedzēja katalogs**. → [Pakalpojumu sniedzēji](docs/reference/PROVIDER_REFERENCE.md)
-- **📡 Maršrutēšanas pārredzamība** — katra atbilde ietver `X-OmniRoute-Decision` galveni, kas norāda to apkalpojušo stratēģiju/pakalpojumu sniedzēju/aizturi; jaunā `cache-optimized` kombinētā stratēģija un Auto-Combo `cacheAffinity` faktora maršruts atkārtotus pieprasījumus novirza atpakaļ uz savienojumu, kurā atrodas kešotais prefikss; tikai lasāms `/v1/auto-combo/{channel}/candidates` galapunkts atklāj `auto/*` kanāla aktuālo kandidātu kopu. → [Automātiskās kombinācijas](docs/routing/AUTO-COMBO.md)
-- **⚡ Vietējā veiktspēja un infrastruktūra** — lokālais Redis ar vienu klikšķi, Cloudflare Workers / Deno Deploy releju izvietotāji, Bifrost un Mux kā uzraudzīti iegulti pakalpojumi. → [Iegultie pakalpojumi](docs/frameworks/EMBEDDED-SERVICES.md)
-- **🧩 Arī komplektā** — spraudņu ietvars un tirgus, Omni/Agent/GitHub prasmju ietvari, Obsidian glabātuves integrācija (22 MCP rīki), ar OpenAI saderīgas Batch un Files API, semantiskā atbilžu kešatmiņa, spēļošana ar līderu tabulām, ACP aģentu atklāšana (15 iebūvēti aģenti), plānota žurnālu eksportēšana uz BigQuery, `auto/chaos` paralēla vairāku modeļu izkliedēšana, Telegram robota tilts, lietotnē iebūvēts versiju pārvaldnieks un LMArena-ELO bezmaksas pakalpojumu sniedzēju reitingi. → [Dokumentācija](docs/README.md)
+- **⚖️ `quota-weighted` maršrutēšana** — 20. kombinācijas stratēģija izlaiž izsmeltos kontus, pēc tam izlozē starp pārējiem proporcionāli atlikušajai kvotai ÷ lidojuma laikā, saglabājot esošās sarunas piespraustas. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
+- **🧰 Bezgalvu režīms** — `omniroute serve --headless` (vai `OMNIROUTE_HEADLESS=1`) darbina tikai `/v1/*` starpniekservera dzinēju ar izslēgtu informācijas paneli un tikai informācijas paneļa apakšsistēmu. → [bezgalvu režīms](docs/guides/HEADLESS.md)
+- **🔎 modeļa atklāšana** — `/v1/models` filtrē pēc iespējām, konteksta, veida un teksta, un `POST /v1/models/query` atgriež īsu deterministisku sarakstu ar tādu pašu redzamību katrai atslēgai. → [API Atsauce](docs/reference/API_REFERENCE.md)
+- **🔑 Katras atslēgas maršrutēšanas kontrole** — piespraudiet API atslēgu vienam modelim vai kombinācijai ar `forcedModel` un pievienojiet vai noņemiet atslēgas modeļus un kombinācijas atomiski (`/api/keys/{id}/access`). → [API Atsauce](docs/reference/API_REFERENCE.md) · [OpenAPI](docs/openapi.yaml)
+- **🛡️ Smalkākas PII vadības ierīces** — atlase katram veidam, līdz 20 apstiprinātiem pielāgotiem maskēšanas modeļiem un katra veida noteikšanas skaitītāji; pati maskēšana paliek izvēles iespēja. → [aizsargmargas](docs/security/GUARDRAILS.md)
+- **🌍 67 valodas** — informācijas panelis, dokumentu spoguļi un CLI, ar `npm run i18n:add-locale` pievienojot valodu visur vienā komandā. → [i18n ceļvedis](docs/guides/I18N.md)
+- **🎛️ OmniConductor** — ienākošā A2A delegācija jūsu aģentu flotei, diriģenta prasmes aģenta kartē un informācijas paneļa panelis ar Faro rācijsaziņas balss tērzēšanu. → [A2A serveris](docs/frameworks/A2A-SERVER.md)
+- **🛂 Adaptīvā uzņemšana un pārslodzes aizsardzība** — smagsvara tērzēšanas pieprasījumu rindu, nevis 503ing, ar atomic RPM slīdošo līzingu katram savienojumam. → [noturības rokasgrāmata](docs/architecture/RESILIENCE_GUIDE.md)
+- **🗂️ Canonical `/v1/models` pasūtīšana** — viens blakus esošais nodrošinātāju grupēts bloks katram nodrošinātājam (kombinācijas piespraustas vispirms), stabils visos kataloga avotos. → [API Atsauce](docs/reference/API_REFERENCE.md)
+- **🗜️ Kompresijas cietēšana** — noklusējuma inflācijas aizsargs, Caveman komplekti DE / FR / JA + ķīniešu (wényán), RTK filtri Gradle un .NET. → [kompresija](docs/compression/COMPRESSION_ENGINES.md)
+- **💸 Godīgas vienotas likmes izmaksas** — abonēšanas/kodēšanas plānu nodrošinātāji lasa** 0 $** izmaksu analīzē; budžets, kvota un maršrutēšana jāturpina aprēķināt. → [API atsauce](docs/reference/API_REFERENCE.md)
+- **⚖️ kvotas koplietošanas maršrutēšana** — sadala koplietojamā konta kvotu starp apvienotajām atslēgām, tādējādi ietaupot darbu, tāpēc tiek aizdotas dīkstāves daļas. → [noturības rokasgrāmata](docs/architecture/RESILIENCE_GUIDE.md)
+- **🤖 Vienas komandas CLI/agent iestatīšana** — 15 reģistrētas `setup-*` komandas; `omniroute run` palaiž 7 CLIs (Claude Code, Codex, Aider, Goose, OpenCode, Qwen Code, Gemini CLI); `omniroute configure` atbalsta 11 mērķus ar interaktīvu nodrošinātāja + modeļu atlasītāju un konteksta izlasi. → [CLI integrācijas](docs/guides/CLI-INTEGRATIONS.md)
+- **🛰️ tālvadības režīms** — vadīt attālo OmniRoute ar tvēruma marķieriem (`connect` / `contexts` / `tokens`) + un `antigravity` OAuth palīgs VPS instalēšanai. → [tālvadības režīms](docs/guides/REMOTE-MODE.md)
+- **🧭 Viedāka automātiskā maršrutēšana** — `auto/<category>:<tier>` kombinācijas,** Saplūšana** (modeļa paneļa + tiesnesis), uzdevumu apzināšanās maršrutēšana, modeļa / režīma / USD budžeta ignorēšana pēc pieprasījuma. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
+- **🗜️ Pieslēdzama kompresija** — 12 komposējami dzinēji + Compression Studios: LLMLingua-2, divu līmeņu Ultra, omniglyph, per-sep precizitātes vārti, GCF v3.2, vilkšanas-pārkārtošanas redaktors. → [saspiešana](docs/compression/COMPRESSION_ENGINES.md)
+- **🕵️ caurspīdīga MITM atšifrēšana (TPROXY)** — uztveršanas CLIs, kas ignorē starpniekservera env vars, ar katra SNI CA + uzticamības veikala instalētāju. → [MITM/TPROXY](docs/security/MITM-TPROXY-DECRYPT.md)
+- **💸 Izmaksu telemetrija visur** — `X-OmniRoute-*` cost/usage galvenes katrā galapunktā, kešatmiņas HIT ietaupījumu galvene, katras atslēgas USD tēriņu kvotas. → [API Atsauce](docs/reference/API_REFERENCE.md)
+- **🧠 Atmiņa, kuru kontrolējat** — izslēgts pēc noklusējuma, izvēlēties int8 vektoru kvantēšana + drukāts samazinājums, pēc pieprasījuma `x-omniroute-no-memory`. → [Atmiņa](docs/frameworks/MEMORY.md)
+- **🛡️ Drošība** — tūlītējas iesmidzināšanas aizsargs katrā LLM maršrutā (sarkanās komandas komplekts), izvēles akreditācijas datu maskēšanas margas (rediģē noplūdušo API keys/secrets abos virzienos), bezmaksas DuckDuckGo pēdējā iespēja meklēt tīmeklī un papildu OIDC pieteikšanās vārti informācijas panelim (pieteikšanās ar paroli vienmēr ir pieejama). → [aizsargmargas](docs/security/GUARDRAILS.md)
+- **🖼️ Jauni galapunkti** — `/v1/ocr` (Mistral OCR) un `/v1/audio/translations` (čukstu stils) noapaļo apdrukājamo materiālu virsmu. → [API atsauce](docs/reference/API_REFERENCE.md)
+- **🎨 Attēlu / video / audio ģenerēšana** — one API medijiem: xAI Grok Imagine & Novita AI video, ComfyUI, Magnific, Adobe Firefly, Segmind un runas nodrošinātāji, piemēram, ElevenLabs. → [API Atsauce](docs/reference/API_REFERENCE.md)
+- **🌍 Deployment & ops** — reverse-proxy `basePath`, pārlūkprogrammas valodas automātiskā noteikšana, katras atslēgas ierīces izsekošana, MITM uzticība bez saknēm, zh-TW lokalizācija. → [Vide](docs/reference/ENVIRONMENT.md)
+- **🤝 Vairāk pakalpojumu sniedzēju un aģentu** — mākoņa aģenti (Codex Cloud, Cursor, Devin, Jules), Grok Build (xAI) ar pārlūkprogrammas + OAuth pieteikšanos, Ollama pirmās klases karte, Claude Opus 5 un Sonnet 5, Kimi oficiālā partnerība (Code/Web/Moonshot), Zed, Agnes SenseNovaAI un atsvaidzināts** 385 pakalpojumu sniedzēju katalogs** . → [pakalpojumu sniedzēji](docs/reference/PROVIDER_REFERENCE.md)
+- **📡 Maršrutēšanas caurspīdīgums** — katrā atbildē ir `X-OmniRoute-Decision` galvene ar nosaukumu strategy/provider/latency, kas to apkalpoja, jauna `cache-optimized` combo stratēģija + Auto-Combo `cacheAffinity` faktors maršruta atkārtošanas pieprasījumus atpakaļ uz savienojumu, kurā ir kešatmiņā saglabātais prefikss, un tikai lasāms `/v1/auto-combo/{channel}/candidates` galapunkts atklāj `auto/*` kanāla reāllaika kandidātu kopu. → [Auto-Combo](docs/routing/AUTO-COMBO.md)
+- **⚡ Vietējā veiktspēja un infra** — viena klikšķa lokālais Redis, Cloudflare Workers / Deno Deploy releja izvietotāji, Bifrost & Mux kā uzraudzīti iegultie pakalpojumi. → [Embedded Services](docs/frameworks/EMBEDDED-SERVICES.md)
+- **🧩 Arī kastē** — spraudņu ietvars + Marketplace, Omni/Agent/GitHub prasmju ietvari, Obsidian glabātuves integrācija (22 MCP rīki), ar OpenAI saderīgs Batch & Files APIs, semantiskās atbildes kešatmiņa, spēlēšana ar līderu sarakstiem, ACP aģentu atklāšana (15 iebūvētie aģenti), plānota žurnāla eksportēšana uz BigQuery `auto/chaos`, multi fan out Telegram Bridge, lietotnes versiju pārvaldnieks un LMArena-ELO bezmaksas pakalpojumu sniedzēju klasifikācija. → [dokumenti](docs/README.md)
 
 <br/>
 
@@ -688,15 +677,15 @@ parāda precīzu vidi/argumentus pirms izpildes, un `--api-key-env NAME` pasarg�
 
 <div align="center">
 
-## 🌐 385 AI nodrošinātāji — 153 katalogā atzīmēti kā bezmaksas
+## 🌐 385 AI pakalpojumu sniedzēji — 153 ar katalogu atzīmēti bez maksas
 
 </div>
 
-> **385 reģistrēts nodrošinātājs** kanoniskajās tērzēšanas, multivides, meklēšanas, lokālajās, mākoņa aģentu un sistēmu kolekcijās, tostarp **153 ar `hasFree: true` atklāšanas metadatiem**. Tērzēšanas modeļu reģistrs aptver **239 nodrošinātājus / 3 059 atšķirīgus nodrošinātāja–modeļa pārus / 1 475 neapstrādātus modeļu ID**; atsevišķajā bezmaksas budžeta katalogā ir **471 rinda katram modelim**, **34 periodiski resursu pūli** un **52 periodiski / bez atslēgas pieejami nodrošinātāji, kas vienmēr ir bezmaksas**. Šie saucēji pēc būtības atšķiras; definīcijas un aprēķini, kuros pūli tiek uzskaitīti tikai vienreiz, ir pieejami sadaļās [Nodrošinātāju atsauce](docs/reference/PROVIDER_REFERENCE.md) un [Bezmaksas līmeņi](docs/reference/FREE_TIERS.md).
+> **385 reģistrēti pakalpojumu sniedzēji** kanoniskajās tērzēšanas, multivides, meklēšanas, vietējās, mākoņa aģentu un sistēmu kolekcijās, tostarp** 153, kas satur `hasFree: true` atklāšanas metadatus** . Tērzēšanas modeļu reģistrs aptver** 239 pakalpojumu sniedzēji / 3059 atšķirīgi nodrošinātāja-modeļu pāri / 1475 neapstrādāts modelis IDs** ; ir atsevišķajā brīvbudžeta katalogā** 471 rinda katram modelim** ,** 34 periodiski baseini** un** 52 recurring/keyless bezmaksas uz visiem laikiem pakalpojumu sniedzēji** . Tie ir dažādi saucēji pēc dizaina; definīcijas un pūla atdalītie aprēķini ir pieejami [pakalpojumu sniedzēja atsaucē](docs/reference/PROVIDER_REFERENCE.md) un [bezmaksas līmeņos](docs/reference/FREE_TIERS.md).
 
 <div align="center">
 
-### 🏢 Katra nozīmīgākā laboratorija — izmantojot vienu galapunktu
+### 🏢 Katra lielākā laboratorija — caur vienu galapunktu
 
 <table>
   <tr>
@@ -716,7 +705,7 @@ parāda precīzu vidi/argumentus pirms izpildes, un `--api-key-env NAME` pasarg�
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/cohere-color.svg" width="40" alt="Cohere"/><br/><sub>Cohere</sub><br/><sub>                           </sub></td>
   </tr>
   <tr>
-    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/perplexity-color.svg" width="40" alt="Perplexity"/><br/><sub>Perplexity</sub><br/><sub>                           </sub></td>
+    <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/perplexity-color.svg" width="40" alt="Perplexity"/><br/><sub>Apjukums</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/huggingface-color.svg" width="40" alt="Hugging Face"/><br/><sub>HuggingFace</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/together-color.svg" width="40" alt="Together"/><br/><sub>Together</sub><br/><sub>                           </sub></td>
     <td align="center" width="80"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/fireworks-color.svg" width="40" alt="Fireworks"/><br/><sub>Fireworks</sub><br/><sub>                           </sub></td>
@@ -725,28 +714,28 @@ parāda precīzu vidi/argumentus pirms izpildes, un `--api-key-env NAME` pasarg�
   </tr>
 </table>
 
-<sub>…un vēl vairāk nekā 350 — katra ikona tiek dinamiski ielādēta no informācijas paneļa nodrošinātāju kataloga. 📖 [Nodrošinātāju atsauce](docs/reference/PROVIDER_REFERENCE.md)</sub>
+<sub>…un par 350 + vairāk — katra ikona tiek atrisināta tiešraidē no informācijas paneļa pakalpojumu sniedzēju kataloga. 📖 [sniedzēja atsauce](docs/reference/PROVIDER_REFERENCE.md)</sub>
 
 <br/>
 
-### 🆓 Vienmēr bez maksas — $0, karte nav nepieciešama
+### 🆓 Free Forever — $0, bez kartes
 
 <table>
   <tr>
-    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="OpenCode Zen"/><br/><b>OpenCode Zen</b><br/><sub>DeepSeek V4, Nemotron 3<br/>Bez tokenu ierobežojuma</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="Kilo Code"/><br/><b>Kilo Code</b><br/><sub>Automātiska maršrutēšana, Tencent Hy3<br/>Bezmaksas uz visiem laikiem</sub></td>
-    <td align="center" width="150"><img src="./public/providers/requesty.svg" width="42" alt="Requesty"/><br/><b>Requesty</b><br/><sub>GPT-OSS 120B, Nemotron<br/>Bezmaksas uz visiem laikiem</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="OpenCode Zen"/><br/><b>OpenCode Zen</b><br/><sub>DeepSeek V4, Nemotron 3<br/>Nav žetonu vāciņa</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cli-generic.svg" width="42" alt="Kilo Code"/><br/><b>Kilo kods</b><br/><sub>Automātiskais maršrutētājs, Tencent Hy3<br/>Bezmaksas uz visiem laikiem</sub></td>
+    <td align="center" width="150"><img src="./public/providers/requesty.svg" width="42" alt="Requesty"/><br/><b>Pieprasījums</b><br/><sub>GPT-OSS 120B, Nemotron<br/>Bezmaksas uz visiem laikiem</sub></td>
     <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/siliconcloud-color.svg" width="42" alt="SiliconFlow"/><br/><b>SiliconFlow</b><br/><sub>DeepSeek V3.2 / R1<br/>Bezmaksas līmenis</sub></td>
     <td align="center" width="150"><img src="./public/providers/zhipu.svg" width="42" alt="Z.AI GLM"/><br/><b>Z.AI GLM</b><br/><sub>GLM-4.7 / 4.5-Flash<br/>Bezmaksas uz visiem laikiem</sub></td>
     <td align="center" width="150"><img src="./public/providers/baidu.svg" width="42" alt="Baidu ERNIE"/><br/><b>Baidu ERNIE</b><br/><sub>ERNIE 4.0<br/>Bezmaksas uz visiem laikiem</sub></td>
   </tr>
   <tr>
-    <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qoder-color.svg" width="42" alt="Qoder AI"/><br/><b>Qoder AI</b><br/><sub>Qwen3-Max, Kimi-K2<br/>Neierobežoti BEZ MAKSAS</sub></td>
-    <td align="center" width="150"><img src="./public/providers/pollinations.svg" width="42" alt="Pollinations"/><br/><b>Pollinations</b><br/><sub>GPT, Llama, Claude<br/>Atslēga nav nepieciešama</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cloudflare.svg" width="42" alt="Cloudflare AI"/><br/><b>Cloudflare AI</b><br/><sub>Vairāk nekā 50 modeļu<br/>10 tūkst. neironu dienā</sub></td>
-    <td align="center" width="150"><img src="./public/providers/nvidia.svg" width="42" alt="NVIDIA NIM"/><br/><b>NVIDIA NIM</b><br/><sub>GLM, MiniMax<br/>~40 RPM bez maksas</sub></td>
-    <td align="center" width="150"><img src="./public/providers/cerebras.svg" width="42" alt="Cerebras"/><br/><b>Cerebras</b><br/><sub>GLM 4.7, GPT-OSS<br/>Vienreizējs $5 kredīts; nepieciešama karte</sub></td>
-    <td align="center" width="150"><img src="./public/providers/openrouter.svg" width="42" alt="OpenRouter"/><br/><b>OpenRouter</b><br/><sub>:free modeļi<br/>+$10 → lielāks RPM</sub></td>
+    <td align="center" width="150"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@1.91.0/icons/qoder-color.svg" width="42" alt="Qoder AI"/><br/><b>Qoder AI</b><br/><sub>Qwen3-Max, Kimi-K2<br/>Neierobežots FREE</sub></td>
+    <td align="center" width="150"><img src="./public/providers/pollinations.svg" width="42" alt="Pollinations"/><br/><b>Apputeksnēšana</b><br/><sub>GPT, Llama, Claude<br/>Nav nepieciešama atslēga</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cloudflare.svg" width="42" alt="Cloudflare AI"/><br/><b>Cloudflare AI</b><br/><sub>50 + modeļi<br/>10K neurons/day</sub></td>
+    <td align="center" width="150"><img src="./public/providers/nvidia.svg" width="42" alt="NVIDIA NIM"/><br/><b>NVIDIA NIM</b><br/><sub>GLM, MiniMax<br/>~ 40 RPM bezmaksas</sub></td>
+    <td align="center" width="150"><img src="./public/providers/cerebras.svg" width="42" alt="Cerebras"/><br/><b>Cerebras</b><br/><sub>GLM 4.7, GPT-OSS<br/>Vienreizējs 5 USD kredīts; nepieciešama karte</sub></td>
+    <td align="center" width="150"><img src="./public/providers/openrouter.svg" width="42" alt="OpenRouter"/><br/><b>OpenRouter</b><br/><sub>: bezmaksas modeļi<br/>+$ 10 → lielāks RPM</sub></td>
   </tr>
 </table>
 
@@ -1285,28 +1274,28 @@ Kanoniskie rādītāji 2026-10-18: **1.976 unikāli videoklipi** · **20.220.289
 <br/>
 <div align="center">
 
-## 🛠️ Tehnoloģiju steks
+## 🛠️ Tech Stack
 
 </div>
 
 <table>
   <tr><th align="left">Slānis</th><th align="left">Tehnoloģija</th></tr>
-  <tr><td nowrap><b>Izpildlaiks</b></td><td>Node.js 22.x / 24.x LTS — <code>&gt;=22.22.2 &lt;23 || &gt;=24.0.0 &lt;27</code></td></tr>
-  <tr><td nowrap><b>Valoda</b></td><td>TypeScript 6.0 — <b>100% TypeScript</b> visā <code>src/</code> un <code>open-sse/</code> (kopš v2.0 kodolā nav neviena <code>any</code>)</td></tr>
-  <tr><td nowrap><b>ietvars</b></td><td>Next.js 16 + React 19 + Tailwind CSS 4</td></tr>
-  <tr><td nowrap><b>Datu bāze</b></td><td>better-sqlite3 (SQLite, WAL žurnalēšana) + LowDB (mantotais JSON) — 147 domēna moduļi, 232 migrācijas</td></tr>
-  <tr><td nowrap><b>Atmiņa</b></td><td>SQLite FTS5 pilnteksta meklēšana + int8 kvantizēti vektoru iegulumi, tipizēta novecošana</td></tr>
-  <tr><td nowrap><b>Shēmas</b></td><td>Zod 4 — MCP rīku I/O validācija + API līgumi</td></tr>
-  <tr><td nowrap><b>Protokoli</b></td><td>MCP (stdio / HTTP / SSE) + A2A v0.3 (JSON-RPC 2.0 + SSE)</td></tr>
+  <tr><td nowrap><b>Izpildes laiks</b></td><td>Node.js 22.x / 24.x LTS — <code>&gt;=22.22.2 &lt;23 || &gt;=24.0.0 &lt;27</code></td></tr>
+  <tr><td nowrap><b>Valoda</b></td><td>TypeScript 6.0 — <b>100% TypeScript</b> <code>src/</code> un <code>open-sse/</code> (nulle <code>any</code> kodolā kopš v2.0)</td></tr>
+  <tr><td nowrap><b>Ietvars</b></td><td>Next.js 16 + React 19 + Tailwind CSS 4</td></tr>
+  <tr><td nowrap><b>Datu bāze</b></td><td>better-sqlite3 (SQLite, WAL journaling) + LowDB (JSON mantojums) — 147 domēna moduļi, 232 migrācijas</td></tr>
+  <tr><td nowrap><b>Atmiņa</b></td><td>SQLite FTS5 pilna teksta + int8-quantized vektoru iegulšana, drukāta samazināšanās</td></tr>
+  <tr><td nowrap><b>Shēmas</b></td><td>Zod 4 — MCP rīks I/O validācija + API līgumi</td></tr>
+  <tr><td nowrap><b>Protokoli</b></td><td>MCP (stdio/ HTTP / SSE) + A2A v0.3 (JSON-RPC 2.0 + SSE)</td></tr>
   <tr><td nowrap><b>Straumēšana</b></td><td>Servera nosūtīti notikumi (SSE) + WebSocket tilts (<code>/v1/ws</code>)</td></tr>
-  <tr><td nowrap><b>Saspiešana</b></td><td>12 dzinēju konveijers — RTK, Caveman, LLMLingua-2 (MobileBERT ONNX), GCF, OmniGlyph</td></tr>
-  <tr><td nowrap><b>Autentifikācija un drošība</b></td><td>OAuth 2.0 (PKCE) + JWT + API atslēgas + MCP tvēruma autentifikācija · AES-256-GCM miera stāvoklī · DOMPurify</td></tr>
-  <tr><td nowrap><b>Maskēšanās</b></td><td>wreq-js — JA3 / JA4 TLS pirkstu nospiedumu imitācija, 3 līmeņu starpniekserveris</td></tr>
-  <tr><td nowrap><b>Noturība</b></td><td>Ķēdes pārtraucējs, eksponenciāla atkāpšanās, pretējo pieprasījumu bara novēršana, automātiska kombināciju pašatjaunošanās</td></tr>
-  <tr><td nowrap><b>Žurnalēšana</b></td><td>pino — strukturēti JSON žurnāli ar pieprasījuma kontekstu</td></tr>
-  <tr><td nowrap><b>Testēšana</b></td><td>Node.js testu palaidējs + Vitest — <b>60 000+ statisku testu deklarāciju</b> vairāk nekā 8 400 izsekotos testu failos (vienību, integrācijas, E2E, drošības, ekosistēmas)</td></tr>
-  <tr><td nowrap><b>Platformas</b></td><td>Dators (Electron) · Android (Termux) · PWA (jebkura pārlūkprogramma)</td></tr>
-  <tr><td nowrap><b>CI/CD</b></td><td>GitHub Actions — automātiska publicēšana npm + Docker Hub laidiena laikā</td></tr>
+  <tr><td nowrap><b>Saspiešana</b></td><td>12 dzinēju cauruļvads — RTK, alu cilvēks, LLMLingua-2 (MobileBERT ONNX), GCF, OmniGlyph</td></tr>
+  <tr><td nowrap><b>Auth &amp; drošība</b></td><td>OAuth 2.0 (PKCE) + JWT + API Taustiņi + MCP tvēruma autentifikācija · AES-256-GCM miera stāvoklī · DOMPurify</td></tr>
+  <tr><td nowrap><b>Maskēšanās</b></td><td>wreq-js — JA3 / JA4 TLS pirksta nospieduma uzdošanās, 3 līmeņu starpniekserveris</td></tr>
+  <tr><td nowrap><b>Izturība</b></td><td>Strāvas slēdzis, eksponenciāls atkāpšanās, pret pērkona bars, automātiska kombinēta pašatveseļošanās</td></tr>
+  <tr><td nowrap><b>Mežizstrāde</b></td><td>pino — strukturēti JSON žurnāli ar pieprasījuma kontekstu</td></tr>
+  <tr><td nowrap><b>Testēšana</b></td><td>Node.js testa skrējējs + Vitest — <b>60 000 + statiskās pārbaudes deklarācijas</b> 8400 + izsekotajos testa failos (vienība, integrācija, E2E, drošība, ekosistēma)</td></tr>
+  <tr><td nowrap><b>Platformas</b></td><td>Darbvirsma (Electron) · Android (Termux) · PWA (jebkura pārlūkprogramma)</td></tr>
+  <tr><td nowrap><b>CI/CD</b></td><td>GitHub Actions — auto npm public + Docker Hub izlaišanas brīdī</td></tr>
   <tr><td nowrap><b>Saites</b></td><td><a href="https://omniroute.online">Tīmekļa vietne</a> · <a href="https://www.npmjs.com/package/omniroute">npm</a> · <a href="https://hub.docker.com/r/diegosouzapw/omniroute">Docker Hub</a></td></tr>
 </table>
 

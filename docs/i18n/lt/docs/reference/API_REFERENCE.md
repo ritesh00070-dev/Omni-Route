@@ -953,33 +953,24 @@ CLI pakeičia `base_url + /responses` į WebSocket, o „OmniRoute“ perduoda j
 
 ## Kvotų ir problemų ataskaitos
 
-| Metodas | Kelias              | Aprašymas                                                                                             |
-| ------- | ------------------- | ----------------------------------------------------------------------------------------------------- |
-| GET     | `/v1/quotas/check`  | Iš anksto patikrinti `provider` + `accountId` kvotą prieš išduodant registruotą raktą                 |
-| POST    | `/v1/issues/report` | Pranešti apie kvotos / rakto išdavimo nesėkmę „GitHub“ (reikia `GITHUB_ISSUES_REPO` + prieigos rakto) |
+| Metodas | Kelias              | Aprašymas                                                                                        |
+| ------- | ------------------- | ------------------------------------------------------------------------------------------------ |
+| GET     | `/v1/quotas/check`  | Prieš išduodant registruotą raktą, iš anksto patvirtinkite `provider` + `accountId` kvotą        |
+| POST    | `/v1/issues/report` | Pranešti apie quota/key išdavimo sutrikimą GitHub (reikia `GITHUB_ISSUES_REPO` + prieigos rakto) |
 
-**Autentifikavimas:** „Bearer“ API raktas (`isAuthenticated`).
+**Auth:** `/v1/quotas/check` paima nešiklio API raktą (`isAuthenticated`). `/v1/issues/report` yra skirtas tik valdymui (`requireManagementAuth`), kaip ir `/api/v1/registered-keys`: prietaisų skydelio seansas, vietinis CLI prieigos raktas arba API raktas su `manage`/`admin` apimtimi; Tik išvadoms skirti API klavišai gauna `403`.
 
-### Kvotos seanso atkūrimas (pasirenkama funkcija)
+### Kvotos seanso atkūrimas (pasirinkimas)
 
-Neužsikraunantis srautu `POST /v1/chat/completions` arba `POST /v1/responses`, kuris baigiasi
-galutine kvotos klaida (`402`/`429`/`503`, kurios atsakyme nurodoma, kad kvota arba kreditai
-išeikvoti), gali būti atidėtas ir vėliau pakartotas, užuot grąžinus klaidą. Skambinantysis
-pasirenka šią funkciją kiekvienai užklausai, nurodydamas tris antraštes:
+Neperduodamą `POST /v1/chat/completions` arba `POST /v1/responses`, kuris sugenda dėl terminalo kvotos klaidos (`402`/`429`/`503`, kurio turinys sako, kad kvota arba kreditai išnaudoti), gali būti paliktas ir paleidžiamas vėliau, užuot grąžinus klaidą. Skambintojas pasirenka pagal užklausą su trimis antraštėmis:
 
-| Antraštė                     | Reikšmė                                       |
-| ---------------------------- | --------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                        |
-| `x-omniroute-session`        | seanso ID, `[A-Za-z0-9._:-]{1,128}`           |
-| `x-omniroute-recovery-turn`  | seanse unikalus posūkio ID (ta pati taisyklė) |
+| Antraštė                     | Vertė                                              |
+| ---------------------------- | -------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                             |
+| `x-omniroute-session`        | seanso ID, `[A-Za-z0-9._:-]{1,128}`                |
+| `x-omniroute-recovery-turn`  | paversti unikalų ID seanso metu (ta pati taisyklė) |
 
-Tinkamos naudoti tik užklausos su `stream: false`, be įrankių, įrankių istorijos ar
-`previous_response_id` ir be `x-omniroute-connection` prisegimo; taip pat turi būti nustatytas
-`STORAGE_ENCRYPTION_KEY` (užklausa saugoma užšifruota iki 24 val.). Tada atsakymas yra `202` su
-`recovery.poll`; apklauskite `GET /v1/quota-recoveries/{id}` (`202`, kol laukiama, `200` su
-atkurtu atsakymu, kai užbaigta) arba atšaukite naudodami `DELETE`. Bilietai matomi tik juos
-sukūrusiam API raktui. Jei pakartotinio siuntimo rezultatas neaiškus, atkūrimas baigiamas būsena
-`needs_confirmation`, o užklausa nesiunčiama du kartus. Šaltinis: `src/lib/quota/quotaSessionRecovery.ts`.
+Tinkami tik `stream: false` posūkiai be įrankių, įrankių istorijos ar `previous_response_id` ir be `x-omniroute-connection` kaiščio, o `STORAGE_ENCRYPTION_KEY` turi būti nustatytas (užklausa saugoma šifruota iki 24 val.). Tada atsakymas yra `202` su `recovery.poll`; apklausa `GET /v1/quota-recoveries/{id}` (`202` laukiama, `200` su atkurtu turiniu, kai baigta) arba atšaukti su `DELETE`. Bilietai matomi tik juos sukūrusiam API klavišui. Pakartojimas, kurio rezultatas neaiškus, baigiasi `needs_confirmation` o ne siunčiamas du kartus. Šaltinis: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1731,19 +1722,23 @@ Išeinančios žiniatinklio kabliukų prenumeratos, skirtos „OmniRoute“ įvy
 
 ---
 
-## Užregistruoti raktai (automatinis valdymas)
+## Registruoti raktai (automatinis valdymas)
 
-Naudojama automatiniam raktų valdymo posistemiui, kad išduotų ir pasuktų API raktus pagalbinio teikėjo / paskyros atžvilgiu, taikant dienos / valandos kvotas.
+Naudojamas automatinio raktų valdymo posistemėje, kad išduotų ir pasuktų API raktus prieš pagrindinį provider/account, su daily/hourly kvotomis.
 
-| Method | Path                                  | Description                                                                                                                                                                                                           |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Išvardyti užregistruotus raktus (tik užmaskuotas prefiksas)                                                                                                                                                           |
-| POST   | `/api/v1/registered-keys`             | Išduoti naują užregistruotą raktą — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Neapdorotas raktas grąžinamas **vieną kartą**. Kvotai neleidus, grąžinama `429`. |
-| GET    | `/api/v1/registered-keys/[id]`        | Gauti užregistruoto rakto metaduomenis (be neapdorotos medžiagos)                                                                                                                                                     |
-| DELETE | `/api/v1/registered-keys/[id]`        | Atšaukti užregistruotą raktą                                                                                                                                                                                          |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Aiškus atšaukimo galinis taškas (poveikis toks pats kaip DELETE)                                                                                                                                                      |
+| Metodas | Kelias                                | Aprašymas                                                                                                                                                                                                            |
+| ------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET     | `/api/v1/registered-keys`             | Užregistruotų raktų sąrašas (tik užmaskuotas priešdėlis)                                                                                                                                                             |
+| POST    | `/api/v1/registered-keys`             | Išduokite naują registruotą raktą — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Grąžina neapdorotą raktą** vieną kartą** . Grąžina `429` dėl kvotos atsisakymo. |
+| GET     | `/api/v1/registered-keys/[id]`        | Gauti registruoto rakto metaduomenis (be žaliavos)                                                                                                                                                                   |
+| DELETE  | `/api/v1/registered-keys/[id]`        | Atšaukti registruotą raktą                                                                                                                                                                                           |
+| POST    | `/api/v1/registered-keys/[id]/revoke` | Aiškus atšaukimo galutinis taškas (tas pats efektas kaip DELETE)                                                                                                                                                     |
+| GET     | `/api/v1/providers/[provider]/limits` | Perskaitykite teikėjo išdavimo ribas                                                                                                                                                                                 |
+| PUT     | `/api/v1/providers/[provider]/limits` | Nustatykite teikėjo išdavimo viršutines ribas — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                        |
+| GET     | `/api/v1/accounts/[id]/limits`        | Perskaitykite sąskaitos išdavimo viršutines ribas                                                                                                                                                                    |
+| PUT     | `/api/v1/accounts/[id]/limits`        | Nustatykite paskyros išdavimo viršutines ribas — tokias pačias kaip teikėjo maršrutas                                                                                                                                |
 
-**Autentifikavimas:** valdymo sesija / API raktas (`requireManagementAuth`) — ta pati apsauga kaip `/api/keys`: prietaisų skydelio sesija, vietinis CLI prieigos raktas arba API raktas su `manage` / `admin` apimtimi; tik išvadoms skirti API raktai gauna `403`. Taip pat žr. `/v1/quotas/check` ir `/v1/issues/report`.
+**Auth:** valdymo session/API raktas (`requireManagementAuth`) — ta pati apsauga kaip ir `/api/keys`: prietaisų skydelio seansas, vietinis CLI raktas arba API raktas su `manage`/`admin` apimtimi; Tik išvadoms skirti API klavišai gauna `403`. Taip pat žr. `/v1/quotas/check` ir `/v1/issues/report`.
 
 ---
 

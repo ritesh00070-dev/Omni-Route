@@ -470,7 +470,7 @@ open-sse/
 | ----------------------- | ---------------------------------------------------------------------------------- |
 | `chatCore.ts`           | Hovedchat-pipeline (cache, hastighetsgrense, combo-ruting, eksekveringsutsendelse) |
 | `responsesHandler.ts`   | OpenAI Svar API inngangspunkt                                                      |
-| `embeddings.ts`         | Innstøpninger                                                                      |
+| `embeddings.ts`         | Innstøpinger                                                                       |
 | `imageGeneration.ts`    | Bildegenerering                                                                    |
 | `audioSpeech.ts`        | Tekst-til-tale                                                                     |
 | `audioTranscription.ts` | Tale-til-tekst                                                                     |
@@ -490,7 +490,7 @@ open-sse/
 
 `antigravity`, `azure-openai`, `blackbox-web`, `cliproxyapi`, `chatgpt-web-codex`, `cloudflare-ai`, `codex`, `commandCode`, `cursor`, `default`, `devin-cli`, `muse-spark-web`, `nlpcloud`, `opencode`, `perplexity-web`, `petals`, `pollinations`, `qoder`, `vertex`, `devin-desktop`, plus `claudeIdentity.ts` (shared identity helper) and `index.ts` (registry).
 
-> Merk: leverandører som ikke er oppført her, betjenes av `default.ts` ved å bruke den generiske OpenAI-kompatible eksekveren. Den fullstendige leverandørkatalogen (381 leverandører) finnes i `src/shared/constants/providers.ts`.
+> Merk: leverandører som ikke er oppført her, betjenes av `default.ts` ved å bruke den generiske OpenAI-kompatible eksekveren. Den fullstendige leverandørkatalogen (385 leverandører) bor i `src/shared/constants/providers.ts`.
 
 ### 4.3 `open-sse/translator/`
 

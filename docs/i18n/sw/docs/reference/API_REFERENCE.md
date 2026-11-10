@@ -946,36 +946,26 @@ CLI huboresha `base_url + /responses` kuwa WebSocket na OmniRoute huunganisha kw
 
 ---
 
-## Ripoti ya Kiwango cha Matumizi na Matatizo
+## Kuripoti Nafasi na Masuala
 
-| Method | Path                | Description                                                                                                         |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Kuthibitisha mapema kiwango cha matumizi kwa `provider` + `accountId` kabla ya kutoa ufunguo uliosajiliwa           |
-| POST   | `/v1/issues/report` | Kuripoti kushindwa kwa utoaji wa ufunguo/kiwango cha matumizi kwa GitHub (inahitajika `GITHUB_ISSUES_REPO` + token) |
+| Mbinu | Njia                | Maelezo                                                                                        |
+| ----- | ------------------- | ---------------------------------------------------------------------------------------------- |
+| GET   | `/v1/quotas/check`  | Thibitisha mapema kiasi cha `provider` + `accountId` kabla ya kutoa ufunguo uliosajiliwa       |
+| POST  | `/v1/issues/report` | Ripoti kutofaulu kwa utoaji wa quota/key kwa GitHub (inahitaji tokeni `GITHUB_ISSUES_REPO` + ) |
 
-**Uthibitishaji:** Ufunguo wa API wa Bearer (`isAuthenticated`).
+**Uthibitishaji:** `/v1/quotas/check` huchukua kitufe cha Bearer API (`isAuthenticated`). `/v1/issues/report` ni ya usimamizi pekee (`requireManagementAuth`), kama `/api/v1/registered-keys`: kikao cha dashibodi, tokeni ya CLI ya ndani, au kitufe cha API chenye upeo wa `manage`/`admin` ; funguo za inference-tu API pata `403`.
 
-### Urejeshaji wa kipindi cha kiwango cha matumizi (kwa kuchagua)
+### Urejeshaji wa kipindi cha sehemu (chagua kuingia)
 
-Ombi lisilo la mtiririko la `POST /v1/chat/completions` au `POST /v1/responses` linaloshindwa
-kwa hitilafu ya mwisho ya kiwango cha matumizi (`402`/`429`/`503` ambayo mwili wake unasema
-kuwa kiwango cha matumizi au salio limekwisha) linaweza kuhifadhiwa na kuchezeshwa tena baadaye
-badala ya kurudisha hitilafu. Mpigaji hujiandikisha kwa kila ombi kwa kutumia vichwa vitatu:
+`POST /v1/chat/completions` au `POST /v1/responses` isiyotiririsha ambayo itashindikana kwa hitilafu ya mgao wa mwisho (`402`/`429`/`503` ambayo mwili wake unasema kwamba kiasi au mikopo imekamilika) inaweza kuegeshwa na kuchezwa tena baadaye badala ya kurudisha hitilafu. Mpigaji hujijumuisha kwa kila ombi na vichwa vitatu:
 
-| Header                       | Value                                                              |
-| ---------------------------- | ------------------------------------------------------------------ |
-| `x-omniroute-quota-recovery` | `auto`                                                             |
-| `x-omniroute-session`        | kitambulisho cha kipindi, `[A-Za-z0-9._:-]{1,128}`                 |
-| `x-omniroute-recovery-turn`  | kitambulisho cha zamu cha kipekee ndani ya kipindi (kanuni ileile) |
+| Kijajuu                      | Thamani                                                     |
+| ---------------------------- | ----------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                      |
+| `x-omniroute-session`        | kitambulisho cha kikao, `[A-Za-z0-9._:-]{1,128}`            |
+| `x-omniroute-recovery-turn`  | geuza kitambulisho cha kipekee ndani ya kikao (sheria sawa) |
 
-Zamu za `stream: false` pekee zisizo na zana, historia ya zana au
-`previous_response_id`, na zisizo na pini ya `x-omniroute-connection`, ndizo zinazostahiki, na
-`STORAGE_ENCRYPTION_KEY` lazima iwekwe (ombi huhifadhiwa kwa usimbaji fiche kwa hadi saa 24).
-Jibu huwa `202` lenye `recovery.poll`; piga `GET /v1/quota-recoveries/{id}` (`202` ikiwa bado
-inasubiri, `200` lenye mwili uliorejeshwa linapokamilika) au ghairi kwa `DELETE`. Tiketi
-zinaonekana tu kwa ufunguo wa API ulioziunda. Uchezeshaji tena ambao matokeo yake hayana
-uhakika huishia katika `needs_confirmation` badala ya kutumwa mara mbili. Chanzo:
-`src/lib/quota/quotaSessionRecovery.ts`.
+Ni zamu za `stream: false` pekee bila zana, historia ya zana au `previous_response_id`, na bila pini `x-omniroute-connection`, ndizo zinazostahiki, na `STORAGE_ENCRYPTION_KEY` lazima iwekwe (ombi limehifadhiwa kwa njia fiche kwa hadi h 24). Jibu basi ni `202` na `recovery.poll`; kura ya maoni `GET /v1/quota-recoveries/{id}` (`202` inaposubiri, `200` pamoja na mwili uliopatikana ikikamilika) au ghairi kwa `DELETE`. Tikiti zinaonekana tu kwa ufunguo wa API ulioziunda. Mchezo wa marudiano ambao matokeo yake hayana uhakika huisha kwa `needs_confirmation` badala ya kutumwa mara mbili. Chanzo: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1706,19 +1696,23 @@ Usajili wa vijihamishi vya wavuti vinavyotoka kwa matukio ya OmniRoute (ukamilis
 
 ---
 
-## Funguo Zilizosajiliwa (Usimamizi Otomatiki)
+## Funguo Zilizosajiliwa (Usimamizi wa Kiotomatiki)
 
-Hutumika na mfumo wa usimamizi wa funguo otomatiki kutoa na kuzungusha funguo za API dhidi ya mtoa huduma/akaunti inayounga mkono, zikiwa na mgao wa kila siku/kila saa.
+Inatumiwa na mfumo mdogo wa usimamizi wa ufunguo-otomatiki kutoa na kuzungusha funguo za API dhidi ya provider/account inayoungwa mkono, yenye migao daily/hourly.
 
-| Mbinu  | Njia                                  | Maelezo                                                                                                                                                                                                          |
-| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Orodhesha funguo zilizosajiliwa (kiambishi awali kilichofichwa pekee)                                                                                                                                            |
-| POST   | `/api/v1/registered-keys`             | Toa ufunguo mpya uliosajiliwa — mwili: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Hurejesha ufunguo ghafi **mara moja**. Hurejesha `429` iwapo mgao umekataliwa. |
-| GET    | `/api/v1/registered-keys/[id]`        | Pata metadata ya ufunguo uliosajiliwa (hakuna nyenzo ghafi)                                                                                                                                                      |
-| DELETE | `/api/v1/registered-keys/[id]`        | Batilisha ufunguo uliosajiliwa                                                                                                                                                                                   |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Mwisho wa wazi wa kubatilisha (athari sawa na DELETE)                                                                                                                                                            |
+| Mbinu  | Njia                                  | Maelezo                                                                                                                                                                                                       |
+| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Orodhesha funguo zilizosajiliwa (kiambishi awali kilichofichwa pekee)                                                                                                                                         |
+| POST   | `/api/v1/registered-keys`             | Toa chombo kipya cha — kilichosajiliwa: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Hurejesha ufunguo ghafi** mara moja** . Hurejesha `429` kwa kukataa kiasi. |
+| GET    | `/api/v1/registered-keys/[id]`        | Rejesha metadata ya ufunguo uliosajiliwa (hakuna malighafi)                                                                                                                                                   |
+| DELETE | `/api/v1/registered-keys/[id]`        | Batilisha ufunguo uliosajiliwa                                                                                                                                                                                |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Batilisha sehemu ya mwisho (athari sawa na DELETE)                                                                                                                                                            |
+| GET    | `/api/v1/providers/[provider]/limits` | Soma kofia za utoaji za mtoa huduma                                                                                                                                                                           |
+| PUT    | `/api/v1/providers/[provider]/limits` | Weka vifuniko vya utoaji wa mtoaji — mwili: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                           |
+| GET    | `/api/v1/accounts/[id]/limits`        | Soma vikomo vya utoaji wa akaunti                                                                                                                                                                             |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Weka vikomo vya utoaji wa akaunti — mwili sawa na njia ya mtoa huduma                                                                                                                                         |
 
-**Uthibitishaji:** session/ufunguo wa API wa usimamizi (`requireManagementAuth`) — kizuizi sawa na `/api/keys`: session ya dashibodi, tokeni ya CLI ya ndani, au ufunguo wa API wenye wigo wa `manage`/`admin`; funguo za API za inferensi pekee hupata `403`. Tazama pia `/v1/quotas/check` na `/v1/issues/report`.
+**Uthibitishaji:** ufunguo session/API wa usimamizi (`requireManagementAuth`) — mlinzi sawa na `/api/keys`: kikao cha dashibodi, tokeni ya CLI ya ndani, au kitufe cha API chenye upeo wa `manage`/`admin` ; funguo za API za inference tu pata `403`. Tazama pia `/v1/quotas/check` na `/v1/issues/report`.
 
 ---
 

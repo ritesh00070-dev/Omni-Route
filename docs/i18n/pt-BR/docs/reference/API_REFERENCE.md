@@ -933,36 +933,26 @@ A CLI transforma `base_url + /responses` em um WebSocket, e o OmniRoute cria um 
 
 ---
 
-## Relatórios de cotas e problemas
+## Relatório de cotas e problemas
 
 | Método | Caminho             | Descrição                                                                                  |
 | ------ | ------------------- | ------------------------------------------------------------------------------------------ |
-| GET    | `/v1/quotas/check`  | Pré-validar a cota para um `provider` + `accountId` antes de emitir uma chave registrada   |
-| POST   | `/v1/issues/report` | Relatar uma falha de emissão de cota/chave ao GitHub (requer `GITHUB_ISSUES_REPO` + token) |
+| GET    | `/v1/quotas/check`  | Pré-valide a cota para um `provider` + `accountId` antes de emitir uma chave registrada    |
+| POST   | `/v1/issues/report` | Relatar uma falha na emissão do quota/key ao GitHub (requer token `GITHUB_ISSUES_REPO` + ) |
 
-**Autenticação:** chave de API Bearer (`isAuthenticated`).
+**Autenticação:** `/v1/quotas/check` usa uma chave Bearer API (`isAuthenticated`). `/v1/issues/report` é apenas de gerenciamento (`requireManagementAuth`), como `/api/v1/registered-keys`: uma sessão de painel, o token CLI local ou uma chave API com escopo `manage`/`admin` ; chaves API somente para inferência obtêm `403`.
 
-### Recuperação de sessão de cota (opcional)
+### Recuperação de sessão de cota (opt-in)
 
-Uma solicitação `POST /v1/chat/completions` ou `POST /v1/responses` sem streaming que falhe com um
-erro terminal de cota (`402`/`429`/`503` cujo corpo informe que a cota ou os créditos estão esgotados)
-pode ser armazenada e reproduzida posteriormente em vez de retornar o erro. O chamador opta por isso por
-solicitação com três cabeçalhos:
+Um `POST /v1/chat/completions` ou `POST /v1/responses` sem streaming que falha com um erro de cota de terminal (`402`/`429`/`503` cujo corpo diz que a cota ou os créditos estão esgotados) pode ser estacionado e reproduzido posteriormente em vez de retornar o erro. O chamador aceita por solicitação com três cabeçalhos:
 
-| Cabeçalho                    | Valor                                                |
-| ---------------------------- | ---------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                               |
-| `x-omniroute-session`        | id da sessão, `[A-Za-z0-9._:-]{1,128}`               |
-| `x-omniroute-recovery-turn`  | id do turno exclusivo dentro da sessão (mesma regra) |
+| Cabeçalho                    | Valor                                    |
+| ---------------------------- | ---------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                   |
+| `x-omniroute-session`        | ID da sessão, `[A-Za-z0-9._:-]{1,128}`   |
+| `x-omniroute-recovery-turn`  | torne o id único na sessão (mesma regra) |
 
-Apenas turnos com `stream: false`, sem ferramentas, histórico de ferramentas ou
-`previous_response_id`, e sem um pin de `x-omniroute-connection`, são elegíveis, e
-`STORAGE_ENCRYPTION_KEY` deve estar definido (a solicitação é armazenada criptografada por até 24 h). A
-resposta será então `202` com `recovery.poll`; consulte
-`GET /v1/quota-recoveries/{id}` (`202` enquanto estiver pendente, `200` com o
-corpo recuperado quando concluído) ou cancele com `DELETE`. Os tickets ficam visíveis apenas para a chave
-de API que os criou. Uma reprodução cujo resultado seja incerto termina em `needs_confirmation`, em vez
-de ser enviada duas vezes. Fonte: `src/lib/quota/quotaSessionRecovery.ts`.
+Somente voltas `stream: false` sem ferramentas, histórico de ferramentas ou `previous_response_id` e sem pin `x-omniroute-connection` são elegíveis e `STORAGE_ENCRYPTION_KEY` deve ser definido (a solicitação é armazenada criptografada por até 24 horas). A resposta é então `202` com `recovery.poll`; poll `GET /v1/quota-recoveries/{id}` (`202` enquanto pendente, `200` com o corpo recuperado quando concluído) ou cancele com `DELETE`. Os tickets são visíveis apenas para a chave API que os criou. Um replay cujo resultado é incerto termina em `needs_confirmation` em vez de ser enviado duas vezes. Fonte: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1723,19 +1713,23 @@ Assinaturas de webhook de saída para eventos do OmniRoute (conclusão de solici
 
 ---
 
-## Chaves registradas (gerenciamento automático)
+## Chaves Registradas (Gerenciamento Automático)
 
-Usado pelo subsistema de gerenciamento automático de chaves para emitir e rotacionar chaves de API em relação a um provedor/conta de suporte, com cotas diárias/horárias.
+Usado pelo subsistema de gerenciamento de chave automática para emitir e girar chaves API contra um suporte provider/account, com cotas daily/hourly.
 
-| Método | Caminho                               | Descrição                                                                                                                                                                                                             |
-| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Listar chaves registradas (somente o prefixo mascarado)                                                                                                                                                               |
-| POST   | `/api/v1/registered-keys`             | Emitir uma nova chave registrada — corpo: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Retorna a chave bruta **uma única vez**. Retorna `429` quando a cota é recusada. |
-| GET    | `/api/v1/registered-keys/[id]`        | Recuperar os metadados de uma chave registrada (sem o material bruto)                                                                                                                                                 |
-| DELETE | `/api/v1/registered-keys/[id]`        | Revogar uma chave registrada                                                                                                                                                                                          |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Endpoint de revogação explícita (mesmo efeito que DELETE)                                                                                                                                                             |
+| Método | Caminho                               | Descrição                                                                                                                                                                                                       |
+| ------ | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Listar chaves registradas (somente prefixo mascarado)                                                                                                                                                           |
+| POST   | `/api/v1/registered-keys`             | Emita uma nova chave registrada — body: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Retorna a chave bruta** uma vez** . Retorna `429` em caso de recusa de cota. |
+| GET    | `/api/v1/registered-keys/[id]`        | Recuperar os metadados de uma chave registrada (sem matéria-prima)                                                                                                                                              |
+| DELETE | `/api/v1/registered-keys/[id]`        | Revogar uma chave registrada                                                                                                                                                                                    |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Endpoint de revogação explícita (mesmo efeito que DELETE)                                                                                                                                                       |
+| GET    | `/api/v1/providers/[provider]/limits` | Leia os limites de emissão do provedor                                                                                                                                                                          |
+| PUT    | `/api/v1/providers/[provider]/limits` | Defina os limites de emissão do provedor — body: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                        |
+| GET    | `/api/v1/accounts/[id]/limits`        | Leia os limites de emissão da conta                                                                                                                                                                             |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Defina os limites de emissão da conta — no mesmo corpo da rota do provedor                                                                                                                                      |
 
-**Autenticação:** sessão/chave de API de gerenciamento (`requireManagementAuth`) — a mesma proteção de `/api/keys`: uma sessão do dashboard, o token da CLI local ou uma chave de API com escopo `manage`/`admin`; chaves de API somente para inferência recebem `403`. Consulte também `/v1/quotas/check` e `/v1/issues/report`.
+**Autenticação:** gerenciamento session/API key (`requireManagementAuth`) — a mesma proteção que `/api/keys`: uma sessão de painel, o token CLI local ou uma chave API com escopo `manage`/`admin` ; chaves API somente para inferência obtêm `403`. Consulte também `/v1/quotas/check` e `/v1/issues/report`.
 
 ---
 

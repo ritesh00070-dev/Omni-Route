@@ -939,36 +939,26 @@ tamamlanma akışını gerçekleştirir.
 
 ---
 
-## Kotalar ve Sorun Raporlama
+## Kotalar ve Sorunların Raporlanması
 
-| Yöntem | Yol                 | Açıklama                                                                                    |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------- |
-| GET    | `/v1/quotas/check`  | Kayıtlı bir anahtar oluşturmadan önce `provider` + `accountId` için kotayı önceden doğrular |
-| POST   | `/v1/issues/report` | GitHub'a kota/anahtar oluşturma hatasını bildirir (`GITHUB_ISSUES_REPO` + token gerektirir) |
+| Yöntem | Yol                 | Tanım                                                                                      |
+| ------ | ------------------- | ------------------------------------------------------------------------------------------ |
+| GET    | `/v1/quotas/check`  | Kayıtlı bir anahtarı vermeden önce `provider` + `accountId` için kotayı önceden doğrulayın |
+| POST   | `/v1/issues/report` | quota/key verme hatasını GitHub bildirin ( `GITHUB_ISSUES_REPO` + belirteci gerektirir)    |
 
-**Kimlik doğrulama:** Bearer API anahtarı (`isAuthenticated`).
+**Yetki:** `/v1/quotas/check` bir Taşıyıcı API anahtarını (`isAuthenticated`) alır. `/v1/issues/report`, `/api/v1/registered-keys` gibi yalnızca yönetime yöneliktir (`requireManagementAuth`): bir kontrol paneli oturumu, yerel CLI belirteci veya `manage`/`admin` kapsamına sahip bir API anahtarı; yalnızca çıkarım API anahtarları `403` değerini alır.
 
-### Kota oturumu kurtarma (isteğe bağlı)
+### Kota oturumu kurtarma (katılma)
 
-Terminal kota hatasıyla (gövdesi kotanın veya kredilerin tükendiğini belirten `402`/`429`/`503`)
-başarısız olan akışsız bir `POST /v1/chat/completions` veya `POST /v1/responses` isteği,
-hatayı döndürmek yerine bekletilip daha sonra yeniden oynatılabilir. Çağıran, istek başına
-aşağıdaki üç başlıkla bu özelliği etkinleştirir:
+Terminal kota hatasıyla başarısız olan akışsız bir `POST /v1/chat/completions` veya `POST /v1/responses` (gövdesi kotanın veya kredilerin tükendiğini söyleyen `402`/`429`/`503` ), hatayı döndürmek yerine park edilebilir ve daha sonra yeniden oynatılabilir. Arayan, istek başına üç başlıkla katılmayı tercih eder:
 
-| Başlık                       | Değer                                              |
-| ---------------------------- | -------------------------------------------------- |
-| `x-omniroute-quota-recovery` | `auto`                                             |
-| `x-omniroute-session`        | oturum kimliği, `[A-Za-z0-9._:-]{1,128}`           |
-| `x-omniroute-recovery-turn`  | oturum içinde benzersiz dönüş kimliği (aynı kural) |
+| Başlık                       | Değer                                                     |
+| ---------------------------- | --------------------------------------------------------- |
+| `x-omniroute-quota-recovery` | `auto`                                                    |
+| `x-omniroute-session`        | oturum kimliği, `[A-Za-z0-9._:-]{1,128}`                  |
+| `x-omniroute-recovery-turn`  | oturum içinde kimliği benzersiz hale getirin (aynı kural) |
 
-Yalnızca `stream: false` olan, araç, araç geçmişi veya `previous_response_id` içermeyen ve
-`x-omniroute-connection` sabitlemesi bulunmayan dönüşler uygundur; ayrıca
-`STORAGE_ENCRYPTION_KEY` ayarlanmış olmalıdır (istek en fazla 24 saat boyunca şifrelenmiş
-olarak saklanır). Yanıt daha sonra `recovery.poll` ile birlikte `202` olur; yoklama için
-`GET /v1/quota-recoveries/{id}` kullanılır (beklemede `202`, tamamlandığında kurtarılan
-gövdeyle `200`) veya `DELETE` ile iptal edilebilir. Biletler yalnızca bunları oluşturan API
-anahtarına görünür. Sonucu belirsiz olan bir yeniden oynatma, iki kez gönderilmek yerine
-`needs_confirmation` durumuyla sona erer. Kaynak: `src/lib/quota/quotaSessionRecovery.ts`.
+Yalnızca hiçbir araç, araç geçmişi veya `previous_response_id` olmayan ve `x-omniroute-connection` pini olmayan `stream: false` dönüşleri uygundur ve `STORAGE_ENCRYPTION_KEY` ayarlanması gerekir (istek 24 saate kadar şifreli olarak saklanır). Bu durumda yanıt `recovery.poll` ile `202` olur; anket `GET /v1/quota-recoveries/{id}` (beklemedeyken `202`, tamamlandığında kurtarılan gövdeyle birlikte `200` ) veya `DELETE` ile iptal edin. Biletler yalnızca onları oluşturan API anahtarı tarafından görülebilir. Sonucu belirsiz olan bir tekrar, iki kez gönderilmek yerine `needs_confirmation` ile biter. Kaynak: `src/lib/quota/quotaSessionRecovery.ts`.
 
 ---
 
@@ -1701,17 +1691,21 @@ OmniRoute olayları için giden webhook abonelikleri (istek tamamlanması, kota 
 
 ## Kayıtlı Anahtarlar (Otomatik Yönetim)
 
-Günlük/saatlik kotalara sahip bir arka uç sağlayıcıya/hesaba karşı API anahtarları oluşturmak ve döndürmek için otomatik anahtar yönetimi alt sistemi tarafından kullanılır.
+Otomatik anahtar yönetimi alt sistemi tarafından, daily/hourly kotalarıyla API anahtarlarını bir destek provider/account göre düzenlemek ve döndürmek için kullanılır.
 
-| Method | Path                                  | Açıklama                                                                                                                                                                                                |
-| ------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | `/api/v1/registered-keys`             | Kayıtlı anahtarları listeler (yalnızca maskelenmiş önek)                                                                                                                                                |
-| POST   | `/api/v1/registered-keys`             | Yeni bir kayıtlı anahtar oluşturur — gövde: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Ham anahtarı **bir kez** döndürür. Kota reddinde `429` döndürür. |
-| GET    | `/api/v1/registered-keys/[id]`        | Kayıtlı bir anahtarın meta verilerini getirir (ham materyal yoktur)                                                                                                                                     |
-| DELETE | `/api/v1/registered-keys/[id]`        | Kayıtlı bir anahtarı iptal eder                                                                                                                                                                         |
-| POST   | `/api/v1/registered-keys/[id]/revoke` | Açık iptal uç noktası (`DELETE` ile aynı etkiyi gösterir)                                                                                                                                               |
+| Yöntem | Yol                                   | Tanım                                                                                                                                                                                                                        |
+| ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | `/api/v1/registered-keys`             | Kayıtlı anahtarları listele (yalnızca maskeli önek)                                                                                                                                                                          |
+| POST   | `/api/v1/registered-keys`             | Yeni bir kayıtlı anahtar — gövdesi düzenleyin: `{name, provider?, accountId?, idempotencyKey?, expiresAt?, dailyBudget?, hourlyBudget?}`. Ham anahtarı döndürür** bir kere** . Kota reddi durumunda `429` değerini döndürür. |
+| GET    | `/api/v1/registered-keys/[id]`        | Kayıtlı bir anahtarın meta verilerini alın (hammadde yok)                                                                                                                                                                    |
+| DELETE | `/api/v1/registered-keys/[id]`        | Kayıtlı bir anahtarı iptal etme                                                                                                                                                                                              |
+| POST   | `/api/v1/registered-keys/[id]/revoke` | Açık iptal uç noktası ( DELETE ile aynı etki)                                                                                                                                                                                |
+| GET    | `/api/v1/providers/[provider]/limits` | Sağlayıcının ihraç sınırlarını okuyun                                                                                                                                                                                        |
+| PUT    | `/api/v1/providers/[provider]/limits` | Sağlayıcının ihraç sınırlarını ayarlayın — gövdesi: `{maxActiveKeys?, dailyIssueLimit?, hourlyIssueLimit?}`                                                                                                                  |
+| GET    | `/api/v1/accounts/[id]/limits`        | Hesabın düzenleme sınırlarını okuyun                                                                                                                                                                                         |
+| PUT    | `/api/v1/accounts/[id]/limits`        | Hesabın düzenleme sınırlarını — sağlayıcı rotasıyla aynı gövdeye ayarlayın                                                                                                                                                   |
 
-**Kimlik doğrulama:** yönetim oturumu/API anahtarı (`requireManagementAuth`) — `/api/keys` ile aynı koruma: bir kontrol paneli oturumu, yerel CLI belirteci veya `manage`/`admin` kapsamına sahip bir API anahtarı; yalnızca çıkarım için kullanılan API anahtarları `403` alır. Ayrıca `/v1/quotas/check` ve `/v1/issues/report` bölümlerine bakın.
+**Yetki:** yönetim session/API anahtarı (`requireManagementAuth`) — `/api/keys` ile aynı koruma: bir kontrol paneli oturumu, yerel CLI belirteci veya `manage`/`admin` kapsamına sahip bir API anahtarı; yalnızca çıkarım API anahtarları `403` değerini alır. Ayrıca bkz. `/v1/quotas/check` ve `/v1/issues/report`.
 
 ---
 
