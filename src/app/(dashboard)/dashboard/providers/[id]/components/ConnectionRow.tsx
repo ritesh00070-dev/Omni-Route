@@ -17,7 +17,10 @@ import { pickDisplayValue } from "@/shared/utils/maskEmail";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";
 import { isClaudeExtraUsageBlockEnabled } from "@/lib/providers/claudeExtraUsage";
 import { shouldShowConnectionLastError, formatRelativeAge } from "./connectionRowHelpers";
-import { readStoredVerificationUrl } from "@omniroute/open-sse/services/antigravityVerification.ts";
+import {
+  readStoredVerificationUrl,
+  targetGoogleVerificationUrl,
+} from "@omniroute/open-sse/services/antigravityVerification.ts";
 import type { ConnectionRowProps } from "./connectionRowTypes";
 import { getStatusPresentation } from "./connectionRowStatus";
 import { getCodexEffectiveServiceTier } from "@/lib/providers/codexFastTier";
@@ -95,7 +98,7 @@ export default function ConnectionRow({
   isCodex,
   codexGlobalServiceMode,
   isCcCompatible,
-  cliproxyapiEnabled,
+  cliproxyapiEnabled: _cliproxyapiEnabled,
   upstreamProxyMode,
   upstreamProxyFallbackBackend,
   onSetUpstreamProxyMode,
@@ -113,7 +116,7 @@ export default function ConnectionRow({
   onToggleAutoSync,
   onToggleCodex5h,
   onToggleCodexWeekly,
-  onToggleCliproxyapiMode,
+  onToggleCliproxyapiMode: _onToggleCliproxyapiMode,
   onRetest,
   isRetesting,
   onEdit,
@@ -166,7 +169,11 @@ export default function ConnectionRow({
   // cookieExpiresAt — feed it into the same countdown badge OAuth rows use.
   const cookieExpiresAt = readCookieExpiresAt(connection.providerSpecificData);
   // Antigravity 403 VALIDATION_REQUIRED: Google link that unlocks the account (validated host).
-  const verificationUrl = readStoredVerificationUrl(connection.providerSpecificData);
+  const storedVerificationUrl = readStoredVerificationUrl(connection.providerSpecificData);
+  const verificationUrl = targetGoogleVerificationUrl(
+    storedVerificationUrl,
+    connection.email || connection.name
+  );
   const effectiveExpiresAt = connection.tokenExpiresAt || connection.expiresAt || cookieExpiresAt;
   const hasExpirySource = isOAuth || Boolean(cookieExpiresAt);
   const getTokenMinsLeft = () => {
