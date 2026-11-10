@@ -484,6 +484,18 @@
       "verifiedBy": "alirezariahi",
       "summary": "The model page advertises a free endpoint. NVIDIA NIM FAQ (https://docs.api.nvidia.com/nim/docs/product) grants Developer Program members free API access for prototyping. The catalog rate-limit notice (https://build.nvidia.com/search) publishes request limits rather than a numeric token allowance.",
       "limitations": "Requires a registered NVIDIA account and API key. Prototyping/trial use only; no production entitlement, permanent availability, token allowance, guaranteed throughput or billing hard stop is established. Limits vary by model and traffic; trial terms may permit credits. Paid dedicated deployments are separate."
+    },
+    {
+      "provider": "nvidia",
+      "modelId": "openai/gpt-oss-20b",
+      "catalogHash": "530f96440a244cc6b680997519e2d5e99383e7cd5012d1171842d5da9ca52454",
+      "sourceType": "public-page",
+      "sourceUrl": "https://github.com/mnfst/awesome-free-llm-apis",
+      "checkedAt": "2026-10-30",
+      "claim": "recurring-free-access",
+      "verifiedBy": "OmniRoute maintainers",
+      "summary": "The maintained free-API reference lists GPT OSS 20B under NVIDIA NIM's NVIDIA Developer Program free tier and reports 40 RPM / 10,000 RPD per model; NVIDIA's exact model page confirms the hosted endpoint.",
+      "limitations": "The endpoint is governed by NVIDIA API Trial Terms; the trial notice prohibits personal/confidential submissions and says prompts are logged to improve products. The listed quota is request-based, not a token allowance. Account eligibility and current quota must be checked in NVIDIA's console; no billing hard stop is established here. This is for development/evaluation, not production traffic."
     }
   ]
 }
