@@ -56,17 +56,31 @@ export async function persistConnectionTestHealth({
   const isTerminalFailure =
     !result.valid &&
     terminalTestStatuses.has(String(diagnosis.code ?? diagnosis.type ?? "").toLowerCase());
+  const isVerificationRequired =
+    diagnosis.type === "verification_required" ||
+    diagnosis.type === "age_verification_required" ||
+    diagnosis.code === "verification_required" ||
+    diagnosis.code === "age_verification_required";
+
   const updateData: Record<string, unknown> = {
-    testStatus: clearErrorState ? "active" : result.valid ? connection.testStatus : "error",
+    testStatus: clearErrorState
+      ? "active"
+      : isVerificationRequired
+        ? "degraded"
+        : result.valid
+          ? connection.testStatus
+          : "error",
     ...(result.valid && !operatorDisabled ? { isActive: true } : {}),
     lastError: clearErrorState ? null : result.valid ? connection.lastError : result.error,
     lastErrorAt: clearErrorState ? null : result.valid ? connection.lastErrorAt : now,
     lastTested: now,
     lastErrorType: clearErrorState
       ? null
-      : result.valid
-        ? connection.lastErrorType
-        : diagnosis.type,
+      : isVerificationRequired
+        ? "oauth_verification_required"
+        : result.valid
+          ? connection.lastErrorType
+          : diagnosis.type,
     lastErrorSource: clearErrorState
       ? null
       : result.valid
@@ -74,12 +88,14 @@ export async function persistConnectionTestHealth({
         : diagnosis.source,
     errorCode: clearErrorState
       ? null
-      : result.valid
-        ? connection.errorCode
-        : diagnosis.code || result.statusCode || null,
+      : isVerificationRequired
+        ? (diagnosis.code as string)
+        : result.valid
+          ? connection.errorCode
+          : diagnosis.code || result.statusCode || null,
     rateLimitedUntil: clearErrorState
       ? null
-      : isTerminalFailure || result.valid
+      : isTerminalFailure || isVerificationRequired || result.valid
         ? connection.rateLimitedUntil || null
         : new Date(Date.now() + 30_000).toISOString(),
   };
