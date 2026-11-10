@@ -1,5 +1,6 @@
 import type { FeatureFlagDefinition } from "./featureFlagTypes";
 import { FAL_NATIVE_ENABLED_FLAG } from "./featureFlagDefinitionsFal";
+import { SYSTEM_ONE_FEATURE_FLAG_DEFINITIONS } from "./featureFlagDefinitionsSystemOne";
 
 export type { FeatureFlagDefinition };
 
@@ -1433,4 +1434,6 @@ export const FEATURE_FLAG_DEFINITIONS: FeatureFlagDefinition[] = [
     requiresRestart: false,
     warningLevel: "info",
   },
+  // System One / Jev opt-in flags live in their own module (file-size cap).
+  ...SYSTEM_ONE_FEATURE_FLAG_DEFINITIONS,
 ];
