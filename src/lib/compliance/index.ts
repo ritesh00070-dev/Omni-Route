@@ -763,6 +763,7 @@ export async function cleanupExpiredLogs() {
   const mcpCutoff = new Date(Date.now() - mcpAuditRetentionDays * day).toISOString();
 
   let deletedUsage = 0;
+  let usageRollupFailed = false;
   let deletedCallLogs = 0;
   let deletedProxyLogs = 0;
   let deletedRequestDetailLogs = 0;
@@ -772,8 +773,19 @@ export async function cleanupExpiredLogs() {
   let trimmedProxyLogs = 0;
 
   try {
-    const r1 = db.prepare("DELETE FROM usage_history WHERE timestamp < ?").run(usageCutoff);
-    deletedUsage = r1.changes;
+    // Archive into daily_usage_summary first, on a whole-day boundary: the rollup rewrites a
+    // day from the raw rows left, so a partly archived day would lose its totals next pass.
+    // If the rollup fails, keep the raw rows (same guard as cleanupUsageHistory).
+    const usageCutoffDate = usageCutoff.slice(0, 10);
+    const { rollupUsageHistoryBeforeDate } = await import("../usage/aggregateHistory");
+    const rollup = await rollupUsageHistoryBeforeDate(usageCutoffDate);
+    if (rollup.errors > 0) {
+      console.error("[Compliance] Skipping usage_history deletion: pre-delete rollup failed.");
+      usageRollupFailed = true;
+    } else {
+      const r1 = db.prepare("DELETE FROM usage_history WHERE timestamp < ?").run(usageCutoffDate);
+      deletedUsage = r1.changes;
+    }
   } catch {
     /* table may not exist */
   }
@@ -854,8 +866,9 @@ export async function cleanupExpiredLogs() {
     actor: "system",
     target: "log-retention",
     resourceType: "maintenance",
-    status: "success",
+    status: usageRollupFailed ? "partial" : "success",
     details: {
+      usageRollupFailed,
       deletedUsage,
       deletedCallLogs,
       deletedProxyLogs,

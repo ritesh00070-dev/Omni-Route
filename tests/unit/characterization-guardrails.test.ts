@@ -90,9 +90,9 @@ test("importing the barrel registers the six default guardrails in priority orde
       ["vision-bridge", 5, true],
       ["audio-bridge", 6, true],
       ["video-bridge", 7, true],
+      ["credential-masker", 9, true],
       ["pii-masker", 10, true],
       ["prompt-injection", 20, true],
-      ["credential-masker", 95, true],
     ]
   );
 });
@@ -119,9 +119,9 @@ test("pii-masker with the PII flags OFF never mutates the request payload", asyn
   const result = await guard.preCall(payload, { log: silentLog });
   assert.equal(result.block, false);
   assert.equal(result.modifiedPayload, undefined);
-  // Detection still runs (meta reports the count) — only mutation is opt-in.
-  assert.ok(result.meta && typeof result.meta.detections === "number");
-  assert.ok((result.meta.detections as number) > 0);
+  // Masking off is a no-op: the payload is not scanned, so there is no detection count.
+  assert.equal(result.meta?.detections, undefined);
+  assert.equal(result.meta?.redacted, undefined);
   assert.deepEqual(payload, snapshot);
 });
 
