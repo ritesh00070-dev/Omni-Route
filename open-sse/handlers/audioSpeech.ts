@@ -40,7 +40,7 @@ import {
   downloadUpstreamMedia,
   upstreamAudioContentType,
   upstreamMediaErrorText,
-} from "@/shared/network/remoteImageFetch";
+} from "../utils/remoteMediaFetch.ts";
 import {
   getKieCallbackUrl,
   getKieErrorMessage,
