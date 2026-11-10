@@ -1,5 +1,6 @@
 import type { FeatureFlagDefinition } from "./featureFlagTypes";
 import { FAL_NATIVE_ENABLED_FLAG } from "./featureFlagDefinitionsFal";
+import { PII_REVERSIBLE_VAULT_FLAG } from "./piiVaultFeatureFlag";
 
 export type { FeatureFlagDefinition };
 
@@ -86,6 +87,7 @@ export const FEATURE_FLAG_DEFINITIONS: FeatureFlagDefinition[] = [
     requiresRestart: false,
     warningLevel: "info",
   },
+  PII_REVERSIBLE_VAULT_FLAG,
   {
     key: "OUTBOUND_SSRF_GUARD_ENABLED",
     label: "SSRF Guard",
