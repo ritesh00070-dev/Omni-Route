@@ -9475,7 +9475,8 @@
     "modalityBridgeVideoDrilldownEnabledDesc": "Geçici JPEG saklamaya yalnızca kimliği doğrulanmış istek drilldown: true değerini de ayarladığında izin ver. Ham videolar hiçbir zaman saklanmaz.",
     "modalityBridgeVideoDrilldownRemoteEnabled": "Kimliği doğrulanmış kare ayrıntı incelemesine izin ver",
     "modalityBridgeVideoDrilldownRemoteEnabledDesc": "API anahtarlarının yalnızca kendi opak tanıtıcılarını okumasına ve silmesine izin ver. Anonim veya farklı anahtarlar arası erişime izin verilmez.",
-    "modalityBridgeVideoDrilldownUsage": "Saklanan JPEG'ler / baytlar"
+    "modalityBridgeVideoDrilldownUsage": "Saklanan JPEG'ler / baytlar",
+    "proxyManagedCoresTab": "Yönetilen çekirdekler"
   },
   "contextRtk": {
     "title": "RTK Motoru",
@@ -11854,6 +11855,10 @@
     "viewSwitcherAria": "Önbellek görünümü"
   },
   "proxyConfigModal": {
+    "managedCore": "Proxy çekirdeği",
+    "managedSelectCore": "Bir çekirdek seçin",
+    "managedSaveHint": "Kaydetme işlemi gerektiğinde resmi çekirdeği indirip doğrular, yapılandırmayı denetler ve ardından bu proxyyi etkinleştirir. Yazmak hiçbir şey kurmaz.",
+    "errorSelectManagedCore": "Bu tüneli kaydetmeden önce sing-box veya Xray seçin",
     "levelGlobal": "Küresel",
     "levelProvider": "sağlayıcı",
     "levelCombo": "Kombinasyon",
@@ -16275,5 +16280,20 @@
     "recoveryHelp": "__MISSING__",
     "streamIncomplete": "__MISSING__",
     "streamError": "__MISSING__"
+  },
+  "managedProxy": {
+    "title": "Yönetilen proxy çekirdekleri",
+    "description": "Kaydetmek ve atamak için tünel bağlantısını özel proxy ana bilgisayar alanına yapıştırın. Burada herhangi bir atamayı değiştirmeden yerel dışa bağlantı JSON tanımını da kaydedebilirsiniz.",
+    "saveHint": "Kaydetme işlemi gerektiğinde resmi çekirdeği doğrular ve etkinleştirmeden önce yerel yapılandırmayı denetler. Kaynaklar şifreleme gerektirir. Önizleme sırasında kurulum, otomatik başlatma veya şeffaf proxy değişikliği yapılmaz.",
+    "saveActivate": "Kaydet ve etkinleştir",
+    "core": "Çekirdek",
+    "selectCore": "Bir çekirdek seçin",
+    "name": "Ad",
+    "source": "Kaynak bağlantısı veya yerel dışa bağlantı JSON tanımı",
+    "start": "Başlat",
+    "stop": "Durdur",
+    "loadError": "Yönetilen çekirdekler yüklenemedi",
+    "operationError": "Yönetilen çekirdek işlemi başarısız oldu",
+    "state": "{state, select, not_installed {Kurulu değil} stopped {Durduruldu} starting {Başlatılıyor} running {Çalışıyor} stopping {Durduruluyor} error {Hata} other {Bilinmiyor}}"
   }
 }

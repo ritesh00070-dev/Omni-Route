@@ -9475,7 +9475,8 @@
     "modalityBridgeVideoDrilldownEnabledDesc": "Permitir la retención temporal de JPEG solo cuando la solicitud autenticada también indique drilldown: true. El vídeo original nunca se retiene.",
     "modalityBridgeVideoDrilldownRemoteEnabled": "Permitir la consulta autenticada de fotogramas",
     "modalityBridgeVideoDrilldownRemoteEnabledDesc": "Permitir que cada clave de API consulte y elimine únicamente sus propios handles opacos. Sin acceso anónimo ni entre claves.",
-    "modalityBridgeVideoDrilldownUsage": "JPEG retenidos / bytes"
+    "modalityBridgeVideoDrilldownUsage": "JPEG retenidos / bytes",
+    "proxyManagedCoresTab": "Núcleos administrados"
   },
   "contextRtk": {
     "title": "Motor RTK",
@@ -11854,6 +11855,10 @@
     "viewSwitcherAria": "Vista de caché"
   },
   "proxyConfigModal": {
+    "managedCore": "Núcleo del proxy",
+    "managedSelectCore": "Seleccione un núcleo",
+    "managedSaveHint": "Al guardar, se descarga y verifica el núcleo oficial si es necesario, se comprueba la configuración y después se activa este proxy. Escribir no instala nada.",
+    "errorSelectManagedCore": "Seleccione sing-box o Xray antes de guardar este túnel",
     "levelGlobal": "Mundial",
     "levelProvider": "Proveedor",
     "levelCombo": "combinado",
@@ -16275,5 +16280,20 @@
     "recoveryHelp": "__MISSING__",
     "streamIncomplete": "__MISSING__",
     "streamError": "__MISSING__"
+  },
+  "managedProxy": {
+    "title": "Núcleos de proxy administrados",
+    "description": "Pegue un enlace de túnel en el campo de host del proxy personalizado para guardarlo y asignarlo. Aquí también puede guardar una definición de conexión saliente en formato JSON nativo sin cambiar ninguna asignación.",
+    "saveHint": "Al guardar, se verifica el núcleo oficial si es necesario y se comprueba la configuración nativa antes de activarla. Las fuentes requieren cifrado. No se realizan instalaciones durante la vista previa, inicios automáticos ni cambios en el proxy transparente.",
+    "saveActivate": "Guardar y activar",
+    "core": "Núcleo",
+    "selectCore": "Seleccione un núcleo",
+    "name": "Nombre",
+    "source": "Enlace de origen o conexión saliente en formato JSON nativo",
+    "start": "Iniciar",
+    "stop": "Detener",
+    "loadError": "No se pudieron cargar los núcleos administrados",
+    "operationError": "Error en la operación del núcleo administrado",
+    "state": "{state, select, not_installed {No instalado} stopped {Detenido} starting {Iniciando} running {En ejecución} stopping {Deteniendo} error {Error} other {Desconocido}}"
   }
 }

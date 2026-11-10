@@ -9475,7 +9475,8 @@
     "modalityBridgeVideoDrilldownEnabledDesc": "Die vorübergehende Aufbewahrung von JPEGs nur zulassen, wenn die authentifizierte Anfrage zusätzlich drilldown: true festlegt. Rohvideos werden niemals aufbewahrt.",
     "modalityBridgeVideoDrilldownRemoteEnabled": "Authentifizierten Frame-Drill-down zulassen",
     "modalityBridgeVideoDrilldownRemoteEnabledDesc": "API-Schlüsseln nur erlauben, ihre eigenen undurchsichtigen Handles zu lesen und zu löschen. Kein anonymer oder schlüsselübergreifender Zugriff.",
-    "modalityBridgeVideoDrilldownUsage": "Aufbewahrte JPEGs / Bytes"
+    "modalityBridgeVideoDrilldownUsage": "Aufbewahrte JPEGs / Bytes",
+    "proxyManagedCoresTab": "Verwaltete Kerne"
   },
   "contextRtk": {
     "title": "RTK-Engine",
@@ -11854,6 +11855,10 @@
     "viewSwitcherAria": "Cache-Ansicht"
   },
   "proxyConfigModal": {
+    "managedCore": "Proxy-Kern",
+    "managedSelectCore": "Kern auswählen",
+    "managedSaveHint": "Beim Speichern wird bei Bedarf der offizielle Kern heruntergeladen und verifiziert, die Konfiguration geprüft und anschließend dieser Proxy aktiviert. Die Texteingabe installiert nichts.",
+    "errorSelectManagedCore": "Wählen Sie sing-box oder Xray aus, bevor Sie diesen Tunnel speichern",
     "levelGlobal": "Global",
     "levelProvider": "Anbieter",
     "levelCombo": "Kombi",
@@ -16275,5 +16280,20 @@
     "recoveryHelp": "__MISSING__",
     "streamIncomplete": "__MISSING__",
     "streamError": "__MISSING__"
+  },
+  "managedProxy": {
+    "title": "Verwaltete Proxy-Kerne",
+    "description": "Fügen Sie einen Tunnel-Link in das Host-Feld des benutzerdefinierten Proxys ein, um ihn zu speichern und zuzuweisen. Hier können Sie auch eine ausgehende Verbindung im nativen JSON-Format definieren und speichern, ohne eine Zuweisung zu ändern.",
+    "saveHint": "Beim Speichern wird bei Bedarf der offizielle Kern verifiziert und die native Konfiguration vor der Aktivierung geprüft. Quellen müssen verschlüsselt sein. Keine Installation während der Vorschau, kein Autostart und keine Änderungen am transparenten Proxy.",
+    "saveActivate": "Speichern und aktivieren",
+    "core": "Kern",
+    "selectCore": "Kern auswählen",
+    "name": "Name",
+    "source": "Quell-Link oder ausgehende Verbindung im nativen JSON-Format",
+    "start": "Starten",
+    "stop": "Stoppen",
+    "loadError": "Verwaltete Kerne konnten nicht geladen werden",
+    "operationError": "Aktion für den verwalteten Kern fehlgeschlagen",
+    "state": "{state, select, not_installed {Nicht installiert} stopped {Gestoppt} starting {Wird gestartet} running {Läuft} stopping {Wird gestoppt} error {Fehler} other {Unbekannt}}"
   }
 }

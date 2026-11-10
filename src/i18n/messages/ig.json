@@ -9475,7 +9475,8 @@
     "modalityBridgeVideoDrilldownEnabledDesc": "Kwe ka e debe JPEG nwa oge naanị mgbe arịrịọ e nyochakwara njirimara ya tinyekwara drilldown: true. A naghị edebe vidio ndị mbụ.",
     "modalityBridgeVideoDrilldownRemoteEnabled": "Kwe ka e jiri njirimara e nyochara mee nnyocha miri emi na fremụ",
     "modalityBridgeVideoDrilldownRemoteEnabledDesc": "Kwe ka igodo API gụọ ma hichapụ naanị ihe njirimara zoro ezo nke ha. Enweghị ohere maka ndị na-enweghị njirimara ma ọ bụ iji igodo ọzọ nweta ha.",
-    "modalityBridgeVideoDrilldownUsage": "JPEG / baitị ndị e debere"
+    "modalityBridgeVideoDrilldownUsage": "JPEG / baitị ndị e debere",
+    "proxyManagedCoresTab": "Isi ndị a na-ejikwa"
   },
   "contextRtk": {
     "title": "Injin RTK",
@@ -11854,6 +11855,10 @@
     "viewSwitcherAria": "Nlele cache"
   },
   "proxyConfigModal": {
+    "managedCore": "Isi proksi",
+    "managedSelectCore": "Họrọ isi",
+    "managedSaveHint": "Ichekwa na-ebudata ma nyochaa izi ezi nke isi gọọmentị ma ọ bụrụ na ọ dị mkpa, na-enyocha nhazi, wee gbanye proksi a. Ịpị ederede anaghị etinye ihe ọ bụla.",
+    "errorSelectManagedCore": "Họrọ sing-box ma ọ bụ Xray tupu ịchekwa ọwara a",
     "levelGlobal": "Zuru ụwa ọnụ",
     "levelProvider": "Onye na-eweta ọrụ",
     "levelCombo": "Ngwakọta",
@@ -16275,5 +16280,20 @@
     "recoveryHelp": "__MISSING__",
     "streamIncomplete": "__MISSING__",
     "streamError": "__MISSING__"
+  },
+  "managedProxy": {
+    "title": "Isi proksi a na-ejikwa",
+    "description": "Mado njikọ ọwara n’oghere onye nnabata nke proksi ahaziri iche iji chekwaa ma kenye ya. N’ebe a, ị nwekwara ike ichekwa nkọwa JSON nke isi ahụ nke njikọ na-apụ apụ n’agbanweghị ọrụ e kenyere.",
+    "saveHint": "Mgbe a na-echekwa, a na-enyocha izi ezi nke isi gọọmentị ma ọ bụrụ na ọ dị mkpa ma nyochaa nhazi nke isi ahụ tupu ịgbanye ya. Isi mmalite chọrọ izo ya ezo. Enweghị nrụnye n’oge nlele mbụ, ịmalite na-akpaghị aka ma ọ bụ mgbanwe na proksi na-agafe ozugbo.",
+    "saveActivate": "Chekwaa ma gbanye",
+    "core": "Isi",
+    "selectCore": "Họrọ isi",
+    "name": "Aha",
+    "source": "Njikọ isi mmalite ma ọ bụ JSON nke isi ahụ nke njikọ na-apụ apụ",
+    "start": "Malite",
+    "stop": "Kwụsị",
+    "loadError": "Enweghị ike ibu isi ndị a na-ejikwa",
+    "operationError": "Ọrụ isi a na-ejikwa dara",
+    "state": "{state, select, not_installed {E tinyebeghị} stopped {Akwụsịla} starting {Na-amalite} running {Na-arụ ọrụ} stopping {Na-akwụsị} error {Njehie} other {Amaghị}}"
   }
 }

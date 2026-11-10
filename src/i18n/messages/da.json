@@ -9475,7 +9475,8 @@
     "modalityBridgeVideoDrilldownEnabledDesc": "Tillad kun midlertidig opbevaring af JPEG-filer, når den godkendte anmodning også angiver drilldown: true. Rå videoer opbevares aldrig.",
     "modalityBridgeVideoDrilldownRemoteEnabled": "Tillad godkendt detaljevisning af videobilleder",
     "modalityBridgeVideoDrilldownRemoteEnabledDesc": "Tillad kun API-nøgler at læse og slette deres egne uigennemsigtige handles. Ingen anonym adgang eller adgang på tværs af nøgler.",
-    "modalityBridgeVideoDrilldownUsage": "Opbevarede JPEG-filer / byte"
+    "modalityBridgeVideoDrilldownUsage": "Opbevarede JPEG-filer / byte",
+    "proxyManagedCoresTab": "Administrerede kerner"
   },
   "contextRtk": {
     "title": "RTK Engine",
@@ -11854,6 +11855,10 @@
     "viewSwitcherAria": "Cachevisning"
   },
   "proxyConfigModal": {
+    "managedCore": "Proxykerne",
+    "managedSelectCore": "Vælg en kerne",
+    "managedSaveHint": "Når du gemmer, downloades og verificeres den officielle kerne om nødvendigt, konfigurationen kontrolleres, og derefter aktiveres denne proxy. Indtastning installerer ikke noget.",
+    "errorSelectManagedCore": "Vælg sing-box eller Xray, før du gemmer denne tunnel",
     "levelGlobal": "Globalt",
     "levelProvider": "Udbyder",
     "levelCombo": "Kombination",
@@ -16275,5 +16280,20 @@
     "recoveryHelp": "__MISSING__",
     "streamIncomplete": "__MISSING__",
     "streamError": "__MISSING__"
+  },
+  "managedProxy": {
+    "title": "Administrerede proxykerner",
+    "description": "Indsæt et tunnellink i værtsfeltet for en brugerdefineret proxy for at gemme og tildele det. Her kan du også gemme en definition af en udgående forbindelse i kernens eget JSON-format uden at ændre nogen tildeling.",
+    "saveHint": "Når du gemmer, verificeres den officielle kerne om nødvendigt, og konfigurationen i kernens eget format kontrolleres før aktivering. Kilder kræver kryptering. Ingen installation under forhåndsvisning, automatisk start eller ændringer af transparent proxy.",
+    "saveActivate": "Gem og aktivér",
+    "core": "Kerne",
+    "selectCore": "Vælg en kerne",
+    "name": "Navn",
+    "source": "Kildelink eller udgående forbindelse i kernens eget JSON-format",
+    "start": "Start",
+    "stop": "Stop",
+    "loadError": "Kunne ikke indlæse administrerede kerner",
+    "operationError": "Handlingen på den administrerede kerne mislykkedes",
+    "state": "{state, select, not_installed {Ikke installeret} stopped {Stoppet} starting {Starter} running {Kører} stopping {Stopper} error {Fejl} other {Ukendt}}"
   }
 }

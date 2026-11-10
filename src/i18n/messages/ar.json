@@ -9475,7 +9475,8 @@
     "modalityBridgeVideoDrilldownEnabledDesc": "السماح بالاحتفاظ المؤقت بملفات JPEG فقط عندما يضبط الطلب المُصادَق عليه أيضًا drilldown: true. لا يتم الاحتفاظ بمقاطع الفيديو الخام مطلقًا.",
     "modalityBridgeVideoDrilldownRemoteEnabled": "السماح بالتعمق في الإطارات للمستخدمين المُصادَق عليهم",
     "modalityBridgeVideoDrilldownRemoteEnabledDesc": "السماح لمفاتيح API بقراءة مقابضها المبهمة وحذفها فقط. لا يُسمح بالوصول المجهول أو عبر مفاتيح أخرى.",
-    "modalityBridgeVideoDrilldownUsage": "ملفات JPEG المحتفظ بها / البايتات"
+    "modalityBridgeVideoDrilldownUsage": "ملفات JPEG المحتفظ بها / البايتات",
+    "proxyManagedCoresTab": "الأنوية المُدارة"
   },
   "contextRtk": {
     "title": "محرك آر تي كيه",
@@ -11854,6 +11855,10 @@
     "viewSwitcherAria": "عرض ذاكرة التخزين المؤقت"
   },
   "proxyConfigModal": {
+    "managedCore": "نواة الوكيل",
+    "managedSelectCore": "اختر نواة",
+    "managedSaveHint": "يؤدي الحفظ إلى تنزيل النواة الرسمية والتحقق منها عند الحاجة، وفحص الإعداد، ثم تفعيل هذا الوكيل. لا تؤدي الكتابة إلى تثبيت أي شيء.",
+    "errorSelectManagedCore": "اختر sing-box أو Xray قبل حفظ هذا النفق",
     "levelGlobal": "عالمي",
     "levelProvider": "مزود",
     "levelCombo": "كومبو",
@@ -16275,5 +16280,20 @@
     "recoveryHelp": "__MISSING__",
     "streamIncomplete": "__MISSING__",
     "streamError": "__MISSING__"
+  },
+  "managedProxy": {
+    "title": "أنوية الوكيل المُدارة",
+    "description": "الصق رابط نفق في حقل المضيف للوكيل المخصص لحفظه وتعيينه. يمكنك هنا أيضًا حفظ تعريف JSON أصلي للاتصال الصادر دون تغيير أي تعيين.",
+    "saveHint": "يتحقق الحفظ من النواة الرسمية عند الحاجة ويفحص الإعداد الأصلي قبل التفعيل. تتطلب المصادر التشفير. لا يحدث تثبيت أثناء المعاينة أو تشغيل تلقائي أو تغيير للوكيل الشفاف.",
+    "saveActivate": "حفظ وتفعيل",
+    "core": "النواة",
+    "selectCore": "اختر نواة",
+    "name": "الاسم",
+    "source": "رابط المصدر أو JSON أصلي للاتصال الصادر",
+    "start": "تشغيل",
+    "stop": "إيقاف",
+    "loadError": "تعذر تحميل الأنوية المُدارة",
+    "operationError": "فشلت عملية النواة المُدارة",
+    "state": "{state, select, not_installed {غير مثبتة} stopped {متوقفة} starting {قيد التشغيل الأولي} running {تعمل} stopping {قيد الإيقاف} error {خطأ} other {غير معروفة}}"
   }
 }
