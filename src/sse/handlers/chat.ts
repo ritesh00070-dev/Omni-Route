@@ -163,6 +163,7 @@ import {
   filterReasoningCombo,
 } from "./reasoningRouting";
 import { createVirtualAutoCombo, resolveAutoRoutingState } from "./autoRouting";
+import { dispatchWithProviderFailover } from "./chat/providerFailover.ts";
 import { getComboFailureLogError } from "./comboFailureLogging";
 import {
   logAdmissionRejection,
@@ -1444,34 +1445,59 @@ async function handleChatImplementation(
       } catch {}
     }
   }
-  const response = await handleSingleModelChat(
-    body,
-    resolvedModelStr,
-    clientRawRequest,
-    request,
-    null,
+  // A body that continues another provider's session (opaque reasoning, continuation
+  // ids, a response id) or an already-owned Muse session must not be replayed on a
+  // different provider: provider failover is pinned for it.
+  const bodyObject = (body ?? {}) as Record<string, unknown>;
+  const boundContinuation =
+    muse.bodyCarriesBoundContinuation(bodyObject) ||
+    (await muse.museSessionIsOwned({
+      body: bodyObject,
+      headers: request?.headers ?? null,
+      apiKeyId: apiKeyInfo?.id ?? null,
+    }));
+  const response = await dispatchWithProviderFailover({
+    modelStr: resolvedModelStr,
     apiKeyInfo,
-    telemetry,
-    {
-      sessionId,
-      sessionAffinityKey,
-      forceLiveComboTest: isComboLiveTest,
+    request,
+    signal: clientRawRequest?.signal ?? request?.signal ?? null,
+    pins: {
       forcedConnectionId: requestedConnectionId,
-      correlationId: reqId,
-      conversationId,
-      routingComboId,
-      reasoningDecision,
-      reasoningIntent,
-      reasoningRequestTags: requestRoutingTags.tags,
       managedLease,
-      videoBridgeLog,
-      previousResponseResumed:
-        (body as { _omniroutePreviousResponseResumed?: unknown })
-          ._omniroutePreviousResponseResumed === true || undefined,
+      comboLiveTest: isComboLiveTest,
+      boundContinuation,
     },
-    null,
-    false
-  );
+    dispatch: (targetModelStr, failoverOptions) =>
+      handleSingleModelChat(
+        body,
+        targetModelStr,
+        clientRawRequest,
+        request,
+        null,
+        apiKeyInfo,
+        telemetry,
+        {
+          ...failoverOptions,
+          sessionId,
+          sessionAffinityKey,
+          forceLiveComboTest: isComboLiveTest,
+          forcedConnectionId: requestedConnectionId,
+          correlationId: reqId,
+          conversationId,
+          routingComboId,
+          reasoningDecision,
+          reasoningIntent,
+          reasoningRequestTags: requestRoutingTags.tags,
+          managedLease,
+          videoBridgeLog,
+          previousResponseResumed:
+            (body as { _omniroutePreviousResponseResumed?: unknown })
+              ._omniroutePreviousResponseResumed === true || undefined,
+        },
+        null,
+        false
+      ),
+  });
   recordTelemetry(telemetry);
   return withModalityBridgeHeader(
     withConversationId(
@@ -1509,6 +1535,7 @@ async function handleSingleModelChat(
   telemetry: any = null,
   runtimeOptions: {
     emergencyFallbackTried?: boolean;
+    providerFailoverPending?: boolean; // another provider of this model is queued (providerFailover.ts)
     forceLiveComboTest?: boolean;
     sessionId?: string | null;
     sessionAffinityKey?: string | null;
@@ -1762,7 +1789,8 @@ async function handleSingleModelChat(
     provider === "claude-web" ||
       isCombo ||
       forceLiveComboTest ||
-      runtimeOptions.emergencyFallbackTried === true
+      runtimeOptions.emergencyFallbackTried === true ||
+      runtimeOptions.providerFailoverPending === true
   );
   const requestSignal = clientRawRequest?.signal ?? request?.signal ?? null;
   // Cumulative cap across all waits for this request (#7360 follow-up) — mirrors
@@ -2524,10 +2552,7 @@ async function handleSingleModelChat(
           // Retry spent and nothing emitted yet: one hop to a sibling (routing only, no mark).
           log.warn("STREAM", `${provider}/${model} early-EOF retry exhausted — trying one sibling`);
           noteAccountFallback("stream_early_eof", credentials.connectionId);
-          earlyEofOriginal = withRoutingTelemetry(
-            result.response,
-            credentials.connectionId
-          );
+          earlyEofOriginal = withRoutingTelemetry(result.response, credentials.connectionId);
           excludedConnectionIds.add(credentials.connectionId);
           continue;
         }
@@ -2659,7 +2684,8 @@ async function handleSingleModelChat(
       // Combo targets never emergency-hop: the combo is the operator's fallback policy
       // (target-level orchestration plus the global fallback #689 after it), and a
       // per-target hop burns extra upstream calls against exhausted providers (#1731).
-      if (!runtimeOptions.emergencyFallbackTried && !comboName) {
+      const emergencyHopAllowed = !runtimeOptions.providerFailoverPending && !comboName;
+      if (!runtimeOptions.emergencyFallbackTried && emergencyHopAllowed) {
         const fallbackDecision = await resolveEmergencyFallbackDecision(
           Number(result.status || 0),
           String(result.error || ""),
@@ -2805,6 +2831,7 @@ async function handleSingleModelChat(
       const transportAttempts = sameAccountTransportRetries.get(credentials.connectionId) || 0;
       if (
         !runtimeOptions.emergencyFallbackTried &&
+        !runtimeOptions.providerFailoverPending &&
         !comboName &&
         !forceLiveComboTest &&
         shouldRetrySameAccountTransport({
