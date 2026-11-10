@@ -23,6 +23,7 @@ import { kiro } from "./kiro";
 import { cursor } from "./cursor";
 import { trae } from "./trae";
 import { kilocode } from "./kilocode";
+import { megabrain } from "./megabrain";
 import { cline } from "./cline";
 import { devinCli, devinDesktop } from "./devin-desktop";
 import { grokCli } from "./grok-cli";
@@ -35,6 +36,8 @@ import { workbuddy } from "./workbuddy";
 import { zed } from "./zed";
 import { zedHosted } from "./zed-hosted";
 import { museCode } from "./muse-code";
+import { minimaxCode } from "./minimax-code";
+import { copilotM365 } from "./copilot-m365-web";
 
 export const PROVIDERS = {
   claude,
@@ -51,6 +54,7 @@ export const PROVIDERS = {
   cursor,
   trae,
   kilocode,
+  megabrain,
   cline,
   // clinepass reuses the Cline WorkOS OAuth flow 1:1 (same api.cline.bot host, same token
   // type) — it is a separate catalog entry advertising the cline-pass/* (ClinePass
@@ -76,6 +80,11 @@ export const PROVIDERS = {
   zed,
   "zed-hosted": zedHosted,
   "muse-code": museCode,
+  // MiniMax Code — device-code login that writes the credential into the
+  // local MiniMax Code profile (the profile the CLI and the local agent
+  // read), so the provider itself still stores no credential.
+  "minimax-code": minimaxCode,
+  "copilot-m365-web": copilotM365,
 };
 
 export default PROVIDERS;
