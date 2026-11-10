@@ -618,6 +618,10 @@ function flushEmptyStream(
   return remaining;
 }
 
+/**
+ * Mask credentials across SSE fragments with bounded per-lane buffers and fail-closed limits.
+ * Snapshots are masked directly; drained Responses lanes release their continuation state.
+ */
 export function createCredentialSseTransform(
   options?: CredentialTransformOptions
 ): TransformStream {
@@ -676,5 +680,10 @@ export function createCredentialSseTransform(
     return appendAndDrain(state, store, field, index, text, isStopSignal);
   };
 
-  return createSseTextTransform(processor, onFlush, undefined, { processToolArgs: true });
+  return createSseTextTransform(processor, onFlush, undefined, {
+    processToolArgs: true,
+    // Only after a Responses lane is drained: dropping the buffer also drops its
+    // WeakMap-backed overflow continuation state without recycling identities.
+    releaseResponsesLane: (index) => store.buffers.delete(index),
+  });
 }
