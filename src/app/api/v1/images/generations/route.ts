@@ -57,6 +57,7 @@ import { enforceClientApiRouteAuth } from "@/shared/utils/clientApiRouteAuth";
 import { runImageRequestWithAccounting } from "@/lib/usage/imageRequestAccounting";
 import { executeImageWithCredentialFallback } from "@/sse/services/imageCredentialRetry";
 import { updateProviderCredentials } from "@/sse/services/tokenRefresh";
+import { imageQuotaPreflightOptions } from "@/sse/services/imageQuotaSelectionPolicy";
 import { AUTHZ_HEADER_PEER_LOCALITY } from "@/server/authz/headers";
 import {
   assertCommonChatGptWebModelAvailable,
@@ -303,7 +304,8 @@ async function postHandler(request, context) {
       provider,
       null,
       allowedConnections,
-      requestedModel
+      requestedModel,
+      imageQuotaPreflightOptions(provider)
     );
     if (!credentials) {
       return errorResponse(

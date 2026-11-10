@@ -56,6 +56,7 @@ import { isMicrosoftDesignerWebProviderRetiredError } from "@/shared/constants/d
 import { resolveProxyForConnection } from "@/lib/db/settings";
 import { runWithProxyContext } from "@omniroute/open-sse/utils/proxyFetch.ts";
 import { isCodexFreePlan } from "@omniroute/open-sse/executors/codex/tools.ts";
+import { imageQuotaPreflightOptions } from "@/sse/services/imageQuotaSelectionPolicy";
 import { RequestBodyTooLargeError } from "@/shared/middleware/bodySizeGuard";
 import { readEditInput, type EditInput } from "./editInput.ts";
 import {
@@ -519,7 +520,8 @@ async function executeImageEditCombo(comboName: string, ctx: ImageEditContext): 
         target.credKey,
         null,
         ctx.allowedConnections,
-        target.modelStr
+        target.modelStr,
+        imageQuotaPreflightOptions(target.credKey)
       ),
     isRateLimited: isAllRateLimitedCredentials,
     dispatch: ({ target, credentials }) =>
@@ -723,7 +725,8 @@ async function postHandler(request: Request, _context?: unknown) {
       parsed.provider,
       null,
       allowedConnections,
-      resolvedModel
+      resolvedModel,
+      imageQuotaPreflightOptions(parsed.provider)
     );
     // Paid-only Codex models skip Free/Go accounts during selection; a pool made only of
     // them still gets the explicit paid-plan answer instead of "no credentials".
