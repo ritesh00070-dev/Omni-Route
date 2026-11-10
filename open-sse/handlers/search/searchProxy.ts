@@ -12,7 +12,8 @@ import { saveCallLog } from "@/lib/usageDb";
 import { sanitizeErrorMessage } from "../../utils/error.ts";
 import { formatSearchProviderFailure } from "./providerFailure.ts";
 import { fetchWithCheckedRedirects, isRegistryEndpoint } from "./redirectGuard.ts";
-import { HTTP_STATUS } from "../../config/constants.ts";
+import { COOLDOWN_MS, HTTP_STATUS, RateLimitReason } from "../../config/constants.ts";
+import { lockModel } from "../../services/accountFallback.ts";
 import { isSubscriptionQuotaText } from "../../services/quotaTextCooldowns.ts";
 import type { SearchProviderConfig } from "../../config/searchRegistry.ts";
 import type { SearchResult } from "../search.ts";
@@ -23,6 +24,12 @@ import {
   resolveSearchUsage,
   type SearchUsage,
 } from "./reportedCost.ts";
+
+const SEARCH_KEY_LOCK_STATUSES = new Set<number>([
+  HTTP_STATUS.PAYMENT_REQUIRED,
+  HTTP_STATUS.RATE_LIMITED,
+  HTTP_STATUS.PLAN_LIMIT_EXCEEDED,
+]);
 
 export const SEARCH_COOLDOWN_STATUSES = new Set([
   HTTP_STATUS.PAYMENT_REQUIRED,
@@ -203,6 +210,12 @@ export interface ExecuteProviderFetchParams {
   ) => { results: SearchResult[]; totalResults: number | null };
 }
 
+/** The one connection-row read in this file (post-dispatch state, never credential selection). */
+async function readConnection(connectionId: string) {
+  const { getProviderConnectionById } = await import("@/lib/db/providers");
+  return getProviderConnectionById(connectionId);
+}
+
 /**
  * Perform the upstream search HTTP call (through the resolved proxy, if any),
  * then handle the success/error/exception branches: call-log persistence,
@@ -260,8 +273,26 @@ export async function executeProviderFetch(
       }
       if (connectionId && shouldCoolDownSearchConnection(response.status, errorText)) {
         try {
-          const { markAccountUnavailable } = await import("@/sse/services/auth.ts");
-          await markAccountUnavailable(connectionId, response.status, errorText, config.id, null);
+          // A search provider can borrow a chat key (SEARCH_CREDENTIAL_FALLBACKS). A search
+          // failure says nothing about that key's chat health, so only the provider's own
+          // connections get the connection-wide cooldown.
+          const owner = await readConnection(connectionId);
+          if (owner?.provider === config.id) {
+            const { markAccountUnavailable } = await import("@/sse/services/auth.ts");
+            await markAccountUnavailable(connectionId, response.status, errorText, config.id, null);
+          } else if (
+            typeof owner?.provider === "string" &&
+            SEARCH_KEY_LOCK_STATUSES.has(response.status)
+          ) {
+            // Search-scoped lock: the chat model lock map, a model only search asks for.
+            lockModel(
+              owner.provider,
+              connectionId,
+              `websearch:${config.id}`,
+              RateLimitReason.RATE_LIMIT_EXCEEDED,
+              COOLDOWN_MS.rateLimit
+            );
+          }
         } catch {
           /* non-critical - background cooldown mark must not break search response */
         }
@@ -301,8 +332,7 @@ export async function executeProviderFetch(
     // when the row is already clean.
     if (connectionId) {
       try {
-        const { getProviderConnectionById } = await import("@/lib/db/providers");
-        const current = await getProviderConnectionById(connectionId);
+        const current = await readConnection(connectionId);
         if (current) {
           const { clearAccountError } = await import("@/sse/services/auth.ts");
           await clearAccountError(connectionId, current as never);
